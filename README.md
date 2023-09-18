@@ -1,8 +1,14 @@
-# Project Name
+# Sign Language Learning (Placeholder)
 
 Developer Names:
 
-Date of project start:
+- Stanley Chan
+- Andrew Kil
+- Cassidy Baldin
+- Jeremy Langner
+- Eduward Zhuang
+
+Date of project start: September 18th, 2023
 
 This project is ...
 
