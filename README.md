@@ -6,7 +6,7 @@ Developer Names:
 - Andrew Kil
 - Cassidy Baldin
 - Jeremy Langner
-- Eduward Zhuang
+- Edward Zhuang
 
 Date of project start: September 18th, 2023
 
