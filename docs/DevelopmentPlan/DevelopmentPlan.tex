@@ -1,16 +1,16 @@
 \documentclass{article}
 
-\usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{booktabs}
 
-\title{Development Plan\\\progname}
+\title{Problem Statement and Goals\\\progname}
 
 \author{\authname}
 
 \date{}
 
-\input{../Comments}
-\input{../Common}
+%\input{../Comments}
+%\input{../Common}
 
 \begin{document}
 
@@ -22,54 +22,62 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+September 19, 2023 & Andrew Kil & Initial Proposed Draft\\
+Date2 & Everyone & Initial Revision\\
+% ... & ... & ...\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\wss{Put your introductory blurb here.}
+\section{Problem Statement}
 
-\section{Team Meeting Plan}
 
-\section{Team Communication Plan}
+% \wss{You should check your problem statement with the}
+% \href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
+% {problem statement checklist}.}
+% \wss{You can change the section headings, as long as you include the required information.}
 
-\section{Team Member Roles}
+\subsection{Problem}
+Learning a new language can be an arduous task, one that only gets harder as people grow older in life. Time becomes a more scarce resource as individuals may find it difficult to make the effort to learn. ASLingo aims to ease that burden by providing an online, easy-to-access web application that allows individuals to test their understanding as well as learn new signs at their own pace in a fun, interactive manner. This application will be able to provide live feedback as the user learns and attempts new signs.
 
-\section{Workflow Plan}
+\subsection{Inputs and Outputs}
 
-\begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
-\end{itemize}
-
-\section{Proof of Concept Demonstration Plan}
-
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
-
-\section{Technology}
+The input of ASLingo or the system should be the hand gestures known as signs, at which point the system should be able to determine whether the system is correct or incorrect. The flow from input to output should work as follows:
 
 \begin{itemize}
-\item Specific programming language
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
-\item Investigation of code coverage measuring tools
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
-\item Specific performance measuring tools (like Valgrind), if
-  appropriate
-\item Libraries you will likely be using?
-\item Tools you will likely be using?
+    \item The user would attempt to form the sign of what the system prompted them to do
+    \item The system would process and determine whether or not the user formed the correct sign
+    \item The system would output an according response based on whether or not the user was correct
 \end{itemize}
 
-\section{Coding Standard}
+\subsection{Stakeholders}
+ The stakeholders for this project would include the hard of hearing community as well as individuals who wish to learn ASL. This would naturally expand outward towards educators who wish to promote the learning of ASL to their respective institutions.
 
-\section{Project Scheduling}
+\subsection{Environment}
+The software of ASLingo is a computer web-browser with live translation capabilities. The software can identify hand signs from a live video feed.
 
-\wss{How will the project be scheduled?}
+\section{Goals}
+
+Ease Of Access:\\
+Individuals with access to the Internet should be able to use ASLingo anytime, anywhere. The user's ability to access the system should not be inhibited by anything within the design.
+
+~\\Accessibility:\\
+The system should be simple and intuitive to use with little to none required thought from the user to begin the training. Anyone of learning age should be able to utilize ASLingo to learn a few hand signs. 
+
+~\\Engaging\\
+A crucial part of the learning experience is keeping the student's attention. ASLingo should be engaging, and thereby fun, enough such that the user is willing to engage with the system independent of external influences.
+
+~\\User Customize Experience\\
+A user should be able to focus their learning experience if they wish to learn specific phrases rather than just general signing. The option to specialize what they learn should prove to enrich their experience while using the software.
+
+\section{Stretch Goals}
+
+Mobile Port:\\
+Eventually port the web application to a phone application to increase ease-of-access and usability. Having a dedicated mobile experience would naturally improve the Ease of Access and accessibility as accessing web services on mobile is notorious for poor user-end experience.
+
+~\\Expansion to Other Sign Languages\\
+ASL is not the only sign language in the world, and since sign language has yet to universally standardized, the integration of different types of sign languages unique to their country of origin would allow for ASLingo to be taken worldwide.
+
+
 
 \end{document}
