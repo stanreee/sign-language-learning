@@ -23,7 +23,8 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 September 22, 2023 & Stanley Chan & Proposed proof of concept demonstration plan\\
-Date2 & Name(s) & Description of changes\\
+September 22, 2023 & Anderw Kil & Proposed workflow plan\\
+September 22, 2023 & Edward Zhuang & Proposed some initial stage technology suggestions\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -53,7 +54,9 @@ GitHub's integrated Issue Tracking feature will be used for all issue management
 One significant risk we have identified pertains to the accuracy and reliability of the computer vision aspect of this application. As this is the
 primary functionality for this application, it is necessary that our system should demonstrate the capability to detect and recognize complex
 hand signs and motions. One way we could validate our ability to mitigate this risk would be to prove that we can build a 
-system that can accurately recognize all the letters of the American Sign Language alphabet.\\
+system that can accurately recognize all the letters of the American Sign Language alphabet.
+\\
+
 Another risk relates to ensuring that the system can provide realtime feedback based on the user's hand sign inputs with
 an acceptable time delay. As this will be a web application, we suspect that much of the computer vision computation will be on the 
 server/backend side. This may introduce uncertainty in creating a realtime feedback system, particularly since computer vision is more computationally
@@ -63,6 +66,13 @@ onto a server, and test the delay in the server's response when it receives a re
 \section{Technology}
 
 \begin{itemize}
+\item React (adhering to the Airbnb Style Guide), frontend development
+\item Python (adhering to PEP 8), backend development
+\item Flask, backend development
+\item Flake8, Python linter
+\item OpenCV, computer vision library
+\item A camera, live video capture
+
 \item Specific programming language
 \item Specific linter tool (if appropriate)
 \item Specific unit testing framework
