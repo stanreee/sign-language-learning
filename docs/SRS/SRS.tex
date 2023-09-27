@@ -12,12 +12,55 @@
 }
 \usepackage[round]{natbib}
 
-\title{SE 3XA3: Software Requirements Specification\\Title of Project}
+\usepackage{amsmath, amsfonts}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{blindtext}
+\usepackage{cancel}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{graphicx}    
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\usepackage[table]{xcolor}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.5}
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bv}{\begin{verbatim}}
+\newcommand{\ev}{\end{verbatim}}
+\newcommand{\ba}{\begin{align*}}
+\newcommand{\ea}{\end{align*}}
+\newcommand{\beq}{\begin{equation*}}
+\newcommand{\eeq}{\end{equation*}}
+\newcommand{\bs}{\begin{split}}
+\newcommand{\es}{\end{split}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+\renewcommand{\labelenumii}{\theenumii.}
+
+
+\title{Software Requirements Specification\\ASLingo Application}
+
+\author{Team 15, ASLingo
+		\\ Andrew Kil
+		\\ Cassidy Baldin
+		\\ Edward Zhuang
+		\\ Jeremy Langner
+		\\ Stanley Chan
 }
 
 \date{\today}
@@ -35,12 +78,14 @@
 \listoffigures
 
 \begin{table}[bp]
-\caption{\bf Revision History}
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\caption{Revision History}
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\toprule {\bf Date} & {\bf Developers} & {\bf Change}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+September 25, 2023 & All team members & Initial draft, added some functional requirements \\
+September 26, 2023 & Andrew Kil & Added constraints and naming conventions \\
+September 26, 2023 & Cassidy Baldin & Added some functional and non-functional requirements\\
+Date & Name & Change\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -49,7 +94,7 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document describes the requirements for ASLingo  The template for the Software
+This document describes the requirements for ASLingo. The template for the Software
 Requirements Specification (SRS) is a subset of the Volere
 template \textit{Robertson And Robertson (2012)}.  Subsections \textit{Clients} and \textit{Customers} were removed due to not having any such dependents.
 
@@ -87,11 +132,9 @@ The project is constrained by the following:
 
 \subsection{Naming Conventions and Terminology}
 
-% \hline
-
-% & \\
-
-\noindent \begin{tabularx}{\textwidth}{p{0.3\linewidth}|X}
+\begin{table}
+\caption{Naming Conventions and Terminology}
+\noindent \begin{tabularx}{\textwidth}{|p{0.3\linewidth}|X|}
 \toprule
 \textbf{Term, Abbreviation, or Acronym} & \textbf{Description}\\
 \midrule
@@ -105,6 +148,7 @@ ASLingo
 & The commerical name for the project\\
 \bottomrule
 \end{tabularx}
+\end{table}
 
 \subsection{Relevant Facts and Assumptions}
 
@@ -121,24 +165,100 @@ User characteristics should go under assumptions.
 \subsubsection{Individual Product Use Cases}
 
 \subsection{Functional Requirements}
+ 
+** see Table 3: Functional Requirements of ASLingo, might need to format this differently \\
+
+\begin{table}
+\caption{Functional Requirements of ASLingo}
+\noindent \begin{tabular}{| c | p{4cm}| p{5cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale}\\
+\midrule
+FR1 & The system should be able to connect with a camera. & \\
+\hline
+FR2 & The system should be able to recognize hand signs. & \\
+\hline
+FR3 & The system should allow users to create an account and sign in. & \\
+\hline
+FR4 & The system should provide a diagnostic quiz for new users. & \\
+\hline
+FR5 & The system should provide a progression based course for ASL. & \\
+\hline
+FR6 & The system should save user progress. & \\
+\hline
+FR7 & The system should allow users to access the program via a web application (functional or a constraint?) & \\
+\hline
+FR8 & The system should be able to communicate to the user if they have answered the prompt correctly (idk how to phrase it but it should give user feedback on if they answered the question they were given) & \\
+\hline
+FR9 & The system should tell the user if they have to adjust the input to the system (error messages to tell the user to move the camera, change lighting, try sign again etc.) & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{Non-functional Requirements}
 
 \subsection{Look and Feel Requirements}
 
+The system should remind users of similar language learning applications (familiarity with the system, fit criterion is a sample of users could rate how familiar/easy to use it is compared to other language learning apps) \\
+
+The system should show the user how much progress they have made in their learning (level system, progress bar, score after a quiz etc.) \\
+
+The system should clearly show the user if they have answered the prompt correctly. \\
+
 \subsection{Usability and Humanity Requirements}
+
+The system should be able to be used by people with little to no training (intro tutorial maybe but should be easy to understand; ease of use) \\
+
+The system should be able to be used by people who are hard of hearing or deaf, as well as those who are able to hear (accessibility) \\
+
+The system should allow users to personalize their account (avatar, name, progress; personalization) \\
 
 \subsection{Performance Requirements}
 
+*can change the time/percents shown* \\ 
+
+The system should respond to user input within 1? second (speed/latency) \\
+
+The system should be able to accurately determine the sign shown by the user 90\%? of the time (accuracy) \\ 
+
+The system should be able to accurately match the user input sign to the prompt given by the system 90\%? of the time (accuracy) \\
+
+The system should be able to host ??? users at one time (capacity) \\
+
+The system should allow for new signs to be added over the lifespan of the system (scalability/longevity) \\
+
+The system should show the user if the input needs to be adjusted (fault-tolerance? functional?) \\
+
 \subsection{Operational and Environmental Requirements}
+
+The system should be used as a web application on a browser/laptop (expected physical environment) \\
+
+The system should be able to access a user's camera device \\
 
 \subsection{Maintainability and Support Requirements}
 
+The system should be tested regularly to ensure it's functionality and usability (maintenance) \\
+
+%% Maybe the scalability/longevity requirement from performance?
+
 \subsection{Security Requirements}
+
+The system should allow the user to access their account after creating it (access) \\
+
+The system should ensure that incorrect input to the system is used (integrity) \\
+
+The system should store user account info securely? or keep user account info private? (privacy) \\
 
 \subsection{Cultural Requirements}
 
+The system should be written in Canadian English and teach users using American Sign Language. \\
+
 \subsection{Legal Requirements}
+
+The system should adhere to user privacy laws?  \\
+
+The system should not train the model on personal/confidential/illegal data? \\
+
 
 \subsection{Health and Safety Requirements}
 
@@ -182,6 +302,27 @@ additional information.
 
 The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
+
+\section{Appendix --- Reflection}
+
+The information in this section will be used to evaluate the team members on the
+graduate attribute of Lifelong Learning.  Please answer the following questions:
+
+\begin{enumerate}
+  \item Which of the courses you have taken, or are currently taking, will help
+  your team to be successful with your capstone project.
+  \item What knowledge and skills will the team collectively need to acquire to
+  successfully complete this capstone project?  Examples of possible knowledge
+  to acquire include domain specific knowledge from the domain of your
+  application, or software engineering knowledge, mechatronics knowledge or
+  computer science knowledge.  Skills may be related to technology, or writing,
+  or presentation, or team management, etc.  You should look to identify at
+  least one item for each team member.
+  \item For each of the knowledge areas and skills identified in the previous
+  question, what are at least two approaches to acquiring the knowledge or
+  mastering the skill?  Of the identified approaches, which will each team
+  member pursue, and why did they make this choice?
+\end{enumerate}
 
 
 \end{document}
