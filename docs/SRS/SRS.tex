@@ -65,8 +65,8 @@
 
 \date{\today}
 
-\input{Comments}
-\input{Common}
+\input{../Comments}
+\input{../Common}
 
 \begin{document}
 
@@ -77,14 +77,16 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\begin{table}[H]
 \caption{Revision History}
 \begin{tabularx}{\textwidth}{|l|l|X|}
 \toprule {\bf Date} & {\bf Developers} & {\bf Change}\\
 \midrule
 September 25, 2023 & All team members & Initial draft, added some functional requirements \\
 September 26, 2023 & Andrew Kil & Added constraints and naming conventions \\
-September 26, 2023 & Cassidy Baldin & Added some functional and non-functional requirements\\
+September 26, 2023 & Cassidy Baldin & Added some functional and non-functional requirements \\
+September 27, 2023 & Jeremy Langner & Added some points to section 4 Project Issues \\
+September 28, 2023 & Cassidy Baldin & Added NFR tables, some rationales for NFRs \\
 Date & Name & Change\\
 \bottomrule
 \end{tabularx}
@@ -132,7 +134,7 @@ The project is constrained by the following:
 
 \subsection{Naming Conventions and Terminology}
 
-\begin{table}
+\begin{table}[H]
 \caption{Naming Conventions and Terminology}
 \noindent \begin{tabularx}{\textwidth}{|p{0.3\linewidth}|X|}
 \toprule
@@ -154,6 +156,8 @@ ASLingo
 
 User characteristics should go under assumptions.
 
+\newpage
+
 \section{Functional Requirements}
 
 \subsection{The Scope of the Work and the Product}
@@ -168,7 +172,7 @@ User characteristics should go under assumptions.
  
 ** see Table 3: Functional Requirements of ASLingo, might need to format this differently \\
 
-\begin{table}
+\begin{table}[H]
 \caption{Functional Requirements of ASLingo}
 \noindent \begin{tabular}{| c | p{4cm}| p{5cm}|}
 \toprule 
@@ -190,7 +194,7 @@ FR7 & The system should save user progress. & \\
 \hline
 FR8 & The system should allow users to access the program via a web application (functional or a constraint?) & \\
 \hline
-FR9 & The system should be able to communicate to the user if they have answered the prompt correctly. & \\ % I think the phrasing for this is fine
+FR9 & The system should be able to communicate to the user if they have answered the prompt correctly. & \\ 
 \hline
 FR10 & The system should notify the user of any potential errors that may arise during camera recognition. & \\
 \bottomrule
@@ -201,71 +205,153 @@ FR10 & The system should notify the user of any potential errors that may arise 
 
 \subsection{Look and Feel Requirements}
 
-The system should remind users of similar language learning applications (familiarity with the system, fit criterion is a sample of users could rate how familiar/easy to use it is compared to other language learning apps) \\
-
-The system should show the user how much progress they have made in their learning (level system, progress bar, score after a quiz etc.) \\
-
-The system should clearly show the user if they have answered the prompt correctly. \\
+\begin{table}[H]
+\caption{Look and Feel Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+LFR1 & The system should remind users of similar language learning applications & This will allow users to use the system intuitively if they have knowledge of other learning apps. & Ask a sample of users to rate how familiar/easy to use it is compared to other language learning apps. \\
+\hline
+LFR2 & The system should show the user how much progress they have made in their learning schedule. & The user should be able to gain feedback from the system about how much they learned. & \\
+% (level system, progress bar, score after a quiz etc.) 
+\hline
+LFR3 & The system should clearly show the user if they have answered the prompt correctly. & The user should gain feedback about if they are correct with the hand sign they have shown. & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Usability and Humanity Requirements}
 
-The system should be able to be used by people with little to no training (intro tutorial maybe but should be easy to understand; ease of use) \\
-
-The system should be able to be used by people who are hard of hearing or deaf, as well as those who are able to hear (accessibility) \\
-
-The system should allow users to personalize their account (avatar, name, progress; personalization) \\
+\begin{table}[H]
+\caption{Usability and Humanity Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+UHR1 & The system should be able to be used by people with little to no training. & The system should be able to be used without the need for formal training to make it easier for the average user. & \\
+\hline
+UHR2 & The system should be able to be used by people who are hard of hearing or deaf, as well as those who are able to hear. & The system should be accessible for all people wanting to learn ASL. & \\
+\hline
+UHR3 & The system should allow users to personalize their account. & The user should be able to input their name, see their progress etc. & \\
+% (avatar, name, progress; personalization)
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Performance Requirements}
 
 *can change the time/percents shown* \\ 
 
-The system should respond to user input within 1? second (speed/latency) \\
-
-The system should be able to accurately determine the sign shown by the user 90\%? of the time (accuracy) \\ 
-
-The system should be able to accurately match the user input sign to the prompt given by the system 90\%? of the time (accuracy) \\
-
-The system should be able to host ??? users at one time (capacity) \\
-
-The system should allow for new signs to be added over the lifespan of the system (scalability/longevity) \\
-
-The system should show the user if the input needs to be adjusted (fault-tolerance? functional?) \\
+\begin{table}[H]
+\caption{Performance Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+PR1 & The system should respond to user input quickly. & If a user has to wait too long after an input they may be less engaged. & 95\%? of tests should repond to user input within 1? second. \\
+\hline
+PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputing to ensure they are learning effectively. & The system should accurately determine a hand sign from a user in 95\%? of tests. \\
+% is this functional???
+\hline
+PR3 & The system should be able to host ??? users at one time. & If there are many people who want to learn ASL at the same time they should be able to do so. & \\
+\hline
+PR4 & The system should allow for new signs to be added over the lifespan of the system. & This will allow the system to expand over time, as well as be able to add in new modern signs. & \\
+\hline
+PR5 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Operational and Environmental Requirements}
 
-The system should be used as a web application on a browser/laptop (expected physical environment) \\
-
-The system should be able to access a user's camera device \\
+\begin{table}[H]
+\caption{Operational and Environmental Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+OER1 & The system should be used as a web application on a browser/laptop. & & \\
+\hline
+OER2 & The system should be able to access a user's camera device. & & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Maintainability and Support Requirements}
 
-The system should be tested regularly to ensure it's functionality and usability (maintenance) \\
-
 %% Maybe the scalability/longevity requirement from performance?
+
+\begin{table}[H]
+\caption{Maintainability and Support Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+MSR1 & The system should be tested regularly to ensure it's functionality and usability. & & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Security Requirements}
 
-The system should allow the user to access their account after creating it (access) \\
-
-The system should ensure that incorrect input to the system is used (integrity) \\
-
-The system should store user account info securely? or keep user account info private? (privacy) \\
+\begin{table}[H]
+\caption{Security Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+SR1 & The system should allow the user to access their account after creating it. & & \\
+\hline
+SR2 & The system should ensure that incorrect input to the system is used. & & \\
+\hline
+SR3 & The system should store user account info securely? or keep user account info private? & & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Cultural Requirements}
 
-The system should be written in Canadian English and teach users using American Sign Language. \\
+\begin{table}[H]
+\caption{Cultural Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+CR1 & The system should be written in Canadian English and teach users using American Sign Language.  & & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Legal Requirements}
 
-The system should adhere to user privacy laws?  \\
-
-The system should not train the model on personal/confidential/illegal data? \\
-
+\begin{table}[H]
+\caption{Legal Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+CR1 & The system should adhere to user privacy laws?  & & \\
+\hline
+CR2 & The system should not train the model on personal/confidential/illegal data? & & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Health and Safety Requirements}
 
-This section is not in the original Volere template, but health and safety are
-issues that should be considered for every engineering project.
+\begin{table}[H]
+\caption{Health and Safety Non-Functional Requirements}
+\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\toprule 
+\textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
+\midrule
+HSR1 &  & & \\
+\hline
+HSR2 & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{Project Issues}
 
