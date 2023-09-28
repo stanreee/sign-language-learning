@@ -26,7 +26,8 @@
 \usepackage{cancel}
 \usepackage{float}
 \usepackage{enumitem}
-\usepackage{graphicx}    
+\usepackage{graphicx}
+\usepackage{makecell}
 
 \usepackage[table]{xcolor}
 \setlength{\tabcolsep}{18pt}
@@ -80,14 +81,15 @@
 \begin{table}[H]
 \caption{Revision History}
 \begin{tabularx}{\textwidth}{|l|l|X|}
-\toprule {\bf Date} & {\bf Developers} & {\bf Change}\\
-\midrule
+\hline {\bf Date} & {\bf Developers} & {\bf Change}\\
+\hline
 September 25, 2023 & All team members & Initial draft, added some functional requirements \\
 September 26, 2023 & Andrew Kil & Added constraints and naming conventions \\
 September 26, 2023 & Cassidy Baldin & Added some functional and non-functional requirements \\
 September 27, 2023 & Jeremy Langner & Added some points to section 4 Project Issues \\
 September 28, 2023 & Cassidy Baldin & Added NFR tables, some rationales for NFRs \\
 September 28, 2023 & Andrew Kil & Added abbreviations and assumptions \\
+September 28, 2023 & Stanley Chan & Added scope and context of work, some work partitioning events \\
 Date & Name & Change\\
 \bottomrule
 \end{tabularx}
@@ -157,9 +159,9 @@ The project is constrained by the following:
 \begin{table}[H]
 \caption{Naming Conventions and Terminology}
 \noindent \begin{tabularx}{\textwidth}{|p{0.3\linewidth}|X|}
-\toprule
+\hline
 \textbf{Term, Abbreviation, or Acronym} & \textbf{Description}\\
-\midrule
+\hline
 A
 & Shorthand for Assumption\\
 \hline
@@ -233,10 +235,38 @@ User characteristics should go under assumptions.
 \section{Functional Requirements}
 
 \subsection{The Scope of the Work and the Product}
+The scope of ASLingo can be clearly defined by outlining our primary goals for this product.
+
+\begin{enumerate}
+  \item Hand Sign Recognition: Reliably recognize users' hand sign in real-time based on the American Sign Language.
+  \item Test Users: Quiz users with sign language based questions.
+  \item User Progression: Track a user's sign language learning progression.
+  \item Account Management: Store required user information to allow users to create and login to their accounts.
+\end{enumerate}
 
 \subsubsection{The Context of the Work}
+The following is a context diagram which describes the high-level overview on how the system will be utilized.
+
+\includegraphics[scale=0.25]{context-diagram}
 
 \subsubsection{Work Partitioning}
+
+\begin{table}[H]
+  \caption{Work Partitioning}
+  \noindent \begin{tabularx}{\textwidth}{|p{0.2\linewidth}|X|X|}
+  \hline 
+  \textbf{Event} & \textbf{Input and Output} &\textbf{Description}\\
+  \hline
+  User requests to log in & User ID (INPUT) \newline User Password (INPUT) \newline Login Status (OUTPUT) & User logs into the application, the system determines if login is successful. \\
+  \hline
+  User requests to log out & User ID (INPUT) \newline Login Status (OUTPUT) & User logs out of the application, system indicates whether log out is successful or not. \\
+  \hline
+  User requests to start a test & User ID (INPUT) & User starts a test. \\
+  \hline
+  User inputs signs through webcam & Camera Feed (INPUT) \newline Recognized Sign (OUTPUT) & User inputs sign language hand signs through webcam, the system responds with the corresponding sign output. \\
+  \hline
+  \end{tabularx}
+  \end{table}
 
 \subsubsection{Individual Product Use Cases}
 
@@ -247,9 +277,9 @@ User characteristics should go under assumptions.
 \begin{table}[H]
 \caption{Functional Requirements of ASLingo}
 \noindent \begin{tabular}{| c | p{4cm}| p{5cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale}\\
-\midrule
+\hline
 FR1 & The system should be able to connect with a camera. & \\
 \hline
 FR2 & The system should be able to recognize American Sign Language hand signs. & \\
@@ -280,9 +310,9 @@ FR10 & The system should notify the user of any potential errors that may arise 
 \begin{table}[H]
 \caption{Look and Feel Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 LFR1 & The system should remind users of similar language learning applications & This will allow users to use the system intuitively if they have knowledge of other learning apps. & Ask a sample of users to rate how familiar/easy to use it is compared to other language learning apps. \\
 \hline
 LFR2 & The system should show the user how much progress they have made in their learning schedule. & The user should be able to gain feedback from the system about how much they learned. & \\
@@ -298,9 +328,9 @@ LFR3 & The system should clearly show the user if they have answered the prompt 
 \begin{table}[H]
 \caption{Usability and Humanity Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 UHR1 & The system should be able to be used by people with little to no training. & The system should be able to be used without the need for formal training to make it easier for the average user. & \\
 \hline
 UHR2 & The system should be able to be used by people who are hard of hearing or deaf, as well as those who are able to hear. & The system should be accessible for all people wanting to learn ASL. & \\
@@ -318,9 +348,9 @@ UHR3 & The system should allow users to personalize their account. & The user sh
 \begin{table}[H]
 \caption{Performance Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 PR1 & The system should respond to user input quickly. & If a user has to wait too long after an input they may be less engaged. & 95\%? of tests should repond to user input within 1? second. \\
 \hline
 PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputing to ensure they are learning effectively. & The system should accurately determine a hand sign from a user in 95\%? of tests. \\
@@ -340,9 +370,9 @@ PR5 & The system should show the user if the input needs to be adjusted. & The u
 \begin{table}[H]
 \caption{Operational and Environmental Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 OER1 & The system should be used as a web application on a browser/laptop. & & \\
 \hline
 OER2 & The system should be able to access a user's camera device. & & \\
@@ -355,9 +385,9 @@ OER2 & The system should be able to access a user's camera device. & & \\
 \begin{table}[H]
 \caption{Maintainability and Support Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 MSR1 & The system should be tested regularly to ensure it's functionality and usability. & & \\
 \bottomrule
 \end{tabular}
@@ -370,9 +400,9 @@ MSR1 & The system should be tested regularly to ensure it's functionality and us
 \begin{table}[H]
 \caption{Security Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 SR1 & The system should allow the user to access their account after creating it. & & \\
 \hline
 SR2 & The system should ensure that incorrect input to the system is used. & & \\
@@ -387,9 +417,9 @@ SR3 & The system should store user account info securely? or keep user account i
 \begin{table}[H]
 \caption{Cultural Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 CR1 & The system should be written in Canadian English and teach users using American Sign Language.  & & \\
 \bottomrule
 \end{tabular}
@@ -400,9 +430,9 @@ CR1 & The system should be written in Canadian English and teach users using Ame
 \begin{table}[H]
 \caption{Legal Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 LR1 & The system should adhere to user privacy laws?  & & \\
 \hline
 LR2 & The system should not train the model on personal/confidential/illegal data? & & \\
@@ -415,9 +445,9 @@ LR2 & The system should not train the model on personal/confidential/illegal dat
 \begin{table}[H]
 \caption{Health and Safety Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
-\toprule 
+\hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
-\midrule
+\hline
 HSR1 &  & & \\
 \hline
 HSR2 & & & \\
