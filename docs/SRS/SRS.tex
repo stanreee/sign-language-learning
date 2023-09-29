@@ -90,6 +90,7 @@ September 27, 2023 & Jeremy Langner & Added some points to section 4 Project Iss
 September 28, 2023 & Cassidy Baldin & Added NFR tables, some rationales for NFRs \\
 September 28, 2023 & Andrew Kil & Added abbreviations and assumptions \\
 September 28, 2023 & Stanley Chan & Added scope and context of work, some work partitioning events \\
+September 28, 2023 & Edward Zhuang & Added to Section 4 and some FR rationales \\
 Date & Name & Change\\
 \bottomrule
 \end{tabularx}
@@ -134,7 +135,7 @@ The project is constrained by the following:
 \begin{itemize}
     \item[] \textbf{\textit{The Project Expenses Cannot Exceed \$750}}
     \begin{itemize}
-        \item The project cannot be bought or be a 'ready-made' solution, and any cost incurred must be minimized to ensure cost-efficiency.
+        \item The project cannot be bought or be a `ready-made' solution, and any cost incurred must be minimized to ensure cost-efficiency.
     \end{itemize}
     \item[] \textbf{\textit{Test Only a Subset of the Most Commonly Used Phrases of ASL}}
     \begin{itemize}
@@ -280,19 +281,19 @@ The following is a context diagram which describes the high-level overview on ho
 \hline 
 \textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale}\\
 \hline
-FR1 & The system should be able to connect with a camera. & \\
+FR1 & The system should be able to connect with a camera. & Connecting with a camera is a requirement for providing input to the system for hand sign recognition. \\
 \hline
-FR2 & The system should be able to recognize American Sign Language hand signs. & \\
+FR2 & The system should be able to recognize American Sign Language hand signs. & Hand sign recognition is a requirement for users to practice what they have been learning. \\
 \hline
-FR3 & The system should allow users to create an account. & \\
+FR3 & The system should allow users to create an account. & Account creation is a requirement for users to save progression. \\
 \hline
-FR4 & The system should allow users to sign into their account if it exists. & \\
+FR4 & The system should allow users to sign into their account if it exists. & Account sign-in is a requirement for users to save progression. \\
 \hline
-FR5 & The system should provide a diagnostic quiz for new users. & \\
+FR5 & The system should provide a diagnostic quiz for new users. & A diagnostic quiz is a requirement for determining the current skill level of the user. \\
 \hline
-FR6 & The system should provide a progression based course for ASL. & \\
+FR6 & The system should provide a progression-based course for ASL. & A progression-based course is a requirement for ensuring users are taught ASL in a comprehensive manner. \\
 \hline
-FR7 & The system should save user progress. & \\
+FR7 & The system should save user progress. & Saving user progress is a requirement for ensuring the user follows the progression-based course. \\
 \hline
 FR8 & The system should allow users to access the program via a web application (functional or a constraint?) & \\
 \hline
@@ -459,21 +460,26 @@ HSR2 & & & \\
 
 \subsection{Open Issues}
 There are currently no open issues with the project at the moment.
+
 \subsection{Off-the-Shelf Solutions}
 \begin{enumerate}
-    \item ASL App is a mobile exclusive platform with 2500+ signs and phrases to teach ASL via short video clips. This app offers 4 packs for free with the basics like the alphabet, numbers, and universal gestures. Paid packs are also available ex. compliments, moods, and social gestures for \$0.99. The app ultimately serves as a mobile hub for common expressions to study and learn wherever you are.
-    \item Canadian Hearing Services offer both in-person and virtual educational ASL courses for a variety of experience levels. These courses educate via teacher instruction, role play, videos, and work books.
-    A variety of other public, private, and educational institutes offer similar courses and instructional content.
+    \item The ASL App is a mobile exclusive platform with 2,500+ signs and phrases to teach ASL via short video clips. This app offers 4 packs for free with the basics like the alphabet, numbers, and universal gestures. Paid packs are also available ex. compliments, moods, and social gestures for \$0.99. The app ultimately serves as a mobile hub for common expressions to study and learn wherever you are.
+    \item Canadian Hearing Services offer both in-person and virtual educational ASL courses for a variety of experience levels. These courses educate via teacher instruction, role play, videos, and work books. A variety of other public, private, and educational institutes offer similar courses and instructional content.
+    \item Duolingo is a popular mobile application that provides language courses for many languages from across the world, with 50+ million monthly active users. The app utilizes gamification to encourage consistent user progress and interest. Majority of the courses are based on testing users on vocabulary and grammar via reading, listening, and speaking problems which increase in difficulty as users progress. Its courses are well developed through research and accord with global language standards, such as the Common European Framework of Reference for Languages (CEFR).
 \end{enumerate}
 
 \subsection{New Problems}
-
-N/A
+There are currently no new problems.
 
 \subsection{Tasks}
-NOT SURE?
+\begin{itemize}
+    \item 
+    \item Development should follow the agile methodology, with emphasis on different aspects of the project: frontend, backend, and computer vision.
+\end{itemize}
+
 \subsection{Migration to the New Product}
-N/A
+Not applicable for our project.
+
 \subsection{Risks}
 
 \begin{enumerate}
@@ -482,19 +488,23 @@ N/A
 
 \subsection{Costs}
 \begin{enumerate}
-    \item Website domain -TBA
+    \item Website domain - TBA
     \item App hosting platform - TBA
-    \item Database -TBA
+    \item Database - TBA
 \end{enumerate}
-\subsection{User Documentation and Training}
 
+\subsection{User Documentation and Training}
 The system and it's interface design should be intuitive enough to learn how to use the app.
+
+Possible user documentation to be supplied with the product can include a glossary for numbers and the alphabet, for example. 
 
 SHOULD PROBABLY ADD SOMETHING ELSE!
 
 \subsection{Waiting Room}
-
-N/A
+\begin{enumerate}
+    \item The system should provide different courses for learners of varying skill level.
+    \item The system should teach other common sign languages.
+\end{enumerate}
 
 \subsection{Ideas for Solutions}
 
