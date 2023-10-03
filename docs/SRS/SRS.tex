@@ -91,6 +91,7 @@ September 28, 2023 & Cassidy Baldin & Added NFR tables, some rationales for NFRs
 September 28, 2023 & Andrew Kil & Added abbreviations and assumptions \\
 September 28, 2023 & Stanley Chan & Added scope and context of work, some work partitioning events \\
 September 28, 2023 & Edward Zhuang & Added to Section 4 and some FR rationales \\
+October 2, 2023 & Cassidy Baldin & Edited Section 3 requirements, finished all rationales \\
 Date & Name & Change\\
 \bottomrule
 \end{tabularx}
@@ -126,7 +127,7 @@ achieving their goals of learning ASL.
 
 % \subsubsection{The Customers}
 
-\subsubsection{Other Stakeholders}
+% \subsubsection{Other Stakeholders}
 
 \subsection{Mandated Constraints}
 
@@ -145,10 +146,6 @@ The project is constrained by the following:
     \begin{itemize}
         \item This is the hard deadline for the project and sets the time constraint that is used to judge the scope of work the project can encompass.
     \end{itemize}
-    % \item[] \textbf{\textit{}}
-    % \begin{itemize}
-    %     \item 
-    % \end{itemize}
     \item[] \textbf{\textit{Users Should Only Learn from the Provided "On Rails" Approach}}
     \begin{itemize}
         \item Users are only able to learn from the preset programs the project has. The education provided should be taught in a manner with little room misinterpretation. While we attempt to make the learning content as broad as possible, users lack true learning freedom to learn what they want.
@@ -273,11 +270,11 @@ The following is a context diagram which describes the high-level overview on ho
 
 \subsection{Functional Requirements}
  
-** see Table 3: Functional Requirements of ASLingo, might need to format this differently \\
+** see Table 3: Functional Requirements of ASLingo \\
 
 \begin{table}[H]
 \caption{Functional Requirements of ASLingo}
-\noindent \begin{tabular}{| c | p{4cm}| p{5cm}|}
+\noindent \begin{tabular}{| c | p{4cm}| p{6cm}|}
 \hline 
 \textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale}\\
 \hline
@@ -295,11 +292,11 @@ FR6 & The system should provide a progression-based course for ASL. & A progress
 \hline
 FR7 & The system should save user progress. & Saving user progress is a requirement for ensuring the user follows the progression-based course. \\
 \hline
-FR8 & The system should allow users to access the program via a web application (functional or a constraint?) & \\
+FR8 & The system should allow users to access the program via a web application & The system is being built for a web application, so the user should be able to access it in this way. \\
 \hline
-FR9 & The system should be able to communicate to the user if they have answered the prompt correctly. & \\ 
+FR9 & The system should be able to communicate to the user if they have answered the prompt correctly. & The user should know if they have answered the prompt correctly to learn the language correctly. \\ 
 \hline
-FR10 & The system should notify the user of any potential errors that may arise during camera recognition. & \\
+FR10 & The system should notify the user of any potential errors that may arise during camera recognition. & This will let the user know if they need to adjust their input setting (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -344,24 +341,21 @@ UHR3 & The system should allow users to personalize their account. & The user sh
 
 \subsection{Performance Requirements}
 
-*can change the time/percents shown* \\ 
-
 \begin{table}[H]
 \caption{Performance Non-Functional Requirements}
 \noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-PR1 & The system should respond to user input quickly. & If a user has to wait too long after an input they may be less engaged. & 95\%? of tests should repond to user input within 1? second. \\
+PR1 & The system should respond to user input quickly. & If a user has to wait too long after an input they may be less engaged. & 95\% of tests should repond to user input within 1 second. \\
 \hline
-PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputing to ensure they are learning effectively. & The system should accurately determine a hand sign from a user in 95\%? of tests. \\
-% is this functional???
+PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputing to ensure they are learning effectively. & The system should accurately determine the correct hand sign from a user in 95\% of tests. \\
 \hline
-PR3 & The system should be able to host ??? users at one time. & If there are many people who want to learn ASL at the same time they should be able to do so. & \\
+PR3 & The system should allow for new signs to be added over the lifespan of the system. & This will allow the system to expand over time, as well as be able to add in new modern signs. & \\
 \hline
-PR4 & The system should allow for new signs to be added over the lifespan of the system. & This will allow the system to expand over time, as well as be able to add in new modern signs. & \\
-\hline
-PR5 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & \\
+PR4 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & \\
+
+%PR5 & The system should be able to host ??? users at one time. & If there are many people who want to learn ASL at the same time they should be able to do so. & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -374,9 +368,9 @@ PR5 & The system should show the user if the input needs to be adjusted. & The u
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-OER1 & The system should be used as a web application on a browser/laptop. & & \\
+OER1 & The system should be used as a web application on a browser/laptop. & The system is being built for a web application, so the user should be able to access it in this way. & \\
 \hline
-OER2 & The system should be able to access a user's camera device. & & \\
+OER2 & The system should be able to access a user's camera device. & The user's camera will be used as the input device to see the user's hand signs. & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -389,12 +383,14 @@ OER2 & The system should be able to access a user's camera device. & & \\
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-MSR1 & The system should be tested regularly to ensure it's functionality and usability. & & \\
+MSR1 & The system should be tested regularly to ensure it's functionality and usability. & This will ensure that the system does not experience any bugs or other errors when being updated over time. & \\
+\hline
+MSR2 & The code implemented in the system should adhere to specified coding standards to ensure it's readibilty for future updates. & This will ensure that the system code can be understood over time, so others can update it if they wish. & \\
+\hline
+MSR3 & The code implemented in the system should be tested using code coverage methods to test all functions of the system. & This will ensure that all aspects of the system can be tested for errors, and fixed if errors are found during testing. & \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-%% Maybe the scalability/longevity requirement from performance?
 
 \subsection{Security Requirements}
 
@@ -404,11 +400,11 @@ MSR1 & The system should be tested regularly to ensure it's functionality and us
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-SR1 & The system should allow the user to access their account after creating it. & & \\
+SR1 & The system should allow the user to access their account after creating it. & The user should be able to create an account and be able to log in and out of it as needed.] & \\
 \hline
-SR2 & The system should ensure that incorrect input to the system is used. & & \\
+SR2 & The system should ensure that incorrect input to the system is used. & The system should not be trained using incorrect usage of ASL as this would contradict the goal of learning how to use the language properly. & \\
 \hline
-SR3 & The system should store user account info securely? or keep user account info private? & & \\
+SR3 & The system should store user account information using encryption. & This will ensure that all user information will be kept private and secure. & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -421,7 +417,7 @@ SR3 & The system should store user account info securely? or keep user account i
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-CR1 & The system should be written in Canadian English and teach users using American Sign Language.  & & \\
+CR1 & The system should be written in Canadian English and teach users using American Sign Language. & The primary users of this application at this stage will be Canadian English speakers who want to learn American Sign Language. & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -434,9 +430,9 @@ CR1 & The system should be written in Canadian English and teach users using Ame
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-LR1 & The system should adhere to user privacy laws?  & & \\
+LR1 & The system should adhere to user privacy laws. &  The system should never share user information or break any other user privacy law. & \\
 \hline
-LR2 & The system should not train the model on personal/confidential/illegal data? & & \\
+LR2 & The system should not train the model on personal/confidential/illegal data & The system should only be trained on data that is safe to use, and is in the public domain. & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -449,9 +445,7 @@ LR2 & The system should not train the model on personal/confidential/illegal dat
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-HSR1 &  & & \\
-\hline
-HSR2 & & & \\
+HSR1 & The system should warn users to ensure they have enough space to practice ASL in their environment. & This will ensure that the user will not use this application if there is not enough space to comfortably do so. & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -473,7 +467,6 @@ There are currently no new problems.
 
 \subsection{Tasks}
 \begin{itemize}
-    \item 
     \item Development should follow the agile methodology, with emphasis on different aspects of the project: frontend, backend, and computer vision.
 \end{itemize}
 
@@ -498,7 +491,7 @@ The system and it's interface design should be intuitive enough to learn how to 
 
 Possible user documentation to be supplied with the product can include a glossary for numbers and the alphabet, for example. 
 
-SHOULD PROBABLY ADD SOMETHING ELSE!
+\bf{SHOULD PROBABLY ADD SOMETHING ELSE!}
 
 \subsection{Waiting Room}
 \begin{enumerate}
