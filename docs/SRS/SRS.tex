@@ -92,6 +92,7 @@ September 28, 2023 & Andrew Kil & Added abbreviations and assumptions \\
 September 28, 2023 & Stanley Chan & Added scope and context of work, some work partitioning events \\
 September 28, 2023 & Edward Zhuang & Added to Section 4 and some FR rationales \\
 October 2, 2023 & Cassidy Baldin & Edited Section 3 requirements, finished all rationales \\
+October 4, 2023 & Stanley Chan & Added individual product use cases, updated work partitioning \\
 Date & Name & Change\\
 \bottomrule
 \end{tabularx}
@@ -250,23 +251,81 @@ The following is a context diagram which describes the high-level overview on ho
 \subsubsection{Work Partitioning}
 
 \begin{table}[H]
-  \caption{Work Partitioning}
-  \noindent \begin{tabularx}{\textwidth}{|p{0.2\linewidth}|X|X|}
-  \hline 
-  \textbf{Event} & \textbf{Input and Output} &\textbf{Description}\\
-  \hline
-  User requests to log in & User ID (INPUT) \newline User Password (INPUT) \newline Login Status (OUTPUT) & User logs into the application, the system determines if login is successful. \\
-  \hline
-  User requests to log out & User ID (INPUT) \newline Login Status (OUTPUT) & User logs out of the application, system indicates whether log out is successful or not. \\
-  \hline
-  User requests to start a test & User ID (INPUT) & User starts a test. \\
-  \hline
-  User inputs signs through webcam & Camera Feed (INPUT) \newline Recognized Sign (OUTPUT) & User inputs sign language hand signs through webcam, the system responds with the corresponding sign output. \\
-  \hline
-  \end{tabularx}
-  \end{table}
-
-\subsubsection{Individual Product Use Cases}
+    \caption{Work Partitioning}
+    \noindent \begin{tabularx}{\textwidth}{|c|p{0.2\linewidth}|X|X|}
+    \hline 
+    \textbf{Event ID} & \textbf{Event Name} &\textbf{Input and Output} & \textbf{Description}\\
+    \hline
+    1 & User login & User ID (in) \newline User Password (in) \newline Login Status (out) & User logs into the application, the system determines if login is successful. \\
+    \hline
+    2 & User logout & User ID (in) \newline Login Status (out) & User logs out of the application, system indicates whether log out is successful or not. \\
+    \hline
+    3 & User requests to start a test & User ID (in) & User starts a test. \\
+    \hline
+    4 & User signs through webcam & Camera Feed (in) \newline Recognized Sign (out) & User inputs sign language hand signs through webcam, the system responds with the corresponding sign output. \\
+    \hline
+    5 & User creates account & User ID (in) \newline User Email (in) \newline User Password (in) & User creates an account \\
+    \hline
+    6 & User checks learning progress & User ID (in) \newline User Progress (out) & User views account sign language learning progress. \\
+    \hline
+    7 & User completes a test & User ID (in) \newline User Score (in) & User completes a test with a given score. \\
+    \hline
+    \end{tabularx}
+    \end{table}
+  
+  \subsubsection{Individual Product Use Cases}
+  
+  \textbf{Use Case Trigger:} User creates an account\\
+  \textbf{Primary Actors:} user, ASLingo server\\
+  \textbf{Outcomes:}
+  \begin{enumerate}
+      \item System creates an account with the designated username, password, and email
+      \item System registers user as logged in
+      \item System redirects user to home page
+  \end{enumerate}
+  \textbf{Use Case Trigger:} User logs into the application\\
+  \textbf{Primary Actors:} user, ASLingo server\\
+  \textbf{Outcomes:}
+  \begin{enumerate}
+      \item System checks if password matches for corresponding username
+      \item System registers user as logged in
+      \item System redirects user to home page
+  \end{enumerate}
+  \textbf{Use Case Trigger:} User logs out of the application\\
+  \textbf{Primary Actors:} user, ASLingo server\\
+  \textbf{Outcomes:}
+  \begin{enumerate}
+      \item System registers user as logged out
+      \item System redirects user to login page
+  \end{enumerate}
+  \textbf{Use Case Trigger:} User requests to start a test\\
+  \textbf{Primary Actors:} user, ASLingo server\\
+  \textbf{Outcomes:}
+  \begin{enumerate}
+      \item System redirects user to testing page
+      \item System requests to turn on user webcam
+      \item System receives video data from user webcam
+  \end{enumerate}
+  \textbf{Use Case Trigger:} User signs through webcam\\
+  \textbf{Primary Actors:} user, ASLingo server, ASLingo Computer Vision Model\\
+  \textbf{Outcomes:}
+  \begin{enumerate}
+      \item System interprets user signs with computer vision model
+      \item System responds informing user of correctness of sign
+  \end{enumerate}
+  \textbf{Use Case Trigger:} User checks learning progress\\
+  \textbf{Primary Actors:} user, ASLingo server\\
+  \textbf{Outcomes:}
+  \begin{enumerate}
+      \item System receives request from user to view learning progress
+      \item System responds with user progress
+  \end{enumerate}
+  \textbf{Use Case Trigger:} User completes a test\\
+  \textbf{Primary Actors}: user, ASLingo server\\
+  \textbf{Outcomes:}
+  \begin{enumerate}
+      \item System registers that user completed test, and saves user score
+  \end{enumerate}
 
 \subsection{Functional Requirements}
  
