@@ -28,6 +28,7 @@
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{makecell}
+\usepackage{longtable}
 
 \usepackage[table]{xcolor}
 \setlength{\tabcolsep}{18pt}
@@ -66,8 +67,8 @@
 
 \date{\today}
 
-\input{../Comments}
-\input{../Common}
+ \input{../Comments}
+ \input{../Common}
 
 \begin{document}
 
@@ -228,9 +229,7 @@ UHR
 \end{enumerate}
 
 
-User characteristics should go under assumptions.
-
-\newpage
+% \newpage
 
 \section{Functional Requirements}
 
@@ -328,14 +327,17 @@ The following is a context diagram which describes the high-level overview on ho
       \item System registers that user completed test, and saves user score
   \end{enumerate}
 
+  \subsubsection{Traceability Matrix}
+
+  \includegraphics[scale=1]{SRS Traceability Matrix.PNG}
+
 \subsection{Functional Requirements}
  
-** see Table 3: Functional Requirements of ASLingo \\
+%** see Table 3: Functional Requirements of ASLingo \\
 
-\begin{table}[H]
+\begin{longtable}{| c | p{4cm}| p{6cm}|}
 \caption{Functional Requirements of ASLingo}
-\noindent \begin{tabular}{| c | p{4cm}| p{6cm}|}
-\hline 
+\hline
 \textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale}\\
 \hline
 FR1 & The system should be able to connect with a camera. & Connecting with a camera is a requirement for providing input to the system for hand sign recognition. \\
@@ -346,20 +348,23 @@ FR3 & The system should allow users to create an account. & Account creation is 
 \hline
 FR4 & The system should allow users to sign into their account if it exists. & Account sign-in is a requirement for users to save progression. \\
 \hline
-FR5 & The system should provide a diagnostic quiz for new users. & A diagnostic quiz is a requirement for determining the current skill level of the user. \\
+FR5 & The system should allow users to sign out of their account if they are signed into it. & Account sign-out is necessary for good account security practices. \\
 \hline
-FR6 & The system should provide a progression-based course for ASL. & A progression-based course is a requirement for ensuring users are taught ASL in a comprehensive manner. \\
+FR6 & The system should provide a diagnostic quiz for new users. & A diagnostic quiz is a requirement for determining the current skill level of the user. \\
 \hline
-FR7 & The system should save user progress. & Saving user progress is a requirement for ensuring the user follows the progression-based course. \\
+FR7 & The system should provide a progression-based course for ASL. & A progression-based course is a requirement for ensuring users are taught ASL in a comprehensive manner. \\
 \hline
-FR8 & The system should allow users to access the program via a web application & The system is being built for a web application, so the user should be able to access it in this way. \\
+FR8 & The system should save user progress. & Saving user progress is a requirement for ensuring the user follows the progression-based course. \\
 \hline
-FR9 & The system should be able to communicate to the user if they have answered the prompt correctly. & The user should know if they have answered the prompt correctly to learn the language correctly. \\ 
+FR9 & The system should allow users to access the program via a web application & The system is being built for a web application, so the user should be able to access it in this way. \\
 \hline
-FR10 & The system should notify the user of any potential errors that may arise during camera recognition. & This will let the user know if they need to adjust their input setting (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
+FR10 & The system should be able to communicate to the user if they have answered the prompt correctly. & The user should know if they have answered the prompt correctly to learn the language correctly. \\ 
+\hline
+FR11 & The system should notify the user of any potential errors that may arise during camera recognition. & This will let the user know if they need to adjust their input setting (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
+\hline
+FR12 & The system should allow the user to their desired testing track from a selection of testing categories. & This is to provide variation in the manner of testing as well as in the subject matter that the user can test themselves on. \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
 
 \section{Non-Functional Requirements}
 
