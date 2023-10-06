@@ -67,8 +67,8 @@
 
 \date{\today}
 
- \input{../Comments}
- \input{../Common}
+\input{../Comments}
+\input{../Common}
 
 \begin{document}
 
@@ -95,7 +95,7 @@ September 28, 2023 & Edward Zhuang & Added to Section 4 and some FR rationales \
 October 2, 2023 & Cassidy Baldin & Edited Section 3 requirements, finished all rationales \\
 October 4, 2023 & Stanley Chan & Added individual product use cases, updated work partitioning \\
 October 4, 2023 & Edward Zhuang & Edited Section 4 according to meeting with MSLC, and added response to one reflection question \\
-Date & Name & Change\\
+October 6, 2023 & Cassidy Baldin & Added fit criterion, fixed formatting, added reflection \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -157,59 +157,42 @@ The project is constrained by the following:
 
 \subsection{Naming Conventions and Terminology}
 
-\begin{table}[H]
-\caption{Naming Conventions and Terminology}
-\noindent \begin{tabularx}{\textwidth}{|p{0.3\linewidth}|X|}
+\begin{longtable}{| c | p{7cm} |}
+\caption{Naming Conventions and Terminology} \\
 \hline
 \textbf{Term, Abbreviation, or Acronym} & \textbf{Description}\\
 \hline
-A
-& Shorthand for Assumption\\
+A & Shorthand for Assumption\\
 \hline
-ASL
-& Shorthand for American Sign Language. It is a form of sign language primarily used in the US and in parts of Canada\\
+ASL & Shorthand for American Sign Language. It is a form of sign language primarily used in the US and in parts of Canada\\
 \hline
-ASLingo
-& The commercial name for the project\\
+ASLingo & The commercial name for the project\\
 \hline
-CV
-& Refers to Computer Vision, the field of technology that involves processing visual input to achieve various means.\\
+CV & Refers to Computer Vision, the field of technology that involves processing visual input to achieve various means.\\
 \hline
-CR
-& Shorthand for 'Cultural Requirements', a subsection of Non-Functional Requirements.\\
+CR & Shorthand for 'Cultural Requirements', a subsection of Non-Functional Requirements.\\
 \hline
-HSR
-& Shorthand for 'Health and Safety Requirements', a subsection of Non-Functional Requirements.\\
+HSR & Shorthand for 'Health and Safety Requirements', a subsection of Non-Functional Requirements.\\
 \hline
-FR
-& Shorthand for Functional Requirements\\
+FR & Shorthand for Functional Requirements\\
 \hline
-LR
-& Shorthand for 'Legal Requirements', a subsection of Non-Functional Requirements.\\
+LR & Shorthand for 'Legal Requirements', a subsection of Non-Functional Requirements.\\
 \hline
-LFR
-& Shorthand for 'Look and Feel Requirements', a subsection of Non-Functional Requirements.\\
+LFR & Shorthand for 'Look and Feel Requirements', a subsection of Non-Functional Requirements.\\
 \hline
-MSR
-& Shorthand for 'Maintainability and Support Requirements', a subsection of Non-Functional Requirements.\\
+MSR & Shorthand for 'Maintainability and Support Requirements', a subsection of Non-Functional Requirements.\\
 \hline
-OER
-& Shorthand for 'Operational and Environmental Requirements', a subsection of Non-Functional Requirements.\\
+OER & Shorthand for 'Operational and Environmental Requirements', a subsection of Non-Functional Requirements.\\
 \hline
-OpenCV 
-& Refers to the Open Computer Vision Library library available for free to developers in order to develop Computer Vision applications.\\
+OpenCV & Refers to the Open Computer Vision Library library available for free to developers in order to develop Computer Vision applications.\\
 \hline
-PR
-& Shorthand for 'Performance Requirements', a subsection of Non-Functional Requirements.\\
+PR & Shorthand for 'Performance Requirements', a subsection of Non-Functional Requirements.\\
 \hline
-SR
-& Shorthand for 'Security Requirements', a subsection of Non-Functional Requirements.\\
+SR & Shorthand for 'Security Requirements', a subsection of Non-Functional Requirements.\\
 \hline
-UHR
-& Shorthand for 'Usability and Humanity Requirements', a subsection of Non-Functional Requirements.\\
+UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-Functional Requirements.\\
 \bottomrule
-\end{tabularx}
-\end{table}
+\end{longtable}
 
 \subsection{Relevant Facts and Assumptions}
 
@@ -228,9 +211,6 @@ UHR
     \end{itemize}
 \end{enumerate}
 
-
-% \newpage
-
 \section{Functional Requirements}
 
 \subsection{The Scope of the Work and the Product}
@@ -246,7 +226,11 @@ The scope of ASLingo can be clearly defined by outlining our primary goals for t
 \subsubsection{The Context of the Work}
 The following is a context diagram which describes the high-level overview on how the system will be utilized.
 
-\includegraphics[scale=0.25]{context-diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{context-diagram}
+    \caption{Context Diagram}
+\end{figure}
 
 \subsubsection{Work Partitioning}
 
@@ -327,43 +311,45 @@ The following is a context diagram which describes the high-level overview on ho
       \item System registers that user completed test, and saves user score
   \end{enumerate}
 
-  \subsubsection{Traceability Matrix}
+\subsubsection{Traceability Matrix}
 
-  \includegraphics[scale=1]{SRS Traceability Matrix.PNG}
+\begin{figure}[H]
+    \centering
+     \includegraphics[scale=0.5]{SRS_Traceability_Matrix.jpg}
+    \caption{Traceability Matrix for Functional Requirements}
+\end{figure}
 
 \subsection{Functional Requirements}
- 
-%** see Table 3: Functional Requirements of ASLingo \\
 
 \begin{longtable}{| c | p{4cm}| p{6cm}|}
-\caption{Functional Requirements of ASLingo}
-\hline
-\textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale}\\
-\hline
-FR1 & The system should be able to connect with a camera. & Connecting with a camera is a requirement for providing input to the system for hand sign recognition. \\
-\hline
-FR2 & The system should be able to recognize American Sign Language hand signs. & Hand sign recognition is a requirement for users to practice what they have been learning. \\
-\hline
-FR3 & The system should allow users to create an account. & Account creation is a requirement for users to save progression. \\
-\hline
-FR4 & The system should allow users to sign into their account if it exists. & Account sign-in is a requirement for users to save progression. \\
-\hline
-FR5 & The system should allow users to sign out of their account if they are signed into it. & Account sign-out is necessary for good account security practices. \\
-\hline
-FR6 & The system should provide a diagnostic quiz for new users. & A diagnostic quiz is a requirement for determining the current skill level of the user. \\
-\hline
-FR7 & The system should provide a progression-based course for ASL. & A progression-based course is a requirement for ensuring users are taught ASL in a comprehensive manner. \\
-\hline
-FR8 & The system should save user progress. & Saving user progress is a requirement for ensuring the user follows the progression-based course. \\
-\hline
-FR9 & The system should allow users to access the program via a web application & The system is being built for a web application, so the user should be able to access it in this way. \\
-\hline
-FR10 & The system should be able to communicate to the user if they have answered the prompt correctly. & The user should know if they have answered the prompt correctly to learn the language correctly. \\ 
-\hline
-FR11 & The system should notify the user of any potential errors that may arise during camera recognition. & This will let the user know if they need to adjust their input setting (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
-\hline
-FR12 & The system should allow the user to their desired testing track from a selection of testing categories. & This is to provide variation in the manner of testing as well as in the subject matter that the user can test themselves on. \\
-\bottomrule
+    \caption{Functional Requirements of ASLingo} \\
+    \hline
+    \textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale}\\
+    \hline
+    FR1 & The system should be able to connect with a camera. & Connecting with a camera is a requirement for providing input to the system for hand sign recognition. \\
+    \hline
+    FR2 & The system should be able to recognize American Sign Language hand signs. & Hand sign recognition is a requirement for users to practice what they have been learning. \\
+    \hline
+    FR3 & The system should allow users to create an account. & Account creation is a requirement for users to save progression. \\
+    \hline
+    FR4 & The system should allow users to sign into their account if it exists. & Account sign-in is a requirement for users to save progression. \\
+    \hline
+    FR5 & The system should allow users to sign out of their account if they are signed into it. & Account sign-out is necessary for good account security practices. \\
+    \hline
+    FR6 & The system should provide a diagnostic quiz for new users. & A diagnostic quiz is a requirement for determining the current skill level of the user. \\
+    \hline
+    FR7 & The system should provide a progression-based course for ASL. & A progression-based course is a requirement for ensuring users are taught ASL in a comprehensive manner. \\
+    \hline
+    FR8 & The system should save user progress. & Saving user progress is a requirement for ensuring the user follows the progression-based course. \\
+    \hline
+    FR9 & The system should allow users to access the program via a web application & The system is being built for a web application, so the user should be able to access it in this way. \\
+    \hline
+    FR10 & The system should be able to communicate to the user if they have answered the prompt correctly. & The user should know if they have answered the prompt correctly to learn the language correctly. \\ 
+    \hline
+    FR11 & The system should notify the user of any potential errors that may arise during camera recognition. & This will let the user know if they need to adjust their input setting (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
+    \hline
+    FR12 & The system should allow the user to their desired testing track from a selection of testing categories. & This is to provide variation in the manner of testing as well as in the subject matter that the user can test themselves on. \\
+    \bottomrule
 \end{longtable}
 
 \section{Non-Functional Requirements}
@@ -378,10 +364,10 @@ FR12 & The system should allow the user to their desired testing track from a se
 \hline
 LFR1 & The system should remind users of similar language learning applications & This will allow users to use the system intuitively if they have knowledge of other learning apps. & Ask a sample of users to rate how familiar/easy to use it is compared to other language learning apps. \\
 \hline
-LFR2 & The system should show the user how much progress they have made in their learning schedule. & The user should be able to gain feedback from the system about how much they learned. & \\
+LFR2 & The system should show the user how much progress they have made in their learning schedule. & The user should be able to gain feedback from the system about how much they learned. & The developers shall certify the product complies with these requirements. \\
 % (level system, progress bar, score after a quiz etc.) 
 \hline
-LFR3 & The system should clearly show the user if they have answered the prompt correctly. & The user should gain feedback about if they are correct with the hand sign they have shown. & \\
+LFR3 & The system should clearly show the user if they have answered the prompt correctly. & The user should gain feedback about if they are correct with the hand sign they have shown. & The developers shall certify the product shows the user the correct response based on their input. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -394,11 +380,11 @@ LFR3 & The system should clearly show the user if they have answered the prompt 
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-UHR1 & The system should be able to be used by people with little to no training. & The system should be able to be used without the need for formal training to make it easier for the average user. & \\
+UHR1 & The system should be able to be used by people with little to no training. & The system should be able to be used without the need for formal training to make it easier for the average user. & After their first encounter with the product, 75\% of users shall report if they are comfortable using the application.\\
 \hline
-UHR2 & The system should be able to be used by people who are hard of hearing or deaf, as well as those who are able to hear. & The system should be accessible for all people wanting to learn ASL. & \\
+UHR2 & The system should be able to be used by people who are hard of hearing or deaf, as well as those who are able to hear. & The system should be accessible for all people wanting to learn ASL. & Users will be asked to rate their experience using the application on a scale of 1-10, with the average reporting a score above 7. \\
 \hline
-UHR3 & The system should allow users to personalize their account. & The user should be able to input their name, see their progress etc. & \\
+UHR3 & The system should allow users to personalize their account. & The user should be able to input their name, see their progress etc. & The developers shall certify the product complies with these requirements. \\
 % (avatar, name, progress; personalization)
 \bottomrule
 \end{tabular}
@@ -416,11 +402,7 @@ PR1 & The system should respond to user input quickly. & If a user has to wait t
 \hline
 PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputing to ensure they are learning effectively. & The system should accurately determine the correct hand sign from a user in 95\% of tests. \\
 \hline
-PR3 & The system should allow for new signs to be added over the lifespan of the system. & This will allow the system to expand over time, as well as be able to add in new modern signs. & \\
-\hline
-PR4 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & \\
-
-%PR5 & The system should be able to host ??? users at one time. & If there are many people who want to learn ASL at the same time they should be able to do so. & \\
+PR3 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements.\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -433,29 +415,29 @@ PR4 & The system should show the user if the input needs to be adjusted. & The u
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-OER1 & The system should be used as a web application on a browser/laptop. & The system is being built for a web application, so the user should be able to access it in this way. & \\
+OER1 & The system should be used as a web application on a browser/laptop. & The system is being built for a web application, so the user should be able to access it in this way. & 95\% of users are able to successfully use the product as a web application on a broswer source. \\
 \hline
-OER2 & The system should be able to access a user's camera device. & The user's camera will be used as the input device to see the user's hand signs. & \\
+OER2 & The system should be able to access a user's camera device. & The user's camera will be used as the input device to see the user's hand signs. & 90\% of users are able to successfully use their camera on their input device. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Maintainability and Support Requirements}
 
-\begin{table}[H]
-\caption{Maintainability and Support Non-Functional Requirements}
-\noindent \begin{tabular}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\begin{longtable}{| c | p{3cm}| p{3cm}| p{3cm}|}
+\caption{Maintainability and Support Non-Functional Requirements} \\
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-MSR1 & The system should be tested regularly to ensure it's functionality and usability. & This will ensure that the system does not experience any bugs or other errors when being updated over time. & \\
+MSR1 & The system should be tested regularly to ensure it's functionality and usability. & This will ensure that the system does not experience any bugs or other errors when being updated over time. & The product must pass 95\% of its developer tests at least once a week. \\
 \hline
-MSR2 & The code implemented in the system should adhere to specified coding standards to ensure it's readibilty for future updates. & This will ensure that the system code can be understood over time, so others can update it if they wish. & \\
+MSR2 & The code implemented in the system should adhere to specified coding standards to ensure it's readibilty for future updates. & This will ensure that the system code can be understood over time, so others can update it if they wish. & The developers shall certify the product complies with these requirements. \\
 \hline
-MSR3 & The code implemented in the system should be tested using code coverage methods to test all functions of the system. & This will ensure that all aspects of the system can be tested for errors, and fixed if errors are found during testing. & \\
+MSR3 & The code implemented in the system should be tested using code coverage methods to test all functions of the system. & This will ensure that all aspects of the system can be tested for errors, and fixed if errors are found during testing. & 80\% of code coverage shall be achieved when running test cases on the system. \\
+\hline
+MSR4 & The system should allow for new signs to be added over the lifespan of the system. & This will allow the system to expand over time, as well as be able to add in new modern signs. The modules of the product will be written according to coding standards to allow for new additions to the system. & The developers shall certify the product complies with these requirements. \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
 
 \subsection{Security Requirements}
 
@@ -465,11 +447,11 @@ MSR3 & The code implemented in the system should be tested using code coverage m
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-SR1 & The system should allow the user to access their account after creating it. & The user should be able to create an account and be able to log in and out of it as needed.] & \\
+SR1 & The system should allow the user to access their account after creating it. & The user should be able to create an account and be able to log in and out of it as needed. & The developers shall certify the product complies with these requirements. \\
 \hline
-SR2 & The system should ensure that incorrect input to the system is used. & The system should not be trained using incorrect usage of ASL as this would contradict the goal of learning how to use the language properly. & \\
+SR2 & The system should ensure that incorrect input to the system is used. & The system should not be trained using incorrect usage of ASL as this would contradict the goal of learning how to use the language properly. & The developers shall certify the product complies with these requirements. \\
 \hline
-SR3 & The system should store user account information using encryption. & This will ensure that all user information will be kept private and secure. & \\
+SR3 & The system should store user account information using encryption. & This will ensure that all user information will be kept private and secure. & The developers shall certify the product complies with these requirements. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -482,7 +464,7 @@ SR3 & The system should store user account information using encryption. & This 
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-CR1 & The system should be written in Canadian English and teach users using American Sign Language. & The primary users of this application at this stage will be Canadian English speakers who want to learn American Sign Language. & \\
+CR1 & The system should be written in Canadian English and teach users using American Sign Language. & The primary users of this application at this stage will be Canadian English speakers who want to learn American Sign Language. & The developers shall certify the product complies with these requirements. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -495,9 +477,9 @@ CR1 & The system should be written in Canadian English and teach users using Ame
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-LR1 & The system should adhere to user privacy laws. &  The system should never share user information or break any other user privacy law. & \\
+LR1 & The system should adhere to user privacy laws. &  The system should never share user information or break any other user privacy law. & N/A \\
 \hline
-LR2 & The system should not train the model on personal/confidential/illegal data & The system should only be trained on data that is safe to use, and is in the public domain. & \\
+LR2 & The system should not train the model on personal/confidential/illegal data & The system should only be trained on data that is safe to use, and is in the public domain. & The developers shall certify the product complies with these requirements. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -510,7 +492,7 @@ LR2 & The system should not train the model on personal/confidential/illegal dat
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-HSR1 & The system should warn users to ensure they have enough space to practice ASL in their environment. & This will ensure that the user will not use this application if there is not enough space to comfortably do so. & \\
+HSR1 & The system should warn users to ensure they have enough space to practice ASL in their environment. & This will ensure that the user will not use this application if there is not enough space to comfortably do so. & The developers shall certify the product complies with these requirements. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -565,10 +547,6 @@ The system and its interface should be intuitive enough to learn how to use the 
 
 N/A
 
-\bibliographystyle{plainnat}
-
-\bibliography{SRS}
-
 \newpage
 
 \section{Appendix}
@@ -576,10 +554,7 @@ N/A
 This section has been added to the Volere template.  This is where you can place
 additional information.
 
-\subsection{Symbolic Parameters}
-
-The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+%\subsection{Symbolic Parameters}
 
 \section{Appendix --- Reflection}
 
@@ -618,6 +593,7 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
     \item Some overall knowledge and skills that will be required in the entire team include domain knowledge (the fundamentals of ASL and basic signing), skills in technical tools for development (React, OpenCV, Python, etc.), documentation writing skills, and communication skills for connecting with stakeholders.
     \begin{itemize}
         \item Edward -- On the technical side, I will need to familiarize myself with OpenCV and computer vision in general. As well, I will need to learn how to apply machine learning to recognizing specific hand motions. On the non-technical side, I will need to familiarize myself with ASL and at minimum learn basic hand signs. I aim to learn more than just the fundamentals, so I can help to design the course that our project provides.
+	\item Cassidy -- For technical skills, I am mostly familiar with back end development, so through this project I hope to learn more about front end web development, as well as learning some fundamentals of machine learning for the hand motions. I also hope to be able to learn some ASL through this project, as well as further develop project development and time management skills.
     \end{itemize}
     \item 
 \end{enumerate}
