@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{tabularray}
+\usepackage{longtable}
 \usepackage[hmargin=1cm]{geometry}
 
 \hypersetup{
@@ -39,6 +40,7 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 Oct 17 2022 & Jeremy & Added 2 FMEA table entries related to web application hazards\\
+Oct 17 2022 & Andrew & Added Camera FMEA table entry\\
 Date1 & Name(s) & Description of changes\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
@@ -73,8 +75,8 @@ this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
 
-\begin{table}[ht]
-\caption{Failure Mode and Effect Analysis}
+\begin{table}{}
+\caption{Failure Mode and Effect Analysis}\\
 \begin{tblr}{
   %@{}ccccccX[c,valign=b]X[c,valign=b]X[c,valign=b]@{},
     |X[3,l]|X[3,l]|X[3,l]|X[3,l]|X[3,l]|X[r]|X[r]|
@@ -89,22 +91,30 @@ Reccomended Action &
 SR & 
 Ref. \\
 \hline
-User log in & Display error notification on log in page that system is down and remove user sign in capability & User cannot log in to system & App hosting platform or database are under maintenance & Wait and try again later & TODO & TODO \\
+User log in & Display error notification on log in page that system is down and remove user sign in capability & User cannot log in to system & App hosting platform or database are under maintenance & Wait and try again later & TODO & H1-1 \\
 
-Database Access & Database is inaccessible & User cannot view progress or stored personal data & Database connection failure & Await database backup and restoration & TODO & TODO \\
+Database Access & Database is inaccessible & User cannot view progress or stored personal data & Database connection failure & Await database backup and restoration & TODO & H2-1 \\
+\hline
+Camera & Visual feed is unable to be captured & User's sign cannot be perceived by the device and subsequently be processed & 1. Poor Lighting Conditions & 1. Instruct user to adjust their environment lighting or move to environment with sufficient lighting & HR1 & H3-1 \\
+  &  &  & 2. User skin color is not within the bounds of the training set data used & 2. Broaden training dataset to include more skin color types & DTR1 & H3-2 \\
+  & Physical defect that impairs operation &  & 3. Cracked/Filthy camera lenses & 3. Notify user that camera lenses appear to be inoperable & HR2 & H4-1 \\
 \hline
 \end{tblr}
 \label{table:nonlin} % is used to refer this table in the text
 \end{table}
 
+% \wss{Newly discovered requirements.  These should also be added to the SRS.  (A
+% rationale design process how and why to fake it.)}
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+\subsection{Hardware Requirements}
+
+\subsection{Dataset Training Requirements}
+
 
 \section{Roadmap}
 
-\wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+% \wss{Which safety requirements will be implemented as part of the capstone timeline?
+% Which requirements will be implemented in the future?}
 
 \end{document}
