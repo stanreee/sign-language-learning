@@ -6,6 +6,8 @@
 \usepackage{tabularray}
 \usepackage{longtable}
 \usepackage[hmargin=1cm]{geometry}
+\usepackage{float}
+
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -41,6 +43,7 @@
 \midrule
 Oct 17 2022 & Jeremy & Added 2 FMEA table entries related to web application hazards\\
 Oct 17 2022 & Andrew & Added Camera FMEA table entry\\
+Oct 17 2022 & Jeremy & Added 2 more FMEA table entries related to web application\\
 Date1 & Name(s) & Description of changes\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
@@ -75,10 +78,9 @@ this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
 
-\begin{table}{}
-\caption{Failure Mode and Effect Analysis}\\
+\begin{table}[H]
+\caption{Failure Mode and Effect Analysis}
 \begin{tblr}{
-  %@{}ccccccX[c,valign=b]X[c,valign=b]X[c,valign=b]@{},
     |X[3,l]|X[3,l]|X[3,l]|X[3,l]|X[3,l]|X[r]|X[r]|
 }
 \hline
@@ -87,13 +89,18 @@ Design Function &
 Failure Modes  &  
 Effects of Failure & 
 Causes of Failure & 
-Reccomended Action & 
+Recommended Action & 
 SR & 
 Ref. \\
 \hline
-User log in & Display error notification on log in page that system is down and remove user sign in capability & User cannot log in to system & App hosting platform or database are under maintenance & Wait and try again later & TODO & H1-1 \\
+User authentication error & Invalid credentials & User cannot log in to system & User error or improperly saved data & Reset credentials and inform user & TODO & TODO \\
+\hline
+Database Access & Database is inaccessible & User cannot view progress or stored personal data & Database connection failure & Display static error page and await database backup/restoration & TODO & TODO \\
+\hline
+Working Application & Error state & User cannot view any pages, progress, and account & Major system failure due to bugs & Display static error page and await application restoration & TODO & TODO \\
+\hline
 
-Database Access & Database is inaccessible & User cannot view progress or stored personal data & Database connection failure & Await database backup and restoration & TODO & H2-1 \\
+ Hand sign tracking & Hand sign motions are too fast/slow & System cannot accurately give user feedback and measure progress & Model and system efficiency & Interrupt the user and inform user to adjust hand sign motions accordingly & TODO & TODO \\
 \hline
 Camera & Visual feed is unable to be captured & User's sign cannot be perceived by the device and subsequently be processed & 1. Poor Lighting Conditions & 1. Instruct user to adjust their environment lighting or move to environment with sufficient lighting & HR1 & H3-1 \\
   &  &  & 2. User skin color is not within the bounds of the training set data used & 2. Broaden training dataset to include more skin color types & DTR1 & H3-2 \\
