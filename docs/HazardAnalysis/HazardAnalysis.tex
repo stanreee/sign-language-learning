@@ -41,10 +41,10 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Oct 17 2022 & Jeremy & Added 2 FMEA table entries related to web application hazards\\
-Oct 17 2022 & Andrew & Added Camera FMEA table entry\\
-Oct 17 2022 & Jeremy & Added 2 more FMEA table entries related to web application\\
-Date1 & Name(s) & Description of changes\\
+Oct. 17, 2023 & Jeremy & Added 2 FMEA table entries related to web application hazards\\
+Oct. 17, 2023 & Andrew & Added Camera FMEA table entry\\
+Oct. 17, 2023 & Jeremy & Added 2 more FMEA table entries related to web application\\
+Oct. 18, 2023 & Edward & Added sections 1, 2, 3, 4\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
@@ -59,22 +59,27 @@ Date2 & Name(s) & Description of changes\\
 
 \pagenumbering{arabic}
 
-\wss{You are free to modify this template.}
-
 \section{Introduction}
-
-\wss{You can include your definition of what a hazard is here.}
+This document aims to outline and analyze the potential hazards of ASLingo. A hazard can be defined as a system state or set of conditions, often arising from inherent risks or software anomalies, that, when coupled with particular worst-case environmental conditions or unexpected interactions, can lead to a loss or adverse outcomes. This embodies potential sources of harm due to software failures, bugs, or undesired system behavior, emphasizing proactive identification and mitigation to ensure software safety and functionality.
 
 \section{Scope and Purpose of Hazard Analysis}
+Hazard analysis is a fundamental aspect of the software development process, crucial for preventing losses or adverse outcomes that are undesirable for any product. It involves identifying areas where hazards may arise and determining steps to either reduce or eliminate their effects, making it an important part of the development journey. This analysis is closely tied to the safety and security requirements of the software. Ensuring these requirements are well met significantly contributes to enhancing the software's reliability, making it a more dependable product in the long run.
 
 \section{System Boundaries and Components}
+ASLingo's system will involve the following components:
+\begin{enumerate}
+    \item A camera to allow for user input
+    \item A web frontend to provide user interface and authenticate user login
+    \item A backend to process software logic
+    \item A machine learning model to interpret user hand signs
+\end{enumerate}
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+\begin{enumerate}
+    \item Assume users are using ASLingo for its intended purpose
+    \item Assume users are able and willing to follow safety instructions
+\end{enumerate}
 
 \section{Failure Mode and Effect Analysis}
 
