@@ -3,6 +3,12 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{tabularray}
+\usepackage{longtable}
+\usepackage[hmargin=1cm]{geometry}
+\usepackage{float}
+\usepackage{enumitem}
+
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -36,9 +42,12 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+Oct 17 2022 & Jeremy & Added 2 FMEA table entries related to web application hazards\\
+Oct 17 2022 & Andrew & Added Camera FMEA table entry\\
+Oct 17 2022 & Jeremy & Added 2 more FMEA table entries related to web application\\
+Oct 17 2022 & Stanley & Rearranged some FMEA table entries, added computer vision table entries\\
+Oct 18 2023 & Edward & Added sections 1, 2, 3, 4\\
+Oct 19 2023 & Everyone & Finished Section 6 and 7 \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -51,35 +60,93 @@ Date2 & Name(s) & Description of changes\\
 
 \pagenumbering{arabic}
 
-\wss{You are free to modify this template.}
-
 \section{Introduction}
-
-\wss{You can include your definition of what a hazard is here.}
+This document aims to outline and analyze the potential hazards of ASLingo. A hazard can be defined as a system state or set of conditions, often arising from inherent risks or software anomalies, that, when coupled with particular worst-case environmental conditions or unexpected interactions, can lead to a loss or adverse outcomes. This embodies potential sources of harm due to software failures, bugs, or undesired system behavior, emphasizing proactive identification and mitigation to ensure software safety and functionality.
 
 \section{Scope and Purpose of Hazard Analysis}
+Hazard analysis is a fundamental aspect of the software development process, crucial for preventing losses or adverse outcomes that are undesirable for any product. It involves identifying areas where hazards may arise and determining steps to either reduce or eliminate their effects, making it an important part of the development journey. This analysis is closely tied to the safety and security requirements of the software. Ensuring these requirements are well met significantly contributes to enhancing the software's reliability, making it a more dependable product in the long run.
 
 \section{System Boundaries and Components}
+ASLingo's system will involve the following components:
+\begin{enumerate}
+    \item A camera to allow for user input
+    \item A web frontend to provide user interface and authenticate user login
+    \item A backend to process software logic
+    \item A machine learning model to interpret user hand signs
+\end{enumerate}
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+\begin{enumerate}
+    \item Assume users are using ASLingo for its intended purpose
+    \item Assume users are able and willing to follow safety instructions
+\end{enumerate}
 
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here}
+\begin{table}[H]
+\caption{Failure Mode and Effect Analysis}
+\begin{tblr}{
+    |X[3,l]|X[3,l]|X[3,l]|X[3,l]|X[3,l]|X[r]|X[r]|
+}
+\hline
+\hline
+Design Function & 
+Failure Modes  &  
+Effects of Failure & 
+Causes of Failure & 
+Recommended Action & 
+SR & 
+Ref. \\
+\hline
+User authentication error & Invalid credentials & User cannot log in to system & User error or improperly saved data & Reset credentials and inform user & WAR1 & H1-1 \\
+\hline
+Database Access & Database is inaccessible & User cannot view progress or stored personal data & Database connection failure & Display static error page and await database backup/restoration & WAR2 & H2-1 \\
+\hline
+Working Application & Error state & User cannot view any pages, progress, and account & Major system failure due to bugs & Display static error page and await application restoration & WAR3 & H3-1 \\
+\hline
+Camera & Visual feed is unable to be captured & User's sign cannot be perceived by the device & Poor Lighting Conditions & Instruct user to adjust their environment lighting or move to environment with sufficient lighting & HR1 & H4-1 \\
+  & Physical defect that impairs operation &  & Cracked/Filthy camera lenses & Notify user that camera lenses appear to be inoperable & HR2 & H4-2 \\
+\hline
+Machine Learning Model & Model fails to process/recognize camera input & User sign input cannot be processed accurately/correctly & Hand sign motions are too fast/slow & Interrupt the user and inform user to adjust hand sign motions accordingly & CVR1 & H5-1 \\
+ & & Sign recognition works with group members and stakeholders, but fails when a new user uses the application & Model is trained on a specific set of training data and tested on a specific set of people (developers and stakeholders) & Rigorous testing on multiple testing sets and on users not affiliated with the project to ensure hands with varying qualities can be recognized & CVR2 & H5-2 \\
+\hline
+\end{tblr}
+\label{table:nonlin} % is used to refer this table in the text
+\end{table}
 
+% \wss{Newly discovered requirements.  These should also be added to the SRS.  (A
+% rationale design process how and why to fake it.)}
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+\subsection{Web Application Requirements}
+
+\begin{enumerate}[label=WAR\arabic*.]
+    \item{The system shall send a reset link to a user credientals for a registered email which will reset and allow the user to create a new password}
+    \item{The system shall create a daily backup of stored data that will be recreated daily to backup any lost data}
+    \item{The system shall notify users of any expected downtimes for upgrades and be locked out of account until complete}
+\end{enumerate}
+
+\subsection{Hardware Requirements}
+
+\begin{enumerate}[label=HR\arabic*.]
+    \item{The system shall inform the user that the camera requires better lighting in their environment if there not enough currently}
+    \item{The system shall inform the user that the camera is inoperable}
+\end{enumerate}
+
+\subsection{Computer Vision Requirements}
+
+\begin{enumerate}[label=CVR\arabic*.]
+    \item{The model will be trained on multiple sign language data sets from varying sources and characteristics}
+    \item{The system will notify the user if it is unable to detect signs due to motions being too fast or slow}
+\end{enumerate}
+
 
 \section{Roadmap}
 
-\wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+After careful consideration and reassessment, we see that there are many new requirements for us to take into consideration that weren't initially apparent when writing the Software Requirement Specification. Ideally, we will aim to implement every safety requirement, but realistically when taking into account time constraints, those requirements that are strictly necessary for system functionality may be the only ones that get implemented. Primarily, we will be focusing in on the WA and CV requirements, with a majority of the effort being channeled into the CV requirements since that is the main basis that will be providing the functionality for sign recognition. The hazard analysis will be used as a reference throughout the development process and may be amended when necessary in the future.
+
+% \wss{Which safety requirements will be implemented as part of the capstone timeline?
+% Which requirements will be implemented in the future?}
 
 \end{document}
