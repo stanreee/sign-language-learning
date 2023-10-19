@@ -41,9 +41,10 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Oct. 17, 2023 & Jeremy & Added 2 FMEA table entries related to web application hazards\\
-Oct. 17, 2023 & Andrew & Added Camera FMEA table entry\\
-Oct. 17, 2023 & Jeremy & Added 2 more FMEA table entries related to web application\\
+Oct 17 2022 & Jeremy & Added 2 FMEA table entries related to web application hazards\\
+Oct 17 2022 & Andrew & Added Camera FMEA table entry\\
+Oct 17 2022 & Jeremy & Added 2 more FMEA table entries related to web application\\
+Oct 17 2022 & Stanley & Rearranged some FMEA table entries, added computer vision table entries\\
 Oct. 18, 2023 & Edward & Added sections 1, 2, 3, 4\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
@@ -104,12 +105,12 @@ Database Access & Database is inaccessible & User cannot view progress or stored
 \hline
 Working Application & Error state & User cannot view any pages, progress, and account & Major system failure due to bugs & Display static error page and await application restoration & TODO & TODO \\
 \hline
-
- Hand sign tracking & Hand sign motions are too fast/slow & System cannot accurately give user feedback and measure progress & Model and system efficiency & Interrupt the user and inform user to adjust hand sign motions accordingly & TODO & TODO \\
+Camera & Visual feed is unable to be captured & User's sign cannot be perceived by the device & Poor Lighting Conditions & Instruct user to adjust their environment lighting or move to environment with sufficient lighting & HR1 & H3-1 \\
+  & Physical defect that impairs operation &  & Cracked/Filthy camera lenses & Notify user that camera lenses appear to be inoperable & HR2 & H4-1 \\
 \hline
-Camera & Visual feed is unable to be captured & User's sign cannot be perceived by the device and subsequently be processed & 1. Poor Lighting Conditions & 1. Instruct user to adjust their environment lighting or move to environment with sufficient lighting & HR1 & H3-1 \\
-  &  &  & 2. User skin color is not within the bounds of the training set data used & 2. Broaden training dataset to include more skin color types & DTR1 & H3-2 \\
-  & Physical defect that impairs operation &  & 3. Cracked/Filthy camera lenses & 3. Notify user that camera lenses appear to be inoperable & HR2 & H4-1 \\
+Machine Learning Model & Model fails to process/recognize camera input & 1. User sign input cannot be processed accurately/correctly & a. User skin tone is not within the bounds of the training set data used & a. Broaden training dataset to be more inclusive of all skin tones & DTR1 & H5-1 \\
+ & & & b. Hand sign motions are too fast/slow & b. Interrupt the user and inform user to adjust hand sign motions accordingly & TODO & TODO \\
+ & & 2. Sign recognition works with group members and stakeholders, but fails when a new user uses the application & a. Model is trained on a specific set of training data and tested on a specific set of people (developers and stakeholders) & a. Rigorous testing on multiple testing sets and on users not affiliated with the project to ensure hands with varying qualities can be recognized & TODO & TODO \\
 \hline
 \end{tblr}
 \label{table:nonlin} % is used to refer this table in the text
