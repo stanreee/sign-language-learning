@@ -79,9 +79,10 @@
 \listoftables
 \listoffigures
 
-\begin{table}[H]
-\caption{Revision History}
-\begin{tabularx}{\textwidth}{|l|l|X|}
+\newpage
+
+\begin{longtable}{| c | p{3cm} | p{6.5cm} |}
+\caption{Revision History} \\
 \hline {\bf Date} & {\bf Developers} & {\bf Change}\\
 \hline
 September 25, 2023 & All team members & Initial draft, added some functional requirements \\
@@ -97,11 +98,11 @@ October 4, 2023 & Stanley Chan & Added individual product use cases, updated wor
 October 4, 2023 & Edward Zhuang & Edited Section 4 according to meeting with MSLC, and added response to one reflection question \\
 October 6, 2023 & Cassidy Baldin & Added fit criterion, fixed formatting, added reflection \\
 October 6, 2023 & Stanley Chan & Added individual reflection \\
-October 6, 2023 & Jeremy & Added personal reflection response and general reflection question 3. \\
-October 6, 2023 & Andrew & Added personal reflection response\\
+October 6, 2023 & Jeremy Langner & Added personal reflection response and general reflection question 3. \\
+October 6, 2023 & Andrew Kil & Added personal reflection response\\
+October 19, 2023 & Cassidy Baldin & Revised aspects of the SRS after given peer review feedback. \\
 \bottomrule
-\end{tabularx}
-\end{table}
+\end{longtable}
 
 \newpage
 
@@ -127,12 +128,10 @@ achieving their goals of learning ASL.
 
 \subsection{The Stakeholders}
 
- The stakeholders for this project include those who use sign language as their primary mode of communication in daily life as well as those who have an interest in learning ASL. This would naturally expand outward towards educators who wish to promote the learning of ASL to their respective institutions. 
+ The stakeholders for this project include those who use sign language as their primary mode of communication in daily life as well as those who have an interest in learning ASL, as one of the main objectives of this project is to help people to learn ASL easier. This would naturally expand outward towards secondary users of this application which may be educators who wish to promote the learning of ASL to their respective institutions. The objectives of the stakeholders for this project should be the ability to learn ASL more effectively as they will not only be able to recognize what signs mean, but will be able to practice signing themselves to better their understanding. This therefore should also be an application that is able to be used for both individuals who cannot hear and those who can, as we want to further the understanding of ASL for a wide variety of users with varying differences in abilities. 
 
 % \subsubsection{The Client}
-
 % \subsubsection{The Customers}
-
 % \subsubsection{Other Stakeholders}
 
 \subsection{Mandated Constraints}
@@ -200,7 +199,7 @@ UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-F
 \subsection{Relevant Facts and Assumptions}
 
 \begin{enumerate}
-    \item The user will always have the camera their hands when using the application.
+    \item The user will always have the camera facing their hands when using the application.
     \begin{itemize}
         \item[] Correct camera angling towards the user's hands is the first condition for the application to work.
     \end{itemize}
@@ -208,9 +207,13 @@ UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-F
     \begin{itemize}
         \item[] Proper lighting is the second condition for the application to work since it cannot properly distinct what the user signs without it.
     \end{itemize}
-    \item The user's signs will be within reasonable form of the proper sign, enough to be recognized by the system
+    \item The user's signs will be within reasonable form of the proper sign, enough to be recognized by the system.
     \begin{itemize}
         \item[] If the user signs are correct but with poor form, the system will have a hard time determining if it is correct.
+    \end{itemize}
+    \item The user's camera will have the necessary technical requirements to accurately capture the signs displayed by the user.
+    \begin{itemize}
+        \item[] The user's camera should have the capability of viewing the input of the user, with ample resolution and frame rate.
     \end{itemize}
 \end{enumerate}
 
@@ -322,6 +325,8 @@ The following is a context diagram which describes the high-level overview on ho
     \caption{Traceability Matrix for Functional Requirements}
 \end{figure}
 
+\newpage
+
 \subsection{Functional Requirements}
 
 \begin{longtable}{| c | p{4cm}| p{6cm}|}
@@ -365,9 +370,9 @@ The following is a context diagram which describes the high-level overview on ho
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-LFR1 & The system should remind users of similar language learning applications & This will allow users to use the system intuitively if they have knowledge of other learning apps. & Ask a sample of users to rate how familiar/easy to use it is compared to other language learning apps. \\
+LFR1 & The system should remind users of similar language learning applications. & This will allow users to use the system intuitively if they have knowledge of other learning apps. & Ask a sample of users to rate how familiar/easy to use it is compared to other language learning apps. \\
 \hline
-LFR2 & The system should show the user how much progress they have made in their learning schedule. & The user should be able to gain feedback from the system about how much they learned. & The developers shall certify the product complies with these requirements. \\
+LFR2 & The system should show the user how much progress they have made in their learning schedule. & The user should be able to gain feedback from the system about how much they learned. & The developers shall certify the product complies with these requirements by ensuring the user has a metric to understand their current progress. \\
 % (level system, progress bar, score after a quiz etc.) 
 \hline
 LFR3 & The system should clearly show the user if they have answered the prompt correctly. & The user should gain feedback about if they are correct with the hand sign they have shown. & The developers shall certify the product shows the user the correct response based on their input. \\
@@ -387,7 +392,7 @@ UHR1 & The system should be able to be used by people with little to no training
 \hline
 UHR2 & The system should be able to be used by people who are hard of hearing or deaf, as well as those who are able to hear. & The system should be accessible for all people wanting to learn ASL. & Users will be asked to rate their experience using the application on a scale of 1-10, with the average reporting a score above 7. \\
 \hline
-UHR3 & The system should allow users to personalize their account. & The user should be able to input their name, see their progress etc. & The developers shall certify the product complies with these requirements. \\
+UHR3 & The system should allow users to personalize their account. & The user should be able to input their name, see their progress etc. & The developers shall certify the product complies with these requirements by ensuring the users will be able to do the required actions. \\
 % (avatar, name, progress; personalization)
 \bottomrule
 \end{tabular}
@@ -405,7 +410,7 @@ PR1 & The system should respond to user input quickly. & If a user has to wait t
 \hline
 PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputing to ensure they are learning effectively. & The system should accurately determine the correct hand sign from a user in 95\% of tests. \\
 \hline
-PR3 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements.\\
+PR3 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements by ensuring the system gives user feedback where appropriate.\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -434,11 +439,11 @@ OER2 & The system should be able to access a user's camera device. & The user's 
 \hline
 MSR1 & The system should be tested regularly to ensure it's functionality and usability. & This will ensure that the system does not experience any bugs or other errors when being updated over time. & The product must pass 95\% of its developer tests at least once a week. \\
 \hline
-MSR2 & The code implemented in the system should adhere to specified coding standards to ensure it's readibilty for future updates. & This will ensure that the system code can be understood over time, so others can update it if they wish. & The developers shall certify the product complies with these requirements. \\
+MSR2 & The code implemented in the system should adhere to specified coding standards to ensure its readabilty for future updates. & This will ensure that the system code can be understood over time to ensure readability and maintainability for future updates. & The developers shall certify the product complies with these requirements by adhering to the coding standards specified in our Development Plan, and will be certified through a peer review process. \\
 \hline
 MSR3 & The code implemented in the system should be tested using code coverage methods to test all functions of the system. & This will ensure that all aspects of the system can be tested for errors, and fixed if errors are found during testing. & 80\% of code coverage shall be achieved when running test cases on the system. \\
 \hline
-MSR4 & The system should allow for new signs to be added over the lifespan of the system. & This will allow the system to expand over time, as well as be able to add in new modern signs. The modules of the product will be written according to coding standards to allow for new additions to the system. & The developers shall certify the product complies with these requirements. \\
+MSR4 & The system should allow for new signs to be added over the lifespan of the system. & This will allow the system to expand over time, as well as be able to add in new modern signs. The modules of the product will be written according to coding standards to allow for new additions to the system. & The developers shall certify the product complies with these requirements by adhering to coding standards and ensuring readability for future developers. \\
 \bottomrule
 \end{longtable}
 
@@ -450,11 +455,11 @@ MSR4 & The system should allow for new signs to be added over the lifespan of th
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-SR1 & The system should allow the user to access their account after creating it. & The user should be able to create an account and be able to log in and out of it as needed. & The developers shall certify the product complies with these requirements. \\
+SR1 & The system should allow the user to access their account after creating it. & The user should be able to create an account and be able to log in and out of it as needed. & The developers shall certify the product complies with these requirements by ensuring the user can log in and out. \\
 \hline
-SR2 & The system should ensure that incorrect input to the system is used. & The system should not be trained using incorrect usage of ASL as this would contradict the goal of learning how to use the language properly. & The developers shall certify the product complies with these requirements. \\
+SR2 & The system should ensure that the system is trained on correct information. & The system should not be trained using incorrect usage of ASL as this would contradict the goal of learning how to use the language properly. & The developers shall certify the product complies with these requirements by selecting trusted data sources and verifying the credibility of input data. \\
 \hline
-SR3 & The system should store user account information using encryption. & This will ensure that all user information will be kept private and secure. & The developers shall certify the product complies with these requirements. \\
+SR3 & The system should store user account information using encryption. & This will ensure that all user information will be kept private and secure. & The developers shall certify the product complies with these requirements by ensuring encryption is used in the system. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -467,7 +472,7 @@ SR3 & The system should store user account information using encryption. & This 
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-CR1 & The system should be written in Canadian English and teach users using American Sign Language. & The primary users of this application at this stage will be Canadian English speakers who want to learn American Sign Language. & The developers shall certify the product complies with these requirements. \\
+CR1 & The system should be written in Canadian English and teach users using American Sign Language. & The primary users of this application at this stage will be Canadian English speakers who want to learn American Sign Language. & The developers shall certify the product complies with these requirements by adhering to Canadian English and American Sign Language standards. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -480,9 +485,9 @@ CR1 & The system should be written in Canadian English and teach users using Ame
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-LR1 & The system should adhere to user privacy laws. &  The system should never share user information or break any other user privacy law. & N/A \\
+LR1 & The system should adhere to Canadian user privacy laws. &  The system should never share user information, and should ensure user's data is kept private and secure. & The developers shall certify the product complies with the Canadian Personal Information Protection and Electronic Documents Act (PIPEDA) to ensure user's data safety. \\
 \hline
-LR2 & The system should not train the model on personal/confidential/illegal data & The system should only be trained on data that is safe to use, and is in the public domain. & The developers shall certify the product complies with these requirements. \\
+LR2 & The system should not train the model on personal/confidential/illegal data & The system should only be trained on data that is safe to use, and is in the public domain. & The developers shall certify the product complies with these requirements by selecting trusted data sources and verifying the credibility of input data. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -495,7 +500,7 @@ LR2 & The system should not train the model on personal/confidential/illegal dat
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-HSR1 & The system should warn users to ensure they have enough space to practice ASL in their environment. & This will ensure that the user will not use this application if there is not enough space to comfortably do so. & The developers shall certify the product complies with these requirements. \\
+HSR1 & The system should warn users to ensure they have enough space to practice ASL in their environment. & This will ensure that the user will not use this application if there is not enough space to comfortably do so. & The developers shall certify the product complies with these requirements by ensuring the system warns the user appropriately. \\
 \bottomrule
 \end{tabular}
 \end{table}
