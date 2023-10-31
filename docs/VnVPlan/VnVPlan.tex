@@ -30,6 +30,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
+Oct 31 & Jeremy & Added in draft for sect 4.1 system tests for functional requirements\\
 Date 1 & 1.0 & Notes\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
@@ -216,50 +217,212 @@ as a Rev 0 demo for the supervisor.}
 \wss{Include a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.}
 
-\subsubsection{Area of Testing1}
+\subsubsection{Authentication}
 
 \wss{It would be nice to have a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.  If a section
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
 		
-\paragraph{Title for Test}
+\paragraph{User can make an account}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{FRT1-A1}
 
-Control: Manual versus Automatic
+Control: Manual
 					
-Initial State: 
+Initial State: User does not have a registered account with email. Currently on create an account page.
 					
-Input: 
+Input: User enters their name, a valid email, a valid password containing 8 characters with at least one upper case, one number, and one special character into each appropriately labeled text field.
 					
-Output: \wss{The expected result for the given inputs}
+Output: System displays successful account registration complete and prompts the user to sign in.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: Users need an account to record their progress.
 					
-How test will be performed: 
-					
-\item{test-id2\\}
+How test will be performed: Manual test via user without an account and has a valid email.
 
-Control: Manual versus Automatic
+Functional Requirement: FR3
 					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+\item{FRT1-A2}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Control: Manual
+					
+Initial State: User is on the sign in page with a registered account.
+					
+Input: User enters email and associated password with registered account.
+					
+Output: System checks for existence of email and correct associated password with email and based on authentication signs in the users or displays and invalid credentials and prompts a resign in attempt.
 
-How test will be performed: 
+Test Case Derivation: Valid credentials are required to sign in
+
+How test will be performed: Manual user with an account will attempt to sign in with valid credentials and invalid credentials.
+
+Functional Requirement: FR4
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{ASL Learning Progression}
 
-...
+\begin{enumerate}
+
+\item{FRT2-LP1}
+
+Control: Manual
+					
+Initial State: The user is in an ASL course prompt question or diagnosis and has a functioning webcam approved by application
+					
+Input: User displays hand signs
+					
+Output: The system output error if cannot recognize hands in camera view
+
+Test Case Derivation: System needs to be able to recognize ASL hand signs for functioning user progression and learning
+					
+How test will be performed: Manual test with user testing hand signs within diagnostic and a progression course
+
+Functional Requirement: FR2
+
+\item{FRT2-LP2}
+
+Control: Manual
+					
+Initial State: The system will prompt newly registered users with a diagnostic quiz to determine current ability
+					
+Input: User goes to home page
+					
+Output: The system starts the diagnostic quiz for user to compelete
+
+Test Case Derivation: Users need an initial ability level to provide next learning steps
+					
+How test will be performed: Manual test via user creating a valid account
+
+Functional Requirement: FR6
+
+\item{FRT2-LP3}
+
+Control: Automated
+					
+Initial State: The system creates unique progression courses with varying difficulty for user skill development
+					
+Input: User completes their diagnostic quiz or completes a progression course
+					
+Output: The system generates new progression based on completed progression and displays the new course to be completed
+
+Test Case Derivation: Users shall be able to attempt new progression courses to improve their ASL skill
+					
+How test will be performed: Automated testing can be used to generate sample courses from given user
+
+Functional Requirement: FR7
+
+\item{FRT2-LP4}
+
+Control: Automated
+					
+Initial State: The system creates unique progression courses with varying difficulty for user skill development
+					
+Input: User completes their diagnostic quiz or completes a progression course
+					
+Output: The system generates new progression based on completed progression and displays the new course to be completed
+
+Test Case Derivation: Users shall be able to attempt new progression courses to improve their ASL skill
+					
+How test will be performed: Automated testing can be used to generate sample courses from given user
+
+Functional Requirement: FR7
+
+\item{FRT3-LP5}
+
+Control: Automated
+					
+Initial State: User is signed in to their registered account
+
+Input: User completes their diagnostic quiz or completes a progression course
+					
+Output: The system saves the course and their results
+
+Test Case Derivation: Users should be progressing in their skill thus the system needs to save their history of completions and approximate skill level
+					
+How test will be performed: Automated testing can be used to ensure courses are saved upon completion
+
+Functional Requirement: FR8
+
+\item{FRT3-LP6}
+
+Control: Manual
+					
+Initial State: User is currently working on an ASL prompt question
+
+Input: User attempts appropriate sign
+					
+Output: The system determines if their sign action is accurate and displays message conveying the accuracy
+
+Test Case Derivation: Users shall be able to see within a progression if they are doing the sign correct
+					
+How test will be performed: Manual user testing will occur with knowledge of ASL signs
+
+Functional Requirement: FR10
+
+\end{enumerate}
+
+\paragraph{Web Application}
+
+\begin{enumerate}
+
+\item{FRT3-U1}
+
+Control: Manual
+					
+Initial State: User has a modern web browser.
+					
+Input: User enters the web app url into url textbox.
+					
+Output: System loads ASLingo homepage
+
+Test Case Derivation: Users need to access web app for functionality.
+					
+How test will be performed: Manual test with user entering input.
+
+Functional Requirement: FR9
+
+\end{enumerate}
+
+\paragraph{Hardware}
+
+\begin{enumerate}
+
+\item{FRT4-HW1}
+
+Control: Manual
+					
+Initial State: User has working built in or external webcam and recognized by their operating system.
+					
+Input: User begins progression course which begins with a camera verification
+					
+Output: System displays camera output or error if it cannot recognize camera.
+
+Test Case Derivation: Users need to access web camera for functionality.
+					
+How test will be performed: Manual test with user starting course using working webcam.
+
+Functional Requirement: FR1
+
+\item{FRT4-HW2}
+
+Control: Manual
+					
+Initial State: User has working built in or external webcam and recognized by their operating system.
+					
+Input: User is currently within a progression course and camera error arises
+					
+Output: System displays camera output or error if it cannot recognize camera
+
+Test Case Derivation: Users need to access web camera for functionality
+					
+How test will be performed: Manual test with user currently in progression course that initiates camera error
+
+Functional Requirement: FR11
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
