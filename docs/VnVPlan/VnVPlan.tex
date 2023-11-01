@@ -32,6 +32,7 @@
 \midrule
 Oct 31 & Jeremy & Added in draft for sect 4.1 system tests for functional requirements\\
 Nov 1 & Stanley & Added sections 3, 3.1, and 3.2 \\
+Nov 1 & Jeremy & Updated sec 4.1 with goals of each and added in new item for new FR \\
 Date 1 & 1.0 & Notes\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
@@ -235,11 +236,11 @@ as a Rev 0 demo for the supervisor.}
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
 		
-\paragraph{User can make an account}
-
 \begin{enumerate}
 
 \item{FRT1-A1}
+
+Goal: User can make an account
 
 Control: Manual
 					
@@ -254,8 +255,10 @@ Test Case Derivation: Users need an account to record their progress.
 How test will be performed: Manual test via user without an account and has a valid email.
 
 Functional Requirement: FR3
-					
+
 \item{FRT1-A2}
+
+Goal: User can sign into account
 
 Control: Manual
 					
@@ -271,6 +274,24 @@ How test will be performed: Manual user with an account will attempt to sign in 
 
 Functional Requirement: FR4
 
+\item{FRT1-A3}
+
+Goal: User can reset password to account
+
+Control: Manual
+					
+Initial State: User is on the sign in page with a registered account.
+					
+Input: User requests reset password then inputs email
+					
+Output: System checks for existence of email and sends an email with a unique link to reset password credentials.
+
+Test Case Derivation: Valid credentials are required to sign in
+
+How test will be performed: Manual user with an account will attempt to reset password then resign in with old and new password.
+
+Functional Requirement: FR13
+
 \end{enumerate}
 
 \subsubsection{ASL Learning Progression}
@@ -278,6 +299,8 @@ Functional Requirement: FR4
 \begin{enumerate}
 
 \item{FRT2-LP1}
+
+Goal: User performs ASL signs
 
 Control: Manual
 					
@@ -295,6 +318,8 @@ Functional Requirement: FR2
 
 \item{FRT2-LP2}
 
+Goal: Complete diagnostic quiz
+
 Control: Manual
 					
 Initial State: The system will prompt newly registered users with a diagnostic quiz to determine current ability
@@ -310,6 +335,8 @@ How test will be performed: Manual test via user creating a valid account
 Functional Requirement: FR6
 
 \item{FRT2-LP3}
+
+Goal: User attempts progression based course
 
 Control: Automated
 					
@@ -327,6 +354,8 @@ Functional Requirement: FR7
 
 \item{FRT2-LP4}
 
+Goal: User gets progression course based on previous course completions
+
 Control: Automated
 					
 Initial State: The system creates unique progression courses with varying difficulty for user skill development
@@ -343,6 +372,8 @@ Functional Requirement: FR7
 
 \item{FRT3-LP5}
 
+Goal: System saved user progress
+
 Control: Automated
 					
 Initial State: User is signed in to their registered account
@@ -358,6 +389,8 @@ How test will be performed: Automated testing can be used to ensure courses are 
 Functional Requirement: FR8
 
 \item{FRT3-LP6}
+
+Goal: Get user sign feedback
 
 Control: Manual
 					
@@ -381,6 +414,8 @@ Functional Requirement: FR10
 
 \item{FRT3-U1}
 
+Goal: Access web application
+
 Control: Manual
 					
 Initial State: User has a modern web browser.
@@ -403,6 +438,8 @@ Functional Requirement: FR9
 
 \item{FRT4-HW1}
 
+Goal: Access web camera
+
 Control: Manual
 					
 Initial State: User has working built in or external webcam and recognized by their operating system.
@@ -418,6 +455,8 @@ How test will be performed: Manual test with user starting course using working 
 Functional Requirement: FR1
 
 \item{FRT4-HW2}
+
+Goal: Monitor web camera useability
 
 Control: Manual
 					
