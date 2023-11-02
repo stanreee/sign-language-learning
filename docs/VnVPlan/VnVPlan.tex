@@ -30,10 +30,10 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Oct 31 & Jeremy & Added in draft for sect 4.1 system tests for functional requirements\\
+Oct 31 & Jeremy & Added in draft for sect 4.1 system tests for functional requirements \\ 
 Nov 1 & Stanley & Added sections 3, 3.1, and 3.2 \\
 Nov 1 & Jeremy & Updated sec 4.1 with goals of each and added in new item for new FR \\
-Date 1 & 1.0 & Notes\\
+Nov 2 & Cassidy & Updated sec 4.2 with tests for non-functional requirements \\
 Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -476,52 +476,144 @@ Functional Requirement: FR11
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy}
+%\wss{The nonfunctional requirements for accuracy will likely just reference the
+%  appropriate functional tests from above.  The test cases should mention
+%  reporting the relative error for these tests.  Not all projects will
+%  necessarily have nonfunctional requirements related to accuracy}
+%
+%\wss{Tests related to usability could include conducting a usability test and
+%  survey.  The survey will be in the Appendix.}
+%
+%\wss{Static tests, review, inspections, and walkthroughs, will not follow the
+%format for the tests given below.}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\subsubsection{Area of Testing1}
+\subsubsection{Usability Requirements}
 		
-\paragraph{Title for Test}
+\paragraph{User Testing}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{NFRT1 - UT1}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+Goal: The user is able to start the application with little to no prior training. 
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Dynamic, Manual
 					
-Initial State: 
+Initial State: The user is given a link to the where the application is being hosted. 
 					
-Input: 
+Input: The user should be able to open and start the application without needing to ask for help or training first. 
 					
-Output: 
+Output/Result: The user is able to successfully open the application to start the learning process without prior training given by the testing team. 
 					
-How test will be performed: 
+How test will be performed: A sampling of representitative users will attempt to open and start the application and will pass the test if they can complete this task with no prior training. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overal average of users scoring 75\% or higher for this part of the survey. 
+
+Non-Functional Requirement: UHR1
+
+\item{NFRT1 - UT2}
+
+Goal: The user is able to understand how to use complete a lesson with little to no prior training.
+
+Type: Dynamic, Manual
+					
+Initial State: The user signs into the web application with account information and is ready to start learning ASL.
+					
+Input: After the user signs into the application with account information, they will start trying to learn ASL using the various learning tools in the application with no prior training.  
+					
+Output/Result: The mechanics of the application should not hinder the user's progress of learning, and the user should feel as though the learning tools are intuitive and easy to navigate. The user should be able to successfully complete the first inroductory lesson without being confused by the mechanics of the application. 
+					
+How test will be performed: A sampling of representitative users will attempt to use the application and will pass the test if they can complete their first lesson without needing to ask for help with how the application works. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overal average of users scoring 75\% or higher for this part of the survey. 
+
+Non-Functional Requirement: UHR1
+					
+\item{NFRT1 - UT3}
+
+Goal: The user is able to understand how to use the application with various hearing abilities and little to no prior training. 
+
+Type: Dynamic, Manual
+					
+Initial State: The user signs into the application to learn ASL.
+					
+Input: The user will attempt to complete the first introductory lesson regardless of their level of hearing ability.
+					
+Output: The user should be able to successfully complete the intorductory lesson without needing to be able to hear the instructions to complete the introductory tasks required of them. 
+					
+How test will be performed: A sampling of representative users with various hearing abilities will attempt to use the program and will pass the test if they can successfully complete the first lesson of the program. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overall average of users scoring 75\% or higher for this part of the survey. 
+
+Non-Functional Requirement: UHR2
+
+\item{NFRT1 - UT4}
+
+Goal: The user is able to personalize their account with little to no prior training. 
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: The user is signed into their account and wants to change some of their information.
+					
+Input: The user will attempt to change their information in their account. 
+					
+Output: The user should be able to change their information in their account without much difficulty. 
+					
+How test will be performed: A sampling of representative users will attempt to change key features of their account like username or phone number and be able to save their changes without asking for help. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overall average of users scoring 75\% or higher for this part of the survey.
+
+Non-Functional Requirement: UHR3
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Performance Requirements}
 
-...
+\paragraph{Performance Testing}
+
+\begin{enumerate}
+
+\item{NFRT2 - PT1}
+
+Goal: The application should respond to user input within 1 second. 
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: The application prompts the user with a question during a lesson. 
+					
+Input: The user should respond to the application's prompt.
+					
+Output: The system should register the user's input and respond to the user quickly. 
+					
+How test will be performed: A user will respond to the prompt given by the application. The generated output must take less than 1 second to be produced. This test will be performed multiple times, and the run time for 95\% of these tests must be less than 1 second for the test to pass. 
+
+Non-Functional Requirement: PR1
+
+\item{NFRT2 - PT2}
+
+Goal: The application should be able to accurately determine if the user has signed the correct response to the prompt 95\% of the time. 
+
+Type: Dynamic, Manual
+					
+Initial State: The application prompts the user with a question during a lesson. 
+					
+Input: The user should sign in response to the application's prompt.
+					
+Output: The application should register the user's signed input and determine if they have signed the required action correctly.
+					
+How test will be performed: A user will respond to the prompt by signing in front of the application. The application should then determine if the user has signed the correct respond or not, and output a message telling the user what the application determined. This test will be performed multiple times, and the application should correctly identify if the user is correct or not 95\% of the time.
+
+Non-Functional Requirement: PR2
+
+\item{NFRT2 - PT3}
+
+Goal: The system should show the user if their input needs to be adjusted. 
+
+Type: Manual, Static
+					
+Initial State: The application prompts the user with a question during a lesson.
+					
+Input: The user attempts to sign in response to the application's prompt but their camera is not set up properly.
+					
+Output: The application should register that it cannot be confident in determining if the sign the user is displaying is accurate, so it should prompt the user to fix their camera settings before they are allowed to continue.
+					
+How test will be performed: A user will try to respond to the prompt by signing in front of the application, but with the user out of the focus of the camera. The application should not be able to determine if the user's sign is correct or not and should prompt the user to adjust their camera settings. This test will be performed multiple times with various input and camera conditions to ensure the requirement has been tested effectively. The developers will verify that the user is given feedback where appropriate. 
+
+Non-Functional Requirement: PR3
+
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
 
@@ -669,6 +761,8 @@ The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
 \subsection{Usability Survey Questions?}
+
+\textbf{User Experience Survey}\label{appen}
 
 \wss{This is a section that would be appropriate for some projects.}
 
