@@ -3,6 +3,9 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -35,6 +38,7 @@ Nov 1 & Stanley & Added sections 3, 3.1, and 3.2 \\
 Nov 1 & Jeremy & Updated sec 4.1 with goals of each and added in new item for new FR \\
 Nov 2 & Cassidy & Updated sec 4.2 with tests for non-functional requirements \\
 Nov 2 & Stanley & Added design verification plans \\
+Nov 2 & Andrew & Updated Sections 3.4-3.7\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -183,58 +187,27 @@ To summarize, the basic verification workflow for our design will be as follows:
 
 \subsection{Verification and Validation Plan Verification Plan}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
+The current approach to validate our Verification and Validation plan is to rely on third party reviews from other teams as well as mutation testing to verify whether our tests work as intended. The mutation tests will aim to accomplish the following:
 
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+\begin{todolist}
+\item Did the test manage to detect the mutation and behave accordingly? (I.e. pass/fail when it should)
+\item Did the test's behaviour stay consistent with its behaviour prior to the mutation's introduction, and if so, was this expected?
+\item Did the test accomplish provide sufficient information to act upon the failure induced by the mutation, and if so, would this be enough in the event of a non-controlled failure?
+\end{todolist}
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+The current implementation verification plan is a combination of both static and dynamic testing.  We plan to utilize static methods like regular code walkthroughs and inspections before merges with the main branch at the end of project milestones.  These reviews should be performed by at minimum 2-3 team members. Dynamic testing methods include the fundamental system tests mentioned in the following section 4.1 for both functional and non-functional-requirements of the final product. Should any issue arise through either avenue of of implementation verification, the team as a whole should work on and approve the final solution that is developed as a result.
 
 \subsection{Automated Testing and Verification Tools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+As already mentioned prior in the Development Plan, Back-end Unit Testing plans to make use of the Pytest Unit Testing Framework with the 'pytest-cov' plugin to provide code coverage metrics. Front-end Unit Testing Plans to make use of Jest for both Unit Testing and for Code Coverage Metrics, utilizing its built in '--coverage' tool upon runtime.\newline
+\indent For code verification, this was also mentioned previously in the Development plan. We plan to follow PEP8 Python coding standard and use the 'Flake8' linter to help enforce and check if our upholds said standard. As for the JavaScript front-end, we plan to follow the Airbnb Style Guide. Additionally, as this was not discussed within the Development Plan, the sue of the 'ESLint' linter to help enforce such standards.
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
-
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
-
-\wss{This section might reference back to the SRS verification section.}
+The software will be validated utilizing a mix of Black Box/Usability Testing and White Box Testing. The Black Box/Usability Testing will be conducted by external groups to our core team, ideally by members of our stakeholder group i.e. the McMaster University Sign Language Club as they are the closest to our target demographic of individuals who are interested in learning sign language. This will give us the most accurate test data for the end-users who will be using the final product. The Black Box Testing sessions will solely consist of instruction to form a specific hand sign, their formation of the hand sign for input and a resulting correct or not output. \newline 
+\indent White Box Testing will be performed internally by team members throughout the course of development. Post every milestone, at minimum 2 members will run through the system and test for the key functionality that was added in the milestone. Since team members are the ones who have the intimate understanding of the core functionality of the system, it only makes sense for use to be the ones who perform the testing.
 
 \section{System Test Description}
 	
