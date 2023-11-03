@@ -1,19 +1,22 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{pgfpages} 
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{outlines}
+\usepackage{longtable}
 \usepackage{enumitem,amssymb}
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
 \hypersetup{
-    colorlinks,
+    colorlinks=true,
     citecolor=blue,
     filecolor=black,
     linkcolor=red,
     urlcolor=blue
 }
+\urlstyle{same}
 \usepackage[round]{natbib}
 
 \input{../Comments}
@@ -42,52 +45,71 @@ Nov 2 & Stanley & Added design verification plans \\
 Nov 2 & Andrew & Updated Sections 3.4-3.7\\
 Nov 3 & Edward & Added all of Section 2\\
 Nov 3 & Andrew, Cassidy, Jeremy, Stanley & Added Reflections\\
-Date 2 & 1.1 & Notes\\
+Nov 3 & Cassidy & Added section 1 and usability survey questions \\
 \bottomrule
 \end{tabularx}
 
-~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
-
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
+%~\\
+%\wss{The intention of the VnV plan is to increase confidence in the software.
+%However, this does not mean listing every verification and validation technique
+%that has ever been devised.  The VnV plan should also be a \textbf{feasible}
+%plan. Execution of the plan should be possible with the time and team available.
+%If the full plan cannot be completed during the time available, it can either be
+%modified to ``fake it'', or a better solution is to add a section describing
+%what work has been completed and what work is still planned for the future.}
+%
+%\wss{The VnV plan is typically started after the requirements stage, but before
+%the design stage.  This means that the sections related to unit testing cannot
+%initially be completed.  The sections will be filled in after the design stage
+%is complete.  the final version of the VnV plan should have all sections filled
+%in.}
 
 \newpage
 
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \section{Symbols, Abbreviations, and Acronyms}
 
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
+\begin{longtable}{| c | p{7cm} |}
+\caption{Naming Conventions and Terminology} \\
+\hline
+\textbf{Term, Abbreviation, or Acronym} & \textbf{Description}\\
+\hline
+A & Shorthand for Assumption\\
+\hline
+ASL & Shorthand for American Sign Language. It is a form of sign language primarily used in the US and in parts of Canada\\
+\hline
+ASLingo & The commercial name for the project\\
+\hline
+CV & Refers to Computer Vision, the field of technology that involves processing visual input to achieve various means.\\
+\hline
+CR & Shorthand for 'Cultural Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+HSR & Shorthand for 'Health and Safety Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+FR & Shorthand for Functional Requirements\\
+\hline
+LR & Shorthand for 'Legal Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+LFR & Shorthand for 'Look and Feel Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+MSR & Shorthand for 'Maintainability and Support Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+OER & Shorthand for 'Operational and Environmental Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+OpenCV & Refers to the Open Computer Vision Library library available for free to developers in order to develop Computer Vision applications.\\
+\hline
+PR & Shorthand for 'Performance Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+SR & Shorthand for 'Security Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-Functional Requirements.\\
+\bottomrule
+\end{longtable}
 
 \newpage
 
@@ -103,29 +125,29 @@ As a maching learning-based image recognition web app, ASLingo has many areas to
 
 This document aims to outline the testing plan for ASLingo in order to create a functional and reliable product for users that aligns with the specified requirements. The team seeks to build confidence in stakeholders and users that the software is correct and meets or exceeds the initial intended goals, resulting in an overall satisfactory user experience.
 
-\subsection{Relevant Documentation}
+\subsection{Relevant Documentation} 
 
 Below is a list of the relevant documentation referenced within the Verification and Validation Plan.\\
 
-\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan \citep*{DP}}\\
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan \citep*{DP}}\\
 
-\noindent The Development Plan outlines the roles of each team member and the areas that each member will focus on. This breakdown of team responsibilities allows the team to assign testing roles accordingly. This document also contains the tools that the team plans on using for testing.\\
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} outlines the roles of each team member and the areas that each member will focus on. This breakdown of team responsibilities allows the team to assign testing roles accordingly. This document also contains the tools that the team plans on using for testing.\\
 
-\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification \citep*{SRS}}\\
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification \citep*{SRS}}\\
 
-\noindent The Software Requirements Specification lists the functional and non-functional requirements which will aid in testing by formulating a testing plan to meet each requirement. Non-functional requirements should be tested such that the fit criteria are met.\\
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} lists the functional and non-functional requirements which will aid in testing by formulating a testing plan to meet each requirement. Non-functional requirements should be tested such that the fit criteria are met.\\
 
-\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis \citep*{HA}}\\
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis \citep*{HA}}\\
 
-\noindent The Hazard Analysis identifies failure modes to determine the implementation strategies to mitigate them. These will be used as a part of the testing plan to ensure that the failures are covered.\\
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} identifies failure modes to determine the implementation strategies to mitigate them. These will be used as a part of the testing plan to ensure that the failures are covered.\\
 
-\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide \citep*{MG}}\\
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide \citep*{MG}}\\
 
-\noindent The Module Guide divides the software into modules. The team will build the testing plan around the modules.\\
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide} divides the software into modules. The team will build the testing plan around the modules.\\
 
-\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification \citep*{MIS}}\\
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification \citep*{MIS}}\\
 
-\noindent The Module Interface Specification further decomposes the software's modules into specific access routines. The team will build the testing plan such that each function and routine works as intended.
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification} further decomposes the software's modules into specific access routines. The team will build the testing plan such that each function and routine works as intended.
 
 \section{Plan}
 
@@ -144,6 +166,7 @@ overall project.
   Cassidy Baldin & Fullstack end-to-end testing, backend black box testing, Unit testing \\
   Edward Zhuang & Backend performance testing, Computer Vision unit testing, SRS Verification \\
   Jeremy Langner & Fullstack unit testing, frontend black box testing, VnV Plan Verification \\
+
   McMaster SLC & Providing feedback during project development \\
   \bottomrule
 \end{tabularx}
@@ -740,27 +763,21 @@ How test will be performed:
 
 \section{Appendix}
 
-This is where you can place additional information.
-
-\subsection{Symbolic Parameters}
-
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
-
-\subsection{Usability Survey Questions?}
+\subsection{Usability Survey Questions}
 
 \textbf{User Experience Survey}\label{appen}
 
-\wss{This is a section that would be appropriate for some projects.}
+\begin{enumerate}
 
-\newpage{}
-\section*{Appendix --- Reflection}
+\item How was it to start using the application on a scale of 1 - 10? \newline [ 1 = very hard to start, 10 = very easy to start]
+\item How was it for you to learn how to complete the first lesson on a scale of 1 - 10? \newline [ 1 = very hard to learn, 10 = very easy to learn]
+\item How comfortable were you with using the application at your current ASL skill level on a scale of 1-10? \newline [ 1 = very uncomfortable to use, 10 = very comfortable to use]
+\item How was it to change your profile information on a scale of 1 - 10? \newline [ 1 = very hard to change, 10 = very easy to change]
+\item How did you find your overall learning experience using the ASLingo application on a scale of 1 - 10? \newline [ 1 = very bad experience, 10 = very good experience]
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+\end{enumerate}
 
-\newpage{}
-\section*{Appendix --- Reflection}
+\subsection{Appendix --- Reflection}
 
 %\wss{This section is not required for CAS 741}
 
@@ -776,11 +793,12 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
     \2 Andrew Kil: Black Box\\
     I'll be mainly focusing on Dynamic Testing Methods like Usability testing for when we bring it the general user base. Being able to successfully elicit feedback from our test groups (i.e. the McMaster Sign Langauge Club) is a vital step in bridging the gap between developers and the market teat the system is designed for.\\
     \2 Cassidy Baldin: Pytest, Jest and Linters\\
-     will be mainly working on the back and front end of the project, so the skills I will need to acquire to test both of these aspects are the use of pyTest and Jest to ensure the project is working as intended. I also have little experience using different linters for these frameworks, so this will also be an apsect I will have to learn for this project.\\
+     I will be mainly working on the back and front end of the project, so the skills I will need to acquire to test both of these aspects are the use of pyTest and Jest to ensure the project is working as intended. I also have little experience using different linters for these frameworks, so this will also be an apsect I will have to learn for this project.\\
     \2 Edward Zhuang: \\
-    \2 Jeremy Langner: Manual & Automated Testing\\
+	Edward's part goes here
+    \2 Jeremy Langner: Manual \& Automated Testing \\
     Knowledge of when to use manual vs automated testing is necessary for VnV plan since the system tests for Functional rquiremenents have to be clearly seperated. This can be done by practicing how to understand the specific requirement and corresponding use case and then applying basic software testing princples to ensure what is testable manually and what can be done with automation frameworks and how. Typically any requirments with manual interaction or system integration will require manual testing and any coding or business logic requirements can be done with automation.\\
-    \2 Stanley Chan: Jest Framework\\
+    \2 Stanley Chan: Jest Framework \\
     Since I'll mainly be working on the frontend component of the project, I'd like to focus on learning some JavaScript testing libraries, specifically Jest. As I also want to be involved partly in the computer vision aspect, I'd like to familiarize myself with linters for both JavaScript and Python to standardize code practices throughout the project.\\
   \1 For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
@@ -791,7 +809,8 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
     \2 Cassidy Baldin: Pytest, Jest and Linters\\
     To acquire these skills, I will combine the use of online written tutorials, videos by experts in these frameworks, as well as talking to others I know who have hands on experience with these tools to understand how they work and how to use them efficiently. I will also be able to rely on some of my previous experience with testing tools from other courses to learn these new ones.\\
     \2 Edward Zhuang: \\
-    \2 Jeremy Langner: Manual & Automated Testing\\
+	Edward's part goes here
+    \2 Jeremy Langner: Manual \& Automated Testing\\
     Learning how to understand requirements has been learned with SFWRENG 3RA3 and with many subsequent courses but also comes up in many online coding problems or problem solving skills learned in real world/industry. Software testing principles have been learned in class in SFWRENG 3S03 and can also be learned thorugh various online sources like Guru99, GeeksForGeeks, JavaTPoint etc. The difficulty with this project will be the large intergation between our systems which will be great practice\\
     \2 Stanley Chan: Jest Framework\\
     Documentation and other online resources will be the main source of learning specific syntax and practices regarding testing libraries and linters. Additionally, material from previously taken courses like 3S03: Software Testing will be put into practice for concepts like code coverage, white box testing, etc.\\
