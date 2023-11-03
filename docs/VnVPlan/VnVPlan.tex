@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{outlines}
 \usepackage{enumitem,amssymb}
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
@@ -40,6 +41,7 @@ Nov 2 & Cassidy & Updated sec 4.2 with tests for non-functional requirements \\
 Nov 2 & Stanley & Added design verification plans \\
 Nov 2 & Andrew & Updated Sections 3.4-3.7\\
 Nov 3 & Edward & Added all of Section 2\\
+Nov 3 & Andrew, Cassidy, Jeremy, Stanley & Added Reflections\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -760,21 +762,39 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 \newpage{}
 \section*{Appendix --- Reflection}
 
-\wss{This section is not required for CAS 741}
+%\wss{This section is not required for CAS 741}
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
 
-\begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
+\begin{outline}[enumerate]
+  \1 What knowledge and skills will the team collectively need to acquire to
   successfully complete the verification and validation of your project?
   Examples of possible knowledge and skills include dynamic testing knowledge,
   static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
+  identify at least one item for each team member.\\
+    \2 Andrew Kil: Black Box\\
+    I'll be mainly focusing on Dynamic Testing Methods like Usability testing for when we bring it the general user base. Being able to successfully elicit feedback from our test groups (i.e. the McMaster Sign Langauge Club) is a vital step in bridging the gap between developers and the market teat the system is designed for.\\
+    \2 Cassidy Baldin: Pytest, Jest and Linters\\
+     will be mainly working on the back and front end of the project, so the skills I will need to acquire to test both of these aspects are the use of pyTest and Jest to ensure the project is working as intended. I also have little experience using different linters for these frameworks, so this will also be an apsect I will have to learn for this project.\\
+    \2 Edward Zhuang: \\
+    \2 Jeremy Langner: Manual & Automated Testing\\
+    Knowledge of when to use manual vs automated testing is necessary for VnV plan since the system tests for Functional rquiremenents have to be clearly seperated. This can be done by practicing how to understand the specific requirement and corresponding use case and then applying basic software testing princples to ensure what is testable manually and what can be done with automation frameworks and how. Typically any requirments with manual interaction or system integration will require manual testing and any coding or business logic requirements can be done with automation.\\
+    \2 Stanley Chan: Jest Framework\\
+    Since I'll mainly be working on the frontend component of the project, I'd like to focus on learning some JavaScript testing libraries, specifically Jest. As I also want to be involved partly in the computer vision aspect, I'd like to familiarize myself with linters for both JavaScript and Python to standardize code practices throughout the project.\\
+  \1 For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
+  member pursue, and why did they make this choice?\\
+    \2 Andrew Kil: Black Box\\
+    The main approach I will take to learn the necessary skills to carry out the Usability trials is through online resources found trough the internet. Naturally the standard of professionalism I have for these resources would be held to at the very least those who have ran Usability testing sessions for a successful project that was brought to market. Another approach is to attempt to seek out and consult those previously mentioned individuals those online solicitation for more sound advice. Of the two aforementioned methods, I will most likely be pursuing the former due to its ease of access as well as time efficiency.\\
+    \2 Cassidy Baldin: Pytest, Jest and Linters\\
+    To acquire these skills, I will combine the use of online written tutorials, videos by experts in these frameworks, as well as talking to others I know who have hands on experience with these tools to understand how they work and how to use them efficiently. I will also be able to rely on some of my previous experience with testing tools from other courses to learn these new ones.\\
+    \2 Edward Zhuang: \\
+    \2 Jeremy Langner: Manual & Automated Testing\\
+    Learning how to understand requirements has been learned with SFWRENG 3RA3 and with many subsequent courses but also comes up in many online coding problems or problem solving skills learned in real world/industry. Software testing principles have been learned in class in SFWRENG 3S03 and can also be learned thorugh various online sources like Guru99, GeeksForGeeks, JavaTPoint etc. The difficulty with this project will be the large intergation between our systems which will be great practice\\
+    \2 Stanley Chan: Jest Framework\\
+    Documentation and other online resources will be the main source of learning specific syntax and practices regarding testing libraries and linters. Additionally, material from previously taken courses like 3S03: Software Testing will be put into practice for concepts like code coverage, white box testing, etc.\\
+\end{outline}
 
 \end{document}
