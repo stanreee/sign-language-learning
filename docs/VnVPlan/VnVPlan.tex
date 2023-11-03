@@ -1,15 +1,24 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{pgfpages} 
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{outlines}
+\usepackage{longtable}
+\usepackage{enumitem,amssymb}
+\usepackage{float}
+\usepackage{adjustbox}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 \hypersetup{
-    colorlinks,
+    colorlinks=true,
     citecolor=blue,
     filecolor=black,
     linkcolor=red,
     urlcolor=blue
 }
+\urlstyle{same}
 \usepackage[round]{natbib}
 
 \input{../Comments}
@@ -30,290 +39,629 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Oct 31 & Jeremy & Added in draft for sect 4.1 system tests for functional requirements \\ 
+Nov 1 & Stanley & Added sections 3, 3.1, and 3.2 \\
+Nov 1 & Jeremy & Updated sec 4.1 with goals of each and added in new item for new FR \\
+Nov 2 & Cassidy & Updated sec 4.2 with tests for non-functional requirements \\
+Nov 2 & Stanley & Added design verification plans \\
+Nov 2 & Andrew & Updated Sections 3.4-3.7\\
+Nov 3 & Edward & Added all of Section 2\\
+Nov 3 & Andrew, Cassidy, Jeremy, Stanley & Added Reflections\\
+Nov 3 & Cassidy & Added section 1 and usability survey questions \\
+Nov 3 & Edward & Added Reflection\\
+Nov 3 & Jeremy & Added in sect 4.3 table matricies\\
 \bottomrule
 \end{tabularx}
 
-~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
-
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
+%~\\
+%\wss{The intention of the VnV plan is to increase confidence in the software.
+%However, this does not mean listing every verification and validation technique
+%that has ever been devised.  The VnV plan should also be a \textbf{feasible}
+%plan. Execution of the plan should be possible with the time and team available.
+%If the full plan cannot be completed during the time available, it can either be
+%modified to ``fake it'', or a better solution is to add a section describing
+%what work has been completed and what work is still planned for the future.}
+%
+%\wss{The VnV plan is typically started after the requirements stage, but before
+%the design stage.  This means that the sections related to unit testing cannot
+%initially be completed.  The sections will be filled in after the design stage
+%is complete.  the final version of the VnV plan should have all sections filled
+%in.}
 
 \newpage
 
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \section{Symbols, Abbreviations, and Acronyms}
 
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
+\begin{longtable}{| c | p{7cm} |}
+\caption{Naming Conventions and Terminology} \\
+\hline
+\textbf{Term, Abbreviation, or Acronym} & \textbf{Description}\\
+\hline
+A & Shorthand for Assumption\\
+\hline
+ASL & Shorthand for American Sign Language. It is a form of sign language primarily used in the US and in parts of Canada\\
+\hline
+ASLingo & The commercial name for the project\\
+\hline
+CV & Refers to Computer Vision, the field of technology that involves processing visual input to achieve various means.\\
+\hline
+CR & Shorthand for 'Cultural Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+HSR & Shorthand for 'Health and Safety Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+FR & Shorthand for Functional Requirements\\
+\hline
+LR & Shorthand for 'Legal Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+LFR & Shorthand for 'Look and Feel Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+MSR & Shorthand for 'Maintainability and Support Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+OER & Shorthand for 'Operational and Environmental Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+OpenCV & Refers to the Open Computer Vision Library library available for free to developers in order to develop Computer Vision applications.\\
+\hline
+PR & Shorthand for 'Performance Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+SR & Shorthand for 'Security Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-Functional Requirements.\\
+\bottomrule
+\end{longtable}
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
-
 \section{General Information}
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+As a maching learning-based image recognition web app, ASLingo has many areas to be tested. The overall software will be broken down into modules. There will be a front-end, a back-end, a database, and a machine learning model which all need to be separately tested, along with physical hardware and compatibility. End-to-end testing may be required as well, which the team will determine down the line.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+This document aims to outline the testing plan for ASLingo in order to create a functional and reliable product for users that aligns with the specified requirements. The team seeks to build confidence in stakeholders and users that the software is correct and meets or exceeds the initial intended goals, resulting in an overall satisfactory user experience.
 
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
+\subsection{Relevant Documentation} 
 
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+Below is a list of the relevant documentation referenced within the Verification and Validation Plan.\\
 
-\subsection{Relevant Documentation}
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan \citep*{DP}}\\
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.}
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} outlines the roles of each team member and the areas that each member will focus on. This breakdown of team responsibilities allows the team to assign testing roles accordingly. This document also contains the tools that the team plans on using for testing.\\
 
-\citet{SRS}
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification \citep*{SRS}}\\
 
-\wss{Don't just list the other documents.  You should explain why they are relevant and 
-how they relate to your VnV efforts.}
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} lists the functional and non-functional requirements which will aid in testing by formulating a testing plan to meet each requirement. Non-functional requirements should be tested such that the fit criteria are met.\\
+
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis \citep*{HA}}\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} identifies failure modes to determine the implementation strategies to mitigate them. These will be used as a part of the testing plan to ensure that the failures are covered.\\
+
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide \citep*{MG}}\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide} divides the software into modules. The team will build the testing plan around the modules.\\
+
+%\noindent \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification \citep*{MIS}}\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification} further decomposes the software's modules into specific access routines. The team will build the testing plan such that each function and routine works as intended.
 
 \section{Plan}
 
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+The following section aims to outline and describe the team's verification and validation plan over the course of the project. Parts of
+the project that are planned to be tested and verified will be the SRS, Design, and VnV Plan documents, as well as the codebase of the
+overall project.
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\begin{tabularx}{\textwidth}{p{0.3\linewidth} | X}
+  \toprule
+  Name & Roles and Responsibilities \\
+  \hline
+  Stanley Chan & Frontend verification, Computer Vision verification, SRS Verification \\
+  Andrew Kil & Frontend end-to-end testing, Computer Vision verification, Design Verification \\
+  Cassidy Baldin & Fullstack end-to-end testing, backend black box testing, Unit testing \\
+  Edward Zhuang & Backend performance testing, Computer Vision unit testing, SRS Verification \\
+  Jeremy Langner & Fullstack unit testing, frontend black box testing, VnV Plan Verification \\
+
+  McMaster SLC & Providing feedback during project development \\
+  \bottomrule
+\end{tabularx}
 
 \subsection{SRS Verification Plan}
 
-\wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
-  something more rigorous/systematic.}
-
-\wss{Maybe create an SRS checklist?}
+SRS Verification will be done through in-group reviews performed by designated SRS verifiers (as mentioned in the VnV team table)
+and through TAs and peer reviewers from other groups. \\
+SRS verifiers in the group will first review the SRS before the submission date, then the group will collectively iron out any
+potential issues that may arise from TA and peer review feedback.
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
+Design verification will also be done in-group before each respective milestone. Peer reviewers and TAs will provide additional feedback
+after the deadline. Verification goals for the design includes, but is not limited to; accessibility, user experience, error handling, etc.\\
+We will also perform iterative testing in between milestones with the McMaster Sign Language Club. This is to ensure that new features
+added to the design are user friendly and intuitive to use from the perspective of the average user. As such, we will designate members
+of the McMaster Sign Language Club as the primary personas for our user interface design, in an effort to develop a user experience as
+human-centered as possible.\\
 
-\wss{The review will include reviews by your classmates}
+To summarize, the basic verification workflow for our design will be as follows:\\
+\textbf{Before a milestone deadline:}\\
+\begin{itemize}
+  \item In-group verification
+\end{itemize}
 
-\wss{Create a checklists?}
+\noindent \textbf{After a milestone deadline:}\\
+\begin{itemize}
+  \item TA feedback
+  \item Peer review feedback
+\end{itemize}
+
+\noindent \textbf{Periodically between milestones:}\\
+\begin{itemize}
+  \item McMaster SLC iterative stakeholder testing
+\end{itemize}
 
 \subsection{Verification and Validation Plan Verification Plan}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
+The current approach to validate our Verification and Validation plan is to rely on third party reviews from other teams as well as mutation testing to verify whether our tests work as intended. The mutation tests will aim to accomplish the following:
 
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+\begin{todolist}
+\item Did the test manage to detect the mutation and behave accordingly? (I.e. pass/fail when it should)
+\item Did the test's behaviour stay consistent with its behaviour prior to the mutation's introduction, and if so, was this expected?
+\item Did the test accomplish provide sufficient information to act upon the failure induced by the mutation, and if so, would this be enough in the event of a non-controlled failure?
+\end{todolist}
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+The current implementation verification plan is a combination of both static and dynamic testing.  We plan to utilize static methods like regular code walkthroughs and inspections before merges with the main branch at the end of project milestones.  These reviews should be performed by at minimum 2-3 team members. Dynamic testing methods include the fundamental system tests mentioned in the following section 4.1 for both functional and non-functional-requirements of the final product. Should any issue arise through either avenue of of implementation verification, the team as a whole should work on and approve the final solution that is developed as a result.
 
 \subsection{Automated Testing and Verification Tools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+As already mentioned prior in the Development Plan, Back-end Unit Testing plans to make use of the Pytest Unit Testing Framework with the 'pytest-cov' plugin to provide code coverage metrics. Front-end Unit Testing Plans to make use of Jest for both Unit Testing and for Code Coverage Metrics, utilizing its built in '--coverage' tool upon runtime.\newline
+\indent For code verification, this was also mentioned previously in the Development plan. We plan to follow PEP8 Python coding standard and use the 'Flake8' linter to help enforce and check if our upholds said standard. As for the JavaScript front-end, we plan to follow the Airbnb Style Guide. Additionally, as this was not discussed within the Development Plan, the use of the 'ESLint' linter to help enforce such standards.
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
-
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
-
-\wss{This section might reference back to the SRS verification section.}
+The software will be validated utilizing a mix of Black Box/Usability Testing and White Box Testing. The Black Box/Usability Testing will be conducted by external groups to our core team, ideally by members of our stakeholder group i.e. the McMaster University Sign Language Club as they are the closest to our target demographic of individuals who are interested in learning sign language. This will give us the most accurate test data for the end-users who will be using the final product. The Black Box Testing sessions will solely consist of instruction to form a specific hand sign, their formation of the hand sign for input and a resulting correct or not output. \newline 
+\indent White Box Testing will be performed internally by team members throughout the course of development. Post every milestone, at minimum 2 members will run through the system and test for the key functionality that was added in the milestone. Since team members are the ones who have the intimate understanding of the core functionality of the system, it only makes sense for use to be the ones who perform the testing.
 
 \section{System Test Description}
 	
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
-
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
-
-\subsubsection{Area of Testing1}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
+\subsubsection{Authentication}
 		
-\paragraph{Title for Test}
-
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{FRT1-A1}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+Goal: User can make an account
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Control: Manual
 					
-How test will be performed: 
+Initial State: User does not have a registered account with email. Currently on create an account page.
 					
-\item{test-id2\\}
+Input: User enters their name, a valid email, a valid password containing 8 characters with at least one upper case, one number, and one special character into each appropriately labeled text field.
+					
+Output: System displays successful account registration complete and prompts the user to sign in.
 
-Control: Manual versus Automatic
+Test Case Derivation: Users need an account to record their progress.
 					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+How test will be performed: Manual test via user without an account and has a valid email.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Functional Requirement: FR3
 
-How test will be performed: 
+\item{FRT1-A2}
+
+Goal: User can sign into account
+
+Control: Manual
+					
+Initial State: User is on the sign in page with a registered account.
+					
+Input: User enters email and associated password with registered account.
+					
+Output: System checks for existence of email and correct associated password with email and based on authentication signs in the users or displays and invalid credentials and prompts a resign in attempt.
+
+Test Case Derivation: Valid credentials are required to sign in
+
+How test will be performed: Manual user with an account will attempt to sign in with valid credentials and invalid credentials.
+
+Functional Requirement: FR4
+
+\item{FRT1-A3}
+
+Goal: User can reset password to account
+
+Control: Manual
+					
+Initial State: User is on the sign in page with a registered account.
+					
+Input: User requests reset password then inputs email
+					
+Output: System checks for existence of email and sends an email with a unique link to reset password credentials.
+
+Test Case Derivation: Valid credentials are required to sign in
+
+How test will be performed: Manual user with an account will attempt to reset password then resign in with old and new password.
+
+Functional Requirement: FR13
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{ASL Learning Progression}
 
-...
+\begin{enumerate}
+
+\item{FRT2-LP1}
+
+Goal: User performs ASL signs
+
+Control: Manual
+					
+Initial State: The user is in an ASL course prompt question or diagnosis and has a functioning webcam approved by application
+					
+Input: User displays hand signs
+					
+Output: The system output error if cannot recognize hands in camera view
+
+Test Case Derivation: System needs to be able to recognize ASL hand signs for functioning user progression and learning
+					
+How test will be performed: Manual test with user testing hand signs within diagnostic and a progression course
+
+Functional Requirement: FR2
+
+\item{FRT2-LP2}
+
+Goal: Complete diagnostic quiz
+
+Control: Manual
+					
+Initial State: The system will prompt newly registered users with a diagnostic quiz to determine current ability
+					
+Input: User goes to home page
+					
+Output: The system starts the diagnostic quiz for user to compelete
+
+Test Case Derivation: Users need an initial ability level to provide next learning steps
+					
+How test will be performed: Manual test via user creating a valid account
+
+Functional Requirement: FR6
+
+\item{FRT2-LP3}
+
+Goal: User attempts progression based course
+
+Control: Automated
+					
+Initial State: The system creates unique progression courses with varying difficulty for user skill development
+					
+Input: User completes their diagnostic quiz or completes a progression course
+					
+Output: The system generates new progression based on completed progression and displays the new course to be completed
+
+Test Case Derivation: Users shall be able to attempt new progression courses to improve their ASL skill
+					
+How test will be performed: Automated testing can be used to generate sample courses from given user
+
+Functional Requirement: FR7
+
+\item{FRT2-LP4}
+
+Goal: User gets progression course based on previous course completions
+
+Control: Automated
+					
+Initial State: The system creates unique progression courses with varying difficulty for user skill development
+					
+Input: User completes their diagnostic quiz or completes a progression course
+					
+Output: The system generates new progression based on completed progression and displays the new course to be completed
+
+Test Case Derivation: Users shall be able to attempt new progression courses to improve their ASL skill
+					
+How test will be performed: Automated testing can be used to generate sample courses from given user
+
+Functional Requirement: FR7, FR12
+
+\item{FRT2-LP5}
+
+Goal: System saved user progress
+
+Control: Automated
+					
+Initial State: User is signed in to their registered account
+
+Input: User completes their diagnostic quiz or completes a progression course
+					
+Output: The system saves the course and their results
+
+Test Case Derivation: Users should be progressing in their skill thus the system needs to save their history of completions and approximate skill level
+					
+How test will be performed: Automated testing can be used to ensure courses are saved upon completion
+
+Functional Requirement: FR8
+
+\item{FRT2-LP6}
+
+Goal: Get user sign feedback
+
+Control: Manual
+					
+Initial State: User is currently working on an ASL prompt question
+
+Input: User attempts appropriate sign
+					
+Output: The system determines if their sign action is accurate and displays message conveying the accuracy
+
+Test Case Derivation: Users shall be able to see within a progression if they are doing the sign correct
+					
+How test will be performed: Manual user testing will occur with knowledge of ASL signs
+
+Functional Requirement: FR10
+
+\end{enumerate}
+
+\paragraph{Web Application}
+
+\begin{enumerate}
+
+\item{FRT3-U1}
+
+Goal: Access web application
+
+Control: Manual
+					
+Initial State: User has a modern web browser.
+					
+Input: User enters the web app url into url textbox.
+					
+Output: System loads ASLingo homepage
+
+Test Case Derivation: Users need to access web app for functionality.
+					
+How test will be performed: Manual test with user entering input.
+
+Functional Requirement: FR9
+
+\end{enumerate}
+
+\paragraph{Hardware}
+
+\begin{enumerate}
+
+\item{FRT4-HW1}
+
+Goal: Access web camera
+
+Control: Manual
+					
+Initial State: User has working built in or external webcam and recognized by their operating system.
+					
+Input: User begins progression course which begins with a camera verification
+					
+Output: System displays camera output or error if it cannot recognize camera.
+
+Test Case Derivation: Users need to access web camera for functionality.
+					
+How test will be performed: Manual test with user starting course using working webcam.
+
+Functional Requirement: FR1
+
+\item{FRT4-HW2}
+
+Goal: Monitor web camera useability
+
+Control: Manual
+					
+Initial State: User has working built in or external webcam and recognized by their operating system.
+					
+Input: User is currently within a progression course and camera error arises
+					
+Output: System displays camera output or error if it cannot recognize camera
+
+Test Case Derivation: Users need to access web camera for functionality
+					
+How test will be performed: Manual test with user currently in progression course that initiates camera error
+
+Functional Requirement: FR11
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy}
+%\wss{The nonfunctional requirements for accuracy will likely just reference the
+%  appropriate functional tests from above.  The test cases should mention
+%  reporting the relative error for these tests.  Not all projects will
+%  necessarily have nonfunctional requirements related to accuracy}
+%
+%\wss{Tests related to usability could include conducting a usability test and
+%  survey.  The survey will be in the Appendix.}
+%
+%\wss{Static tests, review, inspections, and walkthroughs, will not follow the
+%format for the tests given below.}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\subsubsection{Area of Testing1}
+\subsubsection{Usability Requirements}
 		
-\paragraph{Title for Test}
+\paragraph{User Testing}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{NFRT1 - UT1}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+Goal: The user is able to start the application with little to no prior training. 
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Dynamic, Manual
 					
-Initial State: 
+Initial State: The user is given a link to the where the application is being hosted. 
 					
-Input: 
+Input: The user should be able to open and start the application without needing to ask for help or training first. 
 					
-Output: 
+Output/Result: The user is able to successfully open the application to start the learning process without prior training given by the testing team. 
 					
-How test will be performed: 
+How test will be performed: A sampling of representitative users will attempt to open and start the application and will pass the test if they can complete this task with no prior training. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overal average of users scoring 75\% or higher for this part of the survey. 
+
+Non-Functional Requirement: UHR1
+
+\item{NFRT1 - UT2}
+
+Goal: The user is able to understand how to use complete a lesson with little to no prior training.
+
+Type: Dynamic, Manual
+					
+Initial State: The user signs into the web application with account information and is ready to start learning ASL.
+					
+Input: After the user signs into the application with account information, they will start trying to learn ASL using the various learning tools in the application with no prior training.  
+					
+Output/Result: The mechanics of the application should not hinder the user's progress of learning, and the user should feel as though the learning tools are intuitive and easy to navigate. The user should be able to successfully complete the first inroductory lesson without being confused by the mechanics of the application. 
+					
+How test will be performed: A sampling of representitative users will attempt to use the application and will pass the test if they can complete their first lesson without needing to ask for help with how the application works. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overal average of users scoring 75\% or higher for this part of the survey. 
+
+Non-Functional Requirement: UHR1
+					
+\item{NFRT1 - UT3}
+
+Goal: The user is able to understand how to use the application with various hearing abilities and little to no prior training. 
+
+Type: Dynamic, Manual
+					
+Initial State: The user signs into the application to learn ASL.
+					
+Input: The user will attempt to complete the first introductory lesson regardless of their level of hearing ability.
+					
+Output: The user should be able to successfully complete the intorductory lesson without needing to be able to hear the instructions to complete the introductory tasks required of them. 
+					
+How test will be performed: A sampling of representative users with various hearing abilities will attempt to use the program and will pass the test if they can successfully complete the first lesson of the program. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overall average of users scoring 75\% or higher for this part of the survey. 
+
+Non-Functional Requirement: UHR2
+
+\item{NFRT1 - UT4}
+
+Goal: The user is able to personalize their account with little to no prior training. 
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: The user is signed into their account and wants to change some of their information.
+					
+Input: The user will attempt to change their information in their account. 
+					
+Output: The user should be able to change their information in their account without much difficulty. 
+					
+How test will be performed: A sampling of representative users will attempt to change key features of their account like username or phone number and be able to save their changes without asking for help. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overall average of users scoring 75\% or higher for this part of the survey.
+
+Non-Functional Requirement: UHR3
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Performance Requirements}
 
-...
+\paragraph{Performance Testing}
+
+\begin{enumerate}
+
+\item{NFRT2 - PT1}
+
+Goal: The application should respond to user input within 1 second. 
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: The application prompts the user with a question during a lesson. 
+					
+Input: The user should respond to the application's prompt.
+					
+Output: The system should register the user's input and respond to the user quickly. 
+					
+How test will be performed: A user will respond to the prompt given by the application. The generated output must take less than 1 second to be produced. This test will be performed multiple times, and the run time for 95\% of these tests must be less than 1 second for the test to pass. 
+
+Non-Functional Requirement: PR1
+
+\item{NFRT2 - PT2}
+
+Goal: The application should be able to accurately determine if the user has signed the correct response to the prompt 95\% of the time. 
+
+Type: Dynamic, Manual
+					
+Initial State: The application prompts the user with a question during a lesson. 
+					
+Input: The user should sign in response to the application's prompt.
+					
+Output: The application should register the user's signed input and determine if they have signed the required action correctly.
+					
+How test will be performed: A user will respond to the prompt by signing in front of the application. The application should then determine if the user has signed the correct respond or not, and output a message telling the user what the application determined. This test will be performed multiple times, and the application should correctly identify if the user is correct or not 95\% of the time.
+
+Non-Functional Requirement: PR2
+
+\item{NFRT2 - PT3}
+
+Goal: The system should show the user if their input needs to be adjusted. 
+
+Type: Manual, Static
+					
+Initial State: The application prompts the user with a question during a lesson.
+					
+Input: The user attempts to sign in response to the application's prompt but their camera is not set up properly.
+					
+Output: The application should register that it cannot be confident in determining if the sign the user is displaying is accurate, so it should prompt the user to fix their camera settings before they are allowed to continue.
+					
+How test will be performed: A user will try to respond to the prompt by signing in front of the application, but with the user out of the focus of the camera. The application should not be able to determine if the user's sign is correct or not and should prompt the user to adjust their camera settings. This test will be performed multiple times with various input and camera conditions to ensure the requirement has been tested effectively. The developers will verify that the user is given feedback where appropriate. 
+
+Non-Functional Requirement: PR3
+
+\end{enumerate}
+
+\newpage
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+Functional Requirements to System Test Requirements
+\begin{table}[ht]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllllllllllll}
+                                 & \multicolumn{13}{c}{FR Req.}                                                                                                                                                                                                                                                                                                           \\ \cline{2-14} 
+\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8} & \multicolumn{1}{l|}{9} & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{11} & \multicolumn{1}{l|}{12} & \multicolumn{1}{l|}{13} \\ \hline
+\multicolumn{1}{|l|}{FRT1-A1}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT1-A2}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT1-A3}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP1}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP3}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP4}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP5}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP6}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT3-U1}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT4-HW1}   & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT4-HW2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\end{tabular}}
+\end{table}
+
+\paragraph{
+Non Functional Requirements to System Test Requirements}
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllllll}
+                                 & \multicolumn{3}{c}{UHR}                                                  & \multicolumn{3}{c}{PR}                                                   \\ \cline{2-7} 
+\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT1}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT2}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT4}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-PT1}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-PT2}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-PT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} \\ \hline
+\end{tabular}
+}
+\end{table}
 
 \section{Unit Test Description}
 
@@ -448,41 +796,58 @@ How test will be performed:
 
 \section{Appendix}
 
-This is where you can place additional information.
+\subsection{Usability Survey Questions}
 
-\subsection{Symbolic Parameters}
-
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
-
-\subsection{Usability Survey Questions?}
-
-\wss{This is a section that would be appropriate for some projects.}
-
-\newpage{}
-\section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
-\newpage{}
-\section*{Appendix --- Reflection}
-
-\wss{This section is not required for CAS 741}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+\textbf{User Experience Survey}\label{appen}
 
 \begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
+
+\item How was it to start using the application on a scale of 1 - 10? \newline [ 1 = very hard to start, 10 = very easy to start]
+\item How was it for you to learn how to complete the first lesson on a scale of 1 - 10? \newline [ 1 = very hard to learn, 10 = very easy to learn]
+\item How comfortable were you with using the application at your current ASL skill level on a scale of 1-10? \newline [ 1 = very uncomfortable to use, 10 = very comfortable to use]
+\item How was it to change your profile information on a scale of 1 - 10? \newline [ 1 = very hard to change, 10 = very easy to change]
+\item How did you find your overall learning experience using the ASLingo application on a scale of 1 - 10? \newline [ 1 = very bad experience, 10 = very good experience]
+
+\end{enumerate}
+
+\subsection{Appendix --- Reflection}
+
+%\wss{This section is not required for CAS 741}
+
+The information in this section will be used to evaluate the team members on the
+graduate attribute of Lifelong Learning.  Please answer the following questions:
+
+\begin{outline}[enumerate]
+  \1 What knowledge and skills will the team collectively need to acquire to
   successfully complete the verification and validation of your project?
   Examples of possible knowledge and skills include dynamic testing knowledge,
   static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
+  identify at least one item for each team member.\\
+    \2 Andrew Kil: Black Box\\
+    I'll be mainly focusing on Dynamic Testing Methods like Usability testing for when we bring it the general user base. Being able to successfully elicit feedback from our test groups (i.e. the McMaster Sign Langauge Club) is a vital step in bridging the gap between developers and the market teat the system is designed for.\\
+    \2 Cassidy Baldin: Pytest, Jest and Linters\\
+    I will be mainly working on the back and front end of the project, so the skills I will need to acquire to test both of these aspects are the use of pyTest and Jest to ensure the project is working as intended. I also have little experience using different linters for these frameworks, so this will also be an apsect I will have to learn for this project.\\
+    \2 Edward Zhuang: Pytest and ML Model Testing\\
+    As my focus is on the backend and the OpenCV component, I will be responsible for testing these parts. Our team agreed to use Pytest as our Python unit testing framework, so I'll have to learn that. As well, I will focus on training and testing the machine learning model so that it is suitable for a functional product. I have a bit of experience with model testing in the past, but not for image recognition, so I will need to learn the ins and outs of that.\\
+    \2 Jeremy Langner: Manual \& Automated Testing \\
+    Knowledge of when to use manual vs automated testing is necessary for VnV plan since the system tests for Functional rquiremenents have to be clearly seperated. This can be done by practicing how to understand the specific requirement and corresponding use case and then applying basic software testing princples to ensure what is testable manually and what can be done with automation frameworks and how. Typically any requirments with manual interaction or system integration will require manual testing and any coding or business logic requirements can be done with automation.\\
+    \2 Stanley Chan: Jest Framework \\
+    Since I'll mainly be working on the frontend component of the project, I'd like to focus on learning some JavaScript testing libraries, specifically Jest. As I also want to be involved partly in the computer vision aspect, I'd like to familiarize myself with linters for both JavaScript and Python to standardize code practices throughout the project.\\
+  \1 For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
+  member pursue, and why did they make this choice?\\
+    \2 Andrew Kil: Black Box\\
+    The main approach I will take to learn the necessary skills to carry out the Usability trials is through online resources found trough the internet. Naturally the standard of professionalism I have for these resources would be held to at the very least those who have ran Usability testing sessions for a successful project that was brought to market. Another approach is to attempt to seek out and consult those previously mentioned individuals those online solicitation for more sound advice. Of the two aforementioned methods, I will most likely be pursuing the former due to its ease of access as well as time efficiency.\\
+    \2 Cassidy Baldin: Pytest, Jest and Linters\\
+    To acquire these skills, I will combine the use of online written tutorials, videos by experts in these frameworks, as well as talking to others I know who have hands on experience with these tools to understand how they work and how to use them efficiently. I will also be able to rely on some of my previous experience with testing tools from other courses to learn these new ones.\\
+    \2 Edward Zhuang: \\
+	Edward's part goes here
+    \2 Jeremy Langner: Manual \& Automated Testing\\
+    Learning how to understand requirements has been learned with SFWRENG 3RA3 and with many subsequent courses but also comes up in many online coding problems or problem solving skills learned in real world/industry. Software testing principles have been learned in class in SFWRENG 3S03 and can also be learned thorugh various online sources like Guru99, GeeksForGeeks, JavaTPoint etc. The difficulty with this project will be the large intergation between our systems which will be great practice\\
+    \2 Stanley Chan: Jest Framework\\
+    Documentation and other online resources will be the main source of learning specific syntax and practices regarding testing libraries and linters. Additionally, material from previously taken courses like 3S03: Software Testing will be put into practice for concepts like code coverage, white box testing, etc.\\
+\end{outline}
 
 \end{document}
+

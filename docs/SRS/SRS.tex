@@ -101,6 +101,7 @@ October 6, 2023 & Stanley Chan & Added individual reflection \\
 October 6, 2023 & Jeremy Langner & Added personal reflection response and general reflection question 3. \\
 October 6, 2023 & Andrew Kil & Added personal reflection response\\
 October 19, 2023 & Cassidy Baldin & Revised aspects of the SRS after given peer review feedback. \\
+November 1 & Jeremy Langner & Added in FR, Use case for reseting password credentials. Switched traceability matrix to table instead of jpeg\\
 \bottomrule
 \end{longtable}
 
@@ -264,66 +265,110 @@ The following is a context diagram which describes the high-level overview on ho
     \end{table}
   
   \subsubsection{Individual Product Use Cases}
-  
-  \textbf{Use Case Trigger:} User creates an account\\
-  \textbf{Primary Actors:} user, ASLingo server\\
-  \textbf{Outcomes:}
+
   \begin{enumerate}
-      \item System creates an account with the designated username, password, and email
-      \item System registers user as logged in
-      \item System redirects user to home page
-  \end{enumerate}
-  \textbf{Use Case Trigger:} User logs into the application\\
-  \textbf{Primary Actors:} user, ASLingo server\\
-  \textbf{Outcomes:}
-  \begin{enumerate}
-      \item System checks if password matches for corresponding username
-      \item System registers user as logged in
-      \item System redirects user to home page
-  \end{enumerate}
-  \textbf{Use Case Trigger:} User logs out of the application\\
-  \textbf{Primary Actors:} user, ASLingo server\\
-  \textbf{Outcomes:}
-  \begin{enumerate}
-      \item System registers user as logged out
-      \item System redirects user to login page
-  \end{enumerate}
-  \textbf{Use Case Trigger:} User requests to start a test\\
-  \textbf{Primary Actors:} user, ASLingo server\\
-  \textbf{Outcomes:}
-  \begin{enumerate}
-      \item System redirects user to testing page
-      \item System requests to turn on user webcam
-      \item System receives video data from user webcam
-  \end{enumerate}
-  \textbf{Use Case Trigger:} User signs through webcam\\
-  \textbf{Primary Actors:} user, ASLingo server, ASLingo Computer Vision Model\\
-  \textbf{Outcomes:}
-  \begin{enumerate}
-      \item System interprets user signs with computer vision model
-      \item System responds informing user of correctness of sign
-  \end{enumerate}
-  \textbf{Use Case Trigger:} User checks learning progress\\
-  \textbf{Primary Actors:} user, ASLingo server\\
-  \textbf{Outcomes:}
-  \begin{enumerate}
-      \item System receives request from user to view learning progress
-      \item System responds with user progress
-  \end{enumerate}
-  \textbf{Use Case Trigger:} User completes a test\\
-  \textbf{Primary Actors}: user, ASLingo server\\
-  \textbf{Outcomes:}
-  \begin{enumerate}
-      \item System registers that user completed test, and saves user score
-  \end{enumerate}
+      \item 
+      \textbf{Use Case Trigger:} User creates an account\\
+      \textbf{Primary Actors:} user, ASLingo server\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System creates an account with the designated username, password, and email
+          \item System registers user as logged in
+          \item System redirects user to home page
+      \end{enumerate}
+
+      \item
+      \textbf{Use Case Trigger:} User logs into the application\\
+      \textbf{Primary Actors:} user, ASLingo server\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System checks if password matches for corresponding username
+          \item System registers user as logged in
+          \item System redirects user to home page
+      \end{enumerate}
+      
+      \item
+      \textbf{Use Case Trigger:} User logs out of the application\\
+      \textbf{Primary Actors:} user, ASLingo server\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System registers user as logged out
+          \item System redirects user to login page
+      \end{enumerate}
+
+      \item
+      \textbf{Use Case Trigger:} User requests to start a test\\
+      \textbf{Primary Actors:} user, ASLingo server\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System redirects user to testing page
+          \item System requests to turn on user webcam
+          \item System receives video data from user webcam
+      \end{enumerate}
+
+      \item
+      \textbf{Use Case Trigger:} User signs through webcam\\
+      \textbf{Primary Actors:} user, ASLingo server, ASLingo Computer Vision Model\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System interprets user signs with computer vision model
+          \item System responds informing user of correctness of sign
+      \end{enumerate}
+
+      \item
+      \textbf{Use Case Trigger:} User checks learning progress\\
+      \textbf{Primary Actors:} user, ASLingo server\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System receives request from user to view learning progress
+          \item System responds with user progress
+      \end{enumerate}
+
+      \item
+      \textbf{Use Case Trigger:} User completes a test\\
+      \textbf{Primary Actors}: user, ASLingo server\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System registers that user completed test, and saves user score
+      \end{enumerate}
+
+      \item
+      \textbf{Use Case Trigger:} User requests a new password\\
+      \textbf{Primary Actors}: user, ASLingo server\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System verifies email has a registered account
+          \item System sends email with unique url to reset password to verified email
+          \item System resets password to email and re-prompts sign in
+      \end{enumerate}
+
+\end{enumerate}
 
 \subsubsection{Traceability Matrix}
 
-\begin{figure}[H]
-    \centering
-     \includegraphics[scale=0.5]{SRS_Traceability_Matrix.jpg}
-    \caption{Traceability Matrix for Functional Requirements}
-\end{figure}
+\begin{table}[ht]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllllllll}
+                             & \multicolumn{8}{c}{Use Case No.}                                                                                                                                                                      \\ \cline{2-9} 
+\multicolumn{1}{l|}{Req. No} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8} \\ \hline
+\multicolumn{1}{|l|}{0}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{1}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{2}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{3}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{4}      & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{5}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{6}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{7}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{8}      & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{9}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{10}     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{11}     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{12}     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{13}     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} \\ \hline
+\end{tabular}}
+\end{table}
+
 
 \newpage
 
@@ -357,6 +402,8 @@ The following is a context diagram which describes the high-level overview on ho
     FR11 & The system should notify the user of any potential errors that may arise during camera recognition. & This will let the user know if they need to adjust their input setting (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
     \hline
     FR12 & The system should allow the user to their desired testing track from a selection of testing categories. & This is to provide variation in the manner of testing as well as in the subject matter that the user can test themselves on. \\
+    \hline
+    FR13 & The system should allow the user to reset their password to their registered account & Account security and accessibility are necessary for account use\\
     \bottomrule
 \end{longtable}
 
