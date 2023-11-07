@@ -1,28 +1,34 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Dependencies
+node_modules
 
-# dependencies
+# Build/Production
+/client/build
 
-/node_modules
-/.pnp
-.pnp.js
+# Environment variables
+*.env*
+!.env.example
 
-# testing
+# Logs
+/logs
+*.log
 
-/coverage
+# Editor specific
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
 
-# production
-
-/build
-
-# misc
-
-.eslintcache
+# Temporary files
+*.sw?
+*.cache
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log\*
+# Generated / Auto-generated files
+/dist
+/dist-ssr
+.eslintcache
+
+# Configuration
+.prettierrc
