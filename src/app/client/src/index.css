@@ -260,7 +260,20 @@ nav .nav-items {
     justify-content: left;
     align-items: left;
     padding: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     background-color: #007EA7;
+	border-radius: 5px;
     color: #fff;
   }
+
+.asl {
+	background-image: url(./images/asl.png);
+  }
+
+.box {
+	background-color: #fff;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	text-align: center;
+}
