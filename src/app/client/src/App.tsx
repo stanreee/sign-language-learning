@@ -1,14 +1,24 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Exercises from './pages/Exercises';
+import NavBar from './components/NavBar';
+import NoMatch from './components/NoMatch';
+
+
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>ASLingo</h1>
-        <a>Welcome to ASLingo!</a>
-      </header>
-    </div>
+    <>
+      <NavBar/>
+       <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Exercises" element={<Exercises />} />
+          <Route path="*" element={<NoMatch />} />
+       </Routes>
+    </>
+
   );
 }
 

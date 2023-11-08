@@ -31,4 +31,4 @@ node_modules
 .eslintcache
 
 # Configuration
-.prettierrc
+#.prettierrc
