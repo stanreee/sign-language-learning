@@ -10,6 +10,7 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
+  "ignorePatterns": ["temp.js", "client/node_modules/**/*.js", "client/static/build/js/*.js"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
