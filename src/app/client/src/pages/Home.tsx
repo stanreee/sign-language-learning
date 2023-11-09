@@ -12,7 +12,9 @@ const Home = () => {
       <header className="App-header">
         <img src={asl} alt="asl" />
         <h1>Welcome to ASLingo!</h1>
-        <a>An Application to Learn ASL, American Sign Language</a>
+        <a>An Application to Help People Learn American Sign Language (ASL)</a>
+        
+        <h3> <br/> </h3>
         
         <div className = 'box'>
           <NavLink 
