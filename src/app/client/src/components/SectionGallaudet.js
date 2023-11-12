@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function SectionGallaudet() {
   return (
     <div className = "Section">
-      <h3> Gallaudet University </h3>
+      <h2> Gallaudet University </h2>
         <p>
             Gallaudet University is a university located in Washington, D.C.
             for the education of the deaf anf hard of hearing, which was 

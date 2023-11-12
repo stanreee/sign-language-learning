@@ -7,17 +7,18 @@ const Resources = () => {
     <div className="App">
       <header className="App-header">
         <h1>Resources</h1>
-        <a>
+        <div className = 'container'>
           There are plenty of resources to learn more about ASL below!
           These are from trusted sources in the Deaf community and are 
           a great way to learn more about ASL from their perspectives. 
-        </a>
+        </div>
       </header>
 
-      <SectionNAD />
-      <SectionHandSpeak />
-      <SectionGallaudet />
-
+      <div className = 'Section-container'>
+        <SectionNAD />
+        <SectionHandSpeak />
+        <SectionGallaudet />
+      </div>
     </div>
     );
 }

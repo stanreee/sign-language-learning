@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function SectionHandSpeak() {
   return (
     <div className = "Section">
-      <h3> HandSpeak </h3>
+      <h2> HandSpeak </h2>
         <p>
             HandSpeak is an online resource created by an ASL instructor
             and native signer in North Ameria. It includes an ASL video

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function SectionNAD() {
   return (
     <div className = "Section">
-      <h3> National Association of the Deaf </h3>
+      <h2> National Association of the Deaf </h2>
         <p>
             The National Association of the Deaf (NAD) is an organization for 
             the promotion of the right of deaf people in the United States and 

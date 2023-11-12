@@ -12,7 +12,7 @@ const Home = () => {
       <header className="App-header">
         <img src={asl} alt="asl" />
         <h1>Welcome to ASLingo!</h1>
-        <a>An Application to Help People Learn American Sign Language (ASL)</a>
+        <p>An Application to Help People Learn American Sign Language (ASL)</p>
         
         <h3> <br/> </h3>
         
@@ -31,9 +31,11 @@ const Home = () => {
         </div>
       </header>
 
-      <SectionGoal />
-      <SectionInfo />
-      <SectionResources />
+      <div className = 'Section-container'>
+        <SectionGoal />
+        <SectionInfo />
+        <SectionResources />
+      </div>
     </div>
     );
 }
