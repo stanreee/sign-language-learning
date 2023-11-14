@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 cur_dir = os.getcwd()
 
-TRAINING_DATA_PATH = cur_dir + "/test/datasets/train/csv/data.csv"
+TRAINING_DATA_PATH = cur_dir + "/src/poc/datasets/train/csv/data.csv"
 NUM_EPOCHS = 48
 
 training_data = pd.read_csv(TRAINING_DATA_PATH)
@@ -53,9 +53,10 @@ for epoch in range(NUM_EPOCHS):
         # Update weights
         optimizer.step()
 
-        print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {batch_idx}/{len(features_loader)}, Loss: {loss.item():.4f}')
+        if batch_idx == len(features_loader) - 1:
+            print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {batch_idx}/{len(features_loader)}, Loss: {loss.item():.4f}')
 
 # Save the trained model
-torch.save(model.state_dict(), cur_dir + '/test/simple_classifier.pth')
+torch.save(model.state_dict(), cur_dir + '/src/poc/simple_classifier.pth')
 
 

@@ -9,7 +9,7 @@ import torch
 cur_dir = os.getcwd()
 
 model = SignLangModel()
-model.load_state_dict(torch.load(cur_dir + "/test/simple_classifier.pth"), strict=True)
+model.load_state_dict(torch.load(cur_dir + "/src/poc/simple_classifier.pth"), strict=True)
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
