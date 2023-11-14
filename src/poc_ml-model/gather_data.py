@@ -13,9 +13,9 @@ cur_dir = os.getcwd()
 
 letters_to_process = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 
-image_path = cur_dir + "/src/poc/datasets/train/images/"
-image_gens = cur_dir + "/src/poc/datasets/anchors/"
-image_data = cur_dir + "/src/poc/datasets/train/csv/"
+image_path = cur_dir + "/src/poc_ml-model/datasets/train/images/"
+image_gens = cur_dir + "/src/poc_ml-model/datasets/anchors/"
+image_data = cur_dir + "/src/poc_ml-model/datasets/train/csv/"
 
 os.makedirs(image_gens, exist_ok=True)
 
