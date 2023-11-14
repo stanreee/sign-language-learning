@@ -1,0 +1,27 @@
+{
+    "topic": "Multiplication",
+    "level": "Beginner",
+    "description": "Multiplcation basics with multiple choice",
+    "totalQuestions": 3,
+    "perQuestionScore": 1,
+    "questions": [
+      {
+        "question": "5 * 4",
+        "choices": ["20", "9", "None of the above"],
+        "type": "MCQs",
+        "correctAnswer": "20"
+      },
+      {
+        "question": "6 * 0",
+        "choices": ["1", "6", "0", "None of the above"],
+        "type": "MCQs",
+        "correctAnswer": "0"
+      },
+      {
+        "question": "1 * (-2)",
+        "choices": ["3", "-2", "-1", "1", "None of the above"],
+        "type": "MCQs",
+        "correctAnswer": "-2"
+      }
+    ]
+}

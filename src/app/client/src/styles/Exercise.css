@@ -1,0 +1,81 @@
+.Exercise-Page {
+    background-color: #e0e0e0;
+    height: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.Exercise-header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: calc(10px + 0.75vmin);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 2%;
+
+}
+
+.Exercise-content{
+  padding-bottom: 5%;
+}
+
+.Exercise-Card{
+    background-color: white;
+    border: 2px;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 2%;
+}
+
+/* CSS */
+.Exercise-Begin-Button{
+  align-items: center;
+  background-color: #003459;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  /* font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif; */
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.Exercise-Begin-Button:hover,
+.Exercise-Begin-Button:focus { 
+  background-color: #00A7E1;
+  color: #ffffff;
+}
+
+.Exercise-Begin-Button:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.Exercise-Begin-Button:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
