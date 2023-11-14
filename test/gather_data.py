@@ -11,7 +11,7 @@ hands = mp_hands.Hands()
 
 cur_dir = os.getcwd()
 
-letters_to_process = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+letters_to_process = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k']
 
 image_path = cur_dir + "/test/datasets/train/images/"
 image_gens = cur_dir + "/test/datasets/anchors/"
