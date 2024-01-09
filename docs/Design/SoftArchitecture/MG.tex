@@ -46,7 +46,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
+Jan. 9, 2024 & 1.0 & Andrew and Edward added module hierarchy\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -187,10 +187,18 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{m1}:] Hand Sign Recognition Module
+\item [\refstepcounter{mnum} \mthemnum \label{m2}:] Hand Sign Verification Module
+% Need a middle-man to help frontend-backend communicate
+% Ex: Front end changes the question, need to tell backend we're looking for a different sign now
+\item [\refstepcounter{mnum} \mthemnum \label{m3}:] Controller Module
+% Parsing raw data to processable data
+\item [\refstepcounter{mnum} \mthemnum \label{m4}:] Data Collection Module
+\item [\refstepcounter{mnum} \mthemnum \label{m5}:] Data Processing Module
+\item [\refstepcounter{mnum} \mthemnum \label{m6}:] Machine Learning Module
+\item [\refstepcounter{mnum} \mthemnum \label{m7}:] Testing and Verification Module
+\item [\refstepcounter{mnum} \mthemnum \label{m8}:] Video Input Module
 \end{description}
-
 
 \begin{table}[h!]
 \centering
@@ -199,22 +207,18 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+\multirow{2}{0.3\textwidth}{Hardware-Hiding Module} & Video Input Module\\
+& Hand Sign Recognition Module\\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{4}{0.3\textwidth}{Behaviour-Hiding Module} & Data Collection Module\\
+& Data Processing Module\\
+& Testing and Verification Module\\
+& Machine Learning Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{2}{0.3\textwidth}{Software Decision Module} & Controller Module\\
+& Hand Sign Verification Module\\
 \bottomrule
 
 \end{tabular}
