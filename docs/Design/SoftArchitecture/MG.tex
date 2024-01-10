@@ -47,6 +47,7 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 Jan. 9, 2024 & 1.0 & Andrew and Edward added module hierarchy\\
+Jan. 10, 2024 & 1.1 & Stanley, added some module decompositions for hardware hiding and behaviour hiding modules\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -259,6 +260,13 @@ to be implemented.
 \item[Implemented By:] OS
 \end{description}
 
+\subsubsection{Video Input Module (\mref{mHH})}
+\begin{description}
+\item[Secrets:]Image processing algorithms, software interaction with webcam hardware.
+\item[Services:]Outputs real-time video data through user's webcam.
+\item[Implemented By:] OpenCV and OS
+\end{description}
+
 \subsection{Behaviour-Hiding Module}
 
 \begin{description}
@@ -271,18 +279,34 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Data Collection Module (\mref{mInput})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:]The data and structure of data collected.
+\item[Services:]Stores collected data to be retrieved at a later time.
+\item[Implemented By:] Python
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Data Processing Module (\mref{mInput})}
+\begin{description}
+\item[Secrets:] Algorithm used to process collected data.
+\item[Services:] Interprets collected data accordingly.
+\item[Implemented By:] Python
+\end{description}
+
+\subsubsection{Testing and Verification Module (\mref{mInput})}
+\begin{description}
+\item[Secrets:] Unit test cases used to test the software system.
+\item[Services:] Verifies the software works as intended by testing the system on various test cases which ensures robustness, accuracy, and reliability.
+\item[Implemented By:] Python and Pytest
+\end{description}
+
+\subsubsection{Machine Learning Module (\mref{mInput})}
+\begin{description}
+\item[Secrets:] Training data sets and structure of neural network
+\item[Services:] Takes in hand coordinate data and interprets and processes the data to return the appropriate letter.
+\item[Implemented By:] Python and Pytorch
+\end{description}
 
 
 \subsection{Software Decision Module}
