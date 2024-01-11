@@ -46,8 +46,9 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Jan. 9, 2024 & 1.0 & Andrew and Edward added module hierarchy\\
-Jan. 10, 2024 & 1.1 & Stanley, added some module decompositions for hardware hiding and behaviour hiding modules\\
+Jan. 9, 2024 & 1.0 & Andrew and Edward; added module hierarchy\\
+Jan. 10, 2024 & 1.1 & Stanley; added some module decompositions for hardware hiding and behaviour hiding modules\\
+Date 10, 2024 & 1.2 & Andrew; rearranged Module Hierarchy and added decomposition descriptions for controller, hand sign recognition and verification modules\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -208,18 +209,22 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-\multirow{2}{0.3\textwidth}{Hardware-Hiding Module} & Video Input Module\\
-& Hand Sign Recognition Module\\
+\multirow{1}{0.3\textwidth}{Hardware-Hiding Module} 
+& Video Input Module\\
 \midrule
 
-\multirow{4}{0.3\textwidth}{Behaviour-Hiding Module} & Data Collection Module\\
+\multirow{4}{0.3\textwidth}{Behaviour-Hiding Module} 
+& Controller Module\\
 & Data Processing Module\\
-& Testing and Verification Module\\
 & Machine Learning Module\\
+& Hand Sign Recognition Module\\
+
 \midrule
 
-\multirow{2}{0.3\textwidth}{Software Decision Module} & Controller Module\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} 
 & Hand Sign Verification Module\\
+& Data Collection Module\\
+& Testing and Verification Module\\
 \bottomrule
 
 \end{tabular}
@@ -251,16 +256,16 @@ to be implemented.
 
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
-\begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
-\end{description}
+% \begin{description}
+% \item[Secrets:]The data structure and algorithm used to implement the virtual
+%   hardware.
+% \item[Services:]Serves as a virtual hardware used by the rest of the
+%   system. This module provides the interface between the hardware and the
+%   software. So, the system can use it to display outputs or to accept inputs.
+% \item[Implemented By:] OS
+% \end{description}
 
-\subsubsection{Video Input Module (\mref{mHH})}
+\subsubsection{Video Input Module (\mref{m8})}
 \begin{description}
 \item[Secrets:]Image processing algorithms, software interaction with webcam hardware.
 \item[Services:]Outputs real-time video data through user's webcam.
@@ -269,39 +274,37 @@ to be implemented.
 
 \subsection{Behaviour-Hiding Module}
 
+% \begin{description}
+% \item[Secrets:]The contents of the required behaviours.
+% \item[Services:]Includes programs that provide externally visible behaviour of
+%   the system as specified in the software requirements specification (SRS)
+%   documents. This module serves as a communication layer between the
+%   hardware-hiding module and the software decision module. The programs in this
+%   module will need to change if there are changes in the SRS.
+% \item[Implemented By:] --
+% \end{description}
+\subsubsection{Hand Sign Recognition Module (\mref{m1})}
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+\item[Secrets:] Recognises hand signs are being made
+\item[Services:] Relays the information that a hand sign is made
+\item[Implemented By:] Python and Pytorch
 \end{description}
 
-\subsubsection{Data Collection Module (\mref{mInput})}
-
+\subsubsection{Controller Module (\mref{m3})}
 \begin{description}
-\item[Secrets:]The data and structure of data collected.
-\item[Services:]Stores collected data to be retrieved at a later time.
-\item[Implemented By:] Python
+\item[Secrets:] Able to relay necessary information from back-end component to the correct corresponding front-end component and vice versa
+\item[Services:] Handles communication between front-end components and back-end components
+\item[Implemented By:] Python and JavaScript
 \end{description}
 
-\subsubsection{Data Processing Module (\mref{mInput})}
+\subsubsection{Data Processing Module (\mref{m5})}
 \begin{description}
 \item[Secrets:] Algorithm used to process collected data.
 \item[Services:] Interprets collected data accordingly.
 \item[Implemented By:] Python
 \end{description}
 
-\subsubsection{Testing and Verification Module (\mref{mInput})}
-\begin{description}
-\item[Secrets:] Unit test cases used to test the software system.
-\item[Services:] Verifies the software works as intended by testing the system on various test cases which ensures robustness, accuracy, and reliability.
-\item[Implemented By:] Python and Pytest
-\end{description}
-
-\subsubsection{Machine Learning Module (\mref{mInput})}
+\subsubsection{Machine Learning Module (\mref{m6})}
 \begin{description}
 \item[Secrets:] Training data sets and structure of neural network
 \item[Services:] Takes in hand coordinate data and interprets and processes the data to return the appropriate letter.
@@ -309,20 +312,44 @@ to be implemented.
 \end{description}
 
 
+
 \subsection{Software Decision Module}
 
+% \begin{description}
+% \item[Secrets:] The design decision based on mathematical theorems, physical
+%   facts, or programming considerations. The secrets of this module are
+%   \emph{not} described in the SRS.
+% \item[Services:] Includes data structure and algorithms used in the system that
+%   do not provide direct interaction with the user. 
+%   % Changes in these modules are more likely to be motivated by a desire to
+%   % improve performance than by externally imposed changes.
+% \item[Implemented By:] --
+% \end{description}
+\subsubsection{Hand Sign Verification Module (\mref{m2})}
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Secrets:] The handshake used to determine whether the sign interpreted by the Machine Learning Module matches with the sign requested by front-end components
+\item[Services:] Returns a pass/fail to front-end based on result of match attempt
+\item[Implemented By:] Python
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Data Collection Module (\mref{m4})}
+
+\begin{description}
+\item[Secrets:]The data and structure of data collected.
+\item[Services:]Stores collected data to be retrieved at a later time.
+\item[Implemented By:] Python
+\end{description}
+
+\subsubsection{Testing and Verification Module (\mref{m7})}
+\begin{description}
+\item[Secrets:] Unit test cases used to test the software system.
+\item[Services:] Verifies the software works as intended by testing the system on various test cases which ensures robustness, accuracy, and reliability.
+\item[Implemented By:] Python and Pytest
+\end{description}
+
+
+
+% \subsubsection{Etc.}
 
 \section{Traceability Matrix} \label{SecTM}
 
