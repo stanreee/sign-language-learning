@@ -50,6 +50,7 @@ Jan. 9, 2024 & 1.0 & Andrew and Edward; added module hierarchy\\
 Jan. 10, 2024 & 1.1 & Stanley; added some module decompositions for hardware hiding and behaviour hiding modules\\
 Jan. 10, 2024 & 1.2 & Andrew; rearranged Module Hierarchy and added decomposition descriptions for controller, hand sign recognition and verification modules\\
 Jan. 11, 2024 & 1.3 & Jeremy and Cassidy added front end anticipated changes, modules and traceability mapping to these modules\\
+Jan. 12, 2024 & 1.4 & Stanley; added some back end anticipated changes, more traceability mapping for functional requirements and modules\\
 \bottomrule
 \end{tabularx}
 
@@ -163,6 +164,8 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acAbout}:] The About/Info Module may change if the developers want to change the formatting of the informational pages on the website (for example the home/resources page that use this module). 
 \item[\refstepcounter{acnum} \actheacnum \label{acExercise}:] Exercise and Exercise Selection/History module may change if developers want to add in additional testing methods or material.
 \item[\refstepcounter{acnum} \actheacnum \label{acAccount}:] Account management module may change if developers change what information is stored about the users progress. 
+\item[\refstepcounter{acnum} \actheacnum \label{acMLModel}:] Structure of neural network in Machine Learning module may change to improve performance and accuracy.
+\item[\refstepcounter{acnum} \actheacnum \label{acTestVerif}:] Test cases in the Testing and Verification module may change throughout development to improve code coverage as well as to cover any previously mentioned anticipated changes.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -402,12 +405,16 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
+FR1 & \mref{m8}\\
+FR2 & \mref{m1} \mref{m6}\\
 FR3 & \mref{m12}\\
 FR4 & \mref{m12}\\
 FR5 & \mref{m13}\\
 FR6 & \mref{m10}\\
 FR7 & \mref{m11}\\
-FR8 & \mref{m13}\\
+FR8 & \mref{m13} \mref{m4}\\
+FR10 & \mref{m2}\\
+FR11 & \mref{m2}\\
 FR12 & \mref{m11}\\
 FR13 & \mref{m12}\\
 LFR1 & \mref{m9}\\
@@ -415,6 +422,12 @@ LFR2 & \mref{m11}\\
 LFR3 & \mref{m10}\\
 UHR3 & \mref{m13}\\
 SR1 & \mref{m12}\\
+SR2 & \mref{m6}\\
+SR3 & \mref{m13}\\
+LR2 & \mref{m6}\\
+PR2 & \mref{m6} \mref{m2}\\
+OER2 & \mref{m8}\\
+MSR3 & \mref{m7}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -431,6 +444,8 @@ SR1 & \mref{m12}\\
 \acref{acAbout} & \mref{m9}\\
 \acref{acExercise} & \mref{m10}, \mref{m11}\\
 \acref{acAccount} & \mref{m13}\\
+\acref{acMLModel} & \mref{m6}\\
+\acref{acTestVerif} & \mref{m7}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
