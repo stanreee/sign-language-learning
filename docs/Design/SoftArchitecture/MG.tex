@@ -48,8 +48,10 @@
 \midrule
 Jan. 9, 2024 & 1.0 & Andrew and Edward; added module hierarchy\\
 Jan. 10, 2024 & 1.1 & Stanley; added some module decompositions for hardware hiding and behaviour hiding modules\\
-Date 10, 2024 & 1.2 & Andrew; rearranged Module Hierarchy and added decomposition descriptions for controller, hand sign recognition and verification modules\\
-Date 13, 2024 & 1.3 & Andrew; Added Uses Hierarchy Diagram\\
+Jan. 10, 2024 & 1.2 & Andrew; rearranged Module Hierarchy and added decomposition descriptions for controller, hand sign recognition and verification modules\\
+Jan. 11, 2024 & 1.3 & Jeremy and Cassidy added front end anticipated changes, modules and traceability mapping to these modules\\
+Jan. 12, 2024 & 1.4 & Stanley; added some back end anticipated changes, more traceability mapping for functional requirements and modules\\
+Date 13, 2024 & 1.5 & Andrew; Added Uses Hierarchy Diagram\\
 \bottomrule
 \end{tabularx}
 
@@ -159,11 +161,12 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acInfo}:] The ASL vocabulary included in the program may be updated in the future as the language evolves.
+\item[\refstepcounter{acnum} \actheacnum \label{acAbout}:] The About/Info Module may change if the developers want to change the formatting of the informational pages on the website (for example the home/resources page that use this module). 
+\item[\refstepcounter{acnum} \actheacnum \label{acExercise}:] Exercise and Exercise Selection/History module may change if developers want to add in additional testing methods or material.
+\item[\refstepcounter{acnum} \actheacnum \label{acAccount}:] Account management module may change if developers change what information is stored about the users progress. 
+\item[\refstepcounter{acnum} \actheacnum \label{acMLModel}:] Structure of neural network in Machine Learning module may change to improve performance and accuracy.
+\item[\refstepcounter{acnum} \actheacnum \label{acTestVerif}:] Test cases in the Testing and Verification module may change throughout development to improve code coverage as well as to cover any previously mentioned anticipated changes.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -178,7 +181,7 @@ decisions will be changed.
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucLogin}:] The Login/Sign Up module is unlikely to change as we will be using user authentication methods and standard login procedures that are unlikely to change.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -200,6 +203,11 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{m6}:] Machine Learning Module
 \item [\refstepcounter{mnum} \mthemnum \label{m7}:] Testing and Verification Module
 \item [\refstepcounter{mnum} \mthemnum \label{m8}:] Video Input Module
+\item [\refstepcounter{mnum} \mthemnum \label{m9}:] About/Info Module
+\item [\refstepcounter{mnum} \mthemnum \label{m10}:] Exercise Module
+\item [\refstepcounter{mnum} \mthemnum \label{m11}:] Exercise Selection/History Module
+\item [\refstepcounter{mnum} \mthemnum \label{m12}:] Login/Sign Up Module
+\item [\refstepcounter{mnum} \mthemnum \label{m13}:] Account Management Module
 \end{description}
 
 \begin{table}[h!]
@@ -210,21 +218,25 @@ actually be implemented.
 \midrule
 
 \multirow{1}{0.3\textwidth}{Hardware-Hiding Module} 
-& Video Input Module\\
+& Video Input Module \mref{m8}\\
 \midrule
 
 \multirow{4}{0.3\textwidth}{Behaviour-Hiding Module} 
-& Controller Module\\
-& Data Processing Module\\
-& Machine Learning Module\\
-& Hand Sign Recognition Module\\
-
+& Hand Sign Recognition Module \mref{m1}\\
+& Controller Module \mref{m3}\\
+& Data Processing Module \mref{m5}\\
+& Machine Learning Module \mref{m6}\\
+& About/Info Module \mref{m9}\\
+& Exercise Module \mref{m10}\\
+& Login/Sign Up Module \mref{m12}\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
-& Hand Sign Verification Module\\
-& Data Collection Module\\
-& Testing and Verification Module\\
+& Hand Sign Verification Module \mref{m2}\\
+& Data Collection Module \mref{m4}\\
+& Testing and Verification Module \mref{m7}\\
+& Exercise Selection/History Module \mref{m11}\\
+& Account Management Module \mref{m13}\\
 \bottomrule
 
 \end{tabular}
@@ -254,7 +266,7 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash
 (\emph{--}) is shown, this means that the module is not a leaf and will not have
 to be implemented.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
+\subsection{Hardware Hiding Modules}
 
 % \begin{description}
 % \item[Secrets:]The data structure and algorithm used to implement the virtual
@@ -267,12 +279,12 @@ to be implemented.
 
 \subsubsection{Video Input Module (\mref{m8})}
 \begin{description}
-\item[Secrets:]Image processing algorithms, software interaction with webcam hardware.
-\item[Services:]Outputs real-time video data through user's webcam.
-\item[Implemented By:] OpenCV and OS
+\item[Secrets:] Image processing algorithms, software interaction with webcam hardware.
+\item[Services:] Outputs real-time video data through user's webcam.
+\item[Implemented By:] OpenCV and OS.
 \end{description}
 
-\subsection{Behaviour-Hiding Module}
+\subsection{Behaviour-Hiding Modules}
 
 % \begin{description}
 % \item[Secrets:]The contents of the required behaviours.
@@ -285,35 +297,54 @@ to be implemented.
 % \end{description}
 \subsubsection{Hand Sign Recognition Module (\mref{m1})}
 \begin{description}
-\item[Secrets:] Recognises hand signs are being made
-\item[Services:] Relays the information that a hand sign is made
-\item[Implemented By:] Python and Pytorch
+\item[Secrets:] Recognises hand signs are being made.
+\item[Services:] Relays the information that a hand sign is made.
+\item[Implemented By:] Python and Pytorch.
 \end{description}
 
 \subsubsection{Controller Module (\mref{m3})}
 \begin{description}
-\item[Secrets:] Able to relay necessary information from back-end component to the correct corresponding front-end component and vice versa
-\item[Services:] Handles communication between front-end components and back-end components
-\item[Implemented By:] Python and JavaScript
+\item[Secrets:] Able to relay necessary information from back-end component to the correct corresponding front-end component and vice versa.
+\item[Services:] Handles communication between front-end components and back-end components.
+\item[Implemented By:] Python and JavaScript.
 \end{description}
 
 \subsubsection{Data Processing Module (\mref{m5})}
 \begin{description}
 \item[Secrets:] Algorithm used to process collected data.
 \item[Services:] Interprets collected data accordingly.
-\item[Implemented By:] Python
+\item[Implemented By:] Python.
 \end{description}
 
 \subsubsection{Machine Learning Module (\mref{m6})}
 \begin{description}
-\item[Secrets:] Training data sets and structure of neural network
+\item[Secrets:] Training data sets and structure of neural network.
 \item[Services:] Takes in hand coordinate data and interprets and processes the data to return the appropriate letter.
-\item[Implemented By:] Python and Pytorch
+\item[Implemented By:] Python and Pytorch.
 \end{description}
 
+\subsubsection{About/Info Module (\mref{m9})}
+\begin{description}
+\item[Secrets:] Relevant information to shown to user about the program/website.
+\item[Services:] Display necessary application information about ASLingo to the user on website.
+\item[Implemented By:] Javascript.
+\end{description}
 
+\subsubsection{Exercise Module (\mref{m10})}
+\begin{description}
+\item[Secrets:] Question selection process andn question bank used to quiz user.
+\item[Services:] Creates an exercise module with questions based on current users level of progress.
+\item[Implemented By:] Javascript.
+\end{description}
 
-\subsection{Software Decision Module}
+\subsubsection{Login/Sign Up Module (\mref{m12})}
+\begin{description}
+\item[Secrets:] How user information is stored and accessed.
+\item[Services:] Takes in user input to allow them to sign into their account.
+\item[Implemented By:] Javascript.
+\end{description}
+
+\subsection{Software Decision Modules}
 
 % \begin{description}
 % \item[Secrets:] The design decision based on mathematical theorems, physical
@@ -325,6 +356,7 @@ to be implemented.
 %   % improve performance than by externally imposed changes.
 % \item[Implemented By:] --
 % \end{description}
+
 \subsubsection{Hand Sign Verification Module (\mref{m2})}
 \begin{description}
 \item[Secrets:] The handshake used to determine whether the sign interpreted by the Machine Learning Module matches with the sign requested by front-end components
@@ -335,8 +367,8 @@ to be implemented.
 \subsubsection{Data Collection Module (\mref{m4})}
 
 \begin{description}
-\item[Secrets:]The data and structure of data collected.
-\item[Services:]Stores collected data to be retrieved at a later time.
+\item[Secrets:] The data and structure of data collected.
+\item[Services:] Stores collected data to be retrieved at a later time.
 \item[Implemented By:] Python
 \end{description}
 
@@ -344,12 +376,22 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Unit test cases used to test the software system.
 \item[Services:] Verifies the software works as intended by testing the system on various test cases which ensures robustness, accuracy, and reliability.
-\item[Implemented By:] Python and Pytest
+\item[Implemented By:] Python and Pytest.
 \end{description}
 
+\subsubsection{Exercise Selection/History Module (\mref{m11})}
+\begin{description}
+\item[Secrets:] How historical data is stored for each user.
+\item[Services:] Display users completed exercise progress and display current exercise options.
+\item[Implemented By:] Javascript.
+\end{description}
 
-
-% \subsubsection{Etc.}
+\subsubsection{Account Management Module (\mref{m13})}
+\begin{description}
+\item[Secrets:] How user information is stored and processed.
+\item[Services:] Will keep a record of users account history after signing in to their account.
+\item[Implemented By:] Javascript.
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -364,17 +406,29 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & \mref{m8}\\
+FR2 & \mref{m1} \mref{m6}\\
+FR3 & \mref{m12}\\
+FR4 & \mref{m12}\\
+FR5 & \mref{m13}\\
+FR6 & \mref{m10}\\
+FR7 & \mref{m11}\\
+FR8 & \mref{m13} \mref{m4}\\
+FR10 & \mref{m2}\\
+FR11 & \mref{m2}\\
+FR12 & \mref{m11}\\
+FR13 & \mref{m12}\\
+LFR1 & \mref{m9}\\
+LFR2 & \mref{m11}\\
+LFR3 & \mref{m10}\\
+UHR3 & \mref{m13}\\
+SR1 & \mref{m12}\\
+SR2 & \mref{m6}\\
+SR3 & \mref{m13}\\
+LR2 & \mref{m6}\\
+PR2 & \mref{m6} \mref{m2}\\
+OER2 & \mref{m8}\\
+MSR3 & \mref{m7}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -387,18 +441,12 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acInfo} & \mref{mHH}\\
+\acref{acAbout} & \mref{m9}\\
+\acref{acExercise} & \mref{m10}, \mref{m11}\\
+\acref{acAccount} & \mref{m13}\\
+\acref{acMLModel} & \mref{m6}\\
+\acref{acTestVerif} & \mref{m7}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
