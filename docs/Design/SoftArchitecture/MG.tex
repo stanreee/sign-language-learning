@@ -55,6 +55,7 @@ Jan 13, 2024 & 1.5 & Andrew; Added Uses Hierarchy Diagram\\
 Jan 15, 2024 & 1.6 & Andrew; Cleaned up minor errors\\
 Jan 17, 2024 & 1.7 & Jeremy; Replaced Login/Signup module with Authentication module. Added in Andrews updates UsesHierarchy image\\
 Jan 17, 2024 & 1.8 & Cassidy; Added in Reference Material, Abbreviations, and Reflection Template\\
+Jan 17, 2024 & 1.9 & Stanley; Answered reflection question 2\\
 \bottomrule
 \end{tabularx}
 
@@ -512,7 +513,17 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
   \item Give a brief overview of other design solutions you considered.  What
   are the benefits and tradeoffs of those other designs compared with the chosen
   design?  From all the potential options, why did you select documented design?
-  (LO\_Explores)
+  (LO\_Explores)\\
+  One particular design solution we had in mind for the transfer of webcam frame data from the frontend to the backend was to
+  only read the user's handsigns after a specified countdown timer, where the system would then send the current frame to the
+  backend. This would avoid the need of sending each frame to the backend, improving performance. Although this would work with
+  static handsigns (most letters of the alphabet), dynamic handsigns which involve the movement of hands to be tracked, would fail
+  to be recognized. As such, we decided to continue with the original plan of sending each frame to the backend, and dealing with
+  any potential performance issues during implementation.\\
+  We also initially assumed that the middleman module between the frontend and the backend would only use the frontend and backend modules,
+  and not vice versa where the frontend/backend modules would use the controller module. This was not the case, as we ran into
+  scenarios where the hand sign verification module and the exercise module would require the use of certain functions in the controller
+  module.
 \end{enumerate}
 
 \bibliographystyle {plainnat}
