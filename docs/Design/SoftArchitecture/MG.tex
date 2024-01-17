@@ -53,6 +53,7 @@ Jan. 11, 2024 & 1.3 & Jeremy and Cassidy added front end anticipated changes, mo
 Jan. 12, 2024 & 1.4 & Stanley; added some back end anticipated changes, more traceability mapping for functional requirements and modules\\
 Jan 13, 2024 & 1.5 & Andrew; Added Uses Hierarchy Diagram\\
 Jan 15, 2024 & 1.6 & Andrew; Cleaned up minor errors\\
+Jan 17, 2024 & 1.7 & Jeremy; Replaced Login/Signup module with Authentication module. Added in Andrews updates UsesHierarchy image\\
 \bottomrule
 \end{tabularx}
 
@@ -182,7 +183,7 @@ decisions will be changed.
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucLogin}:] The Login/Sign Up module is unlikely to change as we will be using user authentication methods and standard login procedures that are unlikely to change.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucLogin}:] The Authentication Up module is unlikely to change as we will be using user authentication methods and standard login procedures that are unlikely to change.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -207,7 +208,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{m9}:] Landing Page Module
 \item [\refstepcounter{mnum} \mthemnum \label{m10}:] Exercise Module
 \item [\refstepcounter{mnum} \mthemnum \label{m11}:] Exercise Selection/History Module
-\item [\refstepcounter{mnum} \mthemnum \label{m12}:] Login/Sign Up Module
+\item [\refstepcounter{mnum} \mthemnum \label{m12}:] Authentication Up Module
 \item [\refstepcounter{mnum} \mthemnum \label{m13}:] Account Management Module
 \end{description}
 
@@ -229,7 +230,7 @@ actually be implemented.
 & Machine Learning Module \mref{m6}\\
 & Landing Page Module \mref{m9}\\
 & Exercise Module \mref{m10}\\
-& Login/Sign Up Module \mref{m12}\\
+& Authentication Up Module \mref{m12}\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
@@ -338,7 +339,7 @@ to be implemented.
 \item[Implemented By:] Javascript.
 \end{description}
 
-\subsubsection{Login/Sign Up Module (\mref{m12})}
+\subsubsection{Authentication Up Module (\mref{m12})}
 \begin{description}
 \item[Secrets:] How user information is stored and accessed.
 \item[Services:] Takes in user input to allow them to sign into their account.
