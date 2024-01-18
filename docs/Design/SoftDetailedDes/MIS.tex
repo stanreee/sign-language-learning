@@ -53,8 +53,8 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Jan 16, 2024 & 1.0 & Andrew, Stan, Edward; Finished back-end MIS breakdown\\
+Jan 17, 2024 & 1.1 & Jeremy, Cassidy; Finished front-end MIS breakdown, fixed some formatting \\
 \bottomrule
 \end{tabularx}
 
@@ -62,9 +62,33 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation at \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} \\
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3cm}|p{13cm}|} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  AC & Anticipated Change\\
+  ASL & Shorthand for American Sign Language. It is a form of sign language primarily used in the US and in parts of Canada. \\
+  ASLingo & The commercial name for the project. \\
+  CV & Refers to Computer Vision, the field of technology that invloves processing visual input ot achieve various means. \\
+  HSR & Shorthand for "Health and Safety Requirements", a subsection of Non-Functional Requirements. \\
+  FR & Shorthand for Functional Requirements. \\
+  LR & Shorthand for "Legal Requirements", a subsection of Non-Functional Requirements. \\
+  LFR & Shorthand for "Look and Feel Requirements", a subsection of Non-Functional Requirements. \\
+  MSR & Shorthand for "Maintainability and Support Requirements", a subsection of Non-Functional Requirements. \\
+  OER & Shorthand for "Operational and Environmental Requirements", a subsection of Non-Functional Requirements. \\
+  OpenCV & Refers to the Open Computer Vision Library library available for free to developers in order to develop Computer Vision applications. \\
+  M & Module \\
+  MG & Module Guide \\
+  PR & Shorthand for "Performance Requirements", a subsection of Non-Functional Requirements. \\
+  SR & Shorthand for "Security Requirements", a subsection of Non-Functional Requirements. \\
+  SRS & Software Requirements Specification\\
+  UC & Unlikely Change \\
+  UHR & Shorthand for "Usuability and Humanity Requirements", a subsection of Non-Functional Requirements. \\
+  \bottomrule
+\end{tabular}\\
 
 \newpage
 
@@ -76,22 +100,27 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The following document details the Module Interface Specifications for our project ASLingo. 
+Learning a new language can be an arduous task that only gets more challenging
+with age, as individuals may find it difficult to dedicate time and effort to
+it. American Sign Language (ASL) is particularly hard due to its visual and
+gestural nature, which is not found in other, verbal languages. The purpose of this project is
+to ease that challenge by providing an online, easy-to-access web platform for
+individuals to learn new signs and test their comprehension at their own pace
+in a fun, interactive manner. Focusing in on consistent effort and continuous
+feedback, ASLingo provides real-time guidance to ensure users stay on track to
+achieving their goals of learning ASL. \\
 
-Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+Complementary documents include the  \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} and \href{https://github.com/stanreee/sign-language-learning/blob/DesignDocRev0/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}.  
+The full documentation and implementation can be
+found here: \href{https://github.com/stanreee/sign-language-learning/tree/main}{ASLingo Github Repo}.
 
 \section{Notation}
 
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
-
-The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
+The structure of the MIS for modules comes from Hoffman And Strooper 1995,
 with the addition that template modules have been adapted from
-\cite{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
-\citet{HoffmanAndStrooper1995}.  For instance, the symbol := is used for a
+Ghezzi Et Al 2003.  The mathematical notation comes from Chapter 3 of
+Hoffman And Strooper 1995.  For instance, the symbol := is used for a
 multiple assignment statement and conditional rules follow the form $(c_1
 \Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
 
@@ -122,7 +151,7 @@ described by giving their type signature followed by their specification.
 
 \section{Module Decomposition}
 
-The following table is taken directly from the Module Guide document for this project.
+The following table is taken directly from the \href{https://github.com/stanreee/sign-language-learning/blob/DesignDocRev0/docs/Design/SoftArchitecture/MG.pdf}{Module Guide} document for this project.
 
 \begin{table}[h!]
 \centering
@@ -131,21 +160,26 @@ The following table is taken directly from the Module Guide document for this pr
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding} & ~ \\
+\multirow{1}{0.3\textwidth}{Hardware-Hiding Module} 
+& Video Input Module\\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{4}{0.3\textwidth}{Behaviour-Hiding Module} 
+& Hand Sign Recognition Module\\
+& Controller Module \\
+& Data Processing Module \\
+& Machine Learning Module \\
+& Landing Page Module \\
+& Exercise Module \\
+& Login/Sign Up Module \\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} 
+& Hand Sign Verification Module \\
+& Data Collection Module \\
+& Testing and Verification Module \\
+& Exercise Selection/History Module \\
+& Account Management Module \\
 \bottomrule
 
 \end{tabular}
@@ -154,34 +188,424 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+% ---------------Template------------------
+% \section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
+%   cross-referencing}
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+% \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+% \wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+
+% \subsection{Module}
+
+% \wss{Short name for the module}
+
+% \subsection{Uses}
+
+
+% \subsection{Syntax}
+
+% \subsubsection{Exported Constants}
+
+% \subsubsection{Exported Access Programs}
+
+% \begin{center}
+% \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+% \hline
+% \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+% \hline
+% \wss{accessProg} & - & - & - \\
+% \hline
+% \end{tabular}
+% \end{center}
+
+% \subsection{Semantics}
+
+% \subsubsection{State Variables}
+
+% \wss{Not all modules will have state variables.  State variables give the module
+%   a memory.}
+% \subsubsection{Environment Variables}
+% \wss{This section is not necessary for all modules.  Its purpose is to capture
+%   when the module has external interaction with the environment, such as for a
+%   device driver, screen interface, keyboard, file, etc.}
+% \subsubsection{Assumptions}
+% \wss{Try to minimize assumptions and anticipate programmer errors via
+%   exceptions, but for practical purposes assumptions are sometimes appropriate.}
+% \subsubsection{Access Routine Semantics}
+% \noindent \wss{accessProg}():
+% \begin{itemize}
+% \item transition: \wss{if appropriate} 
+% \item output: \wss{if appropriate} 
+% \item exception: \wss{if appropriate} 
+% \end{itemize}
+% \wss{A module without environment variables or state variables is unlikely to
+%   have a state transition.  In this case a state transition can only occur if
+%   the module is changing the state of another module.}
+% \wss{Modules rarely have both a transition and an output.  In most cases you
+%   will have one or the other.}
+% \subsubsection{Local Functions}
+% \wss{As appropriate} \wss{These functions are for the purpose of specification.
+%   They are not necessarily something that is going to be implemented
+%   explicitly.  Even if they are implemented, they are not exported; they only
+%   have local scope.}
+% ---------------Template------------------
+
+\newpage
+
+% --------------Hand Sign Recog------------------
+\section{MIS of Hand Sign Recognition Module} \label{Module} 
+\subsection{Module}
+HSR
+\subsection{Uses}
+Machine Learning Module, Video Input Module
+\subsection{Syntax}
+% \subsubsection{Exported Constants}
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{2cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+determine\_handsign & - & String & TIME\_LIMIT\_REACHED \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Semantics}
+\subsubsection{State Variables}
+\begin{itemize}
+    \item MAX\_DECISION\_FRAMES - Frames needed to determine when the user has settled on a hand sign
+    \item TIMEOUT\_LIMIT - Amount of time in seconds before the user automatically fails the question
+\end{itemize}
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+\noindent determine\_handsign():
+\begin{itemize}
+% \item transition: \wss{if appropriate} 
+\item output: The name of the determined handsign
+\item exception: exc := TIME\_LIMIT\_REACHED
+\end{itemize}
+\subsubsection{Local Functions}
+process\_features()
+% --------------Hand Sign Recog------------------
+
+\newpage
+
+% --------------Hand Sign Verif------------------
+\section{MIS of Hand Sign Verification Module} \label{Module} 
+\subsection{Module}
+HSV
+\subsection{Uses}
+Hand Sign Recognition Module, Controller
+\subsection{Syntax}
+ \subsubsection{Exported Constants}
+None
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+verify\_handsign & - & Boolean & - \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Semantics}
+\subsubsection{State Variables}
+None
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+\noindent verify\_handsign():
+\begin{itemize}
+\item output: True/False for if the expected handsign was made 
+\item exception: exc := None 
+\end{itemize}
+ \subsubsection{Local Functions}
+None
+
+% --------------Hand Sign Verif------------------
+
+\newpage
+
+% ----------------Controller--------------------
+\section{MIS of Controller Module} \label{Module} 
+\subsection{Module}
+Controller
+\subsection{Uses}
+Exercise Module, Hand Sign Verification Module
+\subsection{Syntax}
+ \subsubsection{Exported Constants}
+None
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{5cm} p{2cm} p{2cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+send\_requested\_handsign & String & None & - \\
+get\_requested\_handsign & None & String & - \\
+send\_passFail & Bool & None & - \\
+get\_passFail & None & Bool & - \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Semantics}
+\subsubsection{State Variables}
+\begin{itemize}
+    \item h - handsign variable to store intermediary data
+    \item pass - Boolean to determine if the question was answered correctly
+\end{itemize}
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+\noindent send\_requested\_handsign():
+\begin{itemize}
+\item output: None 
+\item exception: exc := None
+\end{itemize}
+
+\noindent get\_requested\_handsign():
+\begin{itemize}
+\item output: The expected handsign being asked by the front-end
+\item exception: exc := None
+\end{itemize}
+
+\noindent send\_passFail():
+\begin{itemize}
+\item output: None
+\item exception: exc := None
+\end{itemize}
+
+\noindent get\_passFail():
+\begin{itemize}
+\item output: The result of comparing the expected answer to what the back-end determined
+\item exception: exc := None
+\end{itemize}
+ \subsubsection{Local Functions}
+None
+% ----------------Controller--------------------
+
+\newpage
+
+% --------------Data Collection------------------
+\section{MIS of Data Collection Module} \label{Module} 
+\subsection{Module}
+DCM
+\subsection{Uses}
+None
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+None
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{4cm} p{5cm} p{2cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+read\_training\_set & training\_imgs\_path & - & - \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Semantics}
+\subsubsection{State Variables}
+None
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+\noindent read\_training\_set():
+\begin{itemize}
+\item transition: training.csv updated with raw training data
+\item output: none
+\item exception: exc := None 
+\end{itemize}
+\subsubsection{Local Functions}
+None
+% --------------Data Collection------------------
+
+\newpage
+
+% --------------Data Processing------------------
+\section{MIS of Data Processing Module} \label{Module} 
+\subsection{Module}
+DPM
+\subsection{Uses}
+Data Collection Module
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{2cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+process\_training\_data & training.csv & - & - \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Semantics}
+\subsubsection{State Variables}
+None
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+\noindent process\_training\_data():
+\begin{itemize}
+    \item transition: training.csv updated with processed training data
+    \item output: none
+    \item exception: exc := None
+\end{itemize}
+\subsubsection{Local Functions}
+None
+% --------------Data Processing------------------
+
+\newpage
+
+% --------------Machine Learning------------------
+\section{MIS of Machine Learning Module} \label{Module} 
+\subsection{Module}
+MLM
+\subsection{Uses}
+Data Processing Module
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+None
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{4cm} p{5cm} p{2cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+SignLangModel & processed\_frame\_data & String & - \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Semantics}
+\subsubsection{State Variables}
+None
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+SignLangModel():
+\begin{itemize}
+    \item transition: none
+    \item output: Predicted hand sign for given processed frame data
+    \item exception: none
+\end{itemize}
+\subsubsection{Local Functions}
+train()
+% --------------Machine Learning------------------
+
+\newpage
+
+% --------------Test-Verif------------------
+\section{MIS of Testing and Verification Module} \label{Module} 
+\subsection{Module}
+Tester
+\subsection{Uses}
+Hand Sign Verification Module
+\subsection{Syntax}
+ \subsubsection{Exported Constants}
+ None
+ \subsubsection{Exported Access Programs}
+ None
+\subsection{Semantics}
+\subsubsection{State Variables}
+None
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+None
+\subsubsection{Local Functions}
+testDataCollectionModule()\\
+testDataProcessingModule()\\
+testMachineLearningModule()\\
+testVideoInputModule()\\
+testHandSignRecognitionModule()\\
+testHandSignVerificationModule()\\
+% --------------Test-Verif------------------
+
+\newpage
+
+% --------------Video Input------------------
+\section{MIS of Video Input Module} \label{Module} 
+\subsection{Module}
+Cam
+\subsection{Uses}
+None
+\subsection{Syntax}
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{4cm} p{3cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+get\_frame\_data & video input & NumPy ndarray & - \\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Semantics}
+\subsubsection{State Variables}
+None
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+get\_frame\_data():
+\begin{itemize}
+    \item transition: raw video input is turned into an array of shape (height, width, channels)
+    \item output: the frame data read through the video feed in terms of a NumPy array
+    \item exception: exc := None
+\end{itemize}
+
+% --------------Video Input------------------
+
+\newpage
+
+% --------------Landing Page------------------
+
+\section{MIS of Landing Page Module} \label{Module} 
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Landing Page Module.
 
 \subsection{Uses}
 
+None
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 
+None
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{4cm} p{4cm} p{2cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+getAboutInfo & - & String & - \\
+getInstructions & - & String & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -190,52 +614,420 @@ The following table is taken directly from the Module Guide document for this pr
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
-
-\subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+\begin{itemize}
+    \item aboutInfo: string
+    \item instructionInfo: string
+\end{itemize}
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent getAboutInfo():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: 
+\item output: aboutInfo
+\item exception: 
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent getInstructions():
+\begin{itemize}
+\item transition:
+\item output: instructionInfo
+\item exception: 
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+None
+
+% --------------Landing Page------------------
 
 \newpage
 
-\bibliographystyle {plainnat}
-\bibliography {../../../refs/References}
+% --------------Exercise------------------
+
+\section{MIS of Exercise Module} \label{Exercise} 
+% module that feeds into the exercise selection module which contains all the exercises a user might encounter
+% when using the program. This includes things like difficulty level, type of exercise, question, answer
+% depending on which type of exercise it is the ans may be text or CV based), score
+
+\subsection{Module}
+
+Exercise
+
+\subsection{Uses}
+
+Controller Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+% difficulty level, type of exercise, question, answer
+% depending on which type of exercise it is the ans may be text or CV based), score
+
+\begin{center}
+\begin{tabular}{p{4cm} p{3cm} p{3cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getQuestions & - & string, video file & \\
+getAnswers & - & string, CV file & - \\
+getQuestionDifficulty & - & int &  \\
+getExerciseType & - & string &  \\
+getQuestionScores & - & int & \\
+getExerciseTotalScore & - & int & \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+    \item questions : seq of string, seq of video files % list of questions to ask the user \\
+    \item answers : seq of string, seq of CV files % list of answers that correspond to the same question instance \\
+    \item difficultyLevels :  seq of $\mathbb{N}$, [1, 5] % difficulty on a scale of 1-5 that correspond to each question and answer instance
+    \item exerciseTypes : seq of string % type of exercise a user may be given
+    \item questionScores : seq of $\mathbb{Z}$  % list of scores the user gets on questions in the exercise, starts empty, scores are passed to exercise history module
+    \item exerciseTotalScore : $\mathbb{Z}$, initialized to 0 at the start of each exercise % variable to keep track of the users current total score in the exercise
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+    \item userAnswer := string, CV file, depending on the type of exercise the user is given 
+	% user input in response to the given question in the exercise, may be a string or a CV file
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+None 
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getQuestions():
+\begin{itemize}
+\item output: questions := seq of string, seq of video files
+\item exception: None
+\end{itemize}
+
+\noindent getAnswers():
+\begin{itemize}
+\item output: answers := seq of string, seq of CV files
+\item exception: None
+\end{itemize}
+
+\noindent getQuestionDifficulty():
+\begin{itemize}
+\item output: difficultyLevels := seq of $\mathbb{N}$
+\item exception: None
+\end{itemize}
+
+\noindent getExerciseType():
+\begin{itemize}
+\item output: exerciseTypes := seq of string
+\item exception: None
+\end{itemize}
+
+\noindent getQuestionScores():
+\begin{itemize}
+\item output: questionScores := seq of $\mathbb{Z}$
+\item exception: None
+\end{itemize}
+
+\noindent getExerciseTotalScore():
+\begin{itemize}
+\item transition: exerciseTotalScore variable is updated after the user answers the question given to them in the exercise. This is updated in the Exercise Selection/History Module to keep track of the users total score for each question. 
+\item output: exerciseTotalScore := seq of $\mathbb{Z}$
+\item exception: None
+\end{itemize}
+%
+\subsubsection{Local Functions}
+
+updateTotalScore: exerciseTotalScore $\rightarrow$ exerciseTotalScore + givenScore \\
+givenScore: type int ($\mathbb{Z}$), [0, 10]
+
+% --------------Exercise------------------
 
 \newpage
 
-\section{Appendix} \label{Appendix}
+% --------------Exercise Selection History ------------------
 
-\wss{Extra information if required}
+\section{MIS of Exercise Selection/History Module} \label{ExerciseSel} 
+
+\subsection{Module}
+
+Exercise Selection
+
+\subsection{Uses}
+
+Exercise Module, Account Management Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+% contains a way to choose a list of questions and answers for the user based on their account history and other exercises they have completed
+% the history will keep track of how well they did on a question and track their scores
+
+\begin{center}
+\begin{tabular}{p{6cm} p{2cm} p{2cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+createQuestionList & - & string, video file & - \\
+createAnswerList & string, video file & string, CV file & - \\
+getUserLevel & - & int & - \\
+updateExerciseQuestionHistory & string, video file & string, video file & InvalidEntry \\  % keeps a list of questions they have been asked
+updateExerciseAnswerHistory & string, CV file & string, CV file & InvalidEntry \\   % keeps a list of answers the user has given to a corresponding question
+updateExerciseScoreHistory & int & int & InvalidEntry \\ % keeps a list of the score the user got on each corresponding question
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+    \item questionList := seq of string, seq of video files
+    \item answerList := seq of string, seq of CV files
+    \item exerciseQuestionHistory := seq of string, seq of video files
+    \item exerciseAnswerHistory := seq of string, seq of CV files 
+    \item exerciseScoreHistory := seq of $\mathbb{Z}$ 
+\end{itemize}
+
+\subsubsection{Environment Variables}
+ 
+None 
+
+\subsubsection{Assumptions}
+
+None 
+
+\subsubsection{Access Routine Semantics}
+
+\noindent createQuestionList(): 
+\begin{itemize}
+\item output: questionList := seq of string, seq of video files
+\item exception: None
+\end{itemize}
+
+\noindent createAnswerList(): 
+\begin{itemize}
+\item output: answerList := seq of string, seq of CV files
+\item exception: None
+\end{itemize}
+
+\noindent getUserLevel(): 
+\begin{itemize}
+\item output: type int $\mathbb{Z}$ 
+\item exception: None
+\end{itemize}
+
+\noindent updateExerciseQuestionHistory(): 
+\begin{itemize}
+\item output: exerciseQuestionHistory := seq of string, seq of video files \\
+\item exception: None
+\end{itemize}
+
+\noindent updateExerciseAnswerHistory(): 
+\begin{itemize}
+\item output:exerciseAnswerHistory := seq of string, seq of CV files \\
+\item exception: None
+\end{itemize}
+
+\noindent updateExerciseScoreHistory(): 
+\begin{itemize}
+\item output: exerciseScoreHistory := seq of $\mathbb{Z}$ \\
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+None
+
+% --------------Exercise Selection History ------------------
+
+\newpage
+
+% --------------Authentication ------------------
+
+\section{MIS of Authentication Module} \label{Module}
+
+\subsection{Module}
+
+Application Authentication Module.
+
+\subsection{Uses}
+
+None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{2cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+logIn & [string, string] & bool & InvalidEmail, IncorrectPassword, UserDoesNotExist \\
+register & [string, string] & - & InvalidRegistration \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+    \item emailInput: string
+    \item passwordInput: string
+\end{itemize}
+
+\subsubsection{Database Environment Variables}
+
+\begin{itemize}
+    \item \textit{email}: string
+    \item \textit{password}: string
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+Using standard alphanumeric Unicode recognized keyboard.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent login(string, string):
+\begin{itemize}
+\item transition:
+\item output: (validEmail(emailInput) $\land$ validPassword(passwordInput)\ \\$\Rightarrow$ checkIfUserExists(emailInput) \\$\Rightarrow$ checkPassword(checkPassword)
+\item exception: 
+    \begin{itemize}
+        \item[] $\neg$validEmail(emailInput) $\Rightarrow$ InvalidEmail\\\
+        \item[] $\neg$checkIfUserExists(emailInput) $\Rightarrow$ UserDoesNotExist\\
+        \item[] $\neg$checkPassword(checkPassword) $\Rightarrow$ IncorrectPassword\\
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+    \item validEmail(string): emailInput = \textit{email}
+    \item validPassword(string): length(emailInput) $\ge$ 8 $\land$ $\exists$ \{A,B,C...Z\} $\land \exists$ \{0,1,2,..9\}
+    \item checkIfUserExists(string): emailInput = \textit{email}
+    \item checkPassword(string): passwordInput = \textit{password}
+\end{itemize}
+
+% --------------Authentication ------------------
+
+\newpage
+
+% --------------Account Management ------------------
+
+\section{MIS of Account Management Module} \label{Module}
+
+\subsection{Module}
+
+Application Account Module.
+
+\subsection{Uses}
+
+None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{2cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+updateLevel & int, int & - & - \\
+getLevel & - & int & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+    \item difficulty: int
+    \item score: int
+    \item level: int
+\end{itemize}
+
+\subsubsection{Database Environment Variables}
+
+\begin{itemize}
+    \item \textit{level}: int
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent updateLevel(difficulty, score):
+\begin{itemize}
+\item transition: \textit{level} = updateScoreDifficulty(difficulty, level)
+\item output: 
+\item exception: 
+\end{itemize}
+
+\noindent getLevel():
+\begin{itemize}
+\item transition:
+\item output: \textit{level}
+\item exception: 
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+    \item updateScoreDifficulty(difficulty, score): return calculated weight for score for given difficulty
+\end{itemize}
+
+\
+% --------------Account Management ------------------
+
+%\bibliographystyle {plainnat}
+%\bibliography {../../../refs/References}
+
+%\newpage
+%
+%\section{Appendix} \label{Appendix}
+%
+%\wss{Extra information if required}
 
 \end{document}
