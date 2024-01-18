@@ -208,7 +208,7 @@ decisions will be changed.
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucLogin}:] The Authentication Up module is unlikely to change as we will be using user authentication methods and standard login procedures that are unlikely to change.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucLogin}:] The Authentication module is unlikely to change as we will be using user authentication methods and standard login procedures that are unlikely to change.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -233,7 +233,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{m9}:] Landing Page Module
 \item [\refstepcounter{mnum} \mthemnum \label{m10}:] Exercise Module
 \item [\refstepcounter{mnum} \mthemnum \label{m11}:] Exercise Selection/History Module
-\item [\refstepcounter{mnum} \mthemnum \label{m12}:] Authentication Up Module
+\item [\refstepcounter{mnum} \mthemnum \label{m12}:] Authentication Module
 \item [\refstepcounter{mnum} \mthemnum \label{m13}:] Account Management Module
 \end{description}
 
@@ -255,7 +255,7 @@ actually be implemented.
 & Machine Learning Module \mref{m6}\\
 & Landing Page Module \mref{m9}\\
 & Exercise Module \mref{m10}\\
-& Authentication Up Module \mref{m12}\\
+& Authentication Module \mref{m12}\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
@@ -364,7 +364,7 @@ to be implemented.
 \item[Implemented By:] Javascript.
 \end{description}
 
-\subsubsection{Authentication Up Module (\mref{m12})}
+\subsubsection{Authentication Module (\mref{m12})}
 \begin{description}
 \item[Secrets:] How user information is stored and accessed.
 \item[Services:] Takes in user input to allow them to sign into their account.
@@ -534,15 +534,22 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
 
 \begin{enumerate}
   \item What are the limitations of your solution?  Put another way, given
-  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
+  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)\\
+  There are a few improvements we could implement given more time and resources. One of the main limitations of our design is that we
+  do not have separate modules for dealing with static and dynamic hand signs. A perfect solution would recognize the expected type of
+  hand sign and deal with the corresponding type individually. Static and dynamic hand signs are dealt with differently as for static signs,
+  individual frames are what the machine learning model looks at, and for dynamic signs, the model should look at groupings of frames.\\
+  Another limitation of our design is having one single controller module to connect the frontend with the backend. While this simplifies our
+  work in design, given unlimited time, it would be ideal to have data sent through multiple controller modules, wherever a frontend/backend
+  connection needs to be facilitated.
   \item Give a brief overview of other design solutions you considered.  What
   are the benefits and tradeoffs of those other designs compared with the chosen
   design?  From all the potential options, why did you select documented design?
   (LO\_Explores)\\
   One particular design solution we had in mind for the transfer of webcam frame data from the frontend to the backend was to
-  only read the user's handsigns after a specified countdown timer, where the system would then send the current frame to the
+  only read the user's hand signs after a specified countdown timer, where the system would then send the current frame to the
   backend. This would avoid the need of sending each frame to the backend, improving performance. Although this would work with
-  static handsigns (most letters of the alphabet), dynamic handsigns which involve the movement of hands to be tracked, would fail
+  static hand signs (most letters of the alphabet), dynamic hand signs which involve the movement of hands to be tracked, would fail
   to be recognized. As such, we decided to continue with the original plan of sending each frame to the backend, and dealing with
   any potential performance issues during implementation.\\
   We also initially assumed that the middleman module between the frontend and the backend would only use the frontend and backend modules,
