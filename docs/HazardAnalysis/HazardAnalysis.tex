@@ -48,6 +48,7 @@ Oct 17 2022 & Jeremy & Added 2 more FMEA table entries related to web applicatio
 Oct 17 2022 & Stanley & Rearranged some FMEA table entries, added computer vision table entries\\
 Oct 18 2023 & Edward & Added sections 1, 2, 3, 4\\
 Oct 19 2023 & Everyone & Finished Section 6 and 7 \\
+Jan 23 2024 & Cassidy & Addressed git issue \#35 and \#38 regarding system boundaries and typo \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -75,6 +76,8 @@ ASLingo's system will involve the following components:
     \item A machine learning model to interpret user hand signs
 \end{enumerate}
 
+The system boundaries of ASLingo include our web application with the user's camera input, our machine learning model which is trained to learn hand signs, and our back and front end systems that will allow our model to interact with the user's inputs. Due to the limitations of these parts of our system, these may cause hazards to occur or cause our system to not function as intended, so these components of our system will be explored further in this document. 
+
 \section{Critical Assumptions}
 
 \begin{enumerate}
@@ -99,7 +102,7 @@ Recommended Action &
 SR & 
 Ref. \\
 \hline
-User authentication error & Invalid credentials & User cannot log in to system & User error or improperly saved data & Reset credentials and inform user & WAR1 & H1-1 \\
+User authentication & Invalid credentials & User cannot log in to system & User error or improperly saved data & Reset credentials and inform user & WAR1 & H1-1 \\
 \hline
 Database Access & Database is inaccessible & User cannot view progress or stored personal data & Database connection failure & Display static error page and await database backup/restoration & WAR2 & H2-1 \\
 \hline
