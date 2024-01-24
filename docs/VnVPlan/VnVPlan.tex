@@ -34,7 +34,7 @@
 
 \pagenumbering{roman}
 
-\section*{Revision History}
+\section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
@@ -50,6 +50,7 @@ Nov 3 & Andrew, Cassidy, Jeremy, Stanley & Added Reflections\\
 Nov 3 & Cassidy & Added section 1 and usability survey questions \\
 Nov 3 & Edward & Added Reflection\\
 Nov 3 & Jeremy & Added in sect 4.3 table matricies\\
+Jan 23 & Cassidy & Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 \\
 \bottomrule
 \end{tabularx}
 
@@ -559,6 +560,22 @@ How test will be performed: A sampling of representative users will attempt to c
 
 Non-Functional Requirement: UHR3
 
+\item{NFRT1 - UT5}
+
+Goal: The system should show the user if their input needs to be adjusted. 
+
+Type: Manual, Static
+					
+Initial State: The application prompts the user with a question during a lesson.
+					
+Input: The user attempts to sign in response to the application's prompt but their camera is not set up properly.
+					
+Output: The application should register that it cannot be confident in determining if the sign the user is displaying is accurate, so it should prompt the user to fix their camera settings before they are allowed to continue.
+					
+How test will be performed: A user will try to respond to the prompt by signing in front of the application, but with the user out of the focus of the camera. The application should not be able to determine if the user's sign is correct or not and should prompt the user to adjust their camera settings. This test will be performed multiple times with various input and camera conditions to ensure the requirement has been tested effectively. The developers will verify that the user is given feedback where appropriate. 
+
+Non-Functional Requirement: UHR4
+
 \end{enumerate}
 
 \subsubsection{Performance Requirements}
@@ -599,22 +616,6 @@ How test will be performed: A user will respond to the prompt by signing in fron
 
 Non-Functional Requirement: PR2
 
-\item{NFRT2 - PT3}
-
-Goal: The system should show the user if their input needs to be adjusted. 
-
-Type: Manual, Static
-					
-Initial State: The application prompts the user with a question during a lesson.
-					
-Input: The user attempts to sign in response to the application's prompt but their camera is not set up properly.
-					
-Output: The application should register that it cannot be confident in determining if the sign the user is displaying is accurate, so it should prompt the user to fix their camera settings before they are allowed to continue.
-					
-How test will be performed: A user will try to respond to the prompt by signing in front of the application, but with the user out of the focus of the camera. The application should not be able to determine if the user's sign is correct or not and should prompt the user to adjust their camera settings. This test will be performed multiple times with various input and camera conditions to ensure the requirement has been tested effectively. The developers will verify that the user is given feedback where appropriate. 
-
-Non-Functional Requirement: PR3
-
 \end{enumerate}
 
 \newpage
@@ -650,15 +651,15 @@ Non Functional Requirements to System Test Requirements}
 \centering
 \resizebox{\textwidth}{!}{
 \begin{tabular}{lllllll}
-                                 & \multicolumn{3}{c}{UHR}                                                  & \multicolumn{3}{c}{PR}                                                   \\ \cline{2-7} 
-\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} \\ \hline
+                                 & \multicolumn{4}{c}{UHR}                                                  & \multicolumn{2}{c}{PR}                                                   \\ \cline{2-7} 
+\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} \\ \hline
 \multicolumn{1}{|l|}{NFRT1-UT1}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
 \multicolumn{1}{|l|}{NFRT1-UT2}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
 \multicolumn{1}{|l|}{NFRT1-UT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
 \multicolumn{1}{|l|}{NFRT1-UT4}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-PT1}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-PT2}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-PT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT5}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} \\ \hline
+\multicolumn{1}{|l|}{NFRT2-PT1}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT2-PT2}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{X}  \\ \hline
 \end{tabular}
 }
 \end{table}
