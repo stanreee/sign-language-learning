@@ -28,23 +28,43 @@ const Quiz = ({
     wrongAnswers: 0,
   })
 
+  const [streamTimer, setTimer] = useState<NodeJS.Timeout>();
   const [stream, setStream] = useState<MediaStream>();
   const webcamVideo = useRef<HTMLVideoElement | null>(null);
+  const serverStream = useRef<string | null>(null);
+  const [imgSrc, setImgSrc] = useState('');
 
+  // communicate with web socket on backend
   const socket = io("http://127.0.0.1:5000")
+
+  // listens to whenever the backend sends frame data back through web socket
+  socket.on("stream", (frame) => {
+    var image = new Image();
+    image.src = frame;
+    // serverStream.current! = image.src;
+    setImgSrc(image.src); // this is a **very** bad way of doing this, it's essentially getting each frame from the backend and setting the img
+                          // src to that frame using React's useState hook. this causes multiple rerenders every frame, resulting in performance issues
+                          // we need a better way of handling processed images sent from the backend
+    console.log("frame:", frame);
+  });
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext("2d");
 
+  let numFrames = 0;
+
+  // send webcam snapshot through web socket
   const sendSnapshot = () => {
     const video = webcamVideo.current;
-    ctx?.drawImage(video!, 0, 0, video!.videoWidth, video!.videoHeight, 0, 0, 300, 150);
+    ctx?.drawImage(video!, 0, 0, video!.videoWidth, video!.videoHeight * 5, 0, 0, 300, 800);
     let dataURL = canvas.toDataURL('image/jpeg');
-    socket.emit('stream', dataURL);
+    socket.emit('stream', { image: dataURL, frame: numFrames });
+    console.log("Sending frame ", numFrames);
+    numFrames += 1;
   }
 
   const startConnection = () => {
-    navigator.mediaDevices.getUserMedia({
+    return navigator.mediaDevices.getUserMedia({
       audio: false,
       video: {
         height: 350,
@@ -54,7 +74,10 @@ const Quiz = ({
     .then((stream: MediaStream) => {
       setStream(stream);
       webcamVideo.current!.srcObject = stream;
-      sendSnapshot();
+      // sends snapshot of webcam 60 times a second (60 fps)
+      const timer = setInterval(() => sendSnapshot(), 1000/60);
+      console.log(timer);
+      setTimer(timer);
     })
   }
 
@@ -80,6 +103,7 @@ const Quiz = ({
 
   useEffect(() => {
     startConnection();
+    return () => clearInterval(streamTimer);
   }, [])
 
   const questions = quizQuestions
@@ -123,7 +147,8 @@ const Quiz = ({
           <div>
             <h3>{title} Quiz</h3>
           </div>
-          <video autoPlay muted playsInline ref={webcamVideo} />
+          <video style={{visibility: "hidden"}} autoPlay muted playsInline ref={webcamVideo} />
+          <img src={imgSrc} />
           {/* <div>
             <span className="active-question-no">{addLeadingZero(activeQuestion + 1)}</span>
             <span className="total-question">/{addLeadingZero(questions.length)}</span>
@@ -138,12 +163,12 @@ const Quiz = ({
                 {answer}
               </li>
             ))}
-          </ul>
+          </ul> */}
           <div className="flex-right">
-            <button onClick={onClickNext} disabled={selectedAnswerIndex === null}>
+            <button onClick={sendSnapshot} disabled={selectedAnswerIndex === null}>
               {activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
             </button>
-          </div> */}
+          </div>
         </div>
       ) : (
         <div className="result">
