@@ -75,9 +75,9 @@ const Quiz = ({
       setStream(stream);
       webcamVideo.current!.srcObject = stream;
       // sends snapshot of webcam 60 times a second (60 fps)
-      const timer = setInterval(() => sendSnapshot(), 1000/60);
-      console.log(timer);
-      setTimer(timer);
+      // const timer = setInterval(() => sendSnapshot(), 1000/60);
+      // console.log(timer);
+      // setTimer(timer);
     })
   }
 
