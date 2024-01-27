@@ -6,6 +6,7 @@ import Resources from './pages/Resources';
 import NavBar from './components/NavBar';
 import NoMatch from './components/NoMatch';
 import Quiz from './pages/Quiz';
+import Practice from './pages/Practice';
 
 
 import './App.css';
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/Exercises" element={<Exercises />} />
           <Route path="/Resources" element={<Resources />} />
+          <Route path="/Practice" element={<Practice />} />
           {/* <Route path="/Quiz" element={<Quiz />} /> */}
           <Route path="*" element={<NoMatch />} />
        </Routes>
