@@ -33,19 +33,25 @@ const Quiz = ({
   const webcamVideo = useRef<HTMLVideoElement | null>(null);
   const serverStream = useRef<string | null>(null);
   const [imgSrc, setImgSrc] = useState('');
+  const [signResult, setSignResult] = useState<string>('');
 
   // communicate with web socket on backend
   const socket = io("http://127.0.0.1:5000")
 
   // listens to whenever the backend sends frame data back through web socket
-  socket.on("stream", (frame) => {
+  socket.on("stream", (data) => {
+    const deserialized = JSON.parse(data);
+    const { frame, result } = deserialized;
+    console.log(result);
+    console.log(frame);
+    console.log(data);
     var image = new Image();
     image.src = frame;
+    setSignResult(result);
     // serverStream.current! = image.src;
-    setImgSrc(image.src); // this is a **very** bad way of doing this, it's essentially getting each frame from the backend and setting the img
+    // setImgSrc(image.src); // this is a **very** bad way of doing this, it's essentially getting each frame from the backend and setting the img
                           // src to that frame using React's useState hook. this causes multiple rerenders every frame, resulting in performance issues
                           // we need a better way of handling processed images sent from the backend
-    console.log("frame:", frame);
   });
 
   const canvas = document.createElement('canvas');
@@ -75,9 +81,9 @@ const Quiz = ({
       setStream(stream);
       webcamVideo.current!.srcObject = stream;
       // sends snapshot of webcam 60 times a second (60 fps)
-      // const timer = setInterval(() => sendSnapshot(), 1000/60);
+      const timer = setInterval(() => sendSnapshot(), 1000/10);
       // console.log(timer);
-      // setTimer(timer);
+      setTimer(timer);
     })
   }
 
@@ -146,9 +152,10 @@ const Quiz = ({
         <div>
           <div>
             <h3>{title} Quiz</h3>
+            <h3>Result: {signResult}</h3>
           </div>
-          <video style={{visibility: "hidden"}} autoPlay muted playsInline ref={webcamVideo} />
-          <img src={imgSrc} />
+          <video autoPlay muted playsInline ref={webcamVideo} />
+          {/* <img src={imgSrc} /> */}
           {/* <div>
             <span className="active-question-no">{addLeadingZero(activeQuestion + 1)}</span>
             <span className="total-question">/{addLeadingZero(questions.length)}</span>

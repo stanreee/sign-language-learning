@@ -9,6 +9,7 @@ import numpy as np
 import base64
 import os
 import mediapipe as mp
+import json
 #Initialize the Flask app
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -38,6 +39,7 @@ def stream(message):
     cv2frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
 
     rgb_frame = cv2.cvtColor(cv2frame, cv2.COLOR_BGR2RGB)
+    # print(rgb_frame)
     results = hands.process(rgb_frame)
     
     ## image processing (move to module later?)
@@ -63,11 +65,15 @@ def stream(message):
 
         print("result: " + chr(result + 65))
         # break
-    
-    # print(features)
+        data = {}
+        data['frame'] = frame
+        data['result'] = str(chr(result + 65))
+        serialized = json.dumps(data)
+        # print(serialized)
 
-    socketio.emit("stream", frame)
+        socketio.emit("stream", serialized)
+    
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
