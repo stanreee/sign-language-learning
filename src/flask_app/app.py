@@ -39,7 +39,7 @@ def stream(message):
     cv2frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
 
     rgb_frame = cv2.cvtColor(cv2frame, cv2.COLOR_BGR2RGB)
-    # print(rgb_frame)
+    print(rgb_frame)
     results = hands.process(rgb_frame)
     
     ## image processing (move to module later?)

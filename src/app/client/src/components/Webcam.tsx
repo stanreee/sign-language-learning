@@ -1,26 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import iQuiz from '../interfaces/iQuiz'
-import quizRaw from "../data/additionQuiz.json"
 import { io } from "socket.io-client";
-import Peer from "simple-peer";
 import '../styles/Webcam.css'
 
 const Webcam = () => {
-  const [activeQuestion, setActiveQuestion] = useState<number>(0)
-  const [selectedAnswer, setSelectedAnswer] = useState<boolean>()
-  const [showResult, setShowResult] = useState<boolean>(false)
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number|string>('')
-  const [result, setResult] = useState<{score: number; correctAnswers: number; wrongAnswers: number}>({
-    score: 0,
-    correctAnswers: 0,
-    wrongAnswers: 0,
-  })
 
   const [streamTimer, setTimer] = useState<NodeJS.Timeout>();
   const [stream, setStream] = useState<MediaStream>();
   const webcamVideo = useRef<HTMLVideoElement | null>(null);
-  const serverStream = useRef<string | null>(null);
-  const [imgSrc, setImgSrc] = useState('');
   const [signResult, setSignResult] = useState<string>('');
 
   // communicate with web socket on backend
@@ -107,22 +93,6 @@ const Webcam = () => {
         <h3>Result: {signResult}</h3>
       </div>
       <video className='webcam' autoPlay muted playsInline ref={webcamVideo} />
-          {/* <img src={imgSrc} /> */}
-          {/* <div>
-            <span className="active-question-no">{addLeadingZero(activeQuestion + 1)}</span>
-            <span className="total-question">/{addLeadingZero(questions.length)}</span>
-          </div>
-          <h2>{question}</h2>
-          <ul>
-            {choices.map((answer: string, index: number) => (
-              <li
-                onClick={() => onAnswerSelected(answer, index)}
-                key={answer}
-                className={selectedAnswerIndex === index ? 'selected-answer' : ''}>
-                {answer}
-              </li>
-            ))}
-          </ul> */}
       </div>
   )
 }
