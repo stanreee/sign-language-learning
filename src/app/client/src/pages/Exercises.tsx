@@ -7,7 +7,9 @@ import iQuiz from '../interfaces/iQuiz'
 import additionQuizRaw from "../data/additionQuiz.json"
 import subtractionQuizRaw from "../data/subtractionQuiz.json"
 import multiplicationQuizRaw from "../data/multiplicationQuiz.json"
+import signLanguageQuizRaw from "../data/signLanguageQuiz.json"
 import Quiz from './Quiz';
+import iQuizASL from '../interfaces/iQuizASL';
 
 
 const Exercises = () => {
@@ -15,11 +17,14 @@ const Exercises = () => {
     const [selectedQuiz, setSelectedQuiz] = useState<string>();
 
     //DATA CALL
-    const additionQuiz: iQuiz = additionQuizRaw;
-    const subtractionQuiz: iQuiz = subtractionQuizRaw;
-    const multiplicationQuiz: iQuiz = multiplicationQuizRaw;
+    // GET QUIZ LIST
+    // const additionQuiz: iQuiz = additionQuizRaw;
+    // const subtractionQuiz: iQuiz = subtractionQuizRaw;
+    // const multiplicationQuiz: iQuiz = multiplicationQuizRaw;
+    const signLanguageQuiz: iQuiz = signLanguageQuizRaw;
 
-    const quizArray: iQuiz[] = [additionQuiz, subtractionQuiz, multiplicationQuiz]
+    //const quizArray: iQuiz[] = [additionQuiz, subtractionQuiz, multiplicationQuiz]
+    const quizArray: iQuiz[] = [signLanguageQuiz];
 
     return (
     <div className="Exercise-Page">
@@ -40,9 +45,11 @@ const Exercises = () => {
             />
           )
           }) : (
-            (selectedQuiz === "Addition" && <Quiz title={additionQuiz.topic} quizQuestions={additionQuiz.questions}/>)
-            || (selectedQuiz === "Subtraction" && <Quiz title={subtractionQuiz.topic}  quizQuestions={subtractionQuiz.questions}/>)
-            || (selectedQuiz === "Multiplication" && <Quiz title={multiplicationQuiz.topic}  quizQuestions={multiplicationQuiz.questions}/>)
+            // (selectedQuiz === "Addition" && <Quiz title={additionQuiz.topic} quizQuestions={additionQuiz.questions}/>)
+            // || (selectedQuiz === "Subtraction" && <Quiz title={subtractionQuiz.topic}  quizQuestions={subtractionQuiz.questions}/>)
+            // || (selectedQuiz === "Multiplication" && <Quiz title={multiplicationQuiz.topic}  quizQuestions={multiplicationQuiz.questions}/>)
+            // || 
+            (selectedQuiz === "ASL" && <Quiz title={signLanguageQuiz.topic}  quizQuestions={signLanguageQuiz.questions}/>)
 
           )
         }
