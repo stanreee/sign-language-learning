@@ -1,5 +1,5 @@
 import {useState } from 'react';
-import Excercise from "../components/Excercise";
+import Excercise from "../components/Exercise";
 
 import '../styles/Exercise.css';
 
@@ -47,11 +47,6 @@ const Exercises = () => {
           )
         }
       </div>
-      {/* <div>
-        {selectedQuiz === "Addition" && <Quiz quizQuestions={additionQuiz.questions}/>}
-        {selectedQuiz === "Subtraction" && <Quiz quizQuestions={subtractionQuiz.questions}/>}
-        {selectedQuiz === "Multiplication" && <Quiz quizQuestions={multiplicationQuiz.questions}/>}
-      </div> */}
     </div>
     );
 }

@@ -1,8 +1,4 @@
-import { Link } from "react-router-dom";
-import { useState } from 'react'
-import iQuiz from '../interfaces/iQuiz'
 import iQuizQuestions from "../interfaces/iQuizQuestions";
-import Quiz from "../pages/Quiz";
 
 type ExerciseCardProps = {
     title: string;
