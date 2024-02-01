@@ -36,6 +36,7 @@ ul {
 
 img {
 	max-width: 100%;
+	display: inline-block;
 }
 
 .container {
@@ -281,4 +282,12 @@ nav .nav-items {
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	text-align: center;
+}
+
+.letterAlign {
+    background-color: #e0e0e0;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
 }
