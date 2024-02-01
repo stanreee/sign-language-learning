@@ -1,16 +1,12 @@
-import { Link } from "react-router-dom";
-import { useState } from 'react'
-import iQuiz from '../interfaces/iQuiz'
+
 import iQuizQuestions from "../interfaces/iQuizQuestions";
-import Quiz from "../pages/Quiz";
-import iQuizASL from "../interfaces/iQuizASL";
 
 type ExerciseCardProps = {
     title: string;
     desc: string;
     difficulty: string;
     questionAmount: number;
-    quiz: iQuizASL[];
+    quiz: iQuizQuestions[];
     selected?: boolean;
     onClick?: () => void;
   };

@@ -1,13 +1,18 @@
 import { NavLink } from 'react-router-dom';
-import SectionGoal from '../components/SectionGoal';
-import SectionInfo from '../components/SectionInfo';
-import SectionResources from '../components/SectionResources';
-import Timer from '../components/Timer';
+import info from "../data/fyInfo.json"
 import asl from '../images/asl.png';
 
 console.log(asl);
 
 const Home = () => {
+
+    //DATA CALL
+    const goalsTitle = info.goalHeader; 
+    const goalsDesc = info.goalDesc.join(" "); 
+    const backgroundTitle = info.backgroundInfoHeader;
+    const backgroundDesc = info.backgroundInfoDesc.join(" ");
+    const resInfoTitle = info.resourcesInfoHeader;
+    const resInfoDesc = info.resourcesInfoDesc.join(" ");
 
     return(
     <div className="App">
@@ -19,8 +24,7 @@ const Home = () => {
         <h3> <br/> </h3>
         
         <div className = 'box'>
-          <NavLink 
-            to="/exercises"
+          <NavLink reloadDocument to={'/learn'}
             style={({ isActive, isPending }) => {
               return {
                 fontWeight: isActive ? "bold" : "bold",
@@ -28,15 +32,35 @@ const Home = () => {
               };
             }}
           >
-            Get Started
+            Start Learning
           </NavLink>
         </div>
       </header>
 
       <div className = 'Section-container'>
-        <SectionGoal />
-        <SectionInfo />
-        <SectionResources />
+        <div className = "Section">
+            <h1> {goalsTitle} </h1>
+            <p> {goalsDesc} </p>
+        </div>
+
+        <div className = "Section">
+            <h1> {backgroundTitle} </h1>
+            <p> {backgroundDesc} </p>
+        </div>
+
+        <div className = "Section">
+            <h1> {resInfoTitle} </h1>
+            <p> {resInfoDesc} </p>
+            <NavLink reloadDocument to={'/learn'}
+						style={({ isActive, isPending }) => {
+							return {
+							fontWeight: isActive ? "bold" : "bold",
+							color: isPending ? "red" : '#fff',
+							};
+						}} >
+						Click here to Learn more!
+			      </NavLink>
+        </div>
       </div>
     </div>
     );
