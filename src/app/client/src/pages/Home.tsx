@@ -24,8 +24,7 @@ const Home = () => {
         <h3> <br/> </h3>
         
         <div className = 'box'>
-          <NavLink 
-            to="/learn"
+          <NavLink reloadDocument to={'/learn'}
             style={({ isActive, isPending }) => {
               return {
                 fontWeight: isActive ? "bold" : "bold",
@@ -52,8 +51,7 @@ const Home = () => {
         <div className = "Section">
             <h1> {resInfoTitle} </h1>
             <p> {resInfoDesc} </p>
-            <NavLink 
-						to="/learn"
+            <NavLink reloadDocument to={'/learn'}
 						style={({ isActive, isPending }) => {
 							return {
 							fontWeight: isActive ? "bold" : "bold",

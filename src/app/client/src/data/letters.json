@@ -1,0 +1,41 @@
+{
+    "allLetters" : [
+        "A", "B", "C", "D", "E", "F", "G", 
+        "H", "I", "J", "K", "L", "M", "N", 
+        "O", "P", "Q", "R", "S", "T", "U", 
+        "V", "W", "X", "Y", "Z"
+    ], 
+    "lettersDesc" : [
+        "Make a fist with your thumb pointing out on the side. It looks a lot like a lowercase 'a'",
+        "Raise your hand with your fingers pointing up, and tuck your thumb in towards your palm", 
+        "Cup your hand into a 'c' shape",
+        "Make an 'O' shape, then point your index finger up to the sky. It looks a lot like a lowercase 'd'",
+        "Face your palm out, and curl all fingers (not thumb) down towards your palm. Then tuck your thumb in so your other fingers rest on it",
+        "Make an 'O' shape, then point your pinky, ring and index finger up to the sky",
+        "Extend index and thumb so they are parallel to each other and tuck the rest of your fingers towards your palm. Make sure your pinky is parallel to the floor",
+        "Extend index and thumb so they are parallel to each other, line your middle finger up with your index finger, and tuck the rest of your fingers towards your palm. Make sure your pinky is parallel to the floor",
+        "Make an 'O' shape, then point your pinky finger up to the sky",
+        "Make an 'O' shape, then point your pinky finger up to the sky. Then make a downward scooping motion with your pinky to make a J-shape in the air",
+        "Make a 'peace' sign with your index and middle finger. Then bring your thumb up to touch the mid-point of your index and middle finger",
+        "Point your index finger to the sky, stick your thumb out to the side, and tuck the rest of your fingers towards your palm. It looks like an uppercase 'L'",
+        "Make a fist, and tuck your thumb between your pinky and ring finger. The fingers after above your thumb looks like a lowercase 'm'",
+        "Make a fist, and tuck your thumb between your ring and middle finger. The fingers after above your thumb looks like a lowercase 'n'",
+        "Make an 'O' shape by connecting all 5 fingertips together. It looks like an 'o'",
+        "Make a 'peace' sign with your index and middle finger. Then bring your thumb up to touch the mid-point of your index and middle finger. Then point your index and middle finger towards the floor",
+        "Point your index and thumb down to the floor, tuck the rest of your fingers towards your palm",
+        "Cross your pointer and middle fingers together pointing at the sky, and tuck the rest of your fingers towards your palm",
+        "Make a fist with your palm facing out and your thumb tucked in",
+        "Make a fist, and tuck your thumb between your middle and index finger",
+        "Point your index and middle finger together towards the sky and tuck the rest of your fingers to the palm of your hand",
+        "Make a 'peace' sign with your index and middle finger pointing towards the sky. It looks like an uppercase 'V'",
+        "Point your index, middle, and ring finger towards the sky, and tuck in the rest of your fingers. It looks like a 'w'",
+        "Bend your pointer finger so it looks like a hook, and tuck the rest of your fingers in towards your palm",
+        "Make a fist, then point your thumb and pinky fingers straight out",
+        "Use your index finger to draw the letter 'Z' in the air"
+    ],
+    "images" : [
+        ["a1", "a2", "a3"], 
+        ["b1", "b2", "b3"], 
+        ["c1", "c2", "c3"]
+    ]
+}

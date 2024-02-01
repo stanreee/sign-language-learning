@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { io } from "socket.io-client";
 import '../styles/Webcam.css'
 
+import aslLetters from '../images/ASLLetters.png';
+
+console.log(aslLetters);
+
 const Webcam = () => {
 
   const [streamTimer, setTimer] = useState<NodeJS.Timeout>();
@@ -89,11 +93,13 @@ const Webcam = () => {
   return (
     <div className="webcam-container">
       <div>
-        <h3>Live Sign Language Webcam</h3>
-        <h3>Result: {signResult}</h3>
+        <h2>Live Sign Language Webcam</h2>
+        <h2>Result: {signResult}</h2>
       </div>
       <video className='webcam' autoPlay muted playsInline ref={webcamVideo} />
-      </div>
+
+      <img src={aslLetters} width={500} height={500} alt="aslLetters" />
+    </div>
   )
 }
 

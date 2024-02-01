@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import LearnLetters from '../components/LearnLetters';
 import info from "../data/fyInfo.json"
 
 const Learn = () => {
@@ -14,17 +15,23 @@ const Learn = () => {
     return (
     <div className="App">
       <header className="App-header">
-        <h1>Resources</h1>
-        <div className = 'container'>
+        <LearnLetters /> 
+      </header>
+
+      <div className="Section"> </div>
+
+      <header className="App-header2">
+        <h1>Additional Resources</h1>
+        <div>
           There are plenty of resources to learn more about ASL below!
           These are from trusted sources in the Deaf community and are 
           a great way to learn more about ASL from their perspectives. 
         </div>
       </header>
 
-      <div className = 'Section-container'>
+      <div className = 'Section-container' id = "additionalResources">
       <div className = "Section">
-            <h1> {NADTitle} </h1>
+            <h2> {NADTitle} </h2>
             <p> {NADDesc} </p>
             <div>
                 <Link 
@@ -36,7 +43,7 @@ const Learn = () => {
         </div>
 
         <div className = "Section">
-            <h1> {HSTitle} </h1>
+            <h2> {HSTitle} </h2>
             <p> {HSDesc} </p>
             <div>
                 <Link 
@@ -48,7 +55,7 @@ const Learn = () => {
         </div>
 
         <div className = "Section">
-            <h1> {gallTitle} </h1>
+            <h2> {gallTitle} </h2>
             <p> {gallDesc} </p>
             <div>
                 <Link 

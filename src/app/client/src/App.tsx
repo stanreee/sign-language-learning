@@ -17,17 +17,17 @@ const App = () => {
   return (
     <>
       <NavBar/>
-       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Learn" element={<Learn />} />
-          <Route path="/Exercises" element={<Exercises />} />
-          <Route path="/Practice" element={<Practice />} />
-          <Route path="/Account" element={<Account />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/SignUp" element={<SignUp />} />
-          {/* <Route path="/Quiz" element={<Quiz />} /> */}
-          <Route path="*" element={<NoMatch />} />
-       </Routes>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Learn" element={<Learn />} />
+            <Route path="/Exercises" element={<Exercises />} />
+            <Route path="/Practice" element={<Practice />} />
+            <Route path="/Account" element={<Account />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/SignUp" element={<SignUp />} />
+            {/* <Route path="/Quiz" element={<Quiz />} /> */}
+            <Route path="*" element={<NoMatch />} />
+        </Routes>
     </>
 
   );
