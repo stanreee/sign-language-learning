@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import LearnLetters from '../components/LearnLetters';
+import DisplayLetters from "../components/DisplayLetters"
 import info from "../data/fyInfo.json"
 
 const Learn = () => {
@@ -15,7 +15,8 @@ const Learn = () => {
     return (
     <div className="App">
       <header className="App-header">
-        <LearnLetters /> 
+        <h1>Learn the Letters!</h1>
+        <DisplayLetters />
       </header>
 
       <div className="Section"> </div>

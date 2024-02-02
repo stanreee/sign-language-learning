@@ -290,4 +290,69 @@ nav .nav-items {
     display: flex;
     justify-content: space-between;
     align-items:center;
+	margin: 10px 50px;
+}
+
+/* https://stackoverflow.com/questions/40512026/no-arrow-buttons-in-scrollbar-after-writing-webkit-css/46229219#46229219 */
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+::-webkit-scrollbar-track {
+	/* background: #303030; */
+	border: solid 2px #acacac;
+	height: 10px;
+}
+
+::-webkit-scrollbar-button:single-button {
+	background-color: #e0e0e0;
+	display: block;
+	border-style: solid;
+	height: 13px;
+	width: 16px;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #003459;
+}
+
+  /* Left Button */
+::-webkit-scrollbar-button:horizontal:decrement {
+	border-width: 7px 14px 7px 0;
+	border-color: transparent #404040 transparent transparent;
+}
+
+::-webkit-scrollbar-button:horizontal:decrement:hover {
+  	border-color: transparent #003459 transparent transparent;
+}
+
+/* Right Button*/
+::-webkit-scrollbar-button:horizontal:increment {
+	border-width: 7px 0 7px 14px;
+	border-color: transparent transparent transparent #404040;
+}
+
+::-webkit-scrollbar-button:horizontal:increment:hover {
+  	border-color: transparent transparent transparent #003459;
+}
+  
+.container-letters {
+	display: flex;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: 75%;
+}
+
+.card {
+	flex-shrink: 0;
+	width: 800px;
+	height: 550px;
+	border-radius: 10px;
+	margin-left: 50px;
+	background-size: auto;
+	background-repeat: no-repeat;
+	border: 5px solid #007EA7;
+	object-position: center;
+	overflow: auto;
 }
