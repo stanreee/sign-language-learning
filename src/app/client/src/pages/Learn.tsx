@@ -15,8 +15,14 @@ const Learn = () => {
     return (
     <div className="App">
       <header className="App-header">
-        <h1>Learn the Letters!</h1>
+        <br></br>
+        <h2>Learn the Letters!</h2>
         <DisplayLetters />
+
+        <br></br>
+
+        <h2>Learn Some Basic Words/Phrases!</h2>
+        TBA
       </header>
 
       <div className="Section"> </div>

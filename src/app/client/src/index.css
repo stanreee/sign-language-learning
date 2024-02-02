@@ -286,11 +286,11 @@ nav .nav-items {
 
 .letterAlign {
     background-color: #e0e0e0;
-    flex-direction: row;
+    /* flex-direction: row; */
     display: flex;
     justify-content: space-between;
     align-items:center;
-	margin: 10px 50px;
+	/* margin: 10px 50px; */
 }
 
 /* https://stackoverflow.com/questions/40512026/no-arrow-buttons-in-scrollbar-after-writing-webkit-css/46229219#46229219 */
@@ -324,7 +324,7 @@ nav .nav-items {
 }
 
 ::-webkit-scrollbar-button:horizontal:decrement:hover {
-  	border-color: transparent #003459 transparent transparent;
+  	border-color: transparent #00A7E1 transparent transparent;
 }
 
 /* Right Button*/
@@ -334,7 +334,7 @@ nav .nav-items {
 }
 
 ::-webkit-scrollbar-button:horizontal:increment:hover {
-  	border-color: transparent transparent transparent #003459;
+  	border-color: transparent transparent transparent #00A7E1;
 }
   
 .container-letters {
