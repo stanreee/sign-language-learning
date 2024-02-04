@@ -2,8 +2,11 @@ import cv2
 import time
 import os
 import csv
+from util import extract_features, process_features
 
 class Classifier:
+
+    FRAME_CAP = 30
 
     def __init__(self, name, hands) -> None:
         self.capturing = False
@@ -11,42 +14,46 @@ class Classifier:
         self.hands = hands
         pass
 
+    def endCapture(self, data, frameNum):
+        self.capturing = False
+        print("END CAPTURING")
+        save = input("Do you want to save these frames? (Y/N)")
+        if save == "Y":
+            id = input("Enter id for data.")
+            self.save(data, id)
+        data = []
+        frameNum = 0
+        return (data, frameNum)
+
+    def capture(self, frame, frameNum, data):
+        features = extract_features(frame, self.hands)
+        if len(features) >= 21:
+            features = process_features(features)
+        if len(features) >= 21: 
+            data.append(features)
+        if frameNum >= self.FRAME_CAP:
+            data, frameNum = self.endCapture(data, frameNum)
+        # print(data, frameNum)
+        return (data, frameNum)
+            
+
     def start(self):
         self.cap = cv2.VideoCapture(1)
         cv2.startWindowThread()
-        startTime = time.time()
         data = []
+        frameNum = 0
         while self.cap.isOpened():
             ret, frame = self.cap.read()
 
             if self.capturing:
-                features, frame = self.capture(frame)
-                elapsed = time.time() - startTime
-                if len(features) >= 21: 
-                    data.append(features)
-                if elapsed >= 2:
-                    print("END CAPTURING")
-                    save = input("Do you want to save these frames? (Y/N)")
-                    if save == "Y":
-                        id = input("Enter id for data.")
-                        for i in range(len(data)):
-                            data[i] = [id] + data[i]
-                        cur_dir = os.curdir
-                        with open(cur_dir + "/datasets/" + str(self.name) + ".csv", 'a', encoding="UTF8", newline='') as f:
-                            writer = csv.writer(f, delimiter=',')
-                            # data.sort(key=lambda x: x[0])
-                            for row in data:
-                                writer.writerow([i for i in row])
-                        print("Frames saved for id", id, ".")
-                    data = []
-                    self.capturing = False
+                frameNum += 1
+                data, frameNum = self.capture(frame, frameNum, data)
 
             cv2.imshow(self.name, frame)
 
             if cv2.waitKey(1) & 0xFF == ord('c'):
-                print("CAPTURING FRAMES")
+                print("CAPTURING 30 FRAMES")
                 self.capturing = True
-                startTime = time.time()
             elif cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         self.cap.release()

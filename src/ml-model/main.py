@@ -3,6 +3,7 @@ import mediapipe as mp
 import numpy as np
 from util import process_features
 from sign_lang_model import SignLangModel
+from sign_lang_model_dynamic import SignLangModelDynamic
 import os
 import torch
 from sklearn.decomposition import PCA
@@ -38,10 +39,6 @@ while cap.isOpened():
 
     if len(features) >= 21:
         features = process_features(features)
-
-        pca = PCA(n_components=21)
-        pca.fit(features)
-        print(pca.singular_values_)
         
         tensor = torch.from_numpy(np.array(features))
         tensor = tensor.to(torch.float32)
@@ -55,10 +52,10 @@ while cap.isOpened():
         confidence = 2**results[0][result].item()
 
         # if confidence >= 0.95:
-        #     print(chr(result + 65), confidence)
+        print(chr(result + 65), confidence)
         # else:
         #     print("NOT CONFIDENT:", chr(result + 65), confidence)
-        # break
+        # # break
 
     cv2.imshow('Hand Landmarks', frame)
 

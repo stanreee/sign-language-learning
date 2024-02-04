@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.decomposition import PCA
 
 # process landmark features
 # in particular:
@@ -25,3 +26,14 @@ def process_features(features):
     features = list(map(normalize, features))
 
     return features
+
+def landmark_history_preprocess(landmark_history):
+    landmark_history.pop(0)
+    pca = PCA(n_components=18)
+    pca.fit(landmark_history)
+
+    compressed = []
+    for i in range(pca.n_components_):
+        compressed += np.ndarray.tolist(pca.components_[i])
+
+    return compressed
