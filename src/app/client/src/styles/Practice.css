@@ -43,3 +43,11 @@
     font-weight: 500;
     color: #9fa3a9;
 }
+
+
+.cat{
+    font-size: 100000px;
+    font-weight: 60000;
+    color: #999;
+    /* print: meow meow meow */
+}

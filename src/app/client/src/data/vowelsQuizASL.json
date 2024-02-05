@@ -1,10 +1,10 @@
 {
-    "topic": "ASL",
+    "topic": "Vowels",
     "level": "Medium",
-    "description": "Random sign language characters",
+    "description": "Vowels In ASL",
     "totalQuestions": 5,
     "perQuestionScore": 1,
-    "timePerQuestion": 20,
+    "timePerQuestion": 30,
     "questions": [
       {
         "question": "A",
@@ -12,24 +12,24 @@
         "correctAnswer": "A"
       },
       {
-        "question": "B",
-        "type": "Demo",
-        "correctAnswer": "B"
-      },
-      {
-        "question": "C",
-        "type": "Demo",
-        "correctAnswer": "C"
-      },
-      {
-        "question": "D",
-        "type": "Demo",
-        "correctAnswer": "D"
-      },
-      {
         "question": "E",
         "type": "Demo",
         "correctAnswer": "E"
+      },
+      {
+        "question": "I",
+        "type": "Demo",
+        "correctAnswer": "E"
+      },
+      {
+        "question": "O",
+        "type": "Demo",
+        "correctAnswer": "O"
+      },
+      {
+        "question": "U",
+        "type": "Demo",
+        "correctAnswer": "U"
       }
 
     ]

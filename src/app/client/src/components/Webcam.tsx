@@ -6,7 +6,7 @@ import { io, Socket } from "socket.io-client";
 import Peer from "simple-peer";
 import '../styles/Webcam.css'
 
-const Webcam = ({ text, setText }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>}) => {
+const Webcam = ({ text, setText, close }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, close: boolean}) => {
   const [activeQuestion, setActiveQuestion] = useState<number>(0)
   const [selectedAnswer, setSelectedAnswer] = useState<boolean>()
   const [showResult, setShowResult] = useState<boolean>(false)
@@ -53,12 +53,14 @@ const Webcam = ({ text, setText }: {text: string, setText: React.Dispatch<React.
 
   // send webcam snapshot through web socket
   const sendSnapshot = () => {
-    const video = webcamVideo.current;
-    ctx?.drawImage(video!, 0, 0, video!.videoWidth, video!.videoHeight * 5, 0, 0, 300, 800);
-    let dataURL = canvas.toDataURL('image/jpeg');
-    socket.emit('stream', { image: dataURL, frame: numFrames });
-    //console.log("Sending frame ", numFrames);
-    numFrames += 1;
+    if(stream){
+      const video = webcamVideo.current;
+      ctx?.drawImage(video!, 0, 0, video!.videoWidth, video!.videoHeight * 5, 0, 0, 300, 800);
+      let dataURL = canvas.toDataURL('image/jpeg');
+      socket.emit('stream', { image: dataURL, frame: numFrames });
+      //console.log("Sending frame ", numFrames);
+      numFrames += 1;
+    }
   }
 
   const startConnection = () => {
@@ -79,17 +81,24 @@ const Webcam = ({ text, setText }: {text: string, setText: React.Dispatch<React.
     })
   }
 
-  // const stopConnection = () => {
-  //   if(mediaStream){
-  //     mediaStream!.getTracks().forEach((track) => {
-  //       console.log("stopping track");
-  //       track.stop();
-  //     })
-  //     mediaStream = null;
-  //     console.log(localVideoStream.current);
-  //     // localVideoStream.current = null;
-  //   }
-  // }
+  const stopConnection = () => {
+    if(stream){
+      console.log('here!!')
+      stream!.getTracks().forEach((track) => {
+        console.log("stopping track");
+        track.stop();
+      })
+      setStream(undefined);
+      //console.log(localVideoStream.current);
+      // localVideoStream.current = null;
+    }
+  }
+
+
+
+  useEffect(() => {
+    stopConnection();
+  }, [close])
 
   // useEffect(() => {
   //   if(!mediaStream) startConnection();

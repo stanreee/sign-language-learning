@@ -1,12 +1,14 @@
 
+import iQuizASL from "../interfaces/iQuizASL";
 import iQuizQuestions from "../interfaces/iQuizQuestions";
 
 type ExerciseCardProps = {
     title: string;
     desc: string;
     difficulty: string;
+    timePerQuestion: number;
     questionAmount: number;
-    quiz: iQuizQuestions[];
+    quiz: iQuizASL[];
     selected?: boolean;
     onClick?: () => void;
   };
@@ -16,6 +18,7 @@ const ExerciseCard = ({
     desc,
     difficulty,
     questionAmount,
+    timePerQuestion,
     quiz,
     selected = false,
     onClick
@@ -26,6 +29,7 @@ const ExerciseCard = ({
             <h3>{title}</h3>
             <p>{desc}</p>
             <p>Difficulty: {difficulty}</p>
+            <p>Time Per Question: {timePerQuestion} secs</p>
             <p>Questions: {questionAmount}</p>
                 <button className="Exercise-Begin-Button" onClick={onClick}> Start</button>
             </div>

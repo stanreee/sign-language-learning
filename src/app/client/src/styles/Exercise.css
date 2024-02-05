@@ -30,6 +30,8 @@
     margin-top: 1%;
     margin-bottom: 1%;
     padding: 2%;
+    width: fit-content;
+    min-width: 33%;
 }
 
 /* CSS */

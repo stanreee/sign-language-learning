@@ -11,8 +11,6 @@ import Account from './pages/Account';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Quiz from './pages/Quiz';
-import Practice from './pages/Practice';
-
 
 import './App.css';
 

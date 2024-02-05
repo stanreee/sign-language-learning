@@ -28,6 +28,7 @@
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
+  width: 100%
 }
 
 .quiz-container .active-question-no {
@@ -107,6 +108,12 @@
   text-align: center;
 }
 
+.result h4 {
+  font-size: 16px;
+  letter-spacing: 1.4px;
+  text-align: center;
+}
+
 .result p {
   font-size: 16px;
   font-weight: 500;
@@ -115,6 +122,15 @@
 .result p span {
   color: #00A7E1;
   font-size: 22px;
+}
+
+.result ul {
+  margin: 0 10% 0 10%;
+  padding: 0 10% 0 10%;
+}
+
+.result li {
+  text-align: center;
 }
 
 .quiz-container .text-question{
@@ -144,6 +160,7 @@
 .container-row{
   display: flex;
   justify-content: flex-start;
+  width: 100%;
 }
 
 .container-column {
@@ -151,6 +168,7 @@
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
+  width: 100%;
 }
 
 .container-column-3 {
@@ -159,4 +177,8 @@
   flex-basis: 100%;
   flex: 1;
   width: 33%;
+}
+
+.quiz-container ul li.incorrect-answer {
+  border: 2px solid #880808	;
 }

@@ -5,6 +5,7 @@ interface iQuiz {
     level: string,
     description: string,
     totalQuestions: number,
+    timePerQuestion: number,
     questions: iQuizASL[] 
 }
 
