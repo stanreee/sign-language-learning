@@ -7,16 +7,6 @@ import Peer from "simple-peer";
 import '../styles/Webcam.css'
 
 const Webcam = ({ text, setText, close }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, close: boolean}) => {
-  const [activeQuestion, setActiveQuestion] = useState<number>(0)
-  const [selectedAnswer, setSelectedAnswer] = useState<boolean>()
-  const [showResult, setShowResult] = useState<boolean>(false)
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number|string>('')
-  const [result, setResult] = useState<{score: number; correctAnswers: number; wrongAnswers: number}>({
-    score: 0,
-    correctAnswers: 0,
-    wrongAnswers: 0,
-  })
-
   const [streamTimer, setTimer] = useState<NodeJS.Timeout>();
   const [stream, setStream] = useState<MediaStream>();
   const webcamVideo = useRef<HTMLVideoElement | null>(null);
@@ -38,6 +28,7 @@ const Webcam = ({ text, setText, close }: {text: string, setText: React.Dispatch
     //console.log(data);
     var image = new Image();
     image.src = frame;
+    console.log(result)
     setSignResult(result);
     setText(result);
     // serverStream.current! = image.src;
@@ -53,14 +44,14 @@ const Webcam = ({ text, setText, close }: {text: string, setText: React.Dispatch
 
   // send webcam snapshot through web socket
   const sendSnapshot = () => {
-    if(stream){
+    //if(stream){
       const video = webcamVideo.current;
       ctx?.drawImage(video!, 0, 0, video!.videoWidth, video!.videoHeight * 5, 0, 0, 300, 800);
       let dataURL = canvas.toDataURL('image/jpeg');
       socket.emit('stream', { image: dataURL, frame: numFrames });
       //console.log("Sending frame ", numFrames);
       numFrames += 1;
-    }
+    //}
   }
 
   const startConnection = () => {
@@ -82,7 +73,7 @@ const Webcam = ({ text, setText, close }: {text: string, setText: React.Dispatch
   }
 
   const stopConnection = () => {
-    if(stream){
+    //if(stream){
       console.log('here!!')
       stream!.getTracks().forEach((track) => {
         console.log("stopping track");
@@ -91,14 +82,20 @@ const Webcam = ({ text, setText, close }: {text: string, setText: React.Dispatch
       setStream(undefined);
       //console.log(localVideoStream.current);
       // localVideoStream.current = null;
-    }
+    //}
   }
 
 
 
-  useEffect(() => {
-    stopConnection();
-  }, [close])
+  // useEffect(() => {
+  //   console.log("close: " + close);
+  //   if(close){
+  //     stopConnection();
+  //   } else{
+  //     startConnection();
+  //     return () => clearInterval(streamTimer);
+  //   }
+  // }, [close])
 
   // useEffect(() => {
   //   if(!mediaStream) startConnection();

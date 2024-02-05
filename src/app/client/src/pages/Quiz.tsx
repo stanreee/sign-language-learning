@@ -14,7 +14,8 @@ import { Check } from 'react-bootstrap-icons';
 import React from 'react';
 
 type QuizProps = {
-    title: string
+    title: string;
+    timePerQuestion: number;
   quizQuestions: iQuizASL[];
 };
 
@@ -33,6 +34,7 @@ type userAnswers = {
 
 const Quiz = ({
     title,
+    timePerQuestion,
     quizQuestions,
 }: QuizProps) => {
   const [activeQuestion, setActiveQuestion] = useState<number>(0)
@@ -47,8 +49,8 @@ const Quiz = ({
   const [sign, setSign] = useState("")
 
   //temp
-  const [signIndex, setSignIndex] = useState(0);
-  const signHardCoded: string[] = ["A", "B", "F", "D", "G"];
+  // const [signIndex, setSignIndex] = useState(0);
+  // const signHardCoded: string[] = ["A", "B", "F", "D", "G"];
 
 
   const [isCorrectSign, setIsCorrectSign] = useState(false);
@@ -88,7 +90,7 @@ const Quiz = ({
     }
 
     //temp
-    setSignIndex(signIndex + 1);
+    //setSignIndex(signIndex + 1);
   }
 
   const onClickSkip = () => {
@@ -118,7 +120,7 @@ const Quiz = ({
     }
 
     //temp
-    setSignIndex(signIndex + 1);
+    //setSignIndex(signIndex + 1);
   }
 
   const onClickViewHistorical = () => {
@@ -160,9 +162,9 @@ const Quiz = ({
   }, [sign]);
 
   //temp
-  useEffect(() => {
-    setSign(signHardCoded[signIndex]);
-  }, [signIndex]);
+  // useEffect(() => {
+  //   setSign(signHardCoded[signIndex]);
+  // }, [signIndex]);
 
   // hook from Timer module for expired time
   useEffect(() => {
@@ -214,7 +216,7 @@ const Quiz = ({
                 </div>
               </div>
               <div className='container-column'>
-              <Timer time={10} setIsExpired={setIsTimeExpired} timerRes={timerReset}/>
+              <Timer time={timePerQuestion} setIsExpired={setIsTimeExpired} timerRes={timerReset}/>
               </div>
               <div className='container-column'></div>
             </div>

@@ -9,4 +9,5 @@ interface iQuiz {
     questions: iQuizASL[] 
 }
 
+
 export default iQuiz;

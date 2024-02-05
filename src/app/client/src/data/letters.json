@@ -60,5 +60,18 @@
         "n2ZiF7ngzmk", 
         "mLnE-MDNPog", 
         "CCfgeWcgCtA" 
+    ],
+    "easyLetters" : [
+        "A", "B", "C", "E", "F", "I", "K", "L",
+        "O", "R", "U", "V", "W", "X", "Y"
+    ], 
+    "mediumLetters" : [
+        "A", "B", "C", "D", "E", "F", "G", 
+        "H", "I", "K", "L", "M", "N", 
+        "O", "P", "Q", "R", "S", "T", "U", 
+        "V", "W", "X", "Y"
+    ],
+    "vowelLetters" : [
+        "A", "E", "I", "O", "U", "Y"
     ]
 }

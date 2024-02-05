@@ -4,32 +4,27 @@ import Excercise from "../components/Exercise";
 import '../styles/Exercise.css';
 
 import iQuiz from '../interfaces/iQuiz'
-import additionQuizRaw from "../data/additionQuiz.json"
-import subtractionQuizRaw from "../data/subtractionQuiz.json"
-import multiplicationQuizRaw from "../data/multiplicationQuiz.json"
-import signLanguageQuizRaw from "../data/signLanguageQuiz.json"
-import vowelsQuizRaw from "../data/vowelsQuizASL.json"
 import Quiz from './Quiz';
-import iQuizASL from '../interfaces/iQuizASL';
 import React from 'react';
+import getUserQuizzes from '../class/getUserQuizzes';
 
 
 const Exercises = () => {
-
-    const [selectedQuiz, setSelectedQuiz] = useState<string>();
+    // store index of quiz selection
+    const [selectedQuizIndex, setSelectedQuizIndex] = useState<number>();
+    const [selectedQuizDifficulty, setSelectedQuizDifficulty] = useState<string>();
 
     //DATA CALL
     // GET QUIZ LIST
-    // const additionQuiz: iQuiz = additionQuizRaw;
-    // const subtractionQuiz: iQuiz = subtractionQuizRaw;
-    // const multiplicationQuiz: iQuiz = multiplicationQuizRaw;
-    const signLanguageQuiz: iQuiz = signLanguageQuizRaw;
-    const vowelsQuizASLQuiz: iQuiz = vowelsQuizRaw;
+    const quizVowelArray: iQuiz[] = getUserQuizzes.getVowelQuiz();
+    const quizEasyArray: iQuiz[] = getUserQuizzes.getEasyQuizzes();
+    const quizEasyVowelArray = quizEasyArray.concat(quizVowelArray);
 
+    const quizMediumArray: iQuiz[] = getUserQuizzes.getMediumQuizzes();
+    const quizHardArray: iQuiz[] = getUserQuizzes.getHardQuizzes();
 
-    //const quizArray: iQuiz[] = [additionQuiz, subtractionQuiz, multiplicationQuiz]
-    // list of quizes
-    const quizArray: iQuiz[] = [signLanguageQuiz, vowelsQuizASLQuiz];
+    // const quizArray: iQuiz[] = quizEasyVowelArray.concat(quizMediumArray, quizHardArray);
+
 
     return (
     <div className="Exercise-Page">
@@ -37,30 +32,86 @@ const Exercises = () => {
         <h1>Exercises</h1>
       </div>
       <div className="Exercise-content">
-        {selectedQuiz === undefined ? quizArray.map((quiz: iQuiz) => {
-          return(
-            <Excercise 
-              title={quiz.topic}
-              desc={quiz.description}
-              difficulty={quiz.level}
-              timePerQuestion={quiz.timePerQuestion}
-              questionAmount={quiz.totalQuestions}
-              quiz={quiz.questions}
-              selected={selectedQuiz === quiz.topic}
-              onClick={() => setSelectedQuiz(quiz.topic)}
-            />
-          )
-          }) : (
-            // (selectedQuiz === "Addition" && <Quiz title={additionQuiz.topic} quizQuestions={additionQuiz.questions}/>)
-            // || (selectedQuiz === "Subtraction" && <Quiz title={subtractionQuiz.topic}  quizQuestions={subtractionQuiz.questions}/>)
-            // || (selectedQuiz === "Multiplication" && <Quiz title={multiplicationQuiz.topic}  quizQuestions={multiplicationQuiz.questions}/>)
-            // || 
-            (selectedQuiz === "ASL" && <Quiz title={signLanguageQuiz.topic}  quizQuestions={signLanguageQuiz.questions}/>)
-            || (selectedQuiz === "Vowels" && <Quiz title={vowelsQuizASLQuiz.topic}  quizQuestions={vowelsQuizASLQuiz.questions}/>)
-            
+        <div className='container-row'>
+        {selectedQuizIndex === undefined ? (
+          <div className='container-row'>
+            <div className='container-column-3'>
+              <h2>Easy</h2>
+              {
+              quizEasyVowelArray.map((quiz: iQuiz, index: number) => {
+                return(
+                  <Excercise 
+                    title={quiz.topic}
+                    desc={quiz.description}
+                    difficulty={quiz.level}
+                    timePerQuestion={quiz.timePerQuestion}
+                    questionAmount={quiz.totalQuestions}
+                    quiz={quiz.questions}
+                    selected={selectedQuizIndex === index}
+                    onClick={() => {
+                      setSelectedQuizIndex(index)
+                      setSelectedQuizDifficulty('Easy');
+                    }}
+                  />
+                )
+                })
+              }
+            </div>
+            <div className='container-column-3'>
+              <h2>Medium</h2>
+              {
+              quizMediumArray.map((quiz: iQuiz, index: number) => {
+                return(
+                  <Excercise 
+                    title={quiz.topic}
+                    desc={quiz.description}
+                    difficulty={quiz.level}
+                    timePerQuestion={quiz.timePerQuestion}
+                    questionAmount={quiz.totalQuestions}
+                    quiz={quiz.questions}
+                    selected={selectedQuizIndex === index}
+                    onClick={() => {
+                      setSelectedQuizIndex(index)
+                      setSelectedQuizDifficulty('Medium');
+                    }}
+                  />
+                )
+                })
+              }
+            </div>
+            <div className='container-column-3'>
+              <h2>Hard</h2>
+              {
+              quizHardArray.map((quiz: iQuiz, index: number) => {
+                return(
+                  <Excercise 
+                    title={quiz.topic}
+                    desc={quiz.description}
+                    difficulty={quiz.level}
+                    timePerQuestion={quiz.timePerQuestion}
+                    questionAmount={quiz.totalQuestions}
+                    quiz={quiz.questions}
+                    selected={selectedQuizIndex === index}
+                    onClick={() => {
+                      setSelectedQuizIndex(index);
+                      setSelectedQuizDifficulty('Hard');
+                    }}
+                  />
+                )
+                })
+              }
+            </div>
+          </div>
 
+        )
+          
+          : (
+              (selectedQuizDifficulty === "Easy" && <Quiz title={quizEasyVowelArray[selectedQuizIndex].topic} timePerQuestion={quizEasyVowelArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizEasyVowelArray[selectedQuizIndex].questions}/>)
+              || (selectedQuizDifficulty === "Medium" && <Quiz title={quizMediumArray[selectedQuizIndex].topic} timePerQuestion={quizMediumArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizMediumArray[selectedQuizIndex].questions}/>)
+              || (selectedQuizDifficulty === "Hard" && <Quiz title={quizHardArray[selectedQuizIndex].topic} timePerQuestion={quizHardArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizHardArray[selectedQuizIndex].questions}/>)
           )
         }
+        </div>
       </div>
     </div>
     );

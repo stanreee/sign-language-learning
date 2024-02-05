@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Webcam from '../components/Webcam' 
 import '../styles/Practice.css'
 import '../styles/Quiz.css'
+import React from 'react'
 
 const Practice = () => {
 
