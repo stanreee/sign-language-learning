@@ -1,6 +1,16 @@
 import numpy as np
 from sklearn.decomposition import PCA
 
+def get_features(results):
+    features = []
+
+    if results.multi_hand_landmarks:
+        landmarks = results.multi_hand_landmarks[0]
+        for point in landmarks.landmark:
+            features.append([point.x, point.y])
+
+    return features
+
 # process landmark features
 # in particular:
 #   - designate a landmark as the base landmark, calculate relative x and y coordinates on other landmarks from the base landmark

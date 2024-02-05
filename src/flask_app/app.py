@@ -3,7 +3,7 @@ from flask import Flask, render_template, Response
 from flask_socketio import SocketIO
 from static_model import StaticModel
 from dynamic_model import DynamicModel
-from util import process_features
+from util import process_features, get_features
 import torch
 import cv2
 import numpy as np
@@ -32,47 +32,45 @@ frames_path = cur_dir + "/frames/"
 
 @socketio.on('stream')
 def stream(message):
-    # print(message)
     frame = message['image']
+
+    # get encoded message
     encoded = message['image'].split("base64,")[1]
+    # reconstruct image
     image = np.fromstring(base64.b64decode(encoded, validate=True), np.uint8)
 
-    # print(image)
-
+    # image processing
     cv2frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
 
     rgb_frame = cv2.cvtColor(cv2frame, cv2.COLOR_BGR2RGB)
-    print(rgb_frame)
+
+    # run through mediapipe
     results = hands.process(rgb_frame)
     
-    ## image processing (move to module later?)
-    features = []
-
-    if results.multi_hand_landmarks:
-        landmarks = results.multi_hand_landmarks[0]
-        for point in landmarks.landmark:
-            features.append([point.x, point.y])
+    # extract landmark features
+    features = get_features(results)
     
     if len(features) >= 21:
+        # process landmark features by normalizing coordinates
         features = process_features(features)
         
+        # convert to tensor for ml model
         tensor = torch.from_numpy(np.array(features))
         tensor = tensor.to(torch.float32)
 
-        # print(tensor)
-
+        # run through static model
         results = static(tensor[None, ...])
 
+        # get the highest confidence result
         result_arr = results.detach().numpy()
         result = np.argmax(result_arr)
 
+        # return result
         print("result: " + chr(result + 65))
-        # break
         data = {}
         data['frame'] = frame
         data['result'] = str(chr(result + 65))
         serialized = json.dumps(data)
-        # print(serialized)
 
         socketio.emit("stream", serialized)
     
