@@ -9,7 +9,7 @@ import NoMatch from './components/NoMatch';
 // import Quiz from './pages/Quiz';
 import Account from './pages/Account';
 import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import LoggedIn from './pages/LoggedIn'
 
 import './App.css';
 
@@ -24,12 +24,11 @@ const App = () => {
             <Route path="/Practice" element={<Practice />} />
             <Route path="/Account" element={<Account />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/SignUp" element={<SignUp />} />
             {/* <Route path="/Quiz" element={<Quiz />} /> */}
+            <Route path="/LoggedIn" element={<LoggedIn />} />
             <Route path="*" element={<NoMatch />} />
         </Routes>
     </>
-
   );
 }
 

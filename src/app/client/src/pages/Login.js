@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // info from https://clerk.com/blog/building-a-react-login-page-template
 
-const Login = () => {  //= (props)
+const Login = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
         
     const onButtonClick = () => {
 
@@ -33,8 +33,9 @@ const Login = () => {  //= (props)
         if (password.length < 7) {
             setPasswordError("The password must be 8 characters or longer")
             return
-        }   
-
+        } 
+        
+        navigate("/loggedIn")
     }
 
     return <div className={"mainContainer"}>
