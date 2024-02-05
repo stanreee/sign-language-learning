@@ -1,7 +1,8 @@
 #Import necessary libraries
 from flask import Flask, render_template, Response
 from flask_socketio import SocketIO
-from sign_lang_model import SignLangModel
+from static_model import StaticModel
+from dynamic_model import DynamicModel
 from util import process_features
 import torch
 import cv2
@@ -14,13 +15,15 @@ import json
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-model = SignLangModel()
+static = StaticModel()
+dynamic = DynamicModel()
 
 max_frames = 300
 cur_frames = 0
 
 cur_dir = os.getcwd()
-model.load_state_dict(torch.load(cur_dir + "/simple_classifier.pth"))
+static.load_state_dict(torch.load(cur_dir + "/simple_classifier.pth"))
+dynamic.load_state_dict(torch.load(cur_dir + "/simple_dynamic_classifier.pth"))
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
@@ -58,7 +61,7 @@ def stream(message):
 
         # print(tensor)
 
-        results = model(tensor[None, ...])
+        results = static(tensor[None, ...])
 
         result_arr = results.detach().numpy()
         result = np.argmax(result_arr)

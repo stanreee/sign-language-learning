@@ -45,6 +45,7 @@ while cap.isOpened():
             features = process_features(features)
             landmark_history.append(features)
             if len(landmark_history) > 30:
+                landmark_history.pop(0)
                 compressed = landmark_history_preprocess(landmark_history)
 
                 tensor = torch.from_numpy(np.array(compressed))

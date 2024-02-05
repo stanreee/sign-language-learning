@@ -6,7 +6,12 @@ import numpy as np
 ### IDS:
 ## 0: no, 1: where, 2: future, 9: j, 25: z
 
-class SignLangModelDynamic(nn.Module):
+class DynamicModel(nn.Module):
+    """
+        the Dynamic Model takes in a 1x756 array input. this input is the landmark history of exactly 30 frames.
+        to use this, we need to compress a 30x42 dimensional array (30 frames, 42 landmarks per frame) to a 1x756 array.
+        this can be done using the landmark_history_preprocess function in util.py
+    """
     def __init__(self):
         super().__init__()
         self.fc1 = nn.Linear(18 * 42, 42)
