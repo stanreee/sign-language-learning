@@ -41,7 +41,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={a} alt= "a" />
-          <h2>{allLetters[0]} </h2>
+          <h2>A</h2>
           {letterDesc[0]}
           <Link 
             to={`https://youtu.be/${letterVideos[0]}`}
@@ -52,7 +52,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={b} alt= "b" />
-          <h2>{allLetters[1]} </h2>
+          <h2>B</h2>
           {letterDesc[1]}
           <Link 
             to={`https://youtu.be/${letterVideos[1]}`}
@@ -63,7 +63,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={c} alt= "c" />
-          <h2>{allLetters[2]} </h2>
+          <h2>C </h2>
           {letterDesc[2]}
           <Link 
             to={`https://youtu.be/${letterVideos[2]}`}
@@ -74,7 +74,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={d} alt= "d" />
-          <h2>{allLetters[3]} </h2>
+          <h2>D </h2>
           {letterDesc[3]}
           <Link 
             to={`https://youtu.be/${letterVideos[3]}`}
@@ -85,7 +85,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={e} alt= "e" />
-          <h2>{allLetters[4]} </h2>
+          <h2>E </h2>
           {letterDesc[4]}
           <Link 
             to={`https://youtu.be/${letterVideos[4]}`}
@@ -96,7 +96,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={f} alt= "f" />
-          <h2>{allLetters[5]} </h2>
+          <h2>F </h2>
           {letterDesc[5]}
           <Link 
             to={`https://youtu.be/${letterVideos[5]}`}
@@ -107,7 +107,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={g} alt= "g" />
-          <h2>{allLetters[6]} </h2>
+          <h2>G </h2>
           {letterDesc[6]}
           <Link 
             to={`https://youtu.be/${letterVideos[6]}`}
@@ -118,7 +118,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={h} alt= "h" />
-          <h2>{allLetters[7]} </h2>
+          <h2>H </h2>
           {letterDesc[7]}
           <Link 
             to={`https://youtu.be/${letterVideos[7]}`}
@@ -129,7 +129,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={i} alt= "i" />
-          <h2>{allLetters[8]} </h2>
+          <h2>I </h2>
           {letterDesc[8]}
           <Link 
             to={`https://youtu.be/${letterVideos[8]}`}
@@ -140,7 +140,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={j} alt= "j" />
-          <h2>{allLetters[9]} </h2>
+          <h2>J </h2>
           {letterDesc[9]}
           <Link 
             to={`https://youtu.be/${letterVideos[9]}`}
@@ -151,7 +151,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={k} alt= "k" />
-          <h2>{allLetters[10]} </h2>
+          <h2>K </h2>
           {letterDesc[10]}
           <Link 
             to={`https://youtu.be/${letterVideos[10]}`}
@@ -162,7 +162,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={l} alt= "l" />
-          <h2>{allLetters[11]} </h2>
+          <h2>L </h2>
           {letterDesc[11]}
           <Link 
             to={`https://youtu.be/${letterVideos[11]}`}
@@ -173,7 +173,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={m} alt= "m" />
-          <h2>{allLetters[12]} </h2>
+          <h2>M </h2>
           {letterDesc[12]}
           <Link 
             to={`https://youtu.be/${letterVideos[12]}`}
@@ -184,7 +184,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={n} alt= "n" />
-          <h2>{allLetters[13]} </h2>
+          <h2>N </h2>
           {letterDesc[13]}
           <Link 
             to={`https://youtu.be/${letterVideos[13]}`}
@@ -195,7 +195,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={o} alt= "o" />
-          <h2>{allLetters[14]} </h2>
+          <h2>O </h2>
           {letterDesc[14]}
           <Link 
             to={`https://youtu.be/${letterVideos[14]}`}
@@ -206,7 +206,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={p} alt= "p" />
-          <h2>{allLetters[15]} </h2>
+          <h2>P </h2>
           {letterDesc[15]}
           <Link 
             to={`https://youtu.be/${letterVideos[15]}`}
@@ -217,7 +217,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={q} alt= "q" />
-          <h2>{allLetters[16]} </h2>
+          <h2>Q </h2>
           {letterDesc[16]}
           <Link 
             to={`https://youtu.be/${letterVideos[16]}`}
@@ -228,7 +228,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={r} alt= "r" />
-          <h2>{allLetters[17]} </h2>
+          <h2>R </h2>
           {letterDesc[17]}
           <Link 
             to={`https://youtu.be/${letterVideos[17]}`}
@@ -239,7 +239,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={s} alt= "s" />
-          <h2>{allLetters[18]} </h2>
+          <h2>S </h2>
           {letterDesc[18]}
           <Link 
             to={`https://youtu.be/${letterVideos[18]}`}
@@ -250,7 +250,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={t} alt= "t" />
-          <h2>{allLetters[19]} </h2>
+          <h2>T </h2>
           {letterDesc[19]}
           <Link 
             to={`https://youtu.be/${letterVideos[19]}`}
@@ -261,7 +261,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={u} alt= "u" />
-          <h2>{allLetters[20]} </h2>
+          <h2>U </h2>
           {letterDesc[20]}
           <Link 
             to={`https://youtu.be/${letterVideos[20]}`}
@@ -272,7 +272,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={v} alt= "v" />
-          <h2>{allLetters[21]} </h2>
+          <h2>V </h2>
           {letterDesc[21]}
           <Link 
             to={`https://youtu.be/${letterVideos[21]}`}
@@ -283,7 +283,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={w} alt= "w" />
-          <h2>{allLetters[22]} </h2>
+          <h2>W </h2>
           {letterDesc[22]}
           <Link 
             to={`https://youtu.be/${letterVideos[22]}`}
@@ -294,7 +294,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={x} alt= "x" />
-          <h2>{allLetters[23]} </h2>
+          <h2>X </h2>
           {letterDesc[23]}
           <Link 
             to={`https://youtu.be/${letterVideos[23]}`}
@@ -305,7 +305,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={y} alt= "y" />
-          <h2>{allLetters[24]} </h2>
+          <h2>Y </h2>
           {letterDesc[24]}
           <Link 
             to={`https://youtu.be/${letterVideos[24]}`}
@@ -316,7 +316,7 @@ const DisplayLetters = () => {
 
         <div className = "card">
           <img src={z} alt= "z" />
-          <h2>{allLetters[25]} </h2>
+          <h2>Z </h2>
           {letterDesc[25]}
           <Link 
             to={`https://youtu.be/${letterVideos[25]}`}

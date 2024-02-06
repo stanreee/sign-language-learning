@@ -3,6 +3,7 @@ import Webcam from '../components/Webcam'
 import '../styles/Practice.css'
 import '../styles/Quiz.css'
 import React from 'react'
+import ASLLetters from "../images/ASLLetters.png"
 
 const Practice = () => {
 
@@ -19,9 +20,11 @@ const Practice = () => {
                     <span className="result-prompt">Result: </span>
                     <span className="result">{result}</span>
                 </div>
-                <div className='practice-webcam'>
+                <div className='letterAlign'>
                     <Webcam text={result} setText={setResult} run={true}/>
+                    <img src={ASLLetters} width={500} height={500} alt="aslLetters" />
                 </div>
+                
             </div>          
         </div>
     )
