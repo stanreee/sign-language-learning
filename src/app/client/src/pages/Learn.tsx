@@ -19,10 +19,10 @@ const Learn = () => {
         <h2>Learn the Letters!</h2>
         <DisplayLetters />
 
-        <br></br>
+        {/* <br></br>
 
         <h2>Learn Some Basic Words/Phrases!</h2>
-        TBA
+        TBA */}
       </header>
 
       <div className="Section"> </div>
