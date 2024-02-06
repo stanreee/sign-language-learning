@@ -252,7 +252,7 @@ const Quiz = ({
             </div>
           </div>
           <div className="quiz-container-column">
-            <Webcam text={sign} setText={setSign} close={closeStream}/> 
+            <Webcam text={sign} setText={setSign} run={true}/> 
           </div>
             {/* <ul>
               {choices.map((answer: string, index: number) => (
