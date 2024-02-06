@@ -20,7 +20,7 @@ const Practice = () => {
                     <span className="result">{result}</span>
                 </div>
                 <div className='practice-webcam'>
-                    <Webcam text={result} setText={setResult} close={false}/>
+                    <Webcam text={result} setText={setResult} run={true}/>
                 </div>
             </div>          
         </div>
