@@ -15,8 +15,8 @@ const VideoClip = ({
   }
 
   const opts: YouTubeProps['opts'] = {
-    height: '390',
-    width: '640',
+    height: '234',
+    width: '384',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 0,
