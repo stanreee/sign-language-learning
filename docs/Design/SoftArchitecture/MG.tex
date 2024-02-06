@@ -56,6 +56,8 @@ Jan 15, 2024 & 1.6 & Andrew; Cleaned up minor errors\\
 Jan 17, 2024 & 1.7 & Jeremy; Replaced Login/Signup module with Authentication module. Added in Andrews updates UsesHierarchy image\\
 Jan 17, 2024 & 1.8 & Cassidy; Added in Reference Material, Abbreviations, and Reflection Template\\
 Jan 17, 2024 & 1.9 & Stanley; Answered reflection question 2\\
+Jan 23, 2024 & 2.0 & Cassidy; Addressed git issue \#69 regarding AC1 module \\
+Jan 23, 2024 & 2.1 & Cassidy; Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 \\
 \bottomrule
 \end{tabularx}
 
@@ -423,7 +425,11 @@ to be implemented.
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
-requirements and between the modules and the anticipated changes.
+requirements and between the modules and the anticipated changes. 
+
+In Table~\ref{TblACT}, the anticipated change \acref{acInfo} maps to multiple modules in our system. This change refers to the fact that ASL just like
+many other languages is always evolving and changing over time. Because of this, if this system were to update the words or phrases that are used in
+this application, it would affect the hand recognition models that were built on older data, as well as all the other modules that are affected by this model change. 
 
 \begin{table}[H]
 \centering
@@ -447,6 +453,7 @@ LFR1 & \mref{m9}\\
 LFR2 & \mref{m11}\\
 LFR3 & \mref{m10}\\
 UHR3 & \mref{m13}\\
+UHR4 & \mref{m10}\\
 SR1 & \mref{m12}\\
 SR2 & \mref{m6}\\
 SR3 & \mref{m13}\\

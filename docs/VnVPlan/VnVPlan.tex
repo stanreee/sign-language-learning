@@ -34,22 +34,24 @@
 
 \pagenumbering{roman}
 
-\section*{Revision History}
+\section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Oct 31 & Jeremy & Added in draft for sect 4.1 system tests for functional requirements \\ 
-Nov 1 & Stanley & Added sections 3, 3.1, and 3.2 \\
-Nov 1 & Jeremy & Updated sec 4.1 with goals of each and added in new item for new FR \\
-Nov 2 & Cassidy & Updated sec 4.2 with tests for non-functional requirements \\
-Nov 2 & Stanley & Added design verification plans \\
-Nov 2 & Andrew & Updated Sections 3.4-3.7\\
-Nov 3 & Edward & Added all of Section 2\\
-Nov 3 & Andrew, Cassidy, Jeremy, Stanley & Added Reflections\\
-Nov 3 & Cassidy & Added section 1 and usability survey questions \\
-Nov 3 & Edward & Added Reflection\\
-Nov 3 & Jeremy & Added in sect 4.3 table matricies\\
+Oct 31, 2023 & Jeremy & Added in draft for sect 4.1 system tests for functional requirements \\ 
+Nov 1, 2023 & Stanley & Added sections 3, 3.1, and 3.2 \\
+Nov 1, 2023 & Jeremy & Updated sec 4.1 with goals of each and added in new item for new FR \\
+Nov 2, 2023 & Cassidy & Updated sec 4.2 with tests for non-functional requirements \\
+Nov 2, 2023 & Stanley & Added design verification plans \\
+Nov 2, 2023 & Andrew & Updated Sections 3.4-3.7\\
+Nov 3, 2023 & Edward & Added all of Section 2\\
+Nov 3, 2023 & Andrew, Cassidy, Jeremy, Stanley & Added Reflections\\
+Nov 3, 2023 & Cassidy & Added section 1 and usability survey questions \\
+Nov 3, 2023 & Edward & Added Reflection\\
+Nov 3, 2023 & Jeremy & Added in sect 4.3 table matricies\\
+Jan 23, 2024 & Cassidy & Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 \\
+Jan 23, 2024 & Cassidy & Addressed git issue \#52 regarding traceability to FR5, added test case \\
 \bottomrule
 \end{tabularx}
 
@@ -277,6 +279,22 @@ How test will be performed: Manual user with an account will attempt to sign in 
 Functional Requirement: FR4
 
 \item{FRT1-A3}
+
+Goal: User can sign out of their account
+
+Control: Manual
+					
+Initial State: User is currently signed into their registered account and has found the "Logout" header under their profile. 
+					
+Input: User clicks on the "Logout" header.
+					
+Output: System logs the user out of their account and gives the user a message letting them know that they have successfully logged out of their account. 
+
+How test will be performed: Manual user with an account will attempt to logout of their account.
+
+Functional Requirement: FR5
+
+\item{FRT1-A4}
 
 Goal: User can reset password to account
 
@@ -559,6 +577,22 @@ How test will be performed: A sampling of representative users will attempt to c
 
 Non-Functional Requirement: UHR3
 
+\item{NFRT1 - UT5}
+
+Goal: The system should show the user if their input needs to be adjusted. 
+
+Type: Manual, Static
+					
+Initial State: The application prompts the user with a question during a lesson.
+					
+Input: The user attempts to sign in response to the application's prompt but their camera is not set up properly.
+					
+Output: The application should register that it cannot be confident in determining if the sign the user is displaying is accurate, so it should prompt the user to fix their camera settings before they are allowed to continue.
+					
+How test will be performed: A user will try to respond to the prompt by signing in front of the application, but with the user out of the focus of the camera. The application should not be able to determine if the user's sign is correct or not and should prompt the user to adjust their camera settings. This test will be performed multiple times with various input and camera conditions to ensure the requirement has been tested effectively. The developers will verify that the user is given feedback where appropriate. 
+
+Non-Functional Requirement: UHR4
+
 \end{enumerate}
 
 \subsubsection{Performance Requirements}
@@ -599,22 +633,6 @@ How test will be performed: A user will respond to the prompt by signing in fron
 
 Non-Functional Requirement: PR2
 
-\item{NFRT2 - PT3}
-
-Goal: The system should show the user if their input needs to be adjusted. 
-
-Type: Manual, Static
-					
-Initial State: The application prompts the user with a question during a lesson.
-					
-Input: The user attempts to sign in response to the application's prompt but their camera is not set up properly.
-					
-Output: The application should register that it cannot be confident in determining if the sign the user is displaying is accurate, so it should prompt the user to fix their camera settings before they are allowed to continue.
-					
-How test will be performed: A user will try to respond to the prompt by signing in front of the application, but with the user out of the focus of the camera. The application should not be able to determine if the user's sign is correct or not and should prompt the user to adjust their camera settings. This test will be performed multiple times with various input and camera conditions to ensure the requirement has been tested effectively. The developers will verify that the user is given feedback where appropriate. 
-
-Non-Functional Requirement: PR3
-
 \end{enumerate}
 
 \newpage
@@ -630,7 +648,8 @@ Functional Requirements to System Test Requirements
 \multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8} & \multicolumn{1}{l|}{9} & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{11} & \multicolumn{1}{l|}{12} & \multicolumn{1}{l|}{13} \\ \hline
 \multicolumn{1}{|l|}{FRT1-A1}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
 \multicolumn{1}{|l|}{FRT1-A2}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-\multicolumn{1}{|l|}{FRT1-A3}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  \\ \hline
+\multicolumn{1}{|l|}{FRT1-A3}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{FRT1-A4}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  \\ \hline
 \multicolumn{1}{|l|}{FRT2-LP1}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
 \multicolumn{1}{|l|}{FRT2-LP2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
 \multicolumn{1}{|l|}{FRT2-LP3}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
@@ -650,15 +669,15 @@ Non Functional Requirements to System Test Requirements}
 \centering
 \resizebox{\textwidth}{!}{
 \begin{tabular}{lllllll}
-                                 & \multicolumn{3}{c}{UHR}                                                  & \multicolumn{3}{c}{PR}                                                   \\ \cline{2-7} 
-\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} \\ \hline
+                                 & \multicolumn{4}{c}{UHR}                                                  & \multicolumn{2}{c}{PR}                                                   \\ \cline{2-7} 
+\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} \\ \hline
 \multicolumn{1}{|l|}{NFRT1-UT1}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
 \multicolumn{1}{|l|}{NFRT1-UT2}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
 \multicolumn{1}{|l|}{NFRT1-UT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
 \multicolumn{1}{|l|}{NFRT1-UT4}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-PT1}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-PT2}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-PT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT5}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} \\ \hline
+\multicolumn{1}{|l|}{NFRT2-PT1}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT2-PT2}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{X}  \\ \hline
 \end{tabular}
 }
 \end{table}
