@@ -1,13 +1,10 @@
 import numpy as np
 from sklearn.decomposition import PCA
 
-def get_features(results):
+def get_features(landmarks):
     features = []
-
-    if results.multi_hand_landmarks:
-        landmarks = results.multi_hand_landmarks[0]
-        for point in landmarks.landmark:
-            features.append([point.x, point.y])
+    for point in landmarks:
+        features.append([point['x'], point['y']])
 
     return features
 

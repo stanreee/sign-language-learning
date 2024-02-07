@@ -32,23 +32,10 @@ frames_path = cur_dir + "/frames/"
 
 @socketio.on('stream')
 def stream(message):
-    frame = message['image']
-
-    # get encoded message
-    encoded = message['image'].split("base64,")[1]
-    # reconstruct image
-    image = np.fromstring(base64.b64decode(encoded, validate=True), np.uint8)
-
-    # image processing
-    cv2frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
-
-    rgb_frame = cv2.cvtColor(cv2frame, cv2.COLOR_BGR2RGB)
-
-    # run through mediapipe
-    results = hands.process(rgb_frame)
+    landmarks = message['landmarks']
     
     # extract landmark features
-    features = get_features(results)
+    features = get_features(landmarks)
     
     if len(features) >= 21:
         # process landmark features by normalizing coordinates
@@ -68,7 +55,7 @@ def stream(message):
         # return result
         print("result: " + chr(result + 65))
         data = {}
-        data['frame'] = frame
+        # data['frame'] = frame
         data['result'] = str(chr(result + 65))
         serialized = json.dumps(data)
 
