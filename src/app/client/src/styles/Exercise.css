@@ -1,8 +1,8 @@
 .Exercise-Page {
     background-color: #e0e0e0;
     height: 100%;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 
 .Exercise-header{
@@ -78,4 +78,33 @@
   cursor: not-allowed;
   background: rgba(0, 0, 0, .08);
   color: rgba(0, 0, 0, .3);
+}
+
+.container-row{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  width: 100%;
+}
+
+.container-column-3 {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  width: 33%;
+} 
+
+.Exercise-content h2 {
+  color: #144a81;
+  font-size: 24px;
+  letter-spacing: 1.4px;
+  text-align: center;
 }

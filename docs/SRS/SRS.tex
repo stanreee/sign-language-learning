@@ -101,7 +101,8 @@ October 6, 2023 & Stanley Chan & Added individual reflection \\
 October 6, 2023 & Jeremy Langner & Added personal reflection response and general reflection question 3. \\
 October 6, 2023 & Andrew Kil & Added personal reflection response\\
 October 19, 2023 & Cassidy Baldin & Revised aspects of the SRS after given peer review feedback. \\
-November 1 & Jeremy Langner & Added in FR, Use case for reseting password credentials. Switched traceability matrix to table instead of jpeg\\
+November 1, 2023 & Jeremy Langner & Added in FR, Use case for reseting password credentials. Switched traceability matrix to table instead of jpeg\\
+Jan 23, 2024 & Cassidy Baldin & Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 \\
 \bottomrule
 \end{longtable}
 
@@ -441,6 +442,8 @@ UHR2 & The system should be able to be used by people who are hard of hearing or
 \hline
 UHR3 & The system should allow users to personalize their account. & The user should be able to input their name, see their progress etc. & The developers shall certify the product complies with these requirements by ensuring the users will be able to do the required actions. \\
 % (avatar, name, progress; personalization)
+\hline
+UHR4 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements by ensuring the system gives user feedback where appropriate.\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -456,8 +459,6 @@ UHR3 & The system should allow users to personalize their account. & The user sh
 PR1 & The system should respond to user input quickly. & If a user has to wait too long after an input they may be less engaged. & 95\% of tests should repond to user input within 1 second. \\
 \hline
 PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputing to ensure they are learning effectively. & The system should accurately determine the correct hand sign from a user in 95\% of tests. \\
-\hline
-PR3 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements by ensuring the system gives user feedback where appropriate.\\
 \bottomrule
 \end{tabular}
 \end{table}

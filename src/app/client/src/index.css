@@ -36,6 +36,7 @@ ul {
 
 img {
 	max-width: 100%;
+	display: inline-block;
 }
 
 .container {
@@ -281,4 +282,104 @@ nav .nav-items {
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	text-align: center;
+}
+
+.letterAlign {
+    background-color: #e0e0e0;
+    /* flex-direction: row; */
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+	/* margin: 10px 50px; */
+}
+
+/* https://stackoverflow.com/questions/40512026/no-arrow-buttons-in-scrollbar-after-writing-webkit-css/46229219#46229219 */
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+::-webkit-scrollbar-track {
+	/* background: #303030; */
+	border: solid 2px #acacac;
+	height: 10px;
+}
+
+::-webkit-scrollbar-button:single-button {
+	background-color: #e0e0e0;
+	display: block;
+	border-style: solid;
+	height: 13px;
+	width: 16px;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #003459;
+}
+
+  /* Left Button */
+::-webkit-scrollbar-button:horizontal:decrement {
+	border-width: 7px 14px 7px 0;
+	border-color: transparent #404040 transparent transparent;
+}
+
+::-webkit-scrollbar-button:horizontal:decrement:hover {
+  	border-color: transparent #00A7E1 transparent transparent;
+}
+
+/* Right Button*/
+::-webkit-scrollbar-button:horizontal:increment {
+	border-width: 7px 0 7px 14px;
+	border-color: transparent transparent transparent #404040;
+}
+
+::-webkit-scrollbar-button:horizontal:increment:hover {
+  	border-color: transparent transparent transparent #00A7E1;
+}
+  
+.container-letters {
+	display: flex;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: 75%;
+}
+
+.card {
+	flex-shrink: 0;
+	width: 800px;
+	height: 550px;
+	border-radius: 10px;
+	margin-left: 50px;
+	background-size: auto;
+	background-repeat: no-repeat;
+	border: 5px solid #007EA7;
+	object-position: center;
+	overflow: auto;
+}
+
+main {
+	padding: 5rem 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  code {
+	background: #fafafa;
+	border-radius: 5px;
+	padding: 0.75rem;
+	font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
+  }  
+
+input[type="button"] {
+    border: none;
+    background: #003459;
+    color: white;
+    padding: 12px 24px;
+    margin: 8px;
+    font-size: 24px;
+    border-radius: 8px;
+    cursor: pointer;
 }

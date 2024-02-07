@@ -1,0 +1,53 @@
+.practice-page {
+    background-color: #e0e0e0;
+    height: 100%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    max-width: 100%;
+    min-width: 30%;
+    padding: 30px 60px;
+    display: flex;
+    align-items: center;
+}
+
+.practice-header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: calc(10px + 0.75vmin);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+
+}
+
+.practice-page-col{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.practice-webcam {
+    align-items: center;
+}
+
+.result{
+    font-size: 40px;
+    font-weight: 500;
+    color: #09223b;
+}
+
+.result-prompt {
+    font-size: 30px;
+    font-weight: 500;
+    color: #9fa3a9;
+}
+
+
+.cat{
+    font-size: 100000px;
+    font-weight: 60000;
+    color: #999;
+    /* print: meow meow meow */
+}
