@@ -3,7 +3,7 @@ from flask import Flask, render_template, Response
 from flask_socketio import SocketIO
 from static_model import StaticModel
 from dynamic_model import DynamicModel
-from util import process_features, get_features
+from util import process_features, get_features, normalize_landmark_history, landmark_history_preprocess
 import torch
 import cv2
 import numpy as np
@@ -16,26 +16,42 @@ app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 static = StaticModel()
-dynamic = DynamicModel()
+dynamic_model = DynamicModel()
 
 max_frames = 300
 cur_frames = 0
 
 cur_dir = os.getcwd()
 static.load_state_dict(torch.load(cur_dir + "/simple_classifier.pth"))
-dynamic.load_state_dict(torch.load(cur_dir + "/simple_dynamic_classifier.pth"))
+dynamic_model.load_state_dict(torch.load(cur_dir + "/simple_dynamic_classifier.pth"))
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
 frames_path = cur_dir + "/frames/"
 
+@socketio.on('dynamic')
+def dynamic(message):
+    landmark_history = message['landmarkHistory']
+    landmark_history = normalize_landmark_history(landmark_history)
+    compressed = landmark_history_preprocess(landmark_history)
+
+    tensor = torch.from_numpy(np.array(compressed))
+    tensor = tensor.to(torch.float32)
+
+    results = dynamic_model(tensor[None, ...])
+
+    result_arr = results.detach().numpy()
+    result = np.argmax(result_arr)
+
+    data = {}
+    data['result'] = str(result)
+    serialized = json.dumps(data)
+    socketio.emit("dynamic", serialized)
+
 @socketio.on('stream')
 def stream(message):
-    landmarks = message['landmarks']
-    
-    # extract landmark features
-    features = get_features(landmarks)
+    features = message['features']
     
     if len(features) >= 21:
         # process landmark features by normalizing coordinates

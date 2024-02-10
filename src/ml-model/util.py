@@ -7,14 +7,18 @@ from sklearn.decomposition import PCA
 #     this accommodates for different hand positions by having coordinates be relative to base landmark position and not camera position
 #   - normalize landmarks on the maximum coordinate magnitude to improve consistency
 #   referenced from https://github.com/kinivi/hand-gesture-recognition-mediapipe/tree/main
-def process_features(features):
+def process_features(features, reflect):
     base_x, base_y = 0, 0
     for feature in features:
         if base_x == 0 and base_y == 0:
             base_x = feature[0]
             base_y = feature[1]
-        feature[0] = base_x - feature[0]
+        feature[0] = base_x - feature[0] if not reflect else feature[0] - base_x
         feature[1] = base_y - feature[1]
+    
+    if len(features) < 42:
+        for i in range(21):
+            features.append([0, 0]) # append dummy data if only one hand
 
     features = np.array(features).flatten()
 

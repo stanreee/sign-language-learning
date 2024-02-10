@@ -9,7 +9,7 @@ const Practice = () => {
 
     const [result, setResult] = useState("A")
 
-    console.log("result: " + result);
+    // console.log("result: " + result);
     return(
         <div className="practice-page">
             <div className='practice-page-col'>

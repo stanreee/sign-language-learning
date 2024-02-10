@@ -7,98 +7,57 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
+def get_features_loader(TRAINING_DATA_PATH):
+    training_data = pd.read_csv(TRAINING_DATA_PATH)
+
+    target = training_data[training_data.columns[0]].values
+    features = training_data.drop(training_data.columns[0], axis=1).values
+
+    ytrain = torch.from_numpy(target).float()
+    ytrain = ytrain.type(torch.LongTensor)
+    xtrain = torch.from_numpy(features).float()
+
+    dataset = TensorDataset(xtrain, ytrain)
+
+    features_loader = DataLoader(dataset, batch_size=4, shuffle=True, drop_last=True)
+    return features_loader
+
+def zip_feature_loaders(training_data_paths):
+    feature_loaders = []
+    for object in training_data_paths:
+        dataPath, model = object
+        feature_loaders.append((get_features_loader(dataPath), model))
+    return feature_loaders
+
 cur_dir = os.getcwd()
 
-# TRAINING_DATA_PATH = cur_dir + "/datasets/train/csv/data.csv"
-TRAINING_DATA_PATH = cur_dir + "/gather/datasets/static.csv"
-DYNAMIC_TRAINING_DATA_PATH = cur_dir + "/gather/datasets/dynamic.csv"
+model = SignLangModel(1, "static_one_hand")
+dynamic_model = SignLangModelDynamic(1, "dynamic_one_hand")
+
+TRAINING_PATHS = [
+    (cur_dir + "/gather/datasets/static.csv", model),
+    (cur_dir + "/gather/datasets/dynamic.csv", dynamic_model),
+]
 NUM_EPOCHS = 48
 
-training_data = pd.read_csv(TRAINING_DATA_PATH)
-dynamic_training_data = pd.read_csv(DYNAMIC_TRAINING_DATA_PATH)
+features_loaders = zip_feature_loaders(TRAINING_PATHS)
 
-target = training_data[training_data.columns[0]].values
-features = training_data.drop(training_data.columns[0], axis=1).values
-
-dynamic_target = dynamic_training_data[dynamic_training_data.columns[0]].values
-dynamic_features = dynamic_training_data.drop(dynamic_training_data.columns[0], axis=1).values
-
-ytrain = torch.from_numpy(target).float()
-ytrain = ytrain.type(torch.LongTensor)
-xtrain = torch.from_numpy(features).float()
-
-ytrain_dynamic = torch.from_numpy(dynamic_target).float()
-ytrain_dynamic = ytrain_dynamic.type(torch.LongTensor)
-xtrain_dynamic = torch.from_numpy(dynamic_features).float()
-
-dataset = TensorDataset(xtrain, ytrain)
-datasetDynamic = TensorDataset(xtrain_dynamic, ytrain_dynamic)
-
-features_loader = DataLoader(dataset, batch_size=4, shuffle=True, drop_last=True)
-features_loader_dynamic = DataLoader(datasetDynamic, batch_size=4, shuffle=True, drop_last=True)
-
-# dataiter = iter(features_loader)
-# landmarks, labels = next(dataiter)
-
-model = SignLangModel()
-dynamic_model = SignLangModelDynamic()
-
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
-optimizer_dynamic = optim.Adam(dynamic_model.parameters(), lr=0.001)
-
-torch.manual_seed(42)
-
-model.eval()
-
-for epoch in range(NUM_EPOCHS):
-    for batch_idx, (data, targets) in enumerate(features_loader):
-        # Zero the gradients
-        optimizer.zero_grad()
-
-        # Forward pass
-        outputs = model(data)
-
-        # Calculate loss
-        loss = criterion(outputs, targets)
-
-        # Backward pass
-        loss.backward()
-
-        # Update weights
-        optimizer.step()
-
-        if batch_idx == len(features_loader) - 1:
-            print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {batch_idx}/{len(features_loader)}, Loss: {loss.item():.4f}')
-
-# Save the trained model
-torch.save(model.state_dict(), cur_dir + '/simple_classifier.pth')
-
-print("STATIC MODEL TRAINED")
-
-for epoch in range(NUM_EPOCHS):
-    for batch_idx, (data, targets) in enumerate(features_loader_dynamic):
-        # Zero the gradients
-        optimizer_dynamic.zero_grad()
-
-        # Forward pass
-        outputs = dynamic_model(data)
-
-        # Calculate loss
-        loss = criterion(outputs, targets)
-
-        # Backward pass
-        loss.backward()
-
-        # Update weights
-        optimizer_dynamic.step()
-
-        if batch_idx == len(features_loader_dynamic) - 1:
-            print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {batch_idx}/{len(features_loader_dynamic)}, Loss: {loss.item():.4f}')
-
-# Save the trained model
-torch.save(dynamic_model.state_dict(), cur_dir + '/simple_dynamic_classifier.pth')
-
-print("DYNAMIC MODEL TRAINED")
+for idx, object in enumerate(features_loaders):
+    features_loader, model = object
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    torch.manual_seed(42)
+    model.eval()
+    for epoch in range(NUM_EPOCHS):
+        for batch_idx, (data, targets) in enumerate(features_loader):
+            optimizer.zero_grad()
+            outputs = model(data)
+            loss = criterion(outputs, targets)
+            loss.backward()
+            optimizer.step()
+            if batch_idx == len(features_loader) - 1:
+                print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {batch_idx}/{len(features_loader)}, Loss: {loss.item():.4f}')
+    torch.save(model.state_dict(), cur_dir + '/trained_models/' + str(model.name) + '.pth')
+    print("Model saved to", cur_dir + "/trained_models/" + str(model.name) + ".pth")
 
 

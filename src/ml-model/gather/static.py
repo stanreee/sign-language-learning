@@ -10,11 +10,15 @@ class StaticClassifier(Classifier):
         super().__init__("static", hands)
         pass
 
-    def save(self, data, id):
+    def save(self, data, id, num_hands):
         for i in range(len(data)):
             data[i] = [id] + data[i]
+            if num_hands == 1:
+                data[i] += [0] * 42
         cur_dir = os.curdir
-        with open(cur_dir + "/datasets/" + str(self.name) + ".csv", 'a', encoding="UTF8", newline='') as f:
+        fileName = str(self.name)
+        # if num_hands > 1: fileName += "_2"
+        with open(cur_dir + "/datasets/" + fileName + ".csv", 'a', encoding="UTF8", newline='') as f:
             writer = csv.writer(f, delimiter=',')
             # data.sort(key=lambda x: x[0])
             for row in data:

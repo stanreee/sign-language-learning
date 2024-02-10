@@ -20,16 +20,15 @@ class Classifier:
         save = input("Do you want to save these frames? (Y/N)")
         if save == "Y":
             id = input("Enter id for data.")
-            self.save(data, id)
+            self.save(data, id, self.num_hands)
         data = []
         frameNum = 0
         return (data, frameNum)
 
     def capture(self, frame, frameNum, data):
-        features = extract_features(frame, self.hands)
-        if len(features) >= 21:
-            features = process_features(features)
-        if len(features) >= 21: 
+        features, reflect = extract_features(frame, self.hands, self.num_hands)
+        if len(features) >= 21 if self.num_hands == 1 else 42:
+            features = process_features(features, reflect)
             data.append(features)
         if frameNum >= self.FRAME_CAP:
             data, frameNum = self.endCapture(data, frameNum)
@@ -42,6 +41,9 @@ class Classifier:
         cv2.startWindowThread()
         data = []
         frameNum = 0
+        startTime = 0
+        countdown = False
+        print("Press C to capture. If recording two hands, then a 3 second countdown will start when C is pressed before recording begins.")
         while self.cap.isOpened():
             ret, frame = self.cap.read()
 
@@ -51,9 +53,23 @@ class Classifier:
 
             cv2.imshow(self.name, frame)
 
+            if countdown:
+                deltaTime = time.time() - startTime
+                if deltaTime > 3:
+                    countdown = False
+                    self.capturing = True
+                    startTime = 0
+                    print("CAPTURING 30 FRAMES")
+
             if cv2.waitKey(1) & 0xFF == ord('c'):
-                print("CAPTURING 30 FRAMES")
-                self.capturing = True
+                if self.num_hands > 1:
+                    if not self.capturing and not countdown:
+                        startTime = time.time()
+                        countdown = True
+                        print("CAPTURING IN 3 SECONDS")
+                else:
+                    print("CAPTURING 30 FRAMES")
+                    self.capturing = True
             elif cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         self.cap.release()

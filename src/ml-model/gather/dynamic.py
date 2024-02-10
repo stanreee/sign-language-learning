@@ -10,7 +10,7 @@ class DynamicClassifier(Classifier):
         super().__init__("dynamic", hands)
         pass
 
-    def save(self, data, id):
+    def save(self, data, id, num_hands):
         pca = PCA(n_components=18)
         pca.fit(data)
         dataToSave = [id]
@@ -18,11 +18,13 @@ class DynamicClassifier(Classifier):
         # for i in range(pca.n_components_):
         #     print(type(np.ndarray.tolist(pca.components_[i])), type([id]))
         #     dataToSave.append([id] + np.ndarray.tolist(pca.components_[i]))
+        fileName = str(self.name)
+        if num_hands > 1: fileName += "_2"
         for i in range(pca.n_components_):
             dataToSave += np.ndarray.tolist(pca.components_[i])
         dataToSave = [dataToSave]
         cur_dir = os.curdir
-        with open(cur_dir + "/datasets/" + str(self.name) + ".csv", 'a', encoding="UTF8", newline='') as f:
+        with open(cur_dir + "/datasets/" + fileName + ".csv", 'a', encoding="UTF8", newline='') as f:
             writer = csv.writer(f, delimiter=',')
             # data.sort(key=lambda x: x[0])
             for row in dataToSave:

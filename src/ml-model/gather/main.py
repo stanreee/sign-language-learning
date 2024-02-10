@@ -13,4 +13,6 @@ classifiers = [static, dynamic]
 while True:
     t = input("Enter type of handsign: static (0) or dynamic (1)")
     classifier = classifiers[int(t)]
+    num_hands = input("Enter number of hands: 1 or 2")
+    classifier.num_hands = int(num_hands)
     classifier.start()

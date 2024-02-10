@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.decomposition import PCA
+import copy
 
 def get_features(landmarks):
     features = []
@@ -41,6 +42,14 @@ def process_features(features):
     features = list(map(normalize, features))
 
     return features
+
+def normalize_landmark_history(landmark_history):
+    landmark_history_copy = copy.deepcopy(landmark_history)
+    for i in range(len(landmark_history)):
+        features = landmark_history[i]
+        processed = process_features(features)
+        landmark_history_copy[i] = processed
+    return landmark_history_copy
 
 """
     compresses landmark_history array using principal 

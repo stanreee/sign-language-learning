@@ -7,9 +7,10 @@ import numpy as np
 ## 0: no, 1: where, 2: future, 9: j, 25: z
 
 class SignLangModelDynamic(nn.Module):
-    def __init__(self):
+    def __init__(self, num_hands, name):
         super().__init__()
-        self.fc1 = nn.Linear(18 * 42, 42)
+        self.name = name
+        self.fc1 = nn.Linear(18 * (42 * num_hands), 42)
         self.relu = nn.ReLU()
         self.fc2 = nn.Linear(42, 30)
         self.fc3 = nn.Linear(30, 26)
