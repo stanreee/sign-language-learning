@@ -7,16 +7,14 @@ from sign_lang_model_dynamic import SignLangModelDynamic
 import os
 import torch
 from sklearn.decomposition import PCA
+from recognition_model import RecognitionModel
 
 cur_dir = os.getcwd()
 
-model = SignLangModel()
-model.load_state_dict(torch.load(cur_dir + "/simple_classifier.pth"), strict=True)
+static = RecognitionModel(cur_dir + "/trained_models/static_one_hand.pt", 1, "static")
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
-
-model.eval()
 
 cap = cv2.VideoCapture(1)
 while cap.isOpened():
@@ -32,6 +30,12 @@ while cap.isOpened():
 
     reflect = False
 
+    # data to be sent by frontend:
+    #   - landmark data (or landmark history for dynamic signs)
+    #   - left or right hand (if only one hand)
+    #   - number of hands
+    #   - type of sign (dynamic or static)
+    # -- GET LANDMARK DATA -- ** frontend responsibility **
     if results.multi_hand_landmarks:
         handedness = results.multi_handedness[0].classification[0].label # label
         if len(results.multi_hand_landmarks) == 1:
@@ -39,34 +43,16 @@ while cap.isOpened():
                 reflect = True
             # for i in range(21):
             #     features.append([0, 0]) # appending dummy data if only one hand
-        for hand in results.multi_hand_landmarks:
-            landmarks = hand
-            for point in landmarks.landmark:
-                x, y, z = int(point.x * frame.shape[1]), int(point.y * frame.shape[0]), int(point.z * frame.shape[1])
-                cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
-                features.append([point.x, point.y])
+        landmarks = results.multi_hand_landmarks[0]
+        for point in landmarks.landmark:
+            x, y, z = int(point.x * frame.shape[1]), int(point.y * frame.shape[0]), int(point.z * frame.shape[1])
+            cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
+            features.append([point.x, point.y])
 
     if len(features) >= 21:
-        features = process_features(features, reflect)
-
-        # print(features)
-        
-        tensor = torch.from_numpy(np.array(features))
-        tensor = tensor.to(torch.float32)
-
-        # print(tensor)
-
-        results = model(tensor[None, ...])
-
-        result_arr = results.detach().numpy()
-        result = np.argmax(result_arr)
-        confidence = 2**results[0][result].item()
-
-        # if confidence >= 0.95:
+        # reflect should be true if there is only one hand and that hand is the right hand
+        result, confidence = static.evaluate(features, reflect)
         print(chr(result + 65), confidence)
-        # else:
-        #     print("NOT CONFIDENT:", chr(result + 65), confidence)
-        # # break
 
     cv2.imshow('Hand Landmarks', frame)
 

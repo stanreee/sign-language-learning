@@ -13,8 +13,6 @@ class StaticClassifier(Classifier):
     def save(self, data, id, num_hands):
         for i in range(len(data)):
             data[i] = [id] + data[i]
-            if num_hands == 1:
-                data[i] += [0] * 42
         cur_dir = os.curdir
         fileName = str(self.name)
         # if num_hands > 1: fileName += "_2"

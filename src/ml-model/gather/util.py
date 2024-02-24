@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from sklearn.decomposition import PCA
 
 def extract_features(frame, hands, num_hands):
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

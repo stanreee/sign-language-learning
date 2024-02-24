@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.decomposition import PCA
+import copy
 
 # process landmark features
 # in particular:
@@ -7,7 +8,7 @@ from sklearn.decomposition import PCA
 #     this accommodates for different hand positions by having coordinates be relative to base landmark position and not camera position
 #   - normalize landmarks on the maximum coordinate magnitude to improve consistency
 #   referenced from https://github.com/kinivi/hand-gesture-recognition-mediapipe/tree/main
-def process_features(features, reflect):
+def process_features(features, reflect, base_coords=None):
     base_x, base_y = 0, 0
     for feature in features:
         if base_x == 0 and base_y == 0:
@@ -16,9 +17,9 @@ def process_features(features, reflect):
         feature[0] = base_x - feature[0] if not reflect else feature[0] - base_x
         feature[1] = base_y - feature[1]
     
-    if len(features) < 42:
-        for i in range(21):
-            features.append([0, 0]) # append dummy data if only one hand
+    # if len(features) < 42:
+    #     for i in range(21):
+    #         features.append([0, 0]) # append dummy data if only one hand
 
     features = np.array(features).flatten()
 
@@ -40,8 +41,9 @@ def process_features(features, reflect):
         compressed:
             - 1x756 dimensional array to be fed into ML model
 """
-def landmark_history_preprocess(landmark_history):
-    pca = PCA(n_components=18)
+def landmark_history_preprocess(landmark_history, num_hands):
+    dim = 18 if num_hands == 1 else 10
+    pca = PCA(n_components=dim)
     pca.fit(landmark_history)
 
     compressed = []
@@ -49,3 +51,11 @@ def landmark_history_preprocess(landmark_history):
         compressed += np.ndarray.tolist(pca.components_[i])
 
     return compressed
+
+def normalize_landmark_history(landmark_history, reflect):
+    landmark_history_copy = copy.deepcopy(landmark_history)
+    for i in range(len(landmark_history)):
+        features = landmark_history[i]
+        processed = process_features(features, reflect)
+        landmark_history_copy[i] = processed
+    return landmark_history_copy

@@ -11,7 +11,7 @@ import time
 
 cur_dir = os.getcwd()
 
-dynamic = RecognitionModel(cur_dir + "/trained_models/dynamic_two_hand.pth", 2, "dynamic")
+dynamic = RecognitionModel(cur_dir + "/trained_models/dynamic_one_hand.pt", 1, "dynamic")
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
@@ -20,8 +20,6 @@ landmark_history = []
 frameNum = 0
 
 capturing = False
-countdown = False
-startTime = 0
 
 cap = cv2.VideoCapture(1)
 while cap.isOpened():
@@ -35,21 +33,12 @@ while cap.isOpened():
 
     features = []
 
-    if countdown:
-        deltaTime = time.time() - startTime
-        if deltaTime > 3:
-            countdown = False
-            capturing = True
-            startTime = 0
-            print("CAPTURING FRAMES")
-
     if capturing and results.multi_hand_landmarks:
-        for hand in results.multi_hand_landmarks:
-            landmarks = hand
-            for point in landmarks.landmark:
-                x, y, z = int(point.x * frame.shape[1]), int(point.y * frame.shape[0]), int(point.z * frame.shape[1])
-                cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
-                features.append([point.x, point.y])
+        landmarks = results.multi_hand_landmarks[0]
+        for point in landmarks.landmark:
+            x, y, z = int(point.x * frame.shape[1]), int(point.y * frame.shape[0]), int(point.z * frame.shape[1])
+            cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
+            features.append([point.x, point.y])
         if len(features) >= 21:
             landmark_history.append(features)
             if len(landmark_history) > 30:
@@ -62,11 +51,7 @@ while cap.isOpened():
     cv2.imshow("Hand Landmarks", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('c'):
-        # capturing = True
-        if not capturing and not countdown:
-            startTime = time.time()
-            countdown = True
-            print("CAPTURING IN 3 SECONDS")
+        capturing = True
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
