@@ -1,8 +1,8 @@
 import cv2
 from classifier import Classifier
-from util import extract_features, process_features
 import os
 import csv
+from gather_util import extract_features, process_features
 
 class StaticClassifier(Classifier):
 
@@ -15,13 +15,20 @@ class StaticClassifier(Classifier):
             data[i] = [id] + data[i]
         cur_dir = os.curdir
         fileName = str(self.name)
-        # if num_hands > 1: fileName += "_2"
         with open(cur_dir + "/datasets/" + fileName + ".csv", 'a', encoding="UTF8", newline='') as f:
             writer = csv.writer(f, delimiter=',')
-            # data.sort(key=lambda x: x[0])
             for row in data:
                 writer.writerow([i for i in row])
         print("Frames saved for id", id, ".")
+
+    def capture(self, frame, frameNum, data):
+        features, reflect = extract_features(frame, self.hands, self.num_hands)
+        if len(features) >= 21 if self.num_hands == 1 else 42:
+            features = process_features(features, reflect)
+            data.append(features)
+        if frameNum >= self.FRAME_CAP:
+            data, frameNum = self.endCapture(data, frameNum)
+        return (data, frameNum)
         
     
         

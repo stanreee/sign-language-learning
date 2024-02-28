@@ -12,8 +12,8 @@ def process_features(features, reflect, base_coords=None):
     base_x, base_y = 0, 0
     for feature in features:
         if base_x == 0 and base_y == 0:
-            base_x = feature[0]
-            base_y = feature[1]
+            base_x = feature[0] if not base_coords else base_coords[0]
+            base_y = feature[1] if not base_coords else base_coords[1]
         feature[0] = base_x - feature[0] if not reflect else feature[0] - base_x
         feature[1] = base_y - feature[1]
     
@@ -54,8 +54,9 @@ def landmark_history_preprocess(landmark_history, num_hands):
 
 def normalize_landmark_history(landmark_history, reflect):
     landmark_history_copy = copy.deepcopy(landmark_history)
+    base_coords = landmark_history[0][0]
     for i in range(len(landmark_history)):
         features = landmark_history[i]
-        processed = process_features(features, reflect)
+        processed = process_features(features, reflect, base_coords)
         landmark_history_copy[i] = processed
     return landmark_history_copy

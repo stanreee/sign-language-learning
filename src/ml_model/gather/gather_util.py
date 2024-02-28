@@ -1,6 +1,14 @@
 import cv2
 import numpy as np
 from sklearn.decomposition import PCA
+import sys
+import os
+
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+
+from util import process_features
 
 def extract_features(frame, hands, num_hands):
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -33,29 +41,3 @@ def extract_features(frame, hands, num_hands):
                     features.append([0, 0])
 
     return (features, reflect)
-
-# process landmark features
-# in particular:
-#   - designate a landmark as the base landmark, calculate relative x and y coordinates on other landmarks from the base landmark
-#     this accommodates for different hand positions by having coordinates be relative to base landmark position and not camera position
-#   - normalize landmarks on the maximum coordinate magnitude to improve consistency
-#   referenced from https://github.com/kinivi/hand-gesture-recognition-mediapipe/tree/main
-def process_features(features, reflect):
-    base_x, base_y = 0, 0
-    for feature in features:
-        if base_x == 0 and base_y == 0:
-            base_x = feature[0]
-            base_y = feature[1]
-        feature[0] = base_x - feature[0] if not reflect else feature[0] - base_x
-        feature[1] = base_y - feature[1]
-
-    features = np.array(features).flatten()
-
-    max_val = max(list(map(abs, features)))
-
-    def normalize(n):
-        return n / max_val
-    
-    features = list(map(normalize, features))
-
-    return features

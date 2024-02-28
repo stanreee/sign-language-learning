@@ -14,8 +14,6 @@ class RecognitionModel():
             num_hands (int): Number of hands that this model will detect.
             type (str): RecognitionModel type (dynamic or static).
         """
-        # self.model = SignLangModel(num_hands) if type == "static" else SignLangModelDynamic(num_hands)
-        # self.model.load_state_dict(torch.load(modelPath), strict=True)
         self.model = torch.load(modelPath)
         self.model.eval()
         self.type = type

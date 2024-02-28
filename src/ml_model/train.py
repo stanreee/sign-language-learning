@@ -9,9 +9,17 @@ from torch.utils.data import DataLoader, TensorDataset
 from sklearn.model_selection import train_test_split
 import numpy as np
 
+"""
+    idea of training:
+
+    for each model, we will vary the number of layers and neruons in each layer and choose the best combination of the two that results in the
+    best accuracy on the test dataset
+"""
+
 BATCH_SIZE = 2
 NUM_EPOCHS = 48
 
+# create feature loaders on specified training data sets
 def get_features_loader(TRAINING_DATA_PATH):
     data = pd.read_csv(TRAINING_DATA_PATH)
 
@@ -41,6 +49,13 @@ def get_features_loader(TRAINING_DATA_PATH):
     return (train_loader, test_loader)
 
 def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron_range):
+    """
+        returns a tuple that consists of
+
+        - train and test data loaders
+        - a list of models with varying number of neurons per layer and number of layers
+        - name of model
+    """
     train_loader, test_loader = get_features_loader(data_path)
     models = []
     num_layers = np.arange(1, 3)

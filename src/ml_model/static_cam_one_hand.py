@@ -41,8 +41,6 @@ while cap.isOpened():
         if len(results.multi_hand_landmarks) == 1:
             if handedness.lower() == 'right':
                 reflect = True
-            # for i in range(21):
-            #     features.append([0, 0]) # appending dummy data if only one hand
         landmarks = results.multi_hand_landmarks[0]
         for point in landmarks.landmark:
             x, y, z = int(point.x * frame.shape[1]), int(point.y * frame.shape[0]), int(point.z * frame.shape[1])

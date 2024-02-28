@@ -2,7 +2,6 @@ import cv2
 import time
 import os
 import csv
-from util import extract_features, process_features
 
 class Classifier:
 
@@ -24,17 +23,6 @@ class Classifier:
         data = []
         frameNum = 0
         return (data, frameNum)
-
-    def capture(self, frame, frameNum, data):
-        features, reflect = extract_features(frame, self.hands, self.num_hands)
-        if len(features) >= 21 if self.num_hands == 1 else 42:
-            features = process_features(features, reflect)
-            data.append(features)
-        if frameNum >= self.FRAME_CAP:
-            data, frameNum = self.endCapture(data, frameNum)
-        # print(data, frameNum)
-        return (data, frameNum)
-            
 
     def start(self):
         self.cap = cv2.VideoCapture(1)
