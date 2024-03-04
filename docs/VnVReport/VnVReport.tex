@@ -1,15 +1,24 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{pgfpages} 
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{outlines}
+\usepackage{longtable}
+\usepackage{enumitem,amssymb}
+\usepackage{float}
+\usepackage{adjustbox}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 \hypersetup{
-    colorlinks,
-    citecolor=black,
+    colorlinks=true,
+    citecolor=blue,
     filecolor=black,
     linkcolor=red,
     urlcolor=blue
 }
+\urlstyle{same}
 \usepackage[round]{natbib}
 
 \input{../Comments}
@@ -28,10 +37,10 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\toprule {\bf Date} & {\bf Contributors} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Feb 29, 2024 & Cassidy & Initial Draft and Formatting\\
+ &  & \\
 \bottomrule
 \end{tabularx}
 
@@ -39,16 +48,42 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
-
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
+\begin{longtable}{| c | p{7cm} |}
+\caption{Naming Conventions and Terminology} \\
+\hline
+\textbf{Term, Abbreviation, or Acronym} & \textbf{Description}\\
+\hline
+A & Shorthand for Assumption\\
+\hline
+ASL & Shorthand for American Sign Language. It is a form of sign language primarily used in the US and in parts of Canada\\
+\hline
+ASLingo & The commercial name for the project\\
+\hline
+CV & Refers to Computer Vision, the field of technology that involves processing visual input to achieve various means.\\
+\hline
+CR & Shorthand for 'Cultural Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+HSR & Shorthand for 'Health and Safety Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+FR & Shorthand for Functional Requirements\\
+\hline
+LR & Shorthand for 'Legal Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+LFR & Shorthand for 'Look and Feel Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+MSR & Shorthand for 'Maintainability and Support Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+OER & Shorthand for 'Operational and Environmental Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+OpenCV & Refers to the Open Computer Vision Library library available for free to developers in order to develop Computer Vision applications.\\
+\hline
+PR & Shorthand for 'Performance Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+SR & Shorthand for 'Security Requirements', a subsection of Non-Functional Requirements.\\
+\hline
+UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-Functional Requirements.\\
+\bottomrule
+\end{longtable}
 
 \newpage
 
@@ -62,17 +97,128 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+\section{General Information}
+
+\subsection{Summary}
+
+As a maching learning-based image recognition web app, ASLingo has many areas to be tested. The overall software will be broken down into modules. There will be a front-end, a back-end, a database, and a machine learning model which all need to be separately tested, along with physical hardware and compatibility. This document serves as a report of the testing done to ensure that this system has been properly and throughly tested to meet the requirements set by the \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification}.  
+
+\subsection{Objectives}
+
+This document aims to outline the testing plan for ASLingo in order to create a functional and reliable product for users that aligns with the specified requirements. The team seeks to build confidence in stakeholders and users that the software is correct and meets or exceeds the initial intended goals, resulting in an overall satisfactory user experience.
+
+\subsection{Relevant Documentation} 
+
+Below is a list of the relevant documentation referenced within the Verification and Validation Plan.\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} outlines the roles of each team member and the areas that each member will focus on. This breakdown of team responsibilities allows the team to assign testing roles accordingly. This document also contains the tools that the team plans on using for testing.\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan} outlines the testing plan for the system, as well as outlining the test cases that the team will perform to ensure the project has been properly and throughly tested. This document also contains the tools that the team plans on using for testing.\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} lists the functional and non-functional requirements which will aid in testing by formulating a testing plan to meet each requirement. Non-functional requirements should be tested such that the fit criteria are met.\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} identifies failure modes to determine the implementation strategies to mitigate them. These will be used as a part of the testing plan to ensure that the failures are covered.\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide} divides the software into modules. The team will build the testing plan around the modules.\\
+
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification} further decomposes the software's modules into specific access routines. The team will build the testing plan such that each function and routine works as intended.
 
 \section{Functional Requirements Evaluation}
 
+\subsection{System Tests for Authentication}
+\begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\caption{System Tests for Authentication} \\
+\hline
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\hline
+FRT1-A1 & User can make their account & User inputs username and password, then selects "Sign In" & User successfully makes their account & & Pass & FR3\\
+\hline
+FRT1-A2 & & & & & & FR4 \\
+\hline
+FRT1-A3 & & & & & & FR5 \\
+\hline
+FRT1-A4 & & & & & & FR13 \\
+\bottomrule
+\end{longtable}
+
+\subsection{System Tests for ASL Learning Progression}
+\begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\caption{System Tests for ASL Learning Progression} \\
+\hline
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\hline
+FRT2-LP1 & & & & & & FR2 \\
+\hline
+FRT2-LP2 & & & & & & FR6 \\
+\hline
+FRT2-LP3 & & & & & & FR7 \\
+\hline
+FRT2-LP4 & & & & & & FR7, FR12 \\
+\hline
+FRT2-LP5 & & & & & & FR8 \\
+\hline
+FRT2-LP6 & & & & & & FR10 \\
+\bottomrule
+\end{longtable}
+
+\subsection{System Tests for Web Application}
+\begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\caption{System Tests for Web Application} \\
+\hline
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\hline
+FRT3-U1 & & & & & & FR9 \\
+\bottomrule
+\end{longtable}
+
+\subsection{System Tests for Hardware}
+\begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\caption{System Tests for Hardware} \\
+\hline
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\hline
+FRT4-HW1 & & & & & & FR1 \\
+\hline
+FRT4-HW2 & & & & & & FR11 \\
+\bottomrule
+\end{longtable}
+
 \section{Nonfunctional Requirements Evaluation}
 
-\subsection{Usability}
-		
-\subsection{Performance}
+\subsection{System Tests for Usability}
 
-\subsection{etc.}
+We tested our usability requirements using a survey for a group of testers to fill out after using the application for 15 minutes. The group of users had an interest in learning ASL, and were willing to fill out this questionnaire to give some perspective on the usability of our application. The survey questions can be found in the Appendix \ref{appen}.
+%%% can include the google form pictures of responses to the survey here and discuss results
+
+\begin{longtable}{|p{2cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\caption{System Tests for Usability} \\
+\hline
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\hline
+NFRT1-UT1 & & & & & & UHR1 \\
+\hline
+NFRT1-UT2 & & & & & & UHR1 \\
+\hline
+NFRT1-UT3 & & & & & & UHR2 \\
+\hline
+NFRT1-UT4 & & & & & & UHR3 \\
+\hline
+NFRT1-UT5 & & & & & & UHR4 \\
+\bottomrule
+\end{longtable}
+		
+\subsection{System Tests for Performance}
+
+\begin{longtable}{|p{2cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\caption{System Tests for Performance} \\
+\hline
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\hline
+NFRT2-PT1& & & & & & PR1 \\
+\hline
+NFRT2-PT1 & & & & & & PR2 \\
+\bottomrule
+\end{longtable}
 	
 \section{Comparison to Existing Implementation}	
 
@@ -99,7 +245,23 @@ should be highlighted.}
 \bibliography{../../refs/References}
 
 \newpage{}
-\section*{Appendix --- Reflection}
+
+\section{Appendix}
+
+\subsection{Usability Survey Questions} \label{appen}
+
+A link to the survey that participants were given can be found \href{https://docs.google.com/forms/d/e/1FAIpQLSelcMIJ-egkwLc7gO8MhqO35-FpTtQ6efCKnogOOKVVsrdWNA/viewform}{here}. Participants were asked to rank how they felt about the following statements, with the response options being Strongly Disagree, Disagree, Neutral, Agree, and Strongly Agree. 
+
+\begin{enumerate}
+\item It was very easy to get right into a testing session with little to no hassle. 
+\item The User Interface is very friendly and it is easy to identify where everything is.
+\item During a Quiz, its very easy to understand what to do and how to complete it.
+\item While signing, it is very easy to see what sign I am making and whether to make adjustments or not.
+\item At my current level of ASL knowledge, it is easy to use the application
+\item On a scale of 1 to 10, how would you rate your experience with ASLingo? \newline [ 1 = terrible, 10 = fantastic]
+\end{enumerate}
+
+\subsection{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Reflection.  Please answer the following question:
@@ -113,6 +275,6 @@ graduate attribute of Reflection.  Please answer the following question:
   predict a feasible amount of effort and the right tasks needed to build the
   evidence that demonstrates the required quality?  (It is expected that most
   teams will have had to deviate from their original VnV Plan.)
-\end{enumerate}
+%\end{enumerate}
 
 \end{document}
