@@ -11,7 +11,7 @@ class SignLangModel(nn.Module):
         self.num_layers = num_layers
 
         self.layers = nn.ModuleDict()
-        self.layers["input"] = nn.Linear(in_features=42 * num_hands, out_features=num_neurons)
+        self.layers["input"] = nn.Linear(in_features=63 * num_hands, out_features=num_neurons)
 
         for i in range(self.num_layers):
             self.layers[f"hidden_{i}"] = nn.Linear(in_features=num_neurons, out_features=num_neurons)

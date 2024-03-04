@@ -3,7 +3,7 @@ import os
 import csv
 from sklearn.decomposition import PCA
 import numpy as np
-from gather_util import extract_features, process_features
+from gather_util import extract_features, process_features, landmark_history_preprocess
 
 class DynamicClassifier(Classifier):
     def __init__(self, hands) -> None:
@@ -13,12 +13,8 @@ class DynamicClassifier(Classifier):
 
     def save(self, data, id, num_hands):
         # reduce frame input dimensions from 30 to 18 (one hand) or 10 (two hands)
-        dim = 18 if num_hands == 1 else 10
-        pca = PCA(n_components=dim)
-        pca.fit(data)
-        dataToSave = [id]
-        for i in range(pca.n_components_):
-            dataToSave += np.ndarray.tolist(pca.components_[i])
+        compressed = landmark_history_preprocess(data, num_hands)
+        dataToSave = [id] + compressed
         
         # save to file
         fileName = str(self.name)

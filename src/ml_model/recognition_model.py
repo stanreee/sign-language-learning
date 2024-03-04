@@ -38,6 +38,8 @@ class RecognitionModel():
         landmark_history = normalize_landmark_history(landmark_history, should_reflect)
         compressed = landmark_history_preprocess(landmark_history, num_hands)
 
+        print(compressed)
+
         tensor = torch.from_numpy(np.array(compressed))
         tensor = tensor.to(torch.float32)
 

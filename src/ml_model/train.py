@@ -75,7 +75,7 @@ def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron
 #         feature_loaders.append((train_loader, test_loader, model))
 #     return feature_loaders
 
-def train(train_loader, test_loader, model, lr=0.001, num_epochs=NUM_EPOCHS):
+def train(train_loader, test_loader, model, lr=0.0001, num_epochs=NUM_EPOCHS):
     train_acc, test_acc = [], []
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)

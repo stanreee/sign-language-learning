@@ -14,7 +14,7 @@ class SignLangModelDynamic(nn.Module):
         self.num_layers = num_layers
 
         dim = 18 if num_hands == 1 else 10
-        input_dim = dim * 42 * num_hands
+        input_dim = dim * 63 * num_hands
         
         self.layers = nn.ModuleDict()
         self.layers["input"] = nn.Linear(in_features=input_dim, out_features=num_neurons)

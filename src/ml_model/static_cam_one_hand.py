@@ -45,7 +45,7 @@ while cap.isOpened():
         for point in landmarks.landmark:
             x, y, z = int(point.x * frame.shape[1]), int(point.y * frame.shape[0]), int(point.z * frame.shape[1])
             cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
-            features.append([point.x, point.y])
+            features.append([point.x, point.y, point.z])
 
     if len(features) >= 21:
         # reflect should be true if there is only one hand and that hand is the right hand
