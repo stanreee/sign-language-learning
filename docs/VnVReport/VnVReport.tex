@@ -142,24 +142,24 @@ FRT1-A4 & & & & & & FR13 \\
 \end{longtable}
 
 \subsection{System Tests for ASL Learning Progression}
-\begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
-\caption{System Tests for ASL Learning Progression} \\
-\hline
-\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
-\hline
-FRT2-LP1 & & & & & & FR2 \\
-\hline
-FRT2-LP2 & & & & & & FR6 \\
-\hline
-FRT2-LP3 & & & & & & FR7 \\
-\hline
-FRT2-LP4 & & & & & & FR7, FR12 \\
-\hline
-FRT2-LP5 & & & & & & FR8 \\
-\hline
-FRT2-LP6 & & & & & & FR10 \\
-\bottomrule
-\end{longtable}
+\begin{longtable}{|p{1cm}|p{2.25cm}|p{3cm}|p{3cm}|p{1.75cm}|p{1.25cm}|p{1cm}|}
+  \caption{System Tests for ASL Learning Progression} \\
+  \hline
+  \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+  \hline
+  FRT2-LP1 & User performs ASL signs & Alphabetical signs & Corresponding letter of alphabet & the letter & Pass & FR2 \\
+  \hline
+  FRT2-LP2 & Complete diagnostic quiz & User goes to home page & System starts diagnostic quiz & quiz is started & Pass & FR6 \\
+  \hline
+  FRT2-LP3 & User attempts progression based course & User completes their diagnostic quiz & system generates new quiz for user based on results & No new course is generated & Fail & FR7 \\
+  \hline
+  FRT2-LP4 & User tracks their progression & User goes to progression tab & Views their progress & None & Fail & FR7, FR12 \\
+  \hline
+  FRT2-LP5 & System Saved User Progress & User completes a quiz & result is stored and saved & Not saved & Fail & FR8 \\
+  \hline
+  FRT2-LP6 & Get live feedback from user signs & User signs & Systems outputs corresponding sign & The corresponding sign & Pass & FR10 \\
+  \bottomrule
+  \end{longtable}
 
 \subsection{System Tests for Web Application}
 \begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
