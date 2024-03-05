@@ -9,6 +9,20 @@ from torch.utils.data import DataLoader, TensorDataset
 from sklearn.model_selection import train_test_split
 import numpy as np
 
+import torchvision.datasets as datasets
+import torchvision.transforms as transforms
+
+# hi = datasets.MNIST(root="./data", train=True, download=True, transform=transforms.ToTensor())
+# loader = DataLoader(dataset=hi, batch_size=64, shuffle=True)
+
+# print(len(loader))
+
+# for i, (data, targets) in enumerate(loader):
+#     print(np.shape(data))
+#     print("first", data)
+#     print("second", data[0])
+#     print("third", data[0][0])
+
 """
     idea of training:
 
@@ -35,7 +49,8 @@ def get_features_loader(TRAINING_DATA_PATH, dynamic=False):
 
         # print(features)
 
-        features = np.array(features).reshape(len(np.array(features)), 30, 21, 3)
+        features = np.array(features).reshape(len(np.array(features)), 3, 30, 21)
+        # print(features[0][0][0][0], features[0][1][0][0], features[0][2][0][0])
         # print(features)
     else:
         features = train.drop(train.columns[0], axis=1).values
@@ -48,7 +63,7 @@ def get_features_loader(TRAINING_DATA_PATH, dynamic=False):
 
     if dynamic:
         features = test.iloc[:, 1:1891]
-        features = np.array(features).reshape(len(np.array(features)), 30, 21, 3)
+        features = np.array(features).reshape(len(np.array(features)), 3, 30, 21)
     else: 
         features = test.drop(test.columns[0], axis=1).values
 
@@ -106,8 +121,8 @@ def train(train_loader, test_loader, model, lr=0.0001, num_epochs=NUM_EPOCHS):
             loss = criterion(outputs, targets)
             loss.backward()
             optimizer.step()
-            # if i == len(train_loader) - 1:
-            #     print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {i}/{len(train_loader)}, Loss: {loss.item():.4f}')
+            if i == len(train_loader) - 1:
+                print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {i}/{len(train_loader)}, Loss: {loss.item():.4f}')
 
         train_acc.append(
             100 * torch.mean((pred == targets).float()).item()

@@ -8,7 +8,7 @@ import copy
 #     this accommodates for different hand positions by having coordinates be relative to base landmark position and not camera position
 #   - normalize landmarks on the maximum coordinate magnitude to improve consistency
 #   referenced from https://github.com/kinivi/hand-gesture-recognition-mediapipe/tree/main
-def process_features(features, reflect, base_coords=None):
+def process_features(features, reflect, base_coords=None, normalize=True):
     base_x, base_y, base_z = 0, 0, 0
     for feature in features:
         if base_x == 0 and base_y == 0:
@@ -30,7 +30,8 @@ def process_features(features, reflect, base_coords=None):
     def normalize(n):
         return n / max_val
     
-    features = list(map(normalize, features))
+    if normalize:
+        features = list(map(normalize, features))
 
     return features
 
@@ -49,8 +50,24 @@ def landmark_history_preprocess(landmark_history, num_hands):
     # pca.fit(landmark_history)
 
     compressed = []
-    for i in range(len(landmark_history)):
-        compressed += landmark_history[i]
+    coords = [[], [], []]
+    for frame in landmark_history:
+        for i in range(len(frame)):
+            landmark = frame[i]
+            coords[i%3].append(landmark)
+    
+    for i in range(len(coords)):
+        max_val = max(list(map(abs, coords[i])))
+
+        def normalize(n):
+            return n / max_val
+        
+        coords[i] = list(map(normalize, coords[i]))
+        compressed += coords[i]
+
+    # compressed = []
+    # for i in range(len(landmark_history)):
+    #     compressed += landmark_history[i]
 
     return compressed
 
@@ -59,6 +76,7 @@ def normalize_landmark_history(landmark_history, reflect):
     base_coords = landmark_history[0][0]
     for i in range(len(landmark_history)):
         features = landmark_history[i]
-        processed = process_features(features, reflect, base_coords)
+        processed = process_features(features, reflect, base_coords, normalize=False)
         landmark_history_copy[i] = processed
+
     return landmark_history_copy
