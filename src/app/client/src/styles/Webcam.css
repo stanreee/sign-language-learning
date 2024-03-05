@@ -1,0 +1,8 @@
+.webcam {
+    width: 500px;
+    height: 500px;
+    border: solid;
+    border-color: #09223b;
+    border-width: 2px;
+    border-radius: 4.5px;
+}

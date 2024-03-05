@@ -12,16 +12,23 @@
 
 .quiz-container {
   max-width: 100%;
-  min-width: 30%;
+  min-width: 90%;
   background: #ffffff;
   border-radius: 4px;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
   margin-bottom: 5%;
   padding: 30px 60px;
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.quiz-container-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  width: 100%
 }
 
 .quiz-container .active-question-no {
@@ -73,12 +80,21 @@
   border: none;
   cursor: pointer;
   margin-top: 15px;
+  margin-left: 10px;
+  margin: 10px 5px 10px 0px;
+}
+
+.quiz-container .skip-quit-button {
+  background: #144a81;
 }
 
 .quiz-container button:disabled {
   background: #e7e8e9;
   color: #9fa3a9;
   cursor: not-allowed;
+  border: solid;
+  border-color: #09223b;
+  border-width: 2px;
 }
 
 .flex-right {
@@ -92,6 +108,12 @@
   text-align: center;
 }
 
+.result h4 {
+  font-size: 16px;
+  letter-spacing: 1.4px;
+  text-align: center;
+}
+
 .result p {
   font-size: 16px;
   font-weight: 500;
@@ -100,4 +122,63 @@
 .result p span {
   color: #00A7E1;
   font-size: 22px;
+}
+
+.result ul {
+  margin: 0 10% 0 10%;
+  padding: 0 10% 0 10%;
+}
+
+.result li {
+  text-align: center;
+}
+
+.quiz-container .text-question{
+  font-size: 40px;
+  font-weight: 500;
+  color: #09223b;
+}
+
+.quiz-container .text-question-prompt {
+  font-size: 30px;
+  font-weight: 500;
+  color: #9fa3a9;
+}
+
+.quiz-container .text-answer-prompt-black {
+  font-size: 30px;
+  font-weight: 500;
+  color: #9fa3a9;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 15px;
+}
+
+.container-row{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  width: 100%;
+}
+
+.container-column-3 {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  width: 33%;
+}
+
+.quiz-container ul li.incorrect-answer {
+  border: 2px solid #880808	;
 }
