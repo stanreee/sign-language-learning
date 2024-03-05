@@ -9,6 +9,7 @@
 \usepackage{enumitem,amssymb}
 \usepackage{float}
 \usepackage{adjustbox}
+\usepackage{multirow}
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
 \hypersetup{
@@ -21,8 +22,8 @@
 \urlstyle{same}
 \usepackage[round]{natbib}
 
-\input{../Comments}
-\input{../Common}
+% \input{../Comments}
+% \input{../Common}
 
 \begin{document}
 
@@ -36,11 +37,13 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{3cm}p{3cm}X}
 \toprule {\bf Date} & {\bf Contributors} & {\bf Notes}\\
 \midrule
-Feb 29, 2024 & Cassidy & Initial Draft and Formatting\\
+Feb 29, 2024 & Cassidy & Initial draft and formatting\\
+Mar 4, 2024 & Andrew & Filled out table for learning progression\\
 Mar 4, 2024 & Stanley & Added test results for performance requirements\\
+Mar 4, 2024 & Cassidy & Added test results for tables 2,4,5 and 6\\
  &  & \\
 \bottomrule
 \end{tabularx}
@@ -127,97 +130,102 @@ Below is a list of the relevant documentation referenced within the Verification
 \section{Functional Requirements Evaluation}
 
 \subsection{System Tests for Authentication}
-\begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\begin{longtable}{|p{1cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
 \caption{System Tests for Authentication} \\
 \hline
 \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
-FRT1-A1 & User can make their account & User inputs username and password, then selects "Sign In" & User successfully makes their account & & Pass & FR3\\
+FRT1-A1 & User can make their account & User inputs username and password, then selects `Sign In' & User successfully makes their account & User is shown successful account creation page & Pass & FR3\\
 \hline
-FRT1-A2 & & & & & & FR4 \\
+FRT1-A2 & User can sign into account made previously & Previous user inputs username and password & User successfully signs into their account & User is shown successful account creation page & Fail & FR4 \\
 \hline
-FRT1-A3 & & & & & & FR5 \\
+FRT1-A3 & User can sign out of their account & User selects `Logout' header & User signs out of account and is taken back to home page & None & Fail & FR5 \\
 \hline
-FRT1-A4 & & & & & & FR13 \\
+FRT1-A4 & User can reset password & User requests reset password then inputs email & System changes stored password to new password & None & Fail & FR13 \\
 \bottomrule
 \end{longtable}
 
 \subsection{System Tests for ASL Learning Progression}
+
+Many of the learning progression tests are redundant, as the development team and some participating users tested multiple ASL signs using the applications `Quiz' and `Practice' sections. All letters of the alphabet were tested to ensure correctness of the system, and all quiz levels were tested to ensure their functionality. 
+
 \begin{longtable}{|p{1cm}|p{2.25cm}|p{3cm}|p{3cm}|p{1.75cm}|p{1.25cm}|p{1cm}|}
   \caption{System Tests for ASL Learning Progression} \\
   \hline
   \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
   \hline
-  FRT2-LP1 & User performs ASL signs & Alphabetical signs & Corresponding letter of alphabet & the letter & Pass & FR2 \\
+  FRT2-LP1 & User performs ASL signs & Alphabetical signs `a', `b', `c' & The letters `a', `b', `c' are correct from user & The letters `a', `b', `c' are shown by user & Pass & FR2 \\
   \hline
-  FRT2-LP2 & Complete diagnostic quiz & User goes to home page & System starts diagnostic quiz & quiz is started & Pass & FR6 \\
+  FRT2-LP2 & Complete diagnostic quiz & User goes to quiz page & System starts diagnostic quiz until user completes it & Quiz is started and completed by user & Pass & FR6 \\
   \hline
-  FRT2-LP3 & User attempts progression based course & User completes their diagnostic quiz & system generates new quiz for user based on results & No new course is generated & Fail & FR7 \\
+  FRT2-LP3 & User attempts progression based course & User completes their diagnostic quiz & System generates new quiz for user based on results & No new course is generated & Fail & FR7 \\
   \hline
   FRT2-LP4 & User tracks their progression & User goes to progression tab & Views their progress & None & Fail & FR7, FR12 \\
   \hline
-  FRT2-LP5 & System Saved User Progress & User completes a quiz & result is stored and saved & Not saved & Fail & FR8 \\
+  FRT2-LP5 & System Saved User Progress & User completes a quiz & Result is stored and saved & Not saved & Fail & FR8 \\
   \hline
-  FRT2-LP6 & Get live feedback from user signs & User signs & Systems outputs corresponding sign & The corresponding sign & Pass & FR10 \\
+  FRT2-LP6 & Get live feedback from user signs & User signs letter `a' & Systems outputs letter `A' & System shows user letter `A' & Pass & FR10 \\
   \bottomrule
   \end{longtable}
 
 \subsection{System Tests for Web Application}
-\begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\begin{longtable}{|p{1cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
 \caption{System Tests for Web Application} \\
 \hline
 \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
-FRT3-U1 & & & & & & FR9 \\
+FRT3-U1 & User can access the web application & User opens web browser with the ASLingo application & User is able to access all pages of the application & User is able to access all pages of the application & Pass & FR9 \\
 \bottomrule
 \end{longtable}
 
 \subsection{System Tests for Hardware}
-\begin{longtable}{|p{1cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\begin{longtable}{|p{1cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
 \caption{System Tests for Hardware} \\
 \hline
 \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
-FRT4-HW1 & & & & & & FR1 \\
+FRT4-HW1 & User is able to access the web camera & User goes to quiz page and starts a quiz & System is able to recognize user signs from their camera & System is able to recognize user signs from their camera & Pass & FR1 \\
 \hline
-FRT4-HW2 & & & & & & FR11 \\
+FRT4-HW2 & Monitor web camera usability & User goes to quiz page and starts a quiz & User is notified if their camera is not working correctly & User is notified if their camera is not working correctly & Pass & FR11 \\
 \bottomrule
 \end{longtable}
 
+\newpage
 \section{Nonfunctional Requirements Evaluation}
 
 \subsection{System Tests for Usability}
 
 We tested our usability requirements using a survey for a group of testers to fill out after using the application for 15 minutes. The group of users had an interest in learning ASL, and were willing to fill out this questionnaire to give some perspective on the usability of our application. The survey questions can be found in the Appendix \ref{appen}.
-%%% can include the google form pictures of responses to the survey here and discuss results
 
-\begin{longtable}{|p{2cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\textbf{***can also include the google form pictures of responses to the survey here and discuss results***}
+
+\begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1.5cm}|}
 \caption{System Tests for Usability} \\
 \hline
 \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
-NFRT1-UT1 & & & & & & UHR1 \\
+NFRT1-UT1 & User is able to start application with no training & User opens web application & User is able to use application, completes question 1 of survey & User is able to use application, overall test score of \textbf{ADD PERCENT}\% for survey question 1 & Pass & UHR1 \\
 \hline
-NFRT1-UT2 & & & & & & UHR1 \\
+NFRT1-UT2 & User is able to complete a quiz with no training & User opens quiz page and starts a quiz & User is able to complete a quiz, completes question 3 of survey & User is able to complete a quiz, overall test score of \textbf{ADD PERCENT}\% for survey question 3 & Pass & UHR1 \\
 \hline
-NFRT1-UT3 & & & & & & UHR2 \\
+NFRT1-UT3 & User is able to use application with various hearing abilities & User opens application & User is able to use application, completes question 2 of survey & User is able to use application, overall test score of \textbf{ADD PERCENT}\% for survey question 2 & Pass & UHR2 \\
 \hline
-NFRT1-UT4 & & & & & & UHR3 \\
+NFRT1-UT4 & User can personalize their account & User is signed into their account & User can change some personal settings & None & Fail & UHR3 \\
 \hline
-NFRT1-UT5 & & & & & & UHR4 \\
+NFRT1-UT5 & System should show user if input needs to be adjusted & User tries to complete quiz but their camera is not set up properly & System prompts user to fix camera settings & System prompts user to fix camera settings & Pass & UHR4 \\
 \bottomrule
 \end{longtable}
 		
 \subsection{System Tests for Performance}
 
-\begin{longtable}{|p{2cm}|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|}
+\begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
 \caption{System Tests for Performance} \\
 \hline
 \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
 NFRT2-PT1 & The application should respond to user input within 1 second. & The user should respond to the application's prompt. & The system should register the user's input and respond to the user quickly. & The system responded with the detected sign almost instantly. & Pass & PR1 \\
 \hline
-NFRT2-PT2 & The application should be able to accurately determine if the user has signed the correct response to the prompt 95\% of the time. & The user should sign in response to the application's prompt. & The application should register the user's signed input and determine if they have signed the required action correctly. & Static hand signs are recognized with a total testing accuracy of around 98\%. Dynamic hand signs are inconsistent, with accuracies at around 50 - 60\%.  & Fail & PR2 \\
+NFRT2-PT2 & The application should be able to accurately determine if the user has signed the correct response to the prompt 95\% of the time. & The user should sign in response to the application's prompt. & The application should register the user's signed input and determine if they have signed the required action correctly. & Static hand signs are recognized with a total testing accuracy of around 98\%. Dynamic hand signs are inconsistent, with the accuracy at around 50 - 60\%.  & Fail & PR2 \\
 \bottomrule
 \end{longtable}
 	
@@ -229,21 +237,63 @@ This section will not be appropriate for every project.
 
 \section{Changes Due to Testing}
 
-\wss{This section should highlight how feedback from the users and from 
-the supervisor (when one exists) shaped the final product.  In particular 
-the feedback from the Rev 0 demo to the supervisor (or to potential users) 
-should be highlighted.}
+% \wss{This section should highlight how feedback from the users and from 
+% the supervisor (when one exists) shaped the final product.  In particular 
+% the feedback from the Rev 0 demo to the supervisor (or to potential users) 
+% should be highlighted.}
 
 \section{Automated Testing}
 		
 \section{Trace to Requirements}
+
+Functional Requirements to System Tests
+\begin{table}[ht]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllllllllllll}
+                                 & \multicolumn{13}{c}{FR Req.}                                                                                                                                                                                                                                                                                                           \\ \cline{2-14} 
+\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8} & \multicolumn{1}{l|}{9} & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{11} & \multicolumn{1}{l|}{12} & \multicolumn{1}{l|}{13} \\ \hline
+\multicolumn{1}{|l|}{FRT1-A1}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT1-A2}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT1-A3}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{FRT1-A4}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP1}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP3}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP4}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP5}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT2-LP6}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT3-U1}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT4-HW1}   & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{FRT4-HW2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+\end{tabular}}
+\end{table}
+
+\paragraph{Non Functional Requirements to System Tests}
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllllll}
+                                 & \multicolumn{4}{c}{UHR}                                                  & \multicolumn{2}{c}{PR}                                                   \\ \cline{2-7} 
+\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT1}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT2}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT4}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT5}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} \\ \hline
+\multicolumn{1}{|l|}{NFRT2-PT1}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  \\ \hline
+\multicolumn{1}{|l|}{NFRT2-PT2}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{X}  \\ \hline
+\end{tabular}
+}
+\end{table}
 		
 \section{Trace to Modules}		
 
 \section{Code Coverage Metrics}
 
-\bibliographystyle{plainnat}
-\bibliography{../../refs/References}
+% \bibliographystyle{plainnat}
+% \bibliography{../../refs/References}
 
 \newpage{}
 
@@ -276,6 +326,6 @@ graduate attribute of Reflection.  Please answer the following question:
   predict a feasible amount of effort and the right tasks needed to build the
   evidence that demonstrates the required quality?  (It is expected that most
   teams will have had to deviate from their original VnV Plan.)
-%\end{enumerate}
+\end{enumerate}
 
 \end{document}
