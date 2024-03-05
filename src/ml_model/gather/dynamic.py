@@ -34,6 +34,8 @@ class DynamicClassifier(Classifier):
                 self.base_coords = features[0]
             features = process_features(features, reflect, self.base_coords)
             data.append(features)
+        else:
+            data, frameNum = self.forceEndCapture()
         if frameNum >= self.FRAME_CAP:
             data, frameNum = self.endCapture(data, frameNum)
             self.base_coords = None

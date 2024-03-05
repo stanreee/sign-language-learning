@@ -20,20 +20,37 @@ BATCH_SIZE = 2
 NUM_EPOCHS = 48
 
 # create feature loaders on specified training data sets
-def get_features_loader(TRAINING_DATA_PATH):
+def get_features_loader(TRAINING_DATA_PATH, dynamic=False):
+
     data = pd.read_csv(TRAINING_DATA_PATH)
 
     train, test = train_test_split(data, test_size=0.2)
 
+    print(len(train), len(test))
+
     target = train[train.columns[0]].values
-    features = train.drop(train.columns[0], axis=1).values
+
+    if dynamic:
+        features = train.iloc[:, 1:1891] # change for 2 hands
+
+        # print(features)
+
+        features = np.array(features).reshape(len(np.array(features)), 30, 21, 3)
+        # print(features)
+    else:
+        features = train.drop(train.columns[0], axis=1).values
 
     ytrain = torch.from_numpy(target).float()
     ytrain = ytrain.type(torch.LongTensor)
     xtrain = torch.from_numpy(features).float()
 
     target = test[test.columns[0]].values
-    features = test.drop(test.columns[0], axis=1).values
+
+    if dynamic:
+        features = test.iloc[:, 1:1891]
+        features = np.array(features).reshape(len(np.array(features)), 30, 21, 3)
+    else: 
+        features = test.drop(test.columns[0], axis=1).values
 
     ytest = torch.from_numpy(target).float()
     ytest = ytest.type(torch.LongTensor)
@@ -44,11 +61,10 @@ def get_features_loader(TRAINING_DATA_PATH):
 
     train_loader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
     test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
-
-    print(len(train_loader), len(test_loader))
+    
     return (train_loader, test_loader)
 
-def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron_range):
+def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron_range, dynamic=False):
     """
         returns a tuple that consists of
 
@@ -56,7 +72,7 @@ def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron
         - a list of models with varying number of neurons per layer and number of layers
         - name of model
     """
-    train_loader, test_loader = get_features_loader(data_path)
+    train_loader, test_loader = get_features_loader(data_path, dynamic)
     models = []
     num_layers = np.arange(1, 3)
     num_neurons = num_neuron_range
@@ -137,7 +153,8 @@ features_loaders.append(collect_features_loaders(
     1,
     "dynamic_one_hand",
     SignLangModelDynamic,
-    np.arange(320, 416, 32)
+    np.arange(320, 416, 32),
+    dynamic=True
 ))
 
 print("Feature loaders created. Training models...")

@@ -44,13 +44,13 @@ def process_features(features, reflect, base_coords=None):
             - 1x756 dimensional array to be fed into ML model
 """
 def landmark_history_preprocess(landmark_history, num_hands):
-    dim = 18 if num_hands == 1 else 10
-    pca = PCA(n_components=dim)
-    pca.fit(landmark_history)
+    # dim = 18 if num_hands == 1 else 10
+    # pca = PCA(n_components=dim)
+    # pca.fit(landmark_history)
 
     compressed = []
-    for i in range(pca.n_components_):
-        compressed += np.ndarray.tolist(pca.components_[i])
+    for i in range(len(landmark_history)):
+        compressed += landmark_history[i]
 
     return compressed
 

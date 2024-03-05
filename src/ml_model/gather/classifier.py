@@ -23,6 +23,13 @@ class Classifier:
         data = []
         frameNum = 0
         return (data, frameNum)
+    
+    def forceEndCapture(self):
+        self.capturing = False
+        print("Capturing failed, frame missed. Try again.")
+        data = []
+        frameNum = 0
+        return (data, frameNum)
 
     def start(self):
         self.cap = cv2.VideoCapture(1)
