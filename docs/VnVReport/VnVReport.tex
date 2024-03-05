@@ -40,6 +40,7 @@
 \toprule {\bf Date} & {\bf Contributors} & {\bf Notes}\\
 \midrule
 Feb 29, 2024 & Cassidy & Initial Draft and Formatting\\
+Mar 4, 2024 & Stanley & Added test results for performance requirements\\
  &  & \\
 \bottomrule
 \end{tabularx}
@@ -214,9 +215,9 @@ NFRT1-UT5 & & & & & & UHR4 \\
 \hline
 \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
-NFRT2-PT1& & & & & & PR1 \\
+NFRT2-PT1 & The application should respond to user input within 1 second. & The user should respond to the application's prompt. & The system should register the user's input and respond to the user quickly. & The system responded with the detected sign almost instantly. & Pass & PR1 \\
 \hline
-NFRT2-PT1 & & & & & & PR2 \\
+NFRT2-PT2 & The application should be able to accurately determine if the user has signed the correct response to the prompt 95\% of the time. & The user should sign in response to the application's prompt. & The application should register the user's signed input and determine if they have signed the required action correctly. & Static hand signs are recognized with a total testing accuracy of around 98\%. Dynamic hand signs are inconsistent, with accuracies at around 50 - 60\%.  & Fail & PR2 \\
 \bottomrule
 \end{longtable}
 	
