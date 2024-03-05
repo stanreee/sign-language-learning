@@ -26,8 +26,8 @@ class DynamicClassifier(Classifier):
         print("Frames saved for id", id, ".")
     
     def capture(self, frame, frameNum, data):
-        features, reflect = extract_features(frame, self.hands, self.num_hands)
-        if len(features) >= 21 if self.num_hands == 1 else 42:
+        features, reflect, failed = extract_features(frame, self.hands, self.num_hands)
+        if len(features) >= 21 if self.num_hands == 1 else 42 and not failed:
             # designate first landmark of the first frame as the base landmark
             # for each frame, all landmark coordinates will be relative to thsi base landmark
             if not self.base_coords:

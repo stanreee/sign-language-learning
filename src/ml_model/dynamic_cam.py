@@ -11,7 +11,7 @@ import time
 
 cur_dir = os.getcwd()
 
-dynamic = RecognitionModel(cur_dir + "/trained_models/dynamic_two_hand.pth", 2, "dynamic")
+dynamic = RecognitionModel(cur_dir + "/trained_models/dynamic_two_hand.pt", 2, "dynamic")
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()

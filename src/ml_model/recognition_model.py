@@ -38,9 +38,9 @@ class RecognitionModel():
         landmark_history = normalize_landmark_history(landmark_history, should_reflect)
         compressed = landmark_history_preprocess(landmark_history, num_hands)
 
-        compressed = np.array(compressed).reshape(3, 30, 21)
+        # compressed = np.array(compressed).reshape(3, 30, 21)
 
-        tensor = torch.from_numpy(compressed)
+        tensor = torch.from_numpy(np.array(compressed))
         tensor = tensor.to(torch.float32)
 
         results = self.model(tensor[None, ...])

@@ -44,16 +44,18 @@ def get_features_loader(TRAINING_DATA_PATH, dynamic=False):
 
     target = train[train.columns[0]].values
 
-    if dynamic:
-        features = train.iloc[:, 1:1891] # change for 2 hands
+    # if dynamic:
+    #     features = train.iloc[:, 1:1891] # change for 2 hands
 
-        # print(features)
+    #     # print(features)
 
-        features = np.array(features).reshape(len(np.array(features)), 3, 30, 21)
-        # print(features[0][0][0][0], features[0][1][0][0], features[0][2][0][0])
-        # print(features)
-    else:
-        features = train.drop(train.columns[0], axis=1).values
+    #     features = np.array(features).reshape(len(np.array(features)), 3, 30, 21)
+    #     # print(features[0][0][0][0], features[0][1][0][0], features[0][2][0][0])
+    #     # print(features)
+    # else:
+    #     features = train.drop(train.columns[0], axis=1).values
+
+    features = train.drop(train.columns[0], axis=1).values
 
     ytrain = torch.from_numpy(target).float()
     ytrain = ytrain.type(torch.LongTensor)
@@ -61,11 +63,13 @@ def get_features_loader(TRAINING_DATA_PATH, dynamic=False):
 
     target = test[test.columns[0]].values
 
-    if dynamic:
-        features = test.iloc[:, 1:1891]
-        features = np.array(features).reshape(len(np.array(features)), 3, 30, 21)
-    else: 
-        features = test.drop(test.columns[0], axis=1).values
+    # if dynamic:
+    #     features = test.iloc[:, 1:1891]
+    #     features = np.array(features).reshape(len(np.array(features)), 3, 30, 21)
+    # else: 
+    #     features = test.drop(test.columns[0], axis=1).values
+
+    features = test.drop(test.columns[0], axis=1).values
 
     ytest = torch.from_numpy(target).float()
     ytest = ytest.type(torch.LongTensor)
@@ -163,10 +167,19 @@ features_loaders = []
 #     np.arange(32, 48, 8)
 # ))
 
+# features_loaders.append(collect_features_loaders(
+#     cur_dir + "/gather/datasets/dynamic.csv",
+#     1,
+#     "dynamic_one_hand",
+#     SignLangModelDynamic,
+#     np.arange(320, 416, 32),
+#     dynamic=True
+# ))
+
 features_loaders.append(collect_features_loaders(
-    cur_dir + "/gather/datasets/dynamic.csv",
-    1,
-    "dynamic_one_hand",
+    cur_dir + "/gather/datasets/dynamic_2.csv",
+    2,
+    "dynamic_two_hand",
     SignLangModelDynamic,
     np.arange(320, 416, 32),
     dynamic=True
