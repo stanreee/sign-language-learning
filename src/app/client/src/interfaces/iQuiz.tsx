@@ -1,11 +1,13 @@
-import iQuizQuestions from "./iQuizQuestions"
+import iQuizASL from "./iQuizASL";
 
 interface iQuiz {
     topic: string,
     level: string,
     description: string,
     totalQuestions: number,
-    questions: iQuizQuestions[] 
+    timePerQuestion: number,
+    questions: iQuizASL[] 
 }
+
 
 export default iQuiz;
