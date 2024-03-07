@@ -47,6 +47,7 @@ Mar 4, 2024 & Cassidy & Added test results for tables 2,4,5 and 6\\
 Mar 5, 2024 & Stanley & Added test to modules traceability matrix\\
 Mar 6, 2024 & Andrew & Added automated testing information\\
 Mar 6, 2024 & Cassidy & Added reflection, fixed table 6, added to automated testing section\\ 
+Mar 7, 2024 & Edward & Added unit testing section\\ 
  &  & \\
 \bottomrule
 \end{tabularx}
@@ -243,7 +244,20 @@ NFRT2-PT2 & The application should be able to accurately determine if the user h
 
 % This section will not be appropriate for every project.
 
+\newpage
+
 \section{Unit Testing}
+\subsection{Web Socket Unit Tests}
+\begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
+\caption{System Tests for Performance} \\
+\hline
+\textbf{Test ID} & \textbf{Test Name} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\hline
+UT-WS1 & test\_dynamic \_event & The system initializes a mock client and it sends dynamic hand sign landmark history back to the system. & The system should be able to successfully process the data and return the sign the data corresponds to. &  &  &  \\
+\hline
+UT-WS2 & test\_stream \_event & The system initializes a mock client and it sends landmark features back to the system. & The system should be able to successfully process the data and return the sign the data corresponds to. &  &  &  \\
+\bottomrule
+\end{longtable}
 
 \section{Changes Due to Testing}
 
