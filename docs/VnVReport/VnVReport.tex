@@ -22,8 +22,8 @@
 \urlstyle{same}
 \usepackage[round]{natbib}
 
-% \input{../Comments}
-% \input{../Common}
+\input{../Comments}
+\input{../Common}
 
 \begin{document}
 
@@ -45,6 +45,8 @@ Mar 4, 2024 & Andrew & Filled out table for learning progression\\
 Mar 4, 2024 & Stanley & Added test results for performance requirements\\
 Mar 4, 2024 & Cassidy & Added test results for tables 2,4,5 and 6\\
 Mar 5, 2024 & Stanley & Added test to modules traceability matrix\\
+Mar 6, 2024 & Andrew & Added automated testing information\\
+Mar 6, 2024 & Cassidy & Added reflection, fixed table 6, added to automated testing section\\ 
  &  & \\
 \bottomrule
 \end{tabularx}
@@ -96,7 +98,7 @@ UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-F
 
 \listoftables %if appropriate
 
-\listoffigures %if appropriate
+% \listoffigures %if appropriate
 
 \newpage
 
@@ -106,7 +108,7 @@ UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-F
 
 \subsection{Summary}
 
-As a maching learning-based image recognition web app, ASLingo has many areas to be tested. The overall software will be broken down into modules. There will be a front-end, a back-end, a database, and a machine learning model which all need to be separately tested, along with physical hardware and compatibility. This document serves as a report of the testing done to ensure that this system has been properly and throughly tested to meet the requirements set by the \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification}.  
+As a machine learning-based image recognition web app, ASLingo has many areas to be tested. The overall software will be broken down into modules. There will be a front-end, a back-end, a database, and a machine learning model which all need to be separately tested, along with physical hardware and compatibility. This document serves as a report of the testing done to ensure that this system has been properly and thoroughly tested to meet the requirements set by the \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification}.  
 
 \subsection{Objectives}
 
@@ -118,7 +120,7 @@ Below is a list of the relevant documentation referenced within the Verification
 
 \noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} outlines the roles of each team member and the areas that each member will focus on. This breakdown of team responsibilities allows the team to assign testing roles accordingly. This document also contains the tools that the team plans on using for testing.\\
 
-\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan} outlines the testing plan for the system, as well as outlining the test cases that the team will perform to ensure the project has been properly and throughly tested. This document also contains the tools that the team plans on using for testing.\\
+\noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan} outlines the testing plan for the system, as well as outlining the test cases that the team will perform to ensure the project has been properly and thoroughly tested. This document also contains the tools that the team plans on using for testing.\\
 
 \noindent The \href{https://github.com/stanreee/sign-language-learning/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification} lists the functional and non-functional requirements which will aid in testing by formulating a testing plan to meet each requirement. Non-functional requirements should be tested such that the fit criteria are met.\\
 
@@ -131,6 +133,8 @@ Below is a list of the relevant documentation referenced within the Verification
 \section{Functional Requirements Evaluation}
 
 \subsection{System Tests for Authentication}
+Many of these tests fails since the full implementation of the Authentication module has not been fully completed yet. This will be changed before Rev1 to ensure full functionality of the system and all tests should pass. 
+
 \begin{longtable}{|p{1cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
 \caption{System Tests for Authentication} \\
 \hline
@@ -196,20 +200,24 @@ FRT4-HW2 & Monitor web camera usability & User goes to quiz page and starts a qu
 
 \subsection{System Tests for Usability}
 
-We tested our usability requirements using a survey for a group of testers to fill out after using the application for 15 minutes. The group of users had an interest in learning ASL, and were willing to fill out this questionnaire to give some perspective on the usability of our application. The survey questions can be found in the Appendix \ref{appen}.
+We will be testing our usability requirements using a survey for a group of testers to fill out after using the application for 15 minutes. The group of users will have an interest in learning ASL, and will be willing to fill out this questionnaire to give some perspective on the usability of our application. The list of survey questions and the link to the survey can be found in the Appendix \ref{appen}.
 
-\textbf{***can also include the google form pictures of responses to the survey here and discuss results***}
+% \textbf{***can also include the google form pictures of responses to the survey here and discuss results***}
+% NEED IN THE FINAL REV1 REPORTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
 \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1.5cm}|}
 \caption{System Tests for Usability} \\
 \hline
 \textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
-NFRT1-UT1 & User is able to start application with no training & User opens web application & User is able to use application, completes question 1 of survey & User is able to use application, overall test score of \textbf{ADD PERCENT}\% for survey question 1 & Pass & UHR1 \\
+NFRT1-UT1 & User is able to start application with no training & User opens web application & User is able to use application, completes question 1 of survey with result over 75\% & User is able to use application, do not have a large enough sample of users yet & Fail & UHR1 \\
+% , overall test score of \textbf{ADD PERCENT}\% for survey question 1
 \hline
-NFRT1-UT2 & User is able to complete a quiz with no training & User opens quiz page and starts a quiz & User is able to complete a quiz, completes question 3 of survey & User is able to complete a quiz, overall test score of \textbf{ADD PERCENT}\% for survey question 3 & Pass & UHR1 \\
+NFRT1-UT2 & User is able to complete a quiz with no training & User opens quiz page and starts a quiz & User is able to complete a quiz, completes question 3 of survey with result over 75\% & User is able to complete a quiz, do not have a large enough sample of users yet & Fail & UHR1 \\
+% , overall test score of \textbf{ADD PERCENT}\% for survey question 3 
 \hline
-NFRT1-UT3 & User is able to use application with various hearing abilities & User opens application & User is able to use application, completes question 2 of survey & User is able to use application, overall test score of \textbf{ADD PERCENT}\% for survey question 2 & Pass & UHR2 \\
+NFRT1-UT3 & User is able to use application with various hearing abilities & User opens application & User is able to use application, completes question 2 of survey with result over 75\% & User is able to use application, do not have a large enough sample of users yet & Fail & UHR2 \\
+% , overall test score of \textbf{ADD PERCENT}\% for survey question 2
 \hline
 NFRT1-UT4 & User can personalize their account & User is signed into their account & User can change some personal settings & None & Fail & UHR3 \\
 \hline
@@ -226,13 +234,14 @@ NFRT1-UT5 & System should show user if input needs to be adjusted & User tries t
 \hline
 NFRT2-PT1 & The application should respond to user input within 1 second. & The user should respond to the application's prompt. & The system should register the user's input and respond to the user quickly. & The system responded with the detected sign almost instantly. & Pass & PR1 \\
 \hline
-NFRT2-PT2 & The application should be able to accurately determine if the user has signed the correct response to the prompt 95\% of the time. & The user should sign in response to the application's prompt. & The application should register the user's signed input and determine if they have signed the required action correctly. & Static hand signs are recognized with a total testing accuracy of around 98\%. Dynamic hand signs are inconsistent, with the accuracy at around 50 - 60\%.  & Fail & PR2 \\
+NFRT2-PT2 & The application should be able to accurately determine if the user has signed the correct response to the prompt 95\% of the time. & The user should sign in response to the application's prompt. & The application should register the user's signed input and determine if they have signed the required action correctly with 95\% overall accuracy. & Static hand signs are recognized with a total testing accuracy of around 98\%. Dynamic hand signs are inconsistent, with the accuracy at around 50 - 60\%.  & Fail & PR2 \\
 \bottomrule
 \end{longtable}
 	
-\section{Comparison to Existing Implementation}	
+% \section{Comparison to Existing Implementation}	
+% MIGHT NEED IN THE FINAL REV1 REPORTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
-This section will not be appropriate for every project.
+% This section will not be appropriate for every project.
 
 \section{Unit Testing}
 
@@ -247,16 +256,17 @@ This section will not be appropriate for every project.
 
     \item The second change due to testing involves ensuring efficiency of sign recognition is held to a high standard from NFRT2 which outlines having a 95\% accuracy of determining the user's hand sign.
 
-    \item From our user testing, we also want to ensure that new and existing users of our application can get the best learning experience possible through a responsive, well designed and tested application
+    \item From our user testing, we also want to ensure that new and existing users of our application can get the best learning experience possible through a responsive, well designed and tested application.
 \end{itemize}
 
 \section{Automated Testing}
 
-Automated testing is taken care of by the automatic linter flake8 upon every push to the repository. Currently a couple files are failing to meet the coding standard but these will be taken of upon Rev1. 
+Automated testing is taken care of by the automatic linter flake8 upon every push to the repository to ensure that our python code is in line with the styling guide of flake8. We are also using a local and automatic linter eslint for our Javascript code for the front end of our application. Currently a couple files are failing to meet the coding standard but these will be taken of upon Rev1.
+% Need to fix these for Rev1
 
 \section{Trace to Requirements}
 
-Functional Requirements to System Tests
+\paragraph{Functional Requirements to System Tests}
 \begin{table}[ht]
 \centering
 \resizebox{\textwidth}{!}{
@@ -300,7 +310,7 @@ Functional Requirements to System Tests
 		
 \section{Trace to Modules}
 
-System Tests to Modules
+\paragraph{System Tests to Modules}
 \begin{table}[ht]
 \centering
 \resizebox{\textwidth}{!}{
@@ -330,7 +340,8 @@ System Tests to Modules
 \end{tabular}}
 \end{table}
 
-\section{Code Coverage Metrics}
+% \section{Code Coverage Metrics}
+% NEED IN THE FINAL REV1 REPORTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
 % \bibliographystyle{plainnat}
 % \bibliography{../../refs/References}
@@ -341,7 +352,7 @@ System Tests to Modules
 
 \subsection{Usability Survey Questions} \label{appen}
 
-A link to the survey that participants were given can be found \href{https://docs.google.com/forms/d/e/1FAIpQLSelcMIJ-egkwLc7gO8MhqO35-FpTtQ6efCKnogOOKVVsrdWNA/viewform}{here}. Participants were asked to rank how they felt about the following statements, with the response options being Strongly Disagree, Disagree, Neutral, Agree, and Strongly Agree. 
+A link to the survey that participants will be given can be found \href{https://docs.google.com/forms/d/e/1FAIpQLSelcMIJ-egkwLc7gO8MhqO35-FpTtQ6efCKnogOOKVVsrdWNA/viewform}{here}. Participants will be asked to rank how they felt about the following statements, with the response options being Strongly Disagree, Disagree, Neutral, Agree, and Strongly Agree. 
 
 \begin{enumerate}
 \item It was very easy to get right into a testing session with little to no hassle. 
@@ -367,5 +378,7 @@ graduate attribute of Reflection.  Please answer the following question:
   evidence that demonstrates the required quality?  (It is expected that most
   teams will have had to deviate from their original VnV Plan.)
 \end{enumerate}
+
+The Verification and Validation (VnV) plan is different than the tests that were actually conducted for the VnV Report in many ways. One main difference was that our team wrote more tests than the tests that were in the original VnV plan, and we also performed even more tests than the ones that were written. This is because when we wrote the VnV plan in November, we only had the proof of concept version of our project completed, so the tests that were written were for an earlier version of the project, or an ideal version of our project. While working on the project for our Rev0 demo, the team was constantly testing both the front and back end to ensure that the required functionality was working according to the specifications lead out in the SRS document. This testing was in line with some of the new test cases that were added to the VnV plan, but many were redundant and are not shown in the final report or plan (such as testing each letter of the alphabet individually multiple times with different people and in different environments) to reduce the length of the report. We think that some of these changes could be anticipated in future projects if a lot more time was given to all the intricacies of what the final project would look and perform like, but some changes to things like the usability of the project you can only really know after doing testing with users and other stakeholders and are harder to predict from a glance. There may be more changes to the VnV plan and report while the team works on the final product demo and as a result of more testing from stakeholders as well, which will be updated in this document over time. 
 
 \end{document}
