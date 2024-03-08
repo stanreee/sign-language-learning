@@ -9,20 +9,6 @@ from torch.utils.data import DataLoader, TensorDataset
 from sklearn.model_selection import train_test_split
 import numpy as np
 
-import torchvision.datasets as datasets
-import torchvision.transforms as transforms
-
-# hi = datasets.MNIST(root="./data", train=True, download=True, transform=transforms.ToTensor())
-# loader = DataLoader(dataset=hi, batch_size=64, shuffle=True)
-
-# print(len(loader))
-
-# for i, (data, targets) in enumerate(loader):
-#     print(np.shape(data))
-#     print("first", data)
-#     print("second", data[0])
-#     print("third", data[0][0])
-
 """
     idea of training:
 
@@ -34,27 +20,12 @@ BATCH_SIZE = 2
 NUM_EPOCHS = 48
 
 # create feature loaders on specified training data sets
-def get_features_loader(TRAINING_DATA_PATH, dynamic=False):
-
+def get_features_loader(TRAINING_DATA_PATH):
     data = pd.read_csv(TRAINING_DATA_PATH)
 
     train, test = train_test_split(data, test_size=0.2)
 
-    print(len(train), len(test))
-
     target = train[train.columns[0]].values
-
-    # if dynamic:
-    #     features = train.iloc[:, 1:1891] # change for 2 hands
-
-    #     # print(features)
-
-    #     features = np.array(features).reshape(len(np.array(features)), 3, 30, 21)
-    #     # print(features[0][0][0][0], features[0][1][0][0], features[0][2][0][0])
-    #     # print(features)
-    # else:
-    #     features = train.drop(train.columns[0], axis=1).values
-
     features = train.drop(train.columns[0], axis=1).values
 
     ytrain = torch.from_numpy(target).float()
@@ -62,13 +33,6 @@ def get_features_loader(TRAINING_DATA_PATH, dynamic=False):
     xtrain = torch.from_numpy(features).float()
 
     target = test[test.columns[0]].values
-
-    # if dynamic:
-    #     features = test.iloc[:, 1:1891]
-    #     features = np.array(features).reshape(len(np.array(features)), 3, 30, 21)
-    # else: 
-    #     features = test.drop(test.columns[0], axis=1).values
-
     features = test.drop(test.columns[0], axis=1).values
 
     ytest = torch.from_numpy(target).float()
@@ -80,10 +44,11 @@ def get_features_loader(TRAINING_DATA_PATH, dynamic=False):
 
     train_loader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
     test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
-    
+
+    print(len(train_loader), len(test_loader))
     return (train_loader, test_loader)
 
-def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron_range, dynamic=False):
+def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron_range):
     """
         returns a tuple that consists of
 
@@ -91,7 +56,7 @@ def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron
         - a list of models with varying number of neurons per layer and number of layers
         - name of model
     """
-    train_loader, test_loader = get_features_loader(data_path, dynamic)
+    train_loader, test_loader = get_features_loader(data_path)
     models = []
     num_layers = np.arange(1, 3)
     num_neurons = num_neuron_range
@@ -125,8 +90,8 @@ def train(train_loader, test_loader, model, lr=0.0001, num_epochs=NUM_EPOCHS):
             loss = criterion(outputs, targets)
             loss.backward()
             optimizer.step()
-            if i == len(train_loader) - 1:
-                print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {i}/{len(train_loader)}, Loss: {loss.item():.4f}')
+            # if i == len(train_loader) - 1:
+            #     print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {i}/{len(train_loader)}, Loss: {loss.item():.4f}')
 
         train_acc.append(
             100 * torch.mean((pred == targets).float()).item()
@@ -167,22 +132,12 @@ features_loaders = []
 #     np.arange(32, 48, 8)
 # ))
 
-# features_loaders.append(collect_features_loaders(
-#     cur_dir + "/gather/datasets/dynamic.csv",
-#     1,
-#     "dynamic_one_hand",
-#     SignLangModelDynamic,
-#     np.arange(320, 416, 32),
-#     dynamic=True
-# ))
-
 features_loaders.append(collect_features_loaders(
-    cur_dir + "/gather/datasets/dynamic_2.csv",
-    2,
-    "dynamic_two_hand",
+    cur_dir + "/gather/datasets/dynamic.csv",
+    1,
+    "dynamic_one_hand",
     SignLangModelDynamic,
-    np.arange(320, 416, 32),
-    dynamic=True
+    np.arange(320, 416, 32)
 ))
 
 print("Feature loaders created. Training models...")

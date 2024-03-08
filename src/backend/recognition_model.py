@@ -38,7 +38,7 @@ class RecognitionModel():
         landmark_history = normalize_landmark_history(landmark_history, should_reflect, num_hands)
         compressed = landmark_history_preprocess(landmark_history, num_hands)
 
-        # compressed = np.array(compressed).reshape(3, 30, 21)
+        # print(compressed)
 
         tensor = torch.from_numpy(np.array(compressed))
         tensor = tensor.to(torch.float32)
@@ -47,7 +47,7 @@ class RecognitionModel():
 
         result_arr = results.detach().numpy()
 
-        print(results)
+        # print(results)
         result = np.argmax(result_arr)
         confidence = 2**results[0][result].item()
 

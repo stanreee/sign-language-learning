@@ -8,7 +8,7 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 
-from util import process_features, landmark_history_preprocess, normalize_landmark_history
+from util import process_features, landmark_history_preprocess
 
 def extract_features(frame, hands, num_hands):
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -17,7 +17,6 @@ def extract_features(frame, hands, num_hands):
     features = []
 
     reflect = False
-    failed = False
 
     if results.multi_hand_landmarks:
         if num_hands == 1:
@@ -38,6 +37,7 @@ def extract_features(frame, hands, num_hands):
                     cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
                     features.append([point.x, point.y, point.z])
             if len(results.multi_hand_landmarks) < 2:
-                failed = True
+                for i in range(21):
+                    features.append([0, 0])
 
-    return (features, reflect, failed)
+    return (features, reflect)

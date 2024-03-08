@@ -8,7 +8,7 @@ import copy
 #     this accommodates for different hand positions by having coordinates be relative to base landmark position and not camera position
 #   - normalize landmarks on the maximum coordinate magnitude to improve consistency
 #   referenced from https://github.com/kinivi/hand-gesture-recognition-mediapipe/tree/main
-def process_features(features, reflect, base_coords=None, normalize=True):
+def process_features(features, reflect, base_coords=None):
     base_x, base_y, base_z = 0, 0, 0
     for feature in features:
         if base_x == 0 and base_y == 0 and base_z == 0:
