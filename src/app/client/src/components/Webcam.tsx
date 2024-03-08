@@ -17,7 +17,9 @@ const Webcam = ({ text, setText, run }: {text: string, setText: React.Dispatch<R
     dynamic: true, 
     onCaptureError: () => {}, 
     handedness: "right", 
-    onResult: (result: any) => setText(result) 
+    onResult: (result: any) => {
+      setText(result);
+    }
   })
   
   return (

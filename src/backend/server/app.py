@@ -59,9 +59,9 @@ def stream(message):
 
         result, confidence = results[0], results[1]
 
-        print("result: " + chr(result + 65))
+        # print("result: " + chr(result + 65))
         data = {}
-        data['result'] = str(chr(result + 65))
+        data['result'] = str(result)
         data['confidence'] = str(confidence)
         serialized = json.dumps(data)
 

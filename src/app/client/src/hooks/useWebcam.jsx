@@ -111,7 +111,7 @@ function useWebcam({
             mediapipeCamera.current.start();
         }
 
-        if(dynamic) socket.on("dynamic", data => onResult(parseData(data)))
+        if(dynamic) socket.on("result", data => onResult(parseData(data)))
         else socket.on("stream", data => onResult(parseData(data)))
 
         initCamera();
