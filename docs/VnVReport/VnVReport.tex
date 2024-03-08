@@ -231,7 +231,7 @@ NFRT1-UT5 & System should show user if input needs to be adjusted & User tries t
 \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
 \caption{System Tests for Performance} \\
 \hline
-\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
 NFRT2-PT1 & The application should respond to user input within 1 second. & The user should respond to the application's prompt. & The system should register the user's input and respond to the user quickly. & The system responded with the detected sign almost instantly. & Pass & PR1 \\
 \hline
@@ -251,11 +251,11 @@ NFRT2-PT2 & The application should be able to accurately determine if the user h
 \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
 \caption{System Tests for Performance} \\
 \hline
-\textbf{Test ID} & \textbf{Test Name} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\textbf{Test ID} & \textbf{Test Name} & \textbf{Input} & \textbf{Expected Output} & \textbf{Result} & \textbf{Req ID}\\
 \hline
-UT-WS1 & test\_dynamic \_event & The system initializes a mock client and it sends dynamic hand sign landmark history back to the system. & The system should be able to successfully process the data and return the sign the data corresponds to. &  &  &  \\
+UT-WS1 & test\_dynamic \_event & The system initializes a mock client and it sends dynamic hand sign landmark history back to the system. & The system should be able to successfully process the data and return the sign the data corresponds to. & Fail &  \\
 \hline
-UT-WS2 & test\_stream \_event & The system initializes a mock client and it sends landmark features back to the system. & The system should be able to successfully process the data and return the sign the data corresponds to. &  &  &  \\
+UT-WS2 & test\_stream \_event & The system initializes a mock client and it sends landmark features back to the system. & The system should be able to successfully process the data and return the sign the data corresponds to. & Fail &  \\
 \bottomrule
 \end{longtable}
 
