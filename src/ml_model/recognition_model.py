@@ -35,7 +35,7 @@ class RecognitionModel():
         return (result, confidence)
 
     def __evaluate_dynamic__(self, landmark_history, num_hands, should_reflect):
-        landmark_history = normalize_landmark_history(landmark_history, should_reflect)
+        landmark_history = normalize_landmark_history(landmark_history, should_reflect, num_hands)
         compressed = landmark_history_preprocess(landmark_history, num_hands)
 
         # compressed = np.array(compressed).reshape(3, 30, 21)

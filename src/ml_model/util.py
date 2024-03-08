@@ -11,7 +11,7 @@ import copy
 def process_features(features, reflect, base_coords=None, normalize=True):
     base_x, base_y, base_z = 0, 0, 0
     for feature in features:
-        if base_x == 0 and base_y == 0:
+        if base_x == 0 and base_y == 0 and base_z == 0:
             base_x = feature[0] if not base_coords else base_coords[0]
             base_y = feature[1] if not base_coords else base_coords[1]
             base_z = feature[2] if not base_coords else base_coords[2]
@@ -71,12 +71,18 @@ def landmark_history_preprocess(landmark_history, num_hands):
 
     return compressed
 
-def normalize_landmark_history(landmark_history, reflect):
+def normalize_landmark_history(landmark_history, reflect, num_hands):
     landmark_history_copy = copy.deepcopy(landmark_history)
-    base_coords = landmark_history[0][0]
+    # base_coords = landmark_history[0][0]
+    base_coords = [[], []]
     for i in range(len(landmark_history)):
         features = landmark_history[i]
-        processed = process_features(features, reflect, base_coords, normalize=False)
-        landmark_history_copy[i] = processed
+        all_hand_features = []
+        for hand in range(num_hands):
+            hand_features = features[0:21] if hand == 0 else features[21:]
+            if not base_coords[hand]:
+                base_coords[hand] = hand_features[0].copy()
+            all_hand_features += process_features(hand_features, reflect, base_coords[hand], normalize=False)
+        landmark_history_copy[i] = all_hand_features
 
     return landmark_history_copy
