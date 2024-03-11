@@ -100,8 +100,7 @@ function useWebcam({
 
     const parseData = (data) => {
         const deserialized = JSON.parse(data);
-        const { result } = deserialized;
-        return result;
+        return deserialized;
     }
 
     useEffect(() => {
