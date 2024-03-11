@@ -10,6 +10,7 @@ import base64
 import os
 import mediapipe as mp
 import json
+from id_mapping import id_map
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
@@ -23,6 +24,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 dynamic_model = RecognitionModel(parent + "/trained_models/dynamic_one_hand.pt", 1, "dynamic")
 static = RecognitionModel(parent + "/trained_models/static_one_hand.pt", 1, "static")
+dynamic_model_two = RecognitionModel(parent + "/trained_models/dynamic_two_hand.pt", 2, "dynamic_2")
 
 max_frames = 300
 cur_frames = 0
@@ -37,13 +39,17 @@ frames_path = cur_dir + "/frames/"
 @socketio.on('dynamic')
 def dynamic(message):
     landmark_history = message['landmarkHistory']
-    print(len(landmark_history), len(landmark_history[0]), len(landmark_history[0][0]))
-    results = dynamic_model.evaluate(landmark_history, False)
+    reflect = message['reflect']
+    hands = message['numHands']
+    results = dynamic_model.evaluate(landmark_history, reflect) if hands == 1 else dynamic_model_two.evaluate(landmark_history, reflect)
 
     result, confidence = results[0], results[1]
 
+    print(landmark_history)
+    print(result)
+
     data = {}
-    data['result'] = str(result)
+    data['result'] = str(id_map(result, model="dynamic", hands=hands))
     data['confidence'] = str(confidence)
     serialized = json.dumps(data)
     socketio.emit("dynamic", serialized)
@@ -61,7 +67,7 @@ def stream(message):
 
         # print("result: " + chr(result + 65))
         data = {}
-        data['result'] = str(result)
+        data['result'] = str(id_map(result, model="static", hands=1))
         data['confidence'] = str(confidence)
         serialized = json.dumps(data)
 
