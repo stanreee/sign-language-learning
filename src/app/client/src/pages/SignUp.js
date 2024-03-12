@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // info from https://clerk.com/blog/building-a-react-login-page-template
 
-const Login = (props) => {
+const SignUp = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailError, setEmailError] = useState("")
@@ -38,14 +38,14 @@ const Login = (props) => {
         // Check if email has an account associated with it
         checkAccountExists((accountExists) => {
             // If yes, log in
-            if (accountExists) logIn()
+            if (accountExists) SignUp()
             // Else, ask user if they want to create a new account and if yes, then log in
             else if (
             window.confirm(
                 'An account does not exist with this email address: ' + email + '. Do you want to create a new account?',
             )
             ) {
-            logIn()
+                SignUp()
             navigate("/loggedIn")
             }
         })
@@ -67,7 +67,7 @@ const Login = (props) => {
     }
 
     // Log in a user using email and password
-    const logIn = () => {
+    const SignUp = () => {
         fetch('http://localhost:3080/auth', {
         method: 'POST',
         headers: {
@@ -90,7 +90,7 @@ const Login = (props) => {
 
     return <div className={"mainContainer"}>
         <header>
-            <h1>Login to ASLingo</h1>
+            <h1>Sign Up to ASLingo</h1>
         </header>
         <br />
         <div className={"inputContainer"}>
@@ -116,9 +116,9 @@ const Login = (props) => {
                 className={"box"}
                 type="button"
                 onClick={onButtonClick}
-                value={"Log In"} />
+                value={"Sign Up"} />
         </div>
     </div>
 }
 
-export default Login
+export default SignUp

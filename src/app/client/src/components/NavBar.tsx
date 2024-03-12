@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const NavBar = () => {
+
     return (
 		<div>
 			<nav>
@@ -25,7 +26,7 @@ const NavBar = () => {
 							<NavLink to="/practice">Practice</NavLink>
 						</li>
 						<li>
-							<NavLink to="/account">Login</NavLink>
+							<NavLink to="/account">Account</NavLink>
 						</li>
 					</ul>
 				</div>

@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "email": "cassiebaldin@outlook.com",
+      "password": "$2b$10$bE8g2YDOmEtXT1E8/roT2uFjWjsTVSP4oSuKfYIUBKZV3su71m5Ka"
+    },
+    {
+      "email": "someonesomething@gmail.com",
+      "password": "$2b$10$.sr6qMtfgQC07MKPWZ3Wne7goiXJvSmnXijom.bD0hu0GjvTIUcO."
+    }
+  ]
+}
