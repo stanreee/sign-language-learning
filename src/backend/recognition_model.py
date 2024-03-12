@@ -20,7 +20,7 @@ class RecognitionModel():
         self.num_hands = num_hands
 
     def __evaluate_static__(self, landmark_data, num_hands, should_reflect):
-        features = process_features(landmark_data, should_reflect)
+        features = process_features(landmark_data, should_reflect, shouldNormalize=True)
         if len(features) < 42 and num_hands == 2:
             return
 
