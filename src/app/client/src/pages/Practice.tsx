@@ -8,6 +8,7 @@ import ASLLetters from "../images/ASLLetters.png"
 const Practice = () => {
 
     const [result, setResult] = useState("A")
+    const [dynamic, setDynamic] = useState(false)
 
     // console.log("result: " + result);
     return(
@@ -17,12 +18,32 @@ const Practice = () => {
                     <h1>Practice</h1>
                 </div>
                 <div>
-                    <span className="result-prompt">Result: </span>
-                    <span className="result">{result}</span>
-                </div>
-                <div className='letterAlign'>
-                    <Webcam text={result} setText={setResult} run={true}/>
-                    <img src={ASLLetters} width={500} height={500} alt="aslLetters" />
+                    <div className="practice-header">
+                        <div className="container-row">
+                            {
+                                dynamic ? (
+                                    <div >
+                                    <button className="Dyanmic-Button active" onClick={() => {setDynamic(false)}}>Static</button>
+                                    <button className="Dyanmic-Button">Dynamic</button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                    <button className="Dyanmic-Button" >Static</button>
+                                    <button className="Dyanmic-Button active" onClick={() => {setDynamic(true)}}>Dynamic</button>
+                                    </div>
+                                    )
+
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <span className="result-prompt">Result: </span>
+                        <span className="result">{result}</span>
+                    </div>
+                    <div className='letterAlign'>
+                        <Webcam text={result} setText={setResult} run={true} isDynamic={dynamic}/>
+                        <img src={ASLLetters} width={500} height={500} alt="aslLetters" />
+                    </div>
                 </div>
                 
             </div>          
