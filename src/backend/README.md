@@ -48,3 +48,15 @@ The processing is identical for two handed signs, but the array size will be (1x
 The application uses the machine learning library [Pytorch](https://pytorch.org/). 
 
 To achieve optimal results, the training process runs in multiple rounds for each sign language model. The program trains the models with varying numbers of layers, with varying numbers of neurons in each layer. The program then selects the combination of layers and neurons that results in the highest accuracy when the test dataset is ran through the trained model. These models are then saved in the ```trained_models``` folder for later use.
+
+To train the models, uncomment any of these options in ```train.py```
+
+<img width="465" alt="image" src="https://github.com/stanreee/sign-language-learning/assets/77902731/47a2473d-ce50-42d9-9730-e4f01b2cf243">
+
+Then run ```python3 train.py```. 
+
+Sample output:
+
+<img width="952" alt="image" src="https://github.com/stanreee/sign-language-learning/assets/77902731/187a9df9-da7e-4fdf-a132-3978bfffaba8">
+
+
