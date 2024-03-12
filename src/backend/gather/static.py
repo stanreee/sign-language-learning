@@ -22,10 +22,12 @@ class StaticClassifier(Classifier):
         print("Frames saved for id", id, ".")
 
     def capture(self, frame, frameNum, data):
-        features, reflect = extract_features(frame, self.hands, self.num_hands)
-        if len(features) >= 21 if self.num_hands == 1 else 42:
+        features, reflect, failed = extract_features(frame, self.hands, self.num_hands)
+        if len(features) >= 21 if self.num_hands == 1 else 42 and not failed:
             features = process_features(features, reflect)
             data.append(features)
+        else:
+            data, frameNum = self.forceEndCapture()
         if frameNum >= self.FRAME_CAP:
             data, frameNum = self.endCapture(data, frameNum)
         return (data, frameNum)
