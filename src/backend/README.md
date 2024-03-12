@@ -4,6 +4,8 @@ The contents of this folder is responsible for data collection modules (```gathe
 
 ## Data Collection
 
+**For details on how to add new signs, read the README file in the ```gather``` folder.**
+
 ### Static Signs Data Processing
 
 A total of 30 frames are captured, with each frame being a separate data point for the corresponding sign.
