@@ -35,7 +35,7 @@ class DynamicClassifier(Classifier):
                 # for each frame, all landmark coordinates will be relative to thsi base landmark
                 if not self.base_coords[hand]:
                     self.base_coords[hand] = hand_features[0].copy()
-                all_hand_features += process_features(hand_features, reflect, self.base_coords[hand], normalize=False)
+                all_hand_features.extend(process_features(hand_features, reflect, self.base_coords[hand], shouldNormalize=False))
             # if not self.base_coords:
             #     self.base_coords = features[0]
             # features = process_features(features, reflect, self.base_coords)

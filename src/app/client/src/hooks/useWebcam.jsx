@@ -4,7 +4,7 @@ import getFeatures from "../util/getFeatures";
 import { Hands } from "@mediapipe/hands";
 import { Camera } from '@mediapipe/camera_utils';
 
-const LIMIT_FPS = 10;
+const LIMIT_FPS = 15;
 
 function throttle(callback, limit) {
     let waiting = false;
@@ -100,8 +100,7 @@ function useWebcam({
 
     const parseData = (data) => {
         const deserialized = JSON.parse(data);
-        const { result } = deserialized;
-        return result;
+        return deserialized;
     }
 
     useEffect(() => {
@@ -114,7 +113,7 @@ function useWebcam({
             mediapipeCamera.current.start();
         }
 
-        if(dynamic) socket.on("result", data => onResult(parseData(data)))
+        if(dynamic) socket.on("dynamic", data => onResult(parseData(data)))
         else socket.on("stream", data => onResult(parseData(data)))
 
         initCamera();
