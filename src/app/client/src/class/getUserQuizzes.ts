@@ -5,6 +5,11 @@ import iQuizHard from "../interfaces/iQuizHard";
 import iQuizASL from "../interfaces/iQuizASL";
 import letters from "../data/letters.json"
 
+type letterArray = {
+    letter: string,
+    isStatic: string
+}
+
 const selectRandomQuestions = (difficulty: string, numQuestions: number) => {
 
     let questions: iQuizASL[] = [];
@@ -12,6 +17,7 @@ const selectRandomQuestions = (difficulty: string, numQuestions: number) => {
     // Shuffle array
 
     let shuffled: string[] = [];
+    let t: string[][] = [[]]
 
     if(difficulty === "Easy"){
         shuffled = letters.easyLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
@@ -22,11 +28,15 @@ const selectRandomQuestions = (difficulty: string, numQuestions: number) => {
     else if (difficulty === "Hard"){
         shuffled = letters.allLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
     }
-    else if (difficulty === "Vowel"){
-        shuffled = letters.vowelLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
+    
+    
+    if (difficulty === "Vowel"){
+        t = letters.vowelLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
     }
 
-    shuffled.forEach((letter: string) => {
+
+
+    shuffled.forEach((letter: string, index: number) => {
 
         const question: iQuizASL = {
             question: letter,

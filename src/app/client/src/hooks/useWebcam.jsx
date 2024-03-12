@@ -34,8 +34,6 @@ function useWebcam({
     const mediapipeCamera = useRef(null),
     SocketContext = createContext<Socket>(socket);
 
-    const [canCapture, setCanCapture] = useState(true);
-
     const onResults = (results) => {
         console.log("capturing");
         const { multiHandLandmarks, multiHandedness } = results;
@@ -60,6 +58,7 @@ function useWebcam({
                         socket.emit('dynamic', { 
                             landmarkHistory: landmarkHistory.current,
                             reflect: handedness === "left",
+                            numHands: numHands,
                         })
                         setCaptureState(false);
                     }
@@ -68,6 +67,7 @@ function useWebcam({
                 socket.emit('stream', { 
                     features: totalHandFeatures,
                     reflect: handedness === "left",
+                    numHands: numHands
                 });
             }
         }
@@ -76,6 +76,9 @@ function useWebcam({
     useEffect(() => {
         landmarkHistory.current = [];
         if(hands.current) hands.current.onResults(throttle(onResults, LIMIT_FPS));
+        if(captureState && !dynamic) {
+            throw new Error("useWebcam cannot start capture if webcam is not dynamic");
+        }
     }, [captureState])
 
     const loadHands = () => {
