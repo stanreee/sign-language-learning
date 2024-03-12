@@ -1,6 +1,6 @@
 ### This folder contains python scripts to gather landmark data manually through your webcam
 
-### How to use
+## How to use
 
 Open command line, navigate to the ```gather``` folder, then run ```python3 main.py```.
 
@@ -34,9 +34,9 @@ For example, ```DYNAMIC[1][0]``` corresponds to the "no" handsign, which is a dy
 
 Depending on the type of sign and the number of hands specified, the data points will be saved in ```dynamic.csv``` or ```static.csv``` for one hand signs, and ```dynamic_2.csv``` or ```static_2.csv``` for two hands, which will be used for training the machine learning models.
 
-### Tips and tricks
+## Tips and tricks
 
-## For editing .csv dataset files (to remove potential faulty data)
+### For editing .csv dataset files (to remove potential faulty data)
 
 Good VSCode extension:
 
@@ -52,6 +52,6 @@ To this
 
 <img width="1132" alt="image" src="https://github.com/stanreee/sign-language-learning/assets/77902731/007ec3be-2c18-4772-b38b-a6ea904f8e2d">
 
-## Static sign capturing
+### Static sign capturing
 
 When capturing static signs, during the capturing process, move your hand in different orientations to account for different angles.
