@@ -55,3 +55,7 @@ To this
 ### Static sign capturing
 
 When capturing static signs, during the capturing process, move your hand in different orientations to account for different angles.
+
+### After capturing signs
+
+After collecting landmark data for signs, train the model (instructions to train the model found in the ```backend``` folder) and then test the confidence of the newly trained signs. 
