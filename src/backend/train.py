@@ -132,10 +132,18 @@ features_loaders = []
 #     np.arange(32, 48, 8)
 # ))
 
+# features_loaders.append(collect_features_loaders(
+#     cur_dir + "/gather/datasets/dynamic.csv",
+#     1,
+#     "dynamic_one_hand",
+#     SignLangModelDynamic,
+#     np.arange(320, 416, 32)
+# ))
+
 features_loaders.append(collect_features_loaders(
-    cur_dir + "/gather/datasets/dynamic.csv",
-    1,
-    "dynamic_one_hand",
+    cur_dir + "/gather/datasets/dynamic_2.csv",
+    2,
+    "dynamic_two_hand",
     SignLangModelDynamic,
     np.arange(320, 416, 32)
 ))

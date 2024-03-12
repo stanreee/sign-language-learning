@@ -59,9 +59,9 @@ class RecognitionModel():
 
             Parameters:
             landmark_data (list): 
-                For static recognition, this is an input of 2x21 (for one-hand recognition) or 2x42 (for two-hand recognition), consisting of
+                For static recognition, this is an input of 3x21 (for one-hand recognition) or 3x42 (for two-hand recognition), consisting of
                 landmark points.
-                For dynamic recognition, this is an input of 30x2x21 (for one-hand recognition) or 30x2x42 (for two-hand recognition),
+                For dynamic recognition, this is an input of 30x3x21 (for one-hand recognition) or 30x3x42 (for two-hand recognition),
                 consisting of landmark history over the course of 30 frames.
             should_reflect (boolean):
                 This flag should be true if the hand being recognized is the user's left-hand (Mediapipe recognizes it as the right-hand, but

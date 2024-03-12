@@ -58,8 +58,7 @@ def stream(message):
         results = static.evaluate(features, reflect)
 
         result, confidence = results[0], results[1]
-
-        # print("result: " + chr(result + 65))
+        
         data = {}
         data['result'] = str(result)
         data['confidence'] = str(confidence)

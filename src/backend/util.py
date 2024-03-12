@@ -35,15 +35,6 @@ def process_features(features, reflect, base_coords=None, shouldNormalize=False)
 
     return features
 
-"""
-    compresses landmark_history array using principal component analysis (PCA) into a 1x756 dimension array to be fed into ML model
-    inputs:
-        landmark_history:
-            - 30x42 dimensional array (30 frames, 42 landmark points for each frame)
-    outputs:
-        compressed:
-            - 1x756 dimensional array to be fed into ML model
-"""
 def landmark_history_preprocess(landmark_history, num_hands):
     # dim = 18 if num_hands == 1 else 10
     # pca = PCA(n_components=dim)

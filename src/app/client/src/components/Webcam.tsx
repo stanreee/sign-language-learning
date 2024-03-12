@@ -15,7 +15,9 @@ const Webcam = ({ text, setText, run }: {text: string, setText: React.Dispatch<R
   const { captureState, setCaptureState, webcamVideoRef } = useWebcam({ 
     numHands: 1, 
     dynamic: true, 
-    onCaptureError: () => {}, 
+    onCaptureError: () => {
+      console.log("capture error");
+    }, 
     handedness: "right", 
     onResult: (result: any) => {
       setText(result);
