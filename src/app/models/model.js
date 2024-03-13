@@ -1,12 +1,14 @@
 /* eslint-disable prettier/prettier */
 import mongoose from 'mongoose';
 
-const dataSchema = new mongoose.Schema({
+const { Schema, model } = mongoose;
+
+const usersSchema = new Schema({
     name: {
         required: true,
         type: String
     },
-    username: {
+    email: {
         required: true,
         type: String
     },
@@ -18,6 +20,7 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     }
-})
+  });
 
-module.exports = mongoose.model('Data', dataSchema)
+const Users = model('Users', usersSchema);
+export default Users;

@@ -41,7 +41,7 @@ const Account = (props) => {
             onClick={onLoginButtonClick}
             value={loggedIn ? 'Log out' : 'Log in'}
           />
-          {loggedIn ? <div>Your email address is {email}</div> : <div />}
+          {loggedIn ? <div>You are signed in with {email}</div> : <div />}
 
           <input
             className={'inputButton'}

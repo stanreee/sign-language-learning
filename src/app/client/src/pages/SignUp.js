@@ -4,20 +4,30 @@ import { useNavigate } from "react-router-dom";
 // info from https://clerk.com/blog/building-a-react-login-page-template
 
 const SignUp = (props) => {
+    const [name, setName] = useState("")
+    const [nameError, setNameError] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
+    const [handedness, setHand] = useState("")
+    const [handError, setHandError] = useState("")
     
     const navigate = useNavigate();
         
     const onButtonClick = () => {
 
         // Set initial error values to empty
+        setNameError("")
         setEmailError("")
         setPasswordError("")
+        setHandError("")
 
         // Check if the user has entered both fields correctly
+        if ("" === name) {
+            setNameError("Please enter your name")
+            return
+        }
         if ("" === email) {
             setEmailError("Please enter your email")
             return
@@ -32,6 +42,10 @@ const SignUp = (props) => {
         }
         if (password.length < 7) {
             setPasswordError("The password must be 8 characters or longer")
+            return
+        } 
+        if ("" === handedness) {
+            setHandError("")
             return
         } 
 
@@ -66,7 +80,7 @@ const SignUp = (props) => {
         })
     }
 
-    // Log in a user using email and password
+    // Sign up a user using email and password
     const SignUp = () => {
         fetch('http://localhost:3080/auth', {
         method: 'POST',
@@ -95,6 +109,15 @@ const SignUp = (props) => {
         <br />
         <div className={"inputContainer"}>
             <input
+                value={name}
+                placeholder="Enter your name here"
+                onChange={ev => setName(ev.target.value)}
+                className="box" />
+            <label className="errorLabel">{nameError}</label>
+        </div>
+        <br />
+        <div className={"inputContainer"}>
+            <input
                 value={email}
                 placeholder="Enter your email here"
                 onChange={ev => setEmail(ev.target.value)}
@@ -104,11 +127,28 @@ const SignUp = (props) => {
         <br />
         <div className={"inputContainer"}>
             <input
+                type="password"
                 value={password}
                 placeholder="Enter your password here"
                 onChange={ev => setPassword(ev.target.value)}
                 className="box" />
             <label className="errorLabel">{passwordError}</label>
+        </div>
+        <br />
+        <div>
+            <label className="errorLabel">Choose your handedness: {handedness}</label>
+            <div className="container">
+                <input
+                    className={"box"}
+                    type="button"
+                    onClick={ev => setHand(ev.target.value)}
+                    value={"Left"} />
+                <input
+                    className={"box"}
+                    type="button"
+                    onClick={ev => setHand(ev.target.value)}
+                    value={"Right"} />
+            </div>
         </div>
         <br />
         <div className={"inputContainer"}>

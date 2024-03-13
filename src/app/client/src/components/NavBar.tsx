@@ -14,19 +14,19 @@ const NavBar = () => {
 					</div>
                     <ul>
 						<li>
-							<NavLink to="/">Home</NavLink>
+							<NavLink reloadDocument to={"/"}>Home</NavLink> 
 						</li>
 						<li>
-							<NavLink to="/learn">Learn</NavLink>
+							<NavLink reloadDocument to={"/learn"}>Learn</NavLink>
 						</li>
 						<li>
-							<NavLink to="/exercises">Exercises</NavLink>
+							<NavLink reloadDocument to={"/exercises"}>Exercises</NavLink>
 						</li>
 						<li>
-							<NavLink to="/practice">Practice</NavLink>
+							<NavLink reloadDocument to={"/practice"}>Practice</NavLink>
 						</li>
 						<li>
-							<NavLink to="/account">Account</NavLink>
+							<NavLink reloadDocument to={"/account"}>Account</NavLink>
 						</li>
 					</ul>
 				</div>

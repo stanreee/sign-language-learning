@@ -39,14 +39,13 @@ const Login = (props) => {
         checkAccountExists((accountExists) => {
             // If yes, log in
             if (accountExists) logIn()
-            // Else, ask user if they want to create a new account and if yes, then log in
+            // Else, tell user to use the "Sign Up" option instead
             else if (
             window.confirm(
-                'An account does not exist with this email address: ' + email + '. Do you want to create a new account?',
+                'An account does not exist with this email address: ' + email + '. Please Sign Up!',
             )
             ) {
-            logIn()
-            navigate("/loggedIn")
+            navigate("/signup")
             }
         })
     }
@@ -88,37 +87,40 @@ const Login = (props) => {
         })
     }
 
-    return <div className={"mainContainer"}>
-        <header>
-            <h1>Login to ASLingo</h1>
-        </header>
-        <br />
-        <div className={"inputContainer"}>
-            <input
-                value={email}
-                placeholder="Enter your email here"
-                onChange={ev => setEmail(ev.target.value)}
-                className="box" />
-            <label className="errorLabel">{emailError}</label>
+    return (
+        <div className={"mainContainer"}>
+            <header>
+                <h1>Login to ASLingo</h1>
+            </header>
+            <br />
+            <div className={"inputContainer"}>
+                <input
+                    value={email}
+                    placeholder="Enter your email here"
+                    onChange={ev => setEmail(ev.target.value)}
+                    className="box" />
+                <label className="errorLabel">{emailError}</label>
+            </div>
+            <br />
+            <div className={"inputContainer"}>
+                <input
+                    type="password"
+                    value={password}
+                    placeholder="Enter your password here"
+                    onChange={ev => setPassword(ev.target.value)}
+                    className="box" />
+                <label className="errorLabel">{passwordError}</label>
+            </div>
+            <br />
+            <div className={"inputContainer"}>
+                <input
+                    className={"box"}
+                    type="button"
+                    onClick={onButtonClick}
+                    value={"Log In"} />
+            </div>
         </div>
-        <br />
-        <div className={"inputContainer"}>
-            <input
-                value={password}
-                placeholder="Enter your password here"
-                onChange={ev => setPassword(ev.target.value)}
-                className="box" />
-            <label className="errorLabel">{passwordError}</label>
-        </div>
-        <br />
-        <div className={"inputContainer"}>
-            <input
-                className={"box"}
-                type="button"
-                onClick={onButtonClick}
-                value={"Log In"} />
-        </div>
-    </div>
+    )
 }
 
 export default Login

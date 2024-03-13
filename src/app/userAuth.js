@@ -4,7 +4,6 @@ import { MongoClient } from 'mongodb';
 async function main() {
     // mongodb cluster access
     const uri = "mongodb+srv://CassieB:Azxsw21@aslingo.4cr3x99.mongodb.net/";
-    
     /**
      * The Mongo Client you will use to interact with your database
      * See https://mongodb.github.io/node-mongodb-native/3.6/api/MongoClient.html for more details

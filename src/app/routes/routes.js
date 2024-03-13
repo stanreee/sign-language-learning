@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
 import express from 'express';
-import Model from "../models/model";
+import Model from "../models/model.js";
 
 const router = express.Router()
-module.exports = router;
 
 //Post Method
 router.post('/post', async (req, res) => {
@@ -73,3 +72,6 @@ router.delete('/delete/:id', async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 })
+
+// module.exports = router;
+export default router

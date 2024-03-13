@@ -7,6 +7,14 @@
     {
       "email": "someonesomething@gmail.com",
       "password": "$2b$10$.sr6qMtfgQC07MKPWZ3Wne7goiXJvSmnXijom.bD0hu0GjvTIUcO."
+    },
+    {
+      "email": "langnerj@mcmaster.ca",
+      "password": "$2b$10$1qz/8wOFtnibEuGsnFafmeLJ0MyJj8u.yetK1ZsLQ9pHl8w6x616i"
+    },
+    {
+      "email": "sandraiscool@mcmaster.com",
+      "password": "$2b$10$cxPy0wlPgnIJeCn8mU/HzOfX.kgUkRKQ1ZX0Ok09t1GsdElpYbPG2"
     }
   ]
 }
