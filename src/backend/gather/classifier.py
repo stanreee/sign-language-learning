@@ -17,7 +17,7 @@ class Classifier:
         self.capturing = False
         print("END CAPTURING")
         save = input("Do you want to save these frames? (Y/N)")
-        if save == "Y":
+        if save == "Y" or save == 'y':
             id = input("Enter id for data.")
             self.save(data, id, self.num_hands)
         data = []
@@ -40,7 +40,7 @@ class Classifier:
 
             if key == 'c':
                 print("Preparing to capture...")
-                self.cap = cv2.VideoCapture(1)
+                self.cap = cv2.VideoCapture(0)
                 cv2.startWindowThread()
                 cv2.namedWindow(self.name, cv2.WINDOW_NORMAL)
                 data = []
