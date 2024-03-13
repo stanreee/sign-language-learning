@@ -1,5 +1,7 @@
 ### This folder contains python scripts to gather landmark data manually through your webcam
 
+# IMPORTANT: Before doing any training or data collection, make sure to *pull* from Rev1_app branch, this will help prevent any potential merge conflicts
+
 ## How to use
 
 Open command line, navigate to the ```gather``` folder, then run ```python3 main.py```.
