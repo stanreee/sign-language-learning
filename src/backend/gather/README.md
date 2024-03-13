@@ -1,6 +1,8 @@
 ### This folder contains python scripts to gather landmark data manually through your webcam
 
-# IMPORTANT: Before doing any training or data collection, make sure to *pull* from Rev1_app branch, this will help prevent any potential merge conflicts
+### IMPORTANT: Before doing any training or data collection, make sure to *pull* from Rev1_app branch, this will help prevent any potential merge conflicts
+
+### ALSO (especially important for newly introduced IDs): Before pushing your collected data, *make sure* to train the model and test how well the model works (noting the consistency and the confidence). Details on how to train the model can be found in the parent folder ```backend```
 
 ## How to use
 
