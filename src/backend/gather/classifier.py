@@ -39,7 +39,7 @@ class Classifier:
         startTime = 0
         countdown = False
         print("Press C to capture. If recording two hands, then a 3 second countdown will start when C is pressed before recording begins.")
-        while self.cap.isOpened():
+        while True:
             ret, frame = self.cap.read()
 
             if self.capturing:
@@ -56,7 +56,7 @@ class Classifier:
                     startTime = 0
                     print("CAPTURING 30 FRAMES")
 
-            if cv2.waitKey(1) & 0xFF == ord('c'):
+            if cv2.waitKey(10) & 0xFF == ord('c'):
                 if self.num_hands > 1:
                     if not self.capturing and not countdown:
                         startTime = time.time()
@@ -65,7 +65,7 @@ class Classifier:
                 else:
                     print("CAPTURING 30 FRAMES")
                     self.capturing = True
-            elif cv2.waitKey(1) & 0xFF == ord('q'):
+            elif cv2.waitKey(10) & 0xFF == ord('q'):
                 break
         self.cap.release()
         cv2.destroyAllWindows()
