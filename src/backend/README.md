@@ -61,4 +61,11 @@ Sample output:
 
 <img width="952" alt="image" src="https://github.com/stanreee/sign-language-learning/assets/77902731/187a9df9-da7e-4fdf-a132-3978bfffaba8">
 
+## To test out the model
+
+Run one of the following
+
+```python3 dynamic_cam_one_hand.py``` for one hand dynamic signs,
+```python3 dynamic_cam.py``` for two hand dynamic signs,
+```python3 static_cam_one_hand.py``` for one hand static signs
 
