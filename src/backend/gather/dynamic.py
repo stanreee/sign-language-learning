@@ -40,9 +40,9 @@ class DynamicClassifier(Classifier):
             #     self.base_coords = features[0]
             # features = process_features(features, reflect, self.base_coords)
             data.append(all_hand_features)
-        else:
-            data, frameNum = self.forceEndCapture()
-        if frameNum >= self.FRAME_CAP:
+        # else:
+        #     data, frameNum = self.forceEndCapture()
+        if len(data) >= self.FRAME_CAP:
             data, frameNum = self.endCapture(data, frameNum)
             self.base_coords = [[], []]
         return (data, frameNum)
