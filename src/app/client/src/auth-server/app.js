@@ -4,7 +4,7 @@ var cors = require('cors')
 const jwt = require('jsonwebtoken')
 var low = require('lowdb')
 var FileSync = require('lowdb/adapters/FileSync')
-var adapter = new FileSync('./database.json')
+var adapter = new FileSync('./users.json')
 var db = low(adapter)
 
 // Initialize Express app
@@ -25,7 +25,7 @@ app.get('/', (_req, res) => {
 
 // The auth endpoint that creates a new user record or logs a user based on an existing record
 app.post('/auth', (req, res) => {
-    const { email, password } = req.body
+    const { name, email, password, handedness } = req.body
   
     // Look up the user entry in the database
     const user = db
@@ -51,8 +51,8 @@ app.post('/auth', (req, res) => {
       // If no user is found, hash the given password and create a new entry in the auth db with the email and hashed password
     } else if (user.length === 0) {
       bcrypt.hash(password, 10, function (_err, hash) {
-        console.log({ email, password: hash })
-        db.get('users').push({ email, password: hash }).write()
+        console.log({ name, email, password: hash, handedness })
+        db.get('users').push({ name, email, password: hash, handedness }).write()
   
         let loginData = {
           email,

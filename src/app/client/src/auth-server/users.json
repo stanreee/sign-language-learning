@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "name": "Cassie",
+      "email": "cassiebaldin@outlook.com",
+      "password": "$2b$10$C5BpomHGHqz9sDnJ4Dqqxesgv6eVIVEQB/iqwQsYa4GEmkStBeBPG",
+      "handedness": "Left"
+    },
+    {
+      "name": "jerry",
+      "email": "jerryiscool@gmail.com",
+      "password": "$2b$10$A/N20dIoTuCa5yARgcM5lODdM4Vab3kKXr/K1TRpjrIPlf6IlipYm",
+      "handedness": "Right"
+    },
+    {
+      "name": "Sandra",
+      "email": "sunnysandra@gmail.com",
+      "password": "$2b$10$wW4U6WXCkmkm3n1Kkc34kODQ58MxoMCDxQ/EWsX.qIn/BwAOrm6B.",
+      "handedness": "Right"
+    },
+    {
+      "name": "test",
+      "email": "testing@gmail.com",
+      "password": "$2b$10$HfdQ.h9gJfMnYHdIZ2LFN.Ioi/v6oxW/gTBakG61hKVpJd.3hG5Zy",
+      "handedness": "Right"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ console.log(asl);
 
 const Account = (props) => {
 
-  const { loggedIn, email } = props
+  const { loggedIn, email, name } = props
   const navigate = useNavigate();
   
   const onLoginButtonClick = () => {
@@ -30,9 +30,11 @@ const Account = (props) => {
 
       <div className="mainContainer">
         <div className={'titleContainer'}>
-          <div>Welcome to ASLingo</div>
+          {loggedIn ? <div>Welcome {name}!</div> : <div>Welcome to ASLingo</div>}
+          {/* name part isnt working right now */}
         </div>
-        <p>Login or Create an Account to Save Your Learning Progress!</p>
+        {loggedIn ? <h2>Profile Settings</h2> : <div />}
+        {loggedIn ? <div>You are signed in with {email}</div> : <div>Login or Create an Account to Save Your Learning Progress!</div>}
 
         <div className={'buttonContainer'}>
           <input
@@ -41,7 +43,6 @@ const Account = (props) => {
             onClick={onLoginButtonClick}
             value={loggedIn ? 'Log out' : 'Log in'}
           />
-          {loggedIn ? <div>You are signed in with {email}</div> : <div />}
 
           <input
             className={'inputButton'}

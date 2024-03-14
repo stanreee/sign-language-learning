@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 console.log(asl);
 
-const Account = () => {
+const LoggedIn = () => {
 
     return(
     <div className="App">
@@ -11,6 +11,19 @@ const Account = () => {
         <img src={asl} alt="asl" />
         <h3>You have successfully logged into ASLingo!</h3>
 
+        <div className = 'box'>
+          <NavLink 
+            to="/learn"
+            style={({ isActive, isPending }) => {
+              return {
+                fontWeight: isActive ? "bold" : "bold",
+                color: isPending ? "red" : '#003459',
+              };
+            }}
+          >
+            Start Learning
+          </NavLink>
+        </div>
         <div className = 'box'>
           <NavLink 
             to="/"
@@ -30,4 +43,4 @@ const Account = () => {
     );
 }
 
-export default Account;
+export default LoggedIn;

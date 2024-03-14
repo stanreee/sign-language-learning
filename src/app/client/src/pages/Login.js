@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 // info from https://clerk.com/blog/building-a-react-login-page-template
 
 const Login = (props) => {
+    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailError, setEmailError] = useState("")
@@ -72,7 +73,7 @@ const Login = (props) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password}),
         })
         .then((r) => r.json())
         .then((r) => {
@@ -80,7 +81,8 @@ const Login = (props) => {
             localStorage.setItem('user', JSON.stringify({ email, token: r.token }))
             props.setLoggedIn(true)
             props.setEmail(email)
-            navigate('/account')
+            props.setName(name)
+            navigate('/loggedIn')
             } else {
             window.alert('Wrong email or password')
             }

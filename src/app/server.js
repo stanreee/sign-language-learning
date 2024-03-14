@@ -2,7 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import routes from "./routes/routes.js";
+// import routes from "./routes/routes.js";
 
 import Item from "./models/Item";
 // const Item = require("./models/Item"); // Create the Item model
@@ -39,7 +39,7 @@ database.once('connected', () => {
 const app = express();
 
 app.use(express.json());
-app.use('/api', routes)
+// app.use('/api', routes)
 
 app.get('/', (req, res) => res.send('Server running'));
 

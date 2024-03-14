@@ -18,6 +18,7 @@ import './App.css';
 const App = () => {
 
   const [loggedIn, setLoggedIn] = useState(false)
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const App = () => {
         .then((r) => {
           setLoggedIn('success' === r.message)
           setEmail(user.email || '')
+          setName(user.name || '')
         })
     }, [])
 
@@ -52,10 +54,9 @@ const App = () => {
             <Route path="/Learn" element={<Learn />} />
             <Route path="/Exercises" element={<Exercises />} />
             <Route path="/Practice" element={<Practice />} />
-            <Route path="/Account" element={<Account email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
-            <Route path="/Login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
-            <Route path="/Signup" element={<SignUp setLoggedIn={setLoggedIn} setEmail={setEmail} />} />  
-            {/* need to add handedness and name */}
+            <Route path="/Account" element={<Account name={name} email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
+            <Route path="/Login" element={<Login setLoggedIn={setLoggedIn} setName={setName} setEmail={setEmail} />} />
+            <Route path="/Signup" element={<SignUp setLoggedIn={setLoggedIn} setName={setName} setEmail={setEmail} />} />  
             <Route path="/LoggedIn" element={<LoggedIn />} />
             <Route path="*" element={<NoMatch />} />
         </Routes>

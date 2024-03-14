@@ -45,7 +45,7 @@ const SignUp = (props) => {
             return
         } 
         if ("" === handedness) {
-            setHandError("")
+            setHandError("Not selected yet")
             return
         } 
 
@@ -87,7 +87,7 @@ const SignUp = (props) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password, handedness }),
         })
         .then((r) => r.json())
         .then((r) => {
@@ -95,7 +95,8 @@ const SignUp = (props) => {
             localStorage.setItem('user', JSON.stringify({ email, token: r.token }))
             props.setLoggedIn(true)
             props.setEmail(email)
-            navigate('/account')
+            props.setName(name)
+            navigate('/loggedIn')
             } else {
             window.alert('Wrong email or password')
             }
@@ -138,6 +139,7 @@ const SignUp = (props) => {
         <div>
             <label className="errorLabel">Choose your handedness: {handedness}</label>
             <div className="container">
+                <label className="errorLabel">{handError}</label>
                 <input
                     className={"box"}
                     type="button"
