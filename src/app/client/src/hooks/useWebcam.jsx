@@ -103,6 +103,16 @@ function useWebcam({
         return deserialized;
     }
 
+    const teardown = () => {
+        mediapipeCamera.current.stop();
+        webcamVideo.current = null;
+    }
+
+    useEffect(() => {
+        if(dynamic) socket.on("dynamic", data => onResult(parseData(data)))
+        else socket.on("stream", data => onResult(parseData(data)))
+    }, [dynamic])
+
     useEffect(() => {
         async function initCamera() {
             mediapipeCamera.current = new Camera(webcamVideo.current, {
@@ -113,17 +123,15 @@ function useWebcam({
             mediapipeCamera.current.start();
         }
 
-        if(dynamic) socket.on("dynamic", data => onResult(parseData(data)))
-        else socket.on("stream", data => onResult(parseData(data)))
-
         initCamera();
         loadHands();
-    }, [dynamic])
+    }, [])
 
     return {
         captureState,
         setCaptureState,
-        webcamVideoRef: webcamVideo
+        webcamVideoRef: webcamVideo,
+        teardown
     }
 }
 

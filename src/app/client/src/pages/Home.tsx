@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import info from "../data/fyInfo.json"
 import asl from '../images/asl.png';
+import { useEffect } from 'react';
 
 console.log(asl);
 
