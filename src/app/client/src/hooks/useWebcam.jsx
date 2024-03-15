@@ -117,7 +117,7 @@ function useWebcam({
         async function initCamera() {
             mediapipeCamera.current = new Camera(webcamVideo.current, {
               onFrame: async () => {
-                await hands.current.send({ image: webcamVideo.current });
+                if(webcamVideo.current) await hands.current.send({ image: webcamVideo.current });
               },
             })
             mediapipeCamera.current.start();
