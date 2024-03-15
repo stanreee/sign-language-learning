@@ -8,6 +8,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.model_selection import train_test_split
 import numpy as np
+import time
 
 """
     idea of training:
@@ -16,11 +17,11 @@ import numpy as np
     best accuracy on the test dataset
 """
 
-BATCH_SIZE = 2
+# BATCH_SIZE = 2
 NUM_EPOCHS = 48
 
 # create feature loaders on specified training data sets
-def get_features_loader(TRAINING_DATA_PATH):
+def get_features_loader(TRAINING_DATA_PATH, BATCH_SIZE):
     data = pd.read_csv(TRAINING_DATA_PATH)
 
     train, test = train_test_split(data, test_size=0.2)
@@ -48,7 +49,7 @@ def get_features_loader(TRAINING_DATA_PATH):
     print(len(train_loader), len(test_loader))
     return (train_loader, test_loader)
 
-def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron_range):
+def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron_range, batch_size):
     """
         returns a tuple that consists of
 
@@ -56,7 +57,7 @@ def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron
         - a list of models with varying number of neurons per layer and number of layers
         - name of model
     """
-    train_loader, test_loader = get_features_loader(data_path)
+    train_loader, test_loader = get_features_loader(data_path, batch_size)
     models = []
     num_layers = np.arange(1, 3)
     num_neurons = num_neuron_range
@@ -129,7 +130,8 @@ features_loaders.append(collect_features_loaders(
     1,
     "static_one_hand",
     SignLangModel,
-    np.arange(32, 48, 8)
+    np.arange(128, 144, 8),
+    32
 ))
 
 # features_loaders.append(collect_features_loaders(
@@ -137,7 +139,8 @@ features_loaders.append(collect_features_loaders(
 #     1,
 #     "dynamic_one_hand",
 #     SignLangModelDynamic,
-#     np.arange(320, 416, 32)
+#     np.arange(320, 416, 32),
+#     2
 # ))
 
 # features_loaders.append(collect_features_loaders(
@@ -145,7 +148,8 @@ features_loaders.append(collect_features_loaders(
 #     2,
 #     "dynamic_two_hand",
 #     SignLangModelDynamic,
-#     np.arange(320, 416, 32)
+#     np.arange(320, 416, 32),
+#     2
 # ))
 
 print("Feature loaders created. Training models...")
@@ -158,6 +162,7 @@ for idx, object in enumerate(features_loaders):
     accuracies = None
 
     for model in models:
+        start_time = time.time()
         print(f"Training model '{model_name}' with {model.num_layers} layers and {model.num_neurons} neurons...")
         train_acc, test_acc = train(train_loader, test_loader, model)
         train_accuracies.append({
@@ -173,6 +178,8 @@ for idx, object in enumerate(features_loaders):
         if test_acc > cur_max_accuracy:
             model_to_save = model
             accuracies = (train_acc, test_acc)
+        elapsed = time.time() - start_time
+        print("Model trained, took", elapsed, "seconds.")
 
     print("train accuracies:")
     print(train_accuracies)
