@@ -18,6 +18,6 @@ while True:
     classifier = classifiers[int(t)]
     num_hands = input("Enter number of hands: 1 or 2\n")
     classifier.num_hands = int(num_hands)
-    capture_type = input("Enter capture method, window (0) or command line (1) (window is easier, but if capture hotkey doesn't work use command line)")
+    capture_type = input("Enter capture method, window (0) or command line (1) (window is easier, but if capture hotkey doesn't work use command line)\n")
     classifier.capture_type = int(capture_type)
     classifier.start()

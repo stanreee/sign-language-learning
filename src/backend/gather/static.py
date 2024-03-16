@@ -19,7 +19,7 @@ class StaticClassifier(Classifier):
             writer = csv.writer(f, delimiter=',')
             for row in data:
                 writer.writerow([i for i in row])
-        print("Frames saved for id", id, ".")
+        print("Frames saved for id", str(id) + ".")
 
     def capture(self, frame, frameNum, data):
         features, reflect, failed = extract_features(frame, self.hands, self.num_hands)
