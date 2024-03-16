@@ -23,7 +23,6 @@ DYNAMIC = {
         2: 'help',
         3: 'friend',
         4: 'family',
-        5: 'bicycle',
     }
 }
 
