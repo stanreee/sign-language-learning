@@ -38,12 +38,12 @@ class RecognitionModel():
         compressed = normalize_landmark_history(landmark_history, should_reflect, num_hands)
 
         if previous_input:
-            max_diff = 0
+            total_diff = 0
 
             for val1, val2 in zip(compressed, previous_input):
-                max_diff = max(abs(val1 - val2), max_diff)
+                total_diff += abs(val1 - val2)
 
-            print("max diff from prev input:", max_diff)
+            print("total diff from prev input:", total_diff)
 
         # print(compressed)
 

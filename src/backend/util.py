@@ -83,6 +83,7 @@ def normalize_landmark_history(landmark_history, reflect, num_hands):
         all_hand_features = []
         for hand in range(num_hands):
             hand_features = features[0:21] if hand == 0 else features[21:]
+            # print(len(hand_features))
             if not base_coords[hand]:
                 base_coords[hand] = hand_features[0].copy()
                 if hand > 0:
