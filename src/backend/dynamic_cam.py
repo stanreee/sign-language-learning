@@ -19,6 +19,8 @@ hands = mp_hands.Hands()
 landmark_history = []
 frameNum = 0
 
+prev_input = None
+
 capturing = False
 countdown = False
 startTime = 0
@@ -54,7 +56,8 @@ while cap.isOpened():
             landmark_history.append(features)
             if len(landmark_history) > 30:
                 landmark_history.pop(0)
-                result, confidence = dynamic.evaluate(landmark_history, False)
+                result, confidence, input_vector = dynamic.evaluate(landmark_history, False, prev_input)
+                prev_input = input_vector
                 print(result, confidence)
                 capturing = False
                 landmark_history = []
