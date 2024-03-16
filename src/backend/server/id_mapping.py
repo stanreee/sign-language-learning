@@ -21,9 +21,6 @@ DYNAMIC = {
         0: 'spaghetti',
         1: 'how are you',
         2: 'help',
-        3: 'friend',
-        4: 'family',
-        5: 'bicycle',
     }
 }
 

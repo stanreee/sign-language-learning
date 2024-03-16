@@ -34,16 +34,9 @@ class RecognitionModel():
 
         return (result, confidence)
 
-    def __evaluate_dynamic__(self, landmark_history, num_hands, should_reflect, previous_input):
-        compressed = normalize_landmark_history(landmark_history, should_reflect, num_hands)
-
-        if previous_input:
-            max_diff = 0
-
-            for val1, val2 in zip(compressed, previous_input):
-                max_diff = max(abs(val1 - val2), max_diff)
-
-            print("max diff from prev input:", max_diff)
+    def __evaluate_dynamic__(self, landmark_history, num_hands, should_reflect):
+        landmark_history = normalize_landmark_history(landmark_history, should_reflect, num_hands)
+        compressed = landmark_history_preprocess(landmark_history, num_hands)
 
         # print(compressed)
 
@@ -56,13 +49,11 @@ class RecognitionModel():
 
         # print(results)
         result = np.argmax(result_arr)
-        sort = np.argpartition(result_arr[0], -3)[-3:]
-        print(sort)
         confidence = 2**results[0][result].item()
 
-        return (result, confidence, compressed)
+        return (result, confidence)
     
-    def evaluate(self, landmark_data, should_reflect=False, prev_input=None):
+    def evaluate(self, landmark_data, should_reflect=False):
         """
             Evaluates the landmark data with the currently loaded model.
 
@@ -82,4 +73,4 @@ class RecognitionModel():
         if self.type == "static":
             return self.__evaluate_static__(landmark_data, self.num_hands, should_reflect)
         else:
-            return self.__evaluate_dynamic__(landmark_data, self.num_hands, should_reflect, prev_input)
+            return self.__evaluate_dynamic__(landmark_data, self.num_hands, should_reflect)
