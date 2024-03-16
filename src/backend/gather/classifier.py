@@ -16,9 +16,9 @@ class Classifier:
     def endCapture(self, data, frameNum):
         self.capturing = False
         print("END CAPTURING")
-        save = input("Do you want to save these frames? (Y/N)")
+        save = input("Do you want to save these frames? (Y/N)\n")
         if save == "Y" or save == 'y':
-            id = input("Enter id for data.")
+            id = input("Enter id for data.\n")
             self.save(data, id, self.num_hands)
         data = []
         frameNum = 0

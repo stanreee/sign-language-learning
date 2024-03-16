@@ -24,7 +24,7 @@ class DynamicClassifier(Classifier):
         with open(cur_dir + "/datasets/" + fileName + ".csv", 'a', encoding="UTF8", newline='') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerow(dataToSave)
-        print("Frames saved for id", id, ".")
+        print("Frames saved for id", str(id) + ".")
     
     def capture(self, frame, frameNum, data):
         features, reflect, failed = extract_features(frame, self.hands, self.num_hands)
