@@ -14,7 +14,11 @@ DYNAMIC = {
         4: 'need',
         5: 'thank you',
         6: 'hello',
+        7: 'home',
+        8: 'please',
         9: 'J',
+        10: 'who',
+        11: 'why',
         25: 'Z',
     },
     2: {
@@ -23,6 +27,8 @@ DYNAMIC = {
         2: 'help',
         3: 'friend',
         4: 'family',
+        5: 'when',
+        6: 'what',
     }
 }
 
