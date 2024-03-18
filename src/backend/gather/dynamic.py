@@ -12,13 +12,13 @@ class DynamicClassifier(Classifier):
         self.hand_data = [[], []]
         pass
 
-    def endCapture(self, frameNum):
+    def endCapture(self, hand_data, frameNum):
         self.capturing = False
         print("END CAPTURING")
         save = input("Do you want to save these frames? (Y/N)\n")
         if save == "Y" or save == 'y':
             id = input("Enter id for data.\n")
-            self.save(self.hand_data, id, self.num_hands)
+            self.save(hand_data, id, self.num_hands)
         data = []
         frameNum = 0
         return (data, frameNum)
@@ -33,7 +33,7 @@ class DynamicClassifier(Classifier):
 
             fileName = str(self.name)
             if num_hands > 1:
-                fileName = str(self.name) + "_two_" + (i + 1)
+                fileName = str(self.name) + "_two_" + str(i + 1)
             cur_dir = os.curdir
             with open(cur_dir + "/datasets/" + fileName + ".csv", 'a', encoding="UTF8", newline='') as f:
                 writer = csv.writer(f, delimiter=',')
@@ -64,7 +64,7 @@ class DynamicClassifier(Classifier):
                 # data.append(features)
         # else:
         #     data, frameNum = self.forceEndCapture()
-        if len(data) >= self.FRAME_CAP:
+        if len(self.hand_data[0]) >= self.FRAME_CAP:
             data, frameNum = self.endCapture(self.hand_data, frameNum)
             self.base_coords = None
             self.hand_data = [[], []]
