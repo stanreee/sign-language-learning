@@ -22,9 +22,9 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 # static = StaticModel()
 # dynamic_model = DynamicModel()
 
-dynamic_model = RecognitionModel(parent + "/trained_models/dynamic_one_hand.pt", 1, "dynamic")
-static = RecognitionModel(parent + "/trained_models/static_one_hand.pt", 1, "static")
-dynamic_model_two = RecognitionModel(parent + "/trained_models/dynamic_two_hand.pt", 2, "dynamic_2")
+dynamic_model = RecognitionModel([parent + "/trained_models/dynamic_one_hand.pt"], "dynamic")
+static = RecognitionModel([parent + "/trained_models/static_one_hand.pt"], "static")
+dynamic_model_two = RecognitionModel([parent + "/trained_models/dynamic_two_1.pt", parent + "/trained_models/dynamic_two_2.pt"], "dynamic_2")
 
 max_frames = 300
 cur_frames = 0

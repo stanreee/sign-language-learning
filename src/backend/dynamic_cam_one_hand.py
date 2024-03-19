@@ -23,7 +23,18 @@ prev_input = None
 capturing = False
 
 cap = cv2.VideoCapture(1)
+startTime = 0
+deltaTime = 0
 while cap.isOpened():
+    if frameNum == 0:
+        startTime = time.time()
+    else:
+        deltaTime = time.time() - startTime
+    frameNum += 1
+
+    if frameNum > 300:
+        print("FPS:", str(frameNum / deltaTime))
+
     ret, frame = cap.read()
 
     if not ret:

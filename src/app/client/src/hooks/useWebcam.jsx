@@ -34,7 +34,17 @@ function useWebcam({
     const mediapipeCamera = useRef(null),
     SocketContext = createContext<Socket>(socket);
 
+    const date = new Date();
+
+    const startTime = useRef(date.getTime() / 1000)
+    const deltaTime = useRef(0);
+    const frameCount = useRef(0);
+
     const onResults = (results) => {
+        const newDate = new Date();
+        deltaTime.current = newDate.getTime() / 1000 - startTime.current;
+        frameCount.current += 1;
+        console.log("FRAMERATE:", frameCount.current / deltaTime.current, frameCount.current, deltaTime.current)
         console.log("capturing");
         const { multiHandLandmarks, multiHandedness } = results;
         if(multiHandLandmarks.length >= numHands) {
