@@ -86,8 +86,8 @@ def normalize_landmark_history(landmark_history, reflect, num_hands):
             # print(len(hand_features))
             if not base_coords[hand]:
                 base_coords[hand] = hand_features[0].copy()
-                if hand > 0:
-                    base_coords[hand] = np.ndarray.tolist(np.subtract(base_coords[0], base_coords[hand]))
+                # if hand > 0:
+                #     base_coords[hand] = np.ndarray.tolist(np.subtract(base_coords[0], base_coords[hand]))
             all_hand_features.extend(process_features(hand_features, reflect, base_coords[hand], shouldNormalize=False))
         landmark_history_copy[i] = all_hand_features
 
