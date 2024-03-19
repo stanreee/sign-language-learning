@@ -4,7 +4,8 @@ import '../styles/Webcam.css'
 
 import useWebcam from '../hooks/useWebcam';
 
-const Webcam = ({ text, setText, run, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, run: boolean, isDynamic: boolean}) => {
+const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean}) => {
+  
   const { captureState, setCaptureState, webcamVideoRef, teardown } = useWebcam({ 
     numHands: 1, 
     dynamic: isDynamic, 
@@ -13,6 +14,7 @@ const Webcam = ({ text, setText, run, isDynamic }: {text: string, setText: React
     onResult: (data: any) => {
       const { result, confidence } = data;
       setText(result);
+      setConfidence(confidence);
       console.log("CONFIDENCE:", confidence);
     }
   })
@@ -20,6 +22,8 @@ const Webcam = ({ text, setText, run, isDynamic }: {text: string, setText: React
   useEffect(() => {
     return teardown;
   }, [])
+  
+  
   
   return (
     <div className="webcam-container">

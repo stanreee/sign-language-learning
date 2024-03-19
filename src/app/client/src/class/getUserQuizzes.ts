@@ -16,8 +16,7 @@ const selectRandomQuestions = (difficulty: string, numQuestions: number) => {
 
     // Shuffle array
 
-    let shuffled: string[] = [];
-    let t: string[][] = [[]]
+    let shuffled: string[][] = [];
 
     if(difficulty === "Easy"){
         shuffled = letters.easyLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
@@ -28,20 +27,16 @@ const selectRandomQuestions = (difficulty: string, numQuestions: number) => {
     else if (difficulty === "Hard"){
         shuffled = letters.allLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
     }
-    
-    
-    if (difficulty === "Vowel"){
-        t = letters.vowelLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
+    else if (difficulty === "Vowel"){
+        shuffled = letters.vowelLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
     }
 
-
-
-    shuffled.forEach((letter: string, index: number) => {
-
+    shuffled.forEach((letter: string[]) => {
         const question: iQuizASL = {
-            question: letter,
+            question: letter[0],
             type: "demo",
-            correctAnswer: letter
+            isDynamic: letter[1],
+            correctAnswer: letter[0]
         }
 
         questions.push(

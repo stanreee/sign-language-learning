@@ -24,7 +24,7 @@ function useWebcam({
     dynamic,
     onCaptureError,
     handedness, // for left hand folks
-    onResult,
+    onResult
 }) {
     const landmarkHistory = useRef([]);
     const [captureState, setCaptureState] = useState(false);
@@ -34,7 +34,7 @@ function useWebcam({
     const mediapipeCamera = useRef(null),
     SocketContext = createContext<Socket>(socket);
 
-    const onResults = (results) => {
+    const onResults = (results) => {  
         console.log("capturing");
         const { multiHandLandmarks, multiHandedness } = results;
         if(multiHandLandmarks.length >= numHands) {
@@ -82,6 +82,7 @@ function useWebcam({
     }, [captureState])
 
     const loadHands = () => {
+        try{
         if(!hands.current) {
             hands.current = new Hands({
                 locateFile: (file) => {
@@ -96,6 +97,9 @@ function useWebcam({
             })
         }
         hands.current.onResults(throttle(onResults, LIMIT_FPS));
+    }catch(error){
+
+    }
     }
 
     const parseData = (data) => {
