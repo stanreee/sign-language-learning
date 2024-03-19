@@ -9,6 +9,7 @@ const Practice = () => {
 
     const [result, setResult] = useState("A")
     const [dynamic, setDynamic] = useState(false)
+    const [confidence, setConfidence] = useState("")
 
     // console.log("result: " + result);
     return(
@@ -40,9 +41,15 @@ const Practice = () => {
                         <span className="result-prompt">Result: </span>
                         <span className="result">{result}</span>
                     </div>
-                    <div className='letterAlign'>
-                        <Webcam text={result} setText={setResult} run={true} isDynamic={dynamic}/>
-                        <img src={ASLLetters} width={500} height={500} alt="aslLetters" />
+                    <div>
+                        <span className="result-prompt small">Confidence: </span>
+                        <span className="result small">{confidence}%</span>
+                    </div>
+                    <div >
+                        <div className='letterAlign'>
+                            <Webcam text={result} setText={setResult} setConfidence={setConfidence} isDynamic={dynamic}/>
+                            <img src={ASLLetters} width={500} height={500} alt="aslLetters" />
+                        </div>
                     </div>
                 </div>
                 

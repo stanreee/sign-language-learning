@@ -22,6 +22,7 @@ type QuizProps = {
 type resultAnswers = {
   index: number,
   question: string,
+  isStatic: string,
   guessedAnswer: string,
   correctAnswer: string,
   isCorrect: boolean
@@ -47,15 +48,14 @@ const Quiz = ({
     wrongAnswers: 0,
   })
   const [sign, setSign] = useState("")
+  const [signIsDynamic, setSignIsDynamic] = useState<boolean>(false)
+  const [confidence, setConfidence] = useState("")
 
-  //temp
-  // const [signIndex, setSignIndex] = useState(0);
-  // const signHardCoded: string[] = ["A", "B", "F", "D", "G"];
 
 
   const [isCorrectSign, setIsCorrectSign] = useState(false);
   const [isTimeExpired, setIsTimeExpired] = useState(false);
-  const [closeStream, setCloseStream] = useState(false);
+  //const [closeStream, setCloseStream] = useState<boolean>(false);
 
   // timer countdown
   const [timerReset, resetTimer] = useState(false);
@@ -65,62 +65,49 @@ const Quiz = ({
 
   const questions = quizQuestions
 
-  //const { question, choices, correctAnswer } = questions[activeQuestion]
-  const { question, correctAnswer } = questions[activeQuestion]
+  const { question, correctAnswer, isDynamic } = questions[activeQuestion]
 
   const onClickNext = () => {
+    setSignIsDynamic(Boolean(Number(isDynamic)));
     setSelectedAnswerIndex('');
     setIsCorrectSign(false);
     setIsTimeExpired(false);
     resetTimer(true);
-    // setResult((prev) =>
-    //   selectedAnswer
-    //     ? {
-    //         ...prev,
-    //         score: prev.score + 1,
-    //         correctAnswers: prev.correctAnswers + 1,
-    //       }
-    //     : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
-    // )
+
     if (activeQuestion !== questions.length - 1) {
       setActiveQuestion((prev) => prev + 1)
     } else {
       setActiveQuestion(0)
       setShowResult(true)
     }
-
-    //temp
-    //setSignIndex(signIndex + 1);
   }
 
   const onClickSkip = () => {
+    setSignIsDynamic(Boolean(Number(isDynamic)));
     setSelectedAnswerIndex('');
     setIsCorrectSign(false);
     setIsTimeExpired(false);
     resetTimer(true);
-    // setResult((prev) => 
-    //   ({ ...prev, wrongAnswers: prev.wrongAnswers + 1 })
-    // )
+
     setResultsQuestAns(
       [
         ...resultsQuestAns,
         {index: activeQuestion, 
           question: questions[activeQuestion].question, 
+          isStatic: questions[activeQuestion].isDynamic, 
           guessedAnswer: 'SKIPPED', 
           correctAnswer: questions[activeQuestion].correctAnswer, 
           isCorrect: false}
       ]
     )
     if (activeQuestion !== questions.length - 1) {
+
       setActiveQuestion((prev) => prev + 1)
     } else {
       setActiveQuestion(0)
       setShowResult(true)
-      setCloseStream(true);
-    }
 
-    //temp
-    //setSignIndex(signIndex + 1);
+    }
   }
 
   const onClickViewHistorical = () => {
@@ -147,6 +134,7 @@ const Quiz = ({
           ...resultsQuestAns,
           {index: activeQuestion, 
             question: questions[activeQuestion].question, 
+            isStatic: questions[activeQuestion].isDynamic,
             guessedAnswer: sign, 
             correctAnswer: questions[activeQuestion].correctAnswer, 
             isCorrect: true}
@@ -156,15 +144,8 @@ const Quiz = ({
       setSelectedAnswer(true);
       setIsCorrectSign(true);
       onClickNext();
-      // temp
-      //setSignIndex(signIndex + 1);
     }
   }, [sign]);
-
-  //temp
-  // useEffect(() => {
-  //   setSign(signHardCoded[signIndex]);
-  // }, [signIndex]);
 
   // hook from Timer module for expired time
   useEffect(() => {
@@ -183,6 +164,11 @@ const Quiz = ({
 
     // make results array show results
     useEffect(() => {
+
+
+      //setCloseStream(true);
+      //console.log("close stream 3 " + closeStream)
+
       //calculate score
       let correctAnswers: number = 0
       const totalQuestions: number = resultsQuestAns.length;
@@ -227,6 +213,8 @@ const Quiz = ({
             <div>
               <span className="text-answer-prompt-black">Result: </span>
               <span className="text-question">{sign}</span>
+              <span className="text-answer-prompt-black">Confidence: </span>
+              <span className="text-question">{confidence}</span>
             </div>
             <div className="button-row">
                 <Link reloadDocument to={'/Exercises'}>
@@ -252,7 +240,7 @@ const Quiz = ({
             </div>
           </div>
           <div className="quiz-container-column">
-            <Webcam text={sign} setText={setSign} run={true} isDynamic={false}/> 
+            <Webcam text={sign} setText={setSign} setConfidence={setConfidence} isDynamic={signIsDynamic}/> 
           </div>
             {/* <ul>
               {choices.map((answer: string, index: number) => (
