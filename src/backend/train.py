@@ -134,32 +134,32 @@ features_loaders = []
 #     32
 # ))
 
+features_loaders.append(collect_features_loaders(
+    cur_dir + "/gather/datasets/dynamic.csv",
+    1,
+    "dynamic_one_hand",
+    SignLangModelDynamic,
+    np.arange(320, 384, 32),
+    2
+))
+
 # features_loaders.append(collect_features_loaders(
-#     cur_dir + "/gather/datasets/dynamic.csv",
+#     cur_dir + "/gather/datasets/dynamic_two_1.csv",
 #     1,
-#     "dynamic_one_hand",
+#     "dynamic_two_1",
 #     SignLangModelDynamic,
 #     np.arange(320, 384, 32),
 #     2
 # ))
 
-features_loaders.append(collect_features_loaders(
-    cur_dir + "/gather/datasets/dynamic_two_1.csv",
-    1,
-    "dynamic_two_1",
-    SignLangModelDynamic,
-    np.arange(320, 384, 32),
-    2
-))
-
-features_loaders.append(collect_features_loaders(
-    cur_dir + "/gather/datasets/dynamic_two_2.csv",
-    1,
-    "dynamic_two_2",
-    SignLangModelDynamic,
-    np.arange(320, 384, 32),
-    2
-))
+# features_loaders.append(collect_features_loaders(
+#     cur_dir + "/gather/datasets/dynamic_two_2.csv",
+#     1,
+#     "dynamic_two_2",
+#     SignLangModelDynamic,
+#     np.arange(320, 384, 32),
+#     2
+# ))
 
 # features_loaders.append(collect_features_loaders(
 #     cur_dir + "/gather/datasets/dynamic_2.csv",

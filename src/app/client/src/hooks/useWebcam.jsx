@@ -68,6 +68,7 @@ function useWebcam({
                 FPS_THROTTLE.current += 0.5;
             } else if(avgFPS < 13.5) {
                 FPS_THROTTLE.current -= 0.5;
+                if(FPS_THROTTLE.current < 0) FPS_THROTTLE.current = 0;
             }
 
             console.log("FRAMERATE:", currentFPS, "AVG FPS:", avgFPS, "THROTTLE:", FPS_THROTTLE.current);
