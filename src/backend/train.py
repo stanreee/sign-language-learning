@@ -125,32 +125,32 @@ print("Creating feature loaders...")
 
 features_loaders = []
 
-features_loaders.append(collect_features_loaders(
-    cur_dir + "/gather/datasets/static.csv",
-    1,
-    "static_one_hand",
-    SignLangModel,
-    np.arange(128, 144, 8),
-    32
-))
+# features_loaders.append(collect_features_loaders(
+#     cur_dir + "/gather/datasets/static.csv",
+#     1,
+#     "static_one_hand",
+#     SignLangModel,
+#     np.arange(128, 144, 8),
+#     32
+# ))
 
 # features_loaders.append(collect_features_loaders(
 #     cur_dir + "/gather/datasets/dynamic.csv",
 #     1,
 #     "dynamic_one_hand",
 #     SignLangModelDynamic,
-#     np.arange(320, 416, 32),
+#     np.arange(320, 384, 32),
 #     2
 # ))
 
-# features_loaders.append(collect_features_loaders(
-#     cur_dir + "/gather/datasets/dynamic_2.csv",
-#     2,
-#     "dynamic_two_hand",
-#     SignLangModelDynamic,
-#     np.arange(320, 416, 32),
-#     2
-# ))
+features_loaders.append(collect_features_loaders(
+    cur_dir + "/gather/datasets/dynamic_2.csv",
+    2,
+    "dynamic_two_hand",
+    SignLangModelDynamic,
+    np.arange(512, 554, 32),
+    2
+))
 
 print("Feature loaders created. Training models...")
 for idx, object in enumerate(features_loaders):
@@ -179,7 +179,7 @@ for idx, object in enumerate(features_loaders):
             model_to_save = model
             accuracies = (train_acc, test_acc)
         elapsed = time.time() - start_time
-        print("Model trained, took", elapsed, "seconds.")
+        print("Model trained, took", elapsed, "seconds. Test accuracy of this train:", test_acc)
 
     print("train accuracies:")
     print(train_accuracies)

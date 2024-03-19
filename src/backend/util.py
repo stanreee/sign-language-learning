@@ -22,15 +22,15 @@ def process_features(features, reflect, base_coords=None, shouldNormalize=False)
     # if len(features) < 42:
     #     for i in range(21):
     #         features.append([0, 0]) # append dummy data if only one hand
-
-    features = np.array(features).flatten()
-
-    max_val = max(list(map(abs, features)))
-
-    def normalize(n):
-        return n / max_val
     
     if shouldNormalize:
+        features = np.array(features).flatten()
+
+        max_val = max(list(map(abs, features)))
+
+        def normalize(n):
+            return n / max_val
+
         features = list(map(normalize, features))
 
     return features
@@ -40,21 +40,32 @@ def landmark_history_preprocess(landmark_history, num_hands):
     # pca = PCA(n_components=dim)
     # pca.fit(landmark_history)
 
+    print(len(landmark_history), len(landmark_history[0]))
+
     compressed = []
-    coords = [[], [], []]
-    for frame in landmark_history:
-        for i in range(len(frame)):
-            landmark = frame[i]
-            coords[i%3].append(landmark)
+    coords = [
+        [[], [], []],
+        [[], [], []]
+    ]
+    all_coordinates = [[], []]
+
+    for idx, frame in enumerate(landmark_history):
+        for hand in range(num_hands):
+            hand_features = frame[0:21] if hand == 0 else frame[21:]
+            for landmarks in hand_features:
+                all_coordinates[hand].extend(landmarks)
     
-    for i in range(len(coords)):
-        max_val = max(list(map(abs, coords[i])))
+
+    for i in range(num_hands):
+        max_val = max(list(map(abs, all_coordinates[i])))
 
         def normalize(n):
             return n / max_val
         
-        coords[i] = list(map(normalize, coords[i]))
-        compressed += coords[i]
+        all_coordinates[i] = list(map(normalize, all_coordinates[i]))
+
+    for i in range(num_hands):
+        compressed += all_coordinates[i]
 
     # compressed = []
     # for i in range(len(landmark_history)):
@@ -63,6 +74,7 @@ def landmark_history_preprocess(landmark_history, num_hands):
     return compressed
 
 def normalize_landmark_history(landmark_history, reflect, num_hands):
+    # print(landmark_history)
     landmark_history_copy = copy.deepcopy(landmark_history)
     # base_coords = landmark_history[0][0]
     base_coords = [[], []]
@@ -71,9 +83,14 @@ def normalize_landmark_history(landmark_history, reflect, num_hands):
         all_hand_features = []
         for hand in range(num_hands):
             hand_features = features[0:21] if hand == 0 else features[21:]
+            # print(len(hand_features))
             if not base_coords[hand]:
                 base_coords[hand] = hand_features[0].copy()
+                if hand > 0:
+                    base_coords[hand] = np.ndarray.tolist(np.subtract(base_coords[0], base_coords[hand]))
             all_hand_features.extend(process_features(hand_features, reflect, base_coords[hand], shouldNormalize=False))
         landmark_history_copy[i] = all_hand_features
+
+    landmark_history_copy = landmark_history_preprocess(landmark_history_copy, num_hands)
 
     return landmark_history_copy

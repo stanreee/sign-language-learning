@@ -3,7 +3,7 @@ import os
 import csv
 from sklearn.decomposition import PCA
 import numpy as np
-from gather_util import extract_features, process_features, landmark_history_preprocess
+from gather_util import extract_features, process_features, landmark_history_preprocess, normalize_landmark_history
 
 class DynamicClassifier(Classifier):
     def __init__(self, hands) -> None:
@@ -12,8 +12,9 @@ class DynamicClassifier(Classifier):
         pass
 
     def save(self, data, id, num_hands):
-        # reduce frame input dimensions from 30 to 18 (one hand) or 10 (two hands)
-        compressed = landmark_history_preprocess(data, num_hands)
+        print(len(data), len(data[0]))
+        compressed = normalize_landmark_history(data, False, num_hands)
+        print(len(compressed))
         dataToSave = [id] + compressed
         
         # save to file
@@ -23,23 +24,12 @@ class DynamicClassifier(Classifier):
         with open(cur_dir + "/datasets/" + fileName + ".csv", 'a', encoding="UTF8", newline='') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerow(dataToSave)
-        print("Frames saved for id", id, ".")
+        print("Frames saved for id", str(id) + ".")
     
     def capture(self, frame, frameNum, data):
         features, reflect, failed = extract_features(frame, self.hands, self.num_hands)
         if len(features) >= 21 if self.num_hands == 1 else 42 and not failed:
-            all_hand_features = []
-            for hand in range(self.num_hands):
-                hand_features = features[0:21] if hand == 0 else features[21:]
-                # designate first landmark of the first frame as the base landmark
-                # for each frame, all landmark coordinates will be relative to thsi base landmark
-                if not self.base_coords[hand]:
-                    self.base_coords[hand] = hand_features[0].copy()
-                all_hand_features.extend(process_features(hand_features, reflect, self.base_coords[hand], shouldNormalize=False))
-            # if not self.base_coords:
-            #     self.base_coords = features[0]
-            # features = process_features(features, reflect, self.base_coords)
-            data.append(all_hand_features)
+            data.append(features)
         # else:
         #     data, frameNum = self.forceEndCapture()
         if len(data) >= self.FRAME_CAP:
