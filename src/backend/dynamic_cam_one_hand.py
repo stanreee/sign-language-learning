@@ -11,7 +11,7 @@ import time
 
 cur_dir = os.getcwd()
 
-dynamic = RecognitionModel(cur_dir + "/trained_models/dynamic_one_hand.pt", 1, "dynamic")
+dynamic = RecognitionModel([cur_dir + "/trained_models/dynamic_one_hand.pt"], "dynamic")
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
@@ -22,8 +22,22 @@ prev_input = None
 
 capturing = False
 
+FPS_INFO = False
+
 cap = cv2.VideoCapture(1)
+startTime = time.time()
+# deltaTime = 0
+prevTime = time.time()
 while cap.isOpened():
+    curTime = time.time()
+    deltaTime = curTime - prevTime
+    totalDeltaTime = curTime - startTime
+    prevTime = curTime
+    frameNum += 1
+
+    if frameNum > 100 and FPS_INFO:
+        print("FPS:", str(1 / deltaTime), "AVG FPS:", str(frameNum / totalDeltaTime))
+
     ret, frame = cap.read()
 
     if not ret:

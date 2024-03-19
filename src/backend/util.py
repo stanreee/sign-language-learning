@@ -35,62 +35,100 @@ def process_features(features, reflect, base_coords=None, shouldNormalize=False)
 
     return features
 
-def landmark_history_preprocess(landmark_history, num_hands):
-    # dim = 18 if num_hands == 1 else 10
-    # pca = PCA(n_components=dim)
-    # pca.fit(landmark_history)
+# def landmark_history_preprocess_old(landmark_history, num_hands):
+#     # dim = 18 if num_hands == 1 else 10
+#     # pca = PCA(n_components=dim)
+#     # pca.fit(landmark_history)
 
-    print(len(landmark_history), len(landmark_history[0]))
+#     print(len(landmark_history), len(landmark_history[0]))
 
-    compressed = []
-    coords = [
-        [[], [], []],
-        [[], [], []]
-    ]
-    all_coordinates = [[], []]
+#     compressed = []
+#     coords = [
+#         [[], [], []],
+#         [[], [], []]
+#     ]
+#     all_coordinates = [[], []]
 
-    for idx, frame in enumerate(landmark_history):
-        for hand in range(num_hands):
-            hand_features = frame[0:21] if hand == 0 else frame[21:]
-            for landmarks in hand_features:
-                all_coordinates[hand].extend(landmarks)
+#     for idx, frame in enumerate(landmark_history):
+#         for hand in range(num_hands):
+#             hand_features = frame[0:21] if hand == 0 else frame[21:]
+#             for landmarks in hand_features:
+#                 all_coordinates[hand].extend(landmarks)
     
 
-    for i in range(num_hands):
-        max_val = max(list(map(abs, all_coordinates[i])))
+#     for i in range(num_hands):
+#         max_val = max(list(map(abs, all_coordinates[i])))
 
-        def normalize(n):
-            return n / max_val
+#         def normalize(n):
+#             return n / max_val
         
-        all_coordinates[i] = list(map(normalize, all_coordinates[i]))
+#         # print(all_coordinates[i])
+        
+#         all_coordinates[i] = list(map(normalize, all_coordinates[i]))
 
-    for i in range(num_hands):
-        compressed += all_coordinates[i]
+#     for i in range(num_hands):
+#         compressed += all_coordinates[i]
 
-    # compressed = []
-    # for i in range(len(landmark_history)):
-    #     compressed += landmark_history[i]
+#     # compressed = []
+#     # for i in range(len(landmark_history)):
+#     #     compressed += landmark_history[i]
+
+#     return compressed
+
+def landmark_history_preprocess(landmark_history):
+    # compressed = np.ndarray.flatten(landmark_history).tolist()
+    compressed = []
+    for frame in landmark_history:
+        compressed.extend(np.ndarray.flatten(np.array(frame)).tolist())
+
+    max_val = max(list(map(abs, compressed)))
+
+    def normalize(n):
+        return n / max_val
+    
+    compressed = list(map(normalize, compressed))
+
+    # print(compressed)
 
     return compressed
 
-def normalize_landmark_history(landmark_history, reflect, num_hands):
-    # print(landmark_history)
+# def normalize_landmark_history_old(landmark_history, reflect, num_hands):
+#     # print(landmark_history)
+#     landmark_history_copy = copy.deepcopy(landmark_history)
+#     # base_coords = landmark_history[0][0]
+#     base_coords = [[], []]
+#     for i in range(len(landmark_history)):
+#         features = landmark_history[i]
+#         all_hand_features = []
+#         for hand in range(num_hands):
+#             hand_features = features[0:21] if hand == 0 else features[21:]
+#             # print(len(hand_features))
+#             if not base_coords[hand]:
+#                 base_coords[hand] = hand_features[0].copy()
+#                 print("old", base_coords[hand])
+#                 if hand > 0:
+#                     base_coords[hand] = np.ndarray.tolist(np.subtract(base_coords[0], base_coords[hand]))
+#             all_hand_features.extend(process_features(hand_features, reflect, base_coords[hand], shouldNormalize=False))
+#         landmark_history_copy[i] = all_hand_features
+
+#     print(landmark_history_copy)
+
+#     landmark_history_copy = landmark_history_preprocess_old(landmark_history_copy, num_hands)
+
+#     return landmark_history_copy
+
+def normalize_landmark_history(landmark_history, reflect, base_coords=None):
     landmark_history_copy = copy.deepcopy(landmark_history)
-    # base_coords = landmark_history[0][0]
-    base_coords = [[], []]
+
+    # base = base_coords if base_coords else landmark_history[0][0].copy()
+    base = landmark_history[0][0].copy()
+
+    print(base)
+
     for i in range(len(landmark_history)):
         features = landmark_history[i]
-        all_hand_features = []
-        for hand in range(num_hands):
-            hand_features = features[0:21] if hand == 0 else features[21:]
-            # print(len(hand_features))
-            if not base_coords[hand]:
-                base_coords[hand] = hand_features[0].copy()
-                # if hand > 0:
-                #     base_coords[hand] = np.ndarray.tolist(np.subtract(base_coords[0], base_coords[hand]))
-            all_hand_features.extend(process_features(hand_features, reflect, base_coords[hand], shouldNormalize=False))
-        landmark_history_copy[i] = all_hand_features
+        landmark_history_copy[i] = process_features(features, reflect, base, shouldNormalize=False)
+    
+    landmark_history_copy = landmark_history_preprocess(landmark_history_copy)
 
-    landmark_history_copy = landmark_history_preprocess(landmark_history_copy, num_hands)
-
-    return landmark_history_copy
+    return (landmark_history_copy, base)

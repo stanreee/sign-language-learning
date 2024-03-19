@@ -11,7 +11,7 @@ import time
 
 cur_dir = os.getcwd()
 
-dynamic = RecognitionModel(cur_dir + "/trained_models/dynamic_two_hand.pt", 2, "dynamic")
+dynamic = RecognitionModel([cur_dir + "/trained_models/dynamic_two_1.pt", cur_dir + "/trained_models/dynamic_two_2.pt"], "dynamic")
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
@@ -46,7 +46,7 @@ while cap.isOpened():
             print("CAPTURING FRAMES")
 
     if capturing and results.multi_hand_landmarks:
-        for hand in results.multi_hand_landmarks:
+        for idx, hand in enumerate(results.multi_hand_landmarks):
             landmarks = hand
             for point in landmarks.landmark:
                 x, y, z = int(point.x * frame.shape[1]), int(point.y * frame.shape[0]), int(point.z * frame.shape[1])

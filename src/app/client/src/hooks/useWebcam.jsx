@@ -4,7 +4,7 @@ import getFeatures from "../util/getFeatures";
 import { Hands } from "@mediapipe/hands";
 import { Camera } from '@mediapipe/camera_utils';
 
-const LIMIT_FPS = 15;
+const LIMIT_FPS = 30;
 
 function throttle(callback, limit) {
     let waiting = false;
@@ -34,7 +34,31 @@ function useWebcam({
     const mediapipeCamera = useRef(null),
     SocketContext = createContext<Socket>(socket);
 
-    const onResults = (results) => {  
+    const date = new Date();
+
+    const startTime = useRef(date.getTime() / 1000)
+    const prevTime = useRef(0);
+    const deltaTime = useRef(0);
+    const frameCount = useRef(0);
+
+    const onResults = (results) => {
+        if(prevTime.current === 0) {
+            const newDate = new Date();
+            prevTime.current = newDate.getTime() / 1000;
+        }else {
+            const newDate = new Date();
+            const curTime = newDate.getTime() / 1000;
+            const prevDeltaTime = curTime - prevTime.current;
+
+            const avgFPS = frameCount.current / deltaTime.current;
+            const currentFPS = 1 / prevDeltaTime;
+
+            frameCount.current += 1;
+            deltaTime.current = newDate.getTime() / 1000 - startTime.current;
+            prevTime.current = curTime;
+
+            console.log("FRAMERATE:", currentFPS, "AVG FPS:", avgFPS);
+        }
         console.log("capturing");
         const { multiHandLandmarks, multiHandedness } = results;
         if(multiHandLandmarks.length >= numHands) {
