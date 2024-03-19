@@ -4,20 +4,7 @@ import getFeatures from "../util/getFeatures";
 import { Hands } from "@mediapipe/hands";
 import { Camera } from '@mediapipe/camera_utils';
 
-const LIMIT_FPS = 30;
-
-function throttle(callback, limit) {
-    let waiting = false;
-    return function (...args) {
-        if (!waiting) {
-          callback.apply(this, args);
-          waiting = true;
-          setTimeout(function () {
-            waiting = false;
-          }, limit);
-        }
-    };
-}
+// var LIMIT_FPS = 30;
 
 function useWebcam({
     numHands,
@@ -40,6 +27,23 @@ function useWebcam({
     const prevTime = useRef(0);
     const deltaTime = useRef(0);
     const frameCount = useRef(0);
+    const totalFPS = useRef(0);
+
+    const FPS_THROTTLE = useRef(30.0);
+
+    const throttle = useCallback((callback) => {
+        console.log("throttle", FPS_THROTTLE)
+        let waiting = false;
+        return function (...args) {
+            if (!waiting) {
+              callback.apply(this, args);
+              waiting = true;
+              setTimeout(function () {
+                waiting = false;
+              }, FPS_THROTTLE.current);
+            }
+        };
+    }, [FPS_THROTTLE])
 
     const onResults = (results) => {
         if(prevTime.current === 0) {
@@ -50,16 +54,24 @@ function useWebcam({
             const curTime = newDate.getTime() / 1000;
             const prevDeltaTime = curTime - prevTime.current;
 
-            const avgFPS = frameCount.current / deltaTime.current;
+            deltaTime.current = newDate.getTime() / 1000 - startTime.current;
+
+            // const avgFPS = frameCount.current / deltaTime.current;
             const currentFPS = 1 / prevDeltaTime;
+            totalFPS.current += currentFPS;
+            const avgFPS = totalFPS.current / frameCount.current;
 
             frameCount.current += 1;
-            deltaTime.current = newDate.getTime() / 1000 - startTime.current;
             prevTime.current = curTime;
 
-            console.log("FRAMERATE:", currentFPS, "AVG FPS:", avgFPS);
+            if(avgFPS > 14.5) {
+                FPS_THROTTLE.current += 0.5;
+            } else if(avgFPS < 13.5) {
+                FPS_THROTTLE.current -= 0.5;
+            }
+
+            console.log("FRAMERATE:", currentFPS, "AVG FPS:", avgFPS, "THROTTLE:", FPS_THROTTLE.current);
         }
-        console.log("capturing");
         const { multiHandLandmarks, multiHandedness } = results;
         if(multiHandLandmarks.length >= numHands) {
             let totalHandFeatures = [];
@@ -99,11 +111,11 @@ function useWebcam({
 
     useEffect(() => {
         landmarkHistory.current = [];
-        if(hands.current) hands.current.onResults(throttle(onResults, LIMIT_FPS));
+        if(hands.current) hands.current.onResults(throttle(onResults));
         if(captureState && !dynamic) {
             throw new Error("useWebcam cannot start capture if webcam is not dynamic");
         }
-    }, [captureState])
+    }, [captureState, FPS_THROTTLE])
 
     const loadHands = () => {
         try{
@@ -120,7 +132,7 @@ function useWebcam({
                 minTrackingConfidence: 0.5,
             })
         }
-        hands.current.onResults(throttle(onResults, LIMIT_FPS));
+        hands.current.onResults(throttle(onResults));
     }catch(error){
 
     }
