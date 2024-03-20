@@ -26,305 +26,120 @@ import y from "../images/learnLetters/y.png"
 import z from "../images/learnLetters/z.png"
 import youtube from "../images/learnLetters/youtube.png"
 
-import lettersResource from "../data/letters.json"
+import lettersResource from "../data/ASLSigns.json"
 import { Link } from "react-router-dom"
 
-//DATA CALL
-const allLetters = lettersResource.allLetters;
-const letterDesc = lettersResource.lettersDesc;
-const letterVideos = lettersResource.letterVideos;
+const letterCard = (letter: string, num: number) => {
+    // DATA CALL
+    const allLetters = lettersResource.allLetters;
+    const letterDesc = lettersResource.lettersDesc;
+    const letterVideos = lettersResource.letterVideos;
+
+    return (
+      <div className = "card">
+        <img src={letter} alt= {`${allLetters[num]}`} />
+        <h2>{allLetters[num][0]}</h2>
+        {letterDesc[num]}
+        <Link 
+          to={`https://youtu.be/${letterVideos[num]}`}
+          style={{color: '#000000',}}
+          > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
+        </Link>
+      </div>
+    )
+}
 
 const DisplayLetters = () => {
   return (
     <>
-      <div className="container-letters">
+      Some Tips for Fingerspelling
+      <div className="container" style={{textAlign: "left"}}>
+        <li>Hold the hand your signing with beside your cheek.</li>
+        <li>
+            Make sure that your hands are stationary, meaning that you do not "bounce" your hand between letters.
+            This will make it harder for others to understand what you are spelling.  
+        </li>
+        <li>
+          If you are signing two of the same letters in a row, you can "slide" your hand to the side when 
+          repeating the second letter, or "bounce" your hand to indicate you are repeating the letter. 
+        </li>
 
-        <div className = "card">
-          <img src={a} alt= "a" />
-          <h2>A</h2>
-          {letterDesc[0]}
+        <br />
+        <div>
           <Link 
-            to={`https://youtu.be/${letterVideos[0]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
+            to={`https://www.handspeak.com/learn/213/`}
+            style={{color: '#007EA7'}}
+            > <div > Click here to learn more about fingerspelling techniques from Handspeak! </div>
           </Link>
         </div>
-
-        <div className = "card">
-          <img src={b} alt= "b" />
-          <h2>B</h2>
-          {letterDesc[1]}
+        <div>
           <Link 
-            to={`https://youtu.be/${letterVideos[1]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={c} alt= "c" />
-          <h2>C </h2>
-          {letterDesc[2]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[2]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={d} alt= "d" />
-          <h2>D </h2>
-          {letterDesc[3]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[3]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={e} alt= "e" />
-          <h2>E </h2>
-          {letterDesc[4]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[4]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={f} alt= "f" />
-          <h2>F </h2>
-          {letterDesc[5]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[5]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={g} alt= "g" />
-          <h2>G </h2>
-          {letterDesc[6]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[6]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={h} alt= "h" />
-          <h2>H </h2>
-          {letterDesc[7]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[7]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={i} alt= "i" />
-          <h2>I </h2>
-          {letterDesc[8]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[8]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={j} alt= "j" />
-          <h2>J </h2>
-          {letterDesc[9]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[9]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={k} alt= "k" />
-          <h2>K </h2>
-          {letterDesc[10]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[10]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={l} alt= "l" />
-          <h2>L </h2>
-          {letterDesc[11]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[11]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={m} alt= "m" />
-          <h2>M </h2>
-          {letterDesc[12]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[12]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={n} alt= "n" />
-          <h2>N </h2>
-          {letterDesc[13]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[13]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={o} alt= "o" />
-          <h2>O </h2>
-          {letterDesc[14]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[14]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={p} alt= "p" />
-          <h2>P </h2>
-          {letterDesc[15]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[15]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={q} alt= "q" />
-          <h2>Q </h2>
-          {letterDesc[16]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[16]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={r} alt= "r" />
-          <h2>R </h2>
-          {letterDesc[17]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[17]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={s} alt= "s" />
-          <h2>S </h2>
-          {letterDesc[18]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[18]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={t} alt= "t" />
-          <h2>T </h2>
-          {letterDesc[19]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[19]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={u} alt= "u" />
-          <h2>U </h2>
-          {letterDesc[20]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[20]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={v} alt= "v" />
-          <h2>V </h2>
-          {letterDesc[21]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[21]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={w} alt= "w" />
-          <h2>W </h2>
-          {letterDesc[22]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[22]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={x} alt= "x" />
-          <h2>X </h2>
-          {letterDesc[23]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[23]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={y} alt= "y" />
-          <h2>Y </h2>
-          {letterDesc[24]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[24]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-          </Link>
-        </div>
-
-        <div className = "card">
-          <img src={z} alt= "z" />
-          <h2>Z </h2>
-          {letterDesc[25]}
-          <Link 
-            to={`https://youtu.be/${letterVideos[25]}`}
-            style={{color: '#000000',}}
-            > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
+          to={`https://asl.ms/`}
+          style={{color: '#007EA7'}}
+          > <div > Or click here to test your letter recognition skills! </div>
           </Link>
         </div>
       </div>
+
+      <div className="container-letters">
+        <div id="A" data-hs-anchor="true">{letterCard(a, 0)}</div>   
+        <div id="B" data-hs-anchor="true">{letterCard(b, 1)}</div> 
+        <div id="C" data-hs-anchor="true">{letterCard(c, 2)}</div>
+        <div id="D" data-hs-anchor="true">{letterCard(d, 3)}</div> 
+        <div id="E" data-hs-anchor="true">{letterCard(e, 4)}</div>
+        <div id="F" data-hs-anchor="true">{letterCard(f, 5)}</div> 
+        <div id="G" data-hs-anchor="true">{letterCard(g, 6)}</div>
+        <div id="H" data-hs-anchor="true">{letterCard(h, 7)}</div> 
+        <div id="I" data-hs-anchor="true">{letterCard(i, 8)}</div>
+        <div id="J" data-hs-anchor="true">{letterCard(j, 9)}</div>  
+        <div id="K" data-hs-anchor="true">{letterCard(k, 10)}</div> 
+        <div id="L" data-hs-anchor="true">{letterCard(l, 11)}</div> 
+        <div id="M" data-hs-anchor="true">{letterCard(m, 12)}</div> 
+        <div id="N" data-hs-anchor="true">{letterCard(n, 13)}</div>
+        <div id="O" data-hs-anchor="true">{letterCard(o, 14)}</div> 
+        <div id="P" data-hs-anchor="true">{letterCard(p, 15)}</div> 
+        <div id="Q" data-hs-anchor="true">{letterCard(q, 16)}</div>
+        <div id="R" data-hs-anchor="true">{letterCard(r, 17)}</div>  
+        <div id="S" data-hs-anchor="true">{letterCard(s, 18)}</div>
+        <div id="T" data-hs-anchor="true">{letterCard(t, 19)}</div> 
+        <div id="U" data-hs-anchor="true">{letterCard(u, 20)}</div>  
+        <div id="V" data-hs-anchor="true">{letterCard(v, 21)}</div> 
+        <div id="W" data-hs-anchor="true">{letterCard(w, 22)}</div>  
+        <div id="X" data-hs-anchor="true">{letterCard(x, 23)}</div>  
+        <div id="Y" data-hs-anchor="true">{letterCard(y, 24)}</div> 
+        <div id="Z" data-hs-anchor="true">{letterCard(z, 25)}</div> 
+      </div>
+      <br />
+      <div>
+        Jump to: 
+        <br />
+        <a href="#A" rel="noopener">A   </a>
+        <a href="#B" rel="noopener">B   </a>
+        <a href="#C" rel="noopener">C   </a>
+        <a href="#D" rel="noopener">D   </a>
+        <a href="#E" rel="noopener">E   </a>
+        <a href="#F" rel="noopener">F   </a>
+        <a href="#G" rel="noopener">G   </a>
+        <a href="#H" rel="noopener">H   </a>
+        <a href="#I" rel="noopener">I   </a>
+        <a href="#J" rel="noopener">J   </a>
+        <a href="#K" rel="noopener">K   </a>
+        <a href="#L" rel="noopener">L   </a>
+        <a href="#M" rel="noopener">M   </a>
+        <a href="#N" rel="noopener">N   </a>
+        <a href="#O" rel="noopener">O   </a>
+        <a href="#P" rel="noopener">P   </a>
+        <a href="#Q" rel="noopener">Q   </a>
+        <a href="#R" rel="noopener">R   </a>
+        <a href="#S" rel="noopener">S   </a>
+        <a href="#T" rel="noopener">T   </a>
+        <a href="#U" rel="noopener">U   </a>
+        <a href="#V" rel="noopener">V   </a>
+        <a href="#W" rel="noopener">W   </a>
+        <a href="#X" rel="noopener">X   </a>
+        <a href="#Y" rel="noopener">Y   </a>
+        <a href="#Z" rel="noopener">Z   </a>
+    </div>
     </>
   );
 };

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import DisplayLetters from "../components/DisplayLetters"
+import DisplayWords from '../components/DisplayWords'
 import info from "../data/fyInfo.json"
+
 
 const Learn = () => {
 
@@ -12,23 +14,42 @@ const Learn = () => {
     const gallTitle = info.gallaudetHeader;
     const gallDesc = info.gallaudetDesc.join(" ");
 
+    const partsOfPage = () => {
+      return (
+        <div>
+          Learning Chapters:
+          <br />
+          <a href="#letters" rel="noopener">Letters,   </a>
+          <a href="#basic_words" rel="noopener">Basic Words/Phrases,   </a>
+          <a href="#question_words" rel="noopener">Question Words,  </a>
+          <a href="#add_resources" rel="noopener">Additional Resources   </a>
+      </div>
+    )}
+
     return (
     <div className="App">
       <header className="App-header">
-        <br></br>
-        <h2>Learn the Letters!</h2>
+
+        <div>
+          {partsOfPage()}
+        </div>
+
+        <br />
+        <h2 id="letters" data-hs-anchor="true">Learn the Letters!</h2>
+        <br />
         <DisplayLetters />
 
-        {/* <br></br>
+        <br />
 
-        <h2>Learn Some Basic Words/Phrases!</h2>
-        TBA */}
+        <h2 id="basic_words" data-hs-anchor="true">Learn Some Basic Words/Phrases!</h2>
+        <br />
+        <DisplayWords />
       </header>
 
       <div className="Section"> </div>
 
       <header className="App-header2">
-        <h1>Additional Resources</h1>
+        <h1 id="add_resources" data-hs-anchor="true">Additional Resources</h1>
         <div>
           There are plenty of resources to learn more about ASL below!
           These are from trusted sources in the Deaf community and are 

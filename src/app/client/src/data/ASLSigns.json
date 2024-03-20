@@ -1,0 +1,127 @@
+{
+    "allLetters" : [
+        ["A", "0"], ["B", "0"], ["C", "0"], ["D", "0"], ["E", "0"], ["F", "0"], ["G", "0"], 
+        ["H", "0"], ["I", "0"], ["J", "1"], ["K", "0"], ["L", "0"], ["M", "0"], ["N", "0"], 
+        ["O", "0"], ["P", "0"], ["Q", "0"], ["R", "0"], ["S", "0"], ["T", "0"], ["U", "0"], 
+        ["V", "0"], ["W", "0"], ["X", "0"], ["Y", "0"], ["Z", "1"]
+    ], 
+
+    "lettersStatic" : [
+        "1", "1", "1", "D", "E", "F", "G", 
+        "H", "I", "J", "K", "L", "M", "N", 
+        "O", "P", "Q", "R", "S", "T", "U", 
+        "V", "W", "X", "Y", "Z"
+    ], 
+    "lettersDesc" : [
+        "Make a fist with your thumb pointing out on the side. It looks a lot like a lowercase 'a'.",
+        "Raise your hand with your fingers pointing up, and tuck your thumb in towards your palm.", 
+        "Cup your hand into a 'c' shape.",
+        "Make an 'O' shape, then point your index finger up to the sky. It looks a lot like a lowercase 'd'.",
+        "Face your palm out, and curl all fingers (not thumb) down towards your palm. Then tuck your thumb in so your other fingers rest on it.",
+        "Make an 'O' shape, then point your pinky, ring and index finger up to the sky.",
+        "Extend index and thumb so they are parallel to each other and tuck the rest of your fingers towards your palm. Make sure your pinky is parallel to the floor.",
+        "Extend index and thumb so they are parallel to each other, line your middle finger up with your index finger, and tuck the rest of your fingers towards your palm. Make sure your pinky is parallel to the floor.",
+        "Make a fist, then point your pinky finger up to the sky.",
+        "Make a fist, then point your pinky finger up to the sky. Then make a downward scooping motion with your pinky to make a J-shape in the air.",
+        "Make a 'peace' sign with your index and middle finger. Then bring your thumb up to touch the mid-point of your index and middle finger.",
+        "Point your index finger to the sky, stick your thumb out to the side, and tuck the rest of your fingers towards your palm. It looks like an uppercase 'L'.",
+        "Make a fist, and tuck your thumb between your pinky and ring finger. The fingers after above your thumb looks like a lowercase 'm'.",
+        "Make a fist, and tuck your thumb between your ring and middle finger. The fingers after above your thumb looks like a lowercase 'n'.",
+        "Make an 'O' shape by connecting all 5 fingertips together. It looks like an 'o'.",
+        "Make a 'peace' sign with your index and middle finger. Then bring your thumb up to touch the mid-point of your index and middle finger. Then point your middle finger towards the floor.",
+        "Point your index and thumb down to the floor, tuck the rest of your fingers towards your palm.",
+        "Cross your pointer and middle fingers together pointing at the sky, and tuck the rest of your fingers towards your palm.",
+        "Make a fist with your palm facing out and your thumb tucked in.",
+        "Make a fist, and tuck your thumb between your middle and index finger.",
+        "Point your index and middle finger together towards the sky and tuck the rest of your fingers to the palm of your hand.",
+        "Make a 'peace' sign with your index and middle finger pointing towards the sky. It looks like an uppercase 'V'.",
+        "Point your index, middle, and ring finger towards the sky, and tuck in the rest of your fingers. It looks like a 'W'.",
+        "Bend your pointer finger so it looks like a hook, and tuck the rest of your fingers in towards your palm.",
+        "Make a fist, then point your thumb and pinky fingers straight out.",
+        "Use your index finger to draw the letter 'Z' in the air."
+    ],
+    "letterVideos" : [
+        "0vJ7tOVhGOw", 
+        "lIbmOrtmXyo", 
+        "s0USp3rrdy0", 
+        "8MB_0Bpgvoo",
+        "pOLFFdzX5ZE", 
+        "azA1nlvnpCY", 
+        "5gBaULl3-0Q", 
+        "dyemybu4oPs", 
+        "5D7P4T3NYyI", 
+        "RRR67Y2KPX0", 
+        "EIbFS-ijdXc", 
+        "xB1NJvnNsDM", 
+        "HpUWqI3KSCI", 
+        "yHkRacLmc9o", 
+        "S5B7ZfN_tHo", 
+        "pbc8ivUxgPg", 
+        "rsL2uRodibw", 
+        "Tcvu8odvGgw", 
+        "paIFy-9q4fE", 
+        "Y3IuPM3KXec", 
+        "_-8L9ftotX4", 
+        "LD6o1EgZNf4", 
+        "H3d7b6s7JnA", 
+        "n2ZiF7ngzmk", 
+        "mLnE-MDNPog", 
+        "CCfgeWcgCtA" 
+    ],
+    "easyLetters" : [
+        ["A", "0"], ["B", "0"], ["C", "0"], ["D", "0"], ["E", "0"], ["F", "0"], 
+        ["I", "0"], ["K", "0"], ["L", "0"], 
+        ["O", "0"], ["R", "0"], ["U", "0"], 
+        ["V", "0"], ["W", "0"], ["X", "0"], ["Y", "0"]
+    ], 
+    "mediumLetters" : [
+        ["A", "0"], ["B", "0"], ["C", "0"], ["D", "0"], ["E", "0"], ["F", "0"], ["G", "0"], 
+        ["H", "0"], ["I", "0"], ["K", "0"], ["L", "0"], ["M", "0"], ["N", "0"], 
+        ["O", "0"], ["P", "0"], ["Q", "0"], ["R", "0"], ["S", "0"], ["T", "0"], ["U", "0"], 
+        ["V", "0"], ["W", "0"], ["X", "0"], ["Y", "0"]
+    ],
+    "vowelLetters" : [
+        ["A", "0"], ["E", "0"], ["I","0"], ["O", "0"], ["U", "0"], ["Y", "0"]
+    ],
+    "words" : [
+        "Who?",
+        "What?",
+        "Where?",
+        "When?",
+        "Why?", 
+        "How Are You?",
+        "Hello",
+        "Please",
+        "Thank You",
+        "Yes",
+        "No",
+        "Need",
+        "Home",
+        "Family",
+        "Friend",
+        "Future",
+        "Spaghetti"
+    ],
+    "wordsDesc" : [
+        ""
+    ],
+    "wordVideos" : [
+        "wKl26BsEAoc", 
+        "sSdQWC7mUZc", 
+        "HS0SXS-GHYY",
+        "YWxvqP__qos",
+        "K0yp2v6Atxs",
+        "BaPzB4Xsq9Y",
+        "FVjpLa8GqeM", 
+        "rnb9FxPO7is", 
+        "2W0BDFUjsG0",
+        "0usayvOXzHo", 
+        "QJXKaOSyl4o", 
+        "Eo-vEE1gFxM", 
+        "WSHD1XX7kWk", 
+        "SxrxUgeTt00",
+        "6RRmIyhkMx0",
+        "RMUZFdu6VtI", 
+        "jHJJidrxqmg"
+    ]
+}

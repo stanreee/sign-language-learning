@@ -48,7 +48,7 @@ const Practice = () => {
                     <div >
                         <div className='letterAlign'>
                             <Webcam text={result} setText={setResult} setConfidence={setConfidence} isDynamic={dynamic}/>
-                            <img src={ASLLetters} width={500} height={500} alt="aslLetters" />
+                            <img src={ASLLetters} width={763.5} height={343.5} alt="aslLetters" />
                         </div>
                     </div>
                 </div>

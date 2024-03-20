@@ -3,7 +3,7 @@ import iQuizEasy from "../interfaces/iQuizEasy";
 import iQuizMedium from "../interfaces/iQuizMedium";
 import iQuizHard from "../interfaces/iQuizHard";
 import iQuizASL from "../interfaces/iQuizASL";
-import letters from "../data/letters.json"
+import letters from "../data/ASLSigns.json"
 
 type letterArray = {
     letter: string,
