@@ -48,7 +48,6 @@ const Quiz = ({
     wrongAnswers: 0,
   })
   const [sign, setSign] = useState("")
-  const [signIsDynamic, setSignIsDynamic] = useState<boolean>(false)
   const [confidence, setConfidence] = useState("")
 
 
@@ -68,7 +67,6 @@ const Quiz = ({
   const { question, correctAnswer, isDynamic } = questions[activeQuestion]
 
   const onClickNext = () => {
-    setSignIsDynamic(Boolean(Number(isDynamic)));
     setSelectedAnswerIndex('');
     setIsCorrectSign(false);
     setIsTimeExpired(false);
@@ -83,7 +81,6 @@ const Quiz = ({
   }
 
   const onClickSkip = () => {
-    setSignIsDynamic(Boolean(Number(isDynamic)));
     setSelectedAnswerIndex('');
     setIsCorrectSign(false);
     setIsTimeExpired(false);
@@ -240,7 +237,7 @@ const Quiz = ({
             </div>
           </div>
           <div className="quiz-container-column">
-            <Webcam text={sign} setText={setSign} setConfidence={setConfidence} isDynamic={signIsDynamic}/> 
+            <Webcam text={sign} setText={setSign} setConfidence={setConfidence} isDynamic={Boolean(Number(isDynamic))}/> 
           </div>
             {/* <ul>
               {choices.map((answer: string, index: number) => (
