@@ -8,13 +8,13 @@ import { Camera } from '@mediapipe/camera_utils';
 
 function useWebcam({
     numHands,
-    dynamic,
     onCaptureError,
     handedness, // for left hand folks
     onResult
 }) {
     const landmarkHistory = useRef([]);
     const [captureState, setCaptureState] = useState(false);
+    const [dynamic, setDynamic] = useState(false);
     const socket = io("http://127.0.0.1:5000");
     const hands = useRef(null);
     const webcamVideo = useRef(null);
@@ -29,7 +29,13 @@ function useWebcam({
     const frameCount = useRef(0);
     const totalFPS = useRef(0);
 
+    const currentFPS = useRef(0);
+
     const FPS_THROTTLE = useRef(30.0);
+
+    // const [fpsRange, setFpsRange] = useState([1.5, 2.5])
+
+    const fpsRange = useRef([1.5, 3.5])
 
     const throttle = useCallback((callback) => {
         console.log("throttle", FPS_THROTTLE)
@@ -57,21 +63,14 @@ function useWebcam({
             deltaTime.current = newDate.getTime() / 1000 - startTime.current;
 
             // const avgFPS = frameCount.current / deltaTime.current;
-            const currentFPS = 1 / prevDeltaTime;
+            currentFPS.current = 1 / prevDeltaTime;
             totalFPS.current += currentFPS;
             const avgFPS = totalFPS.current / frameCount.current;
 
             frameCount.current += 1;
             prevTime.current = curTime;
 
-            if(avgFPS > 14.5) {
-                FPS_THROTTLE.current += 0.5;
-            } else if(avgFPS < 13.5) {
-                FPS_THROTTLE.current -= 0.5;
-                if(FPS_THROTTLE.current < 0) FPS_THROTTLE.current = 0;
-            }
-
-            console.log("FRAMERATE:", currentFPS, "AVG FPS:", avgFPS, "THROTTLE:", FPS_THROTTLE.current);
+            console.log("FRAMERATE:", currentFPS.current, "AVG FPS:", avgFPS, "THROTTLE:", FPS_THROTTLE.current);
         }
         const { multiHandLandmarks, multiHandedness } = results;
         if(multiHandLandmarks.length >= numHands) {
@@ -116,7 +115,7 @@ function useWebcam({
         if(captureState && !dynamic) {
             throw new Error("useWebcam cannot start capture if webcam is not dynamic");
         }
-    }, [captureState, FPS_THROTTLE])
+    }, [dynamic, captureState, FPS_THROTTLE])
 
     const loadHands = () => {
         try{
@@ -150,14 +149,30 @@ function useWebcam({
     }
 
     useEffect(() => {
-        if(dynamic) socket.on("dynamic", data => onResult(parseData(data)))
-        else socket.on("stream", data => onResult(parseData(data)))
-    }, [dynamic])
+        if(dynamic) {
+            socket.on("dynamic", data => onResult(parseData(data)))
+            FPS_THROTTLE.current = 30.0;
+            // setFpsRange([13.5, 14.5])
+            fpsRange.current = [12.5, 15.5]
+        }
+        else {
+            socket.on("stream", data => onResult(parseData(data)))
+            FPS_THROTTLE.current = 200.0;
+            // setFpsRange([4.5, 5.5])
+            fpsRange.current = [1.5, 3.5]
+        }
+    }, [dynamic, captureState])
 
     useEffect(() => {
         async function initCamera() {
             mediapipeCamera.current = new Camera(webcamVideo.current, {
               onFrame: async () => {
+                if(currentFPS.current > fpsRange.current[1]) {
+                    FPS_THROTTLE.current += 0.5;
+                } else if(currentFPS.current < fpsRange.current[0]) {
+                    FPS_THROTTLE.current -= 0.5;
+                    if(FPS_THROTTLE.current < 0) FPS_THROTTLE.current = 0;
+                }
                 if(webcamVideo.current) await hands.current.send({ image: webcamVideo.current });
               },
             })
@@ -171,6 +186,7 @@ function useWebcam({
     return {
         captureState,
         setCaptureState,
+        setDynamic,
         webcamVideoRef: webcamVideo,
         teardown
     }
