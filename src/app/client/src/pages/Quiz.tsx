@@ -16,7 +16,8 @@ import React from 'react';
 type QuizProps = {
     title: string;
     timePerQuestion: number;
-  quizQuestions: iQuizASL[];
+    quizQuestions: iQuizASL[];
+    userEmail: string;
 };
 
 type resultAnswers = {
@@ -32,10 +33,23 @@ type userAnswers = {
   isCorrect: boolean,
 }
 
+const saveResults = (results: resultAnswers[], userEmail: string) => {
+
+  fetch('http://localhost:3080/post-quiz', {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({userEmail, results}),
+  })
+  .then((r) => r.json())
+}
+
 const Quiz = ({
     title,
     timePerQuestion,
     quizQuestions,
+    userEmail
 }: QuizProps) => {
   const [activeQuestion, setActiveQuestion] = useState<number>(0)
   const [selectedAnswer, setSelectedAnswer] = useState<boolean>()
@@ -198,6 +212,8 @@ const Quiz = ({
         correctAnswers: correctAnswers,
         wrongAnswers: totalQuestions,
       })
+
+      saveResults(resultsQuestAns, userEmail);
 
     }, [showResult]);
 

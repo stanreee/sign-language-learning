@@ -25,7 +25,7 @@ app.get('/', (_req, res) => {
 
 // The auth endpoint that creates a new user record or logs a user based on an existing record
 app.post('/auth', (req, res) => {
-    const { name, email, password, handedness } = req.body
+    const { userId, name, email, password, handedness } = req.body
   
     // Look up the user entry in the database
     const user = db
@@ -40,6 +40,7 @@ app.post('/auth', (req, res) => {
           return res.status(401).json({ message: 'Invalid password' })
         } else {
           let loginData = {
+            userId,
             email,
             signInTime: Date.now(),
           }
@@ -51,8 +52,8 @@ app.post('/auth', (req, res) => {
       // If no user is found, hash the given password and create a new entry in the auth db with the email and hashed password
     } else if (user.length === 0) {
       bcrypt.hash(password, 10, function (_err, hash) {
-        console.log({ name, email, password: hash, handedness })
-        db.get('users').push({ name, email, password: hash, handedness }).write()
+        console.log({ userId, name, email, password: hash, handedness })
+        db.get('users').push({ userId, name, email, password: hash, handedness }).write()
   
         let loginData = {
           email,
@@ -101,5 +102,65 @@ app.post('/check-account', (req, res) => {
       userExists: user.length === 1,
     })
   })
+
+app.post('/get-stats', (req, res) =>{
+    const { userId } = req.body
+    console.log('here')
+    console.log(req.body)
+  
+    const user = db
+      .get('users')
+      .value()
+      .filter((user) => userId === user.userId)
+  
+    console.log(user)
+  
+    res.status(200).json(user)
+  })
+
+  app.post('/post-quiz', (req, res) =>{
+    const { results, userEmail } = req.body
+    console.log('post quiz')
+    console.log(req.body)
+  
+    const user = db
+      .get('users')
+      .value()
+      .filter((user) => userEmail.userEmail === user.email)
+  
+    console.log(user)
+  
+    res.status(200).json(user)
+  })
+
+  app.post('/get-stats', (req, res) =>{
+    const { userEmail } = req.body
+    console.log(req.body)
+  
+    const user = db
+      .get('users')
+      .value()
+      .filter((user) => userEmail === user.email)
+  
+    console.log(user)
+  
+    res.status(200).json(user)
+  })
+
+  app.post('/get-user-email', (req, res) =>{
+    const { email } = req.body
+    console.log('get user email')
+    console.log(req.body)
+  
+    const user = db
+      .get('users')
+      .value()
+      .filter((user) => email === user.email)
+
+    console.log(user)
+    
+    res.status(200).json(user.name, user.userId)
+  })
+  
 
   app.listen(3080)

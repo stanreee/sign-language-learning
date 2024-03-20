@@ -9,7 +9,7 @@ import React from 'react';
 import getUserQuizzes from '../class/getUserQuizzes';
 
 
-const Exercises = () => {
+const Exercises = (userEmail: string) => {
     // store index of quiz selection
     const [selectedQuizIndex, setSelectedQuizIndex] = useState<number>();
     const [selectedQuizDifficulty, setSelectedQuizDifficulty] = useState<string>();
@@ -106,9 +106,9 @@ const Exercises = () => {
         )
           
           : (
-              (selectedQuizDifficulty === "Easy" && <Quiz title={quizEasyVowelArray[selectedQuizIndex].topic} timePerQuestion={quizEasyVowelArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizEasyVowelArray[selectedQuizIndex].questions}/>)
-              || (selectedQuizDifficulty === "Medium" && <Quiz title={quizMediumArray[selectedQuizIndex].topic} timePerQuestion={quizMediumArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizMediumArray[selectedQuizIndex].questions}/>)
-              || (selectedQuizDifficulty === "Hard" && <Quiz title={quizHardArray[selectedQuizIndex].topic} timePerQuestion={quizHardArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizHardArray[selectedQuizIndex].questions}/>)
+              (selectedQuizDifficulty === "Easy" && <Quiz title={quizEasyVowelArray[selectedQuizIndex].topic} timePerQuestion={quizEasyVowelArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizEasyVowelArray[selectedQuizIndex].questions} userEmail={userEmail}/>)
+              || (selectedQuizDifficulty === "Medium" && <Quiz title={quizMediumArray[selectedQuizIndex].topic} timePerQuestion={quizMediumArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizMediumArray[selectedQuizIndex].questions} userEmail={userEmail}/>)
+              || (selectedQuizDifficulty === "Hard" && <Quiz title={quizHardArray[selectedQuizIndex].topic} timePerQuestion={quizHardArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizHardArray[selectedQuizIndex].questions} userEmail={userEmail}/>)
           )
         }
         </div>

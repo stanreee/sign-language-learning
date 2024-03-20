@@ -1,28 +1,85 @@
 {
   "users": [
     {
+      "userId": "1",
       "name": "Cassie",
       "email": "cassiebaldin@outlook.com",
       "password": "$2b$10$C5BpomHGHqz9sDnJ4Dqqxesgv6eVIVEQB/iqwQsYa4GEmkStBeBPG",
       "handedness": "Left"
     },
     {
+      "userId": "2",
       "name": "jerry",
       "email": "jerryiscool@gmail.com",
       "password": "$2b$10$A/N20dIoTuCa5yARgcM5lODdM4Vab3kKXr/K1TRpjrIPlf6IlipYm",
       "handedness": "Right"
     },
     {
+      "userId": "3",
       "name": "Sandra",
       "email": "sunnysandra@gmail.com",
       "password": "$2b$10$wW4U6WXCkmkm3n1Kkc34kODQ58MxoMCDxQ/EWsX.qIn/BwAOrm6B.",
       "handedness": "Right"
     },
     {
+      "userId": "4",
       "name": "test",
       "email": "testing@gmail.com",
       "password": "$2b$10$HfdQ.h9gJfMnYHdIZ2LFN.Ioi/v6oxW/gTBakG61hKVpJd.3hG5Zy",
       "handedness": "Right"
+    },
+    {
+      "name": "jeremy",
+      "email": "langnerj@mcmaster.ca",
+      "password": "$2b$10$N6o2VELdn9lfJYH3yworiezTP2Yn4KvySg7/ILayqI1FTLrozceMq",
+      "handedness": "Right"
+    },
+    {
+      "name": "test JL",
+      "email": "testjl@mcmaster.ca",
+      "password": "$2b$10$l.AsVmrN9q8vORNJgCQQ0.UvxvnjhpAnoGIfw5YT.6IOHaiC4fpU6",
+      "handedness": "Right"
+    },
+    {
+      "userId": "nRR0O9xPLO",
+      "name": "alice",
+      "email": "alice@gmail.com",
+      "password": "$2b$10$sUCD9Wq.cRFbdNmNwNfz3uZ9P9vRvVBoZPXO5fl/HHfjbKZJFKXMm",
+      "handedness": "Right"
+    },
+    {
+      "userId": "eIWpNFwRwj",
+      "name": "bob",
+      "email": "bob@gmail.com",
+      "password": "$2b$10$9IgLfIG5TIr35JJV1QvxVuktQr6ue/kjzze9GqhZYUu0cVvfxQnte",
+      "handedness": "Right"
+    }
+  ],
+  "historical": [],
+  "skill": [
+    {
+      "userId": 1,
+      "questionsAtt": 10,
+      "questionsCorr": 8,
+      "eastCorr": 6,
+      "medCorr": 2,
+      "hardCorr": 0
+    },
+    {
+      "userId": 2,
+      "questionsAtt": 30,
+      "questionsCorr": 25,
+      "eastCorr": 15,
+      "medCorr": 7,
+      "hardCorr": 3
+    },
+    {
+      "userId": 3,
+      "questionsAtt": 5,
+      "questionsCorr": 3,
+      "eastCorr": 3,
+      "medCorr": 0,
+      "hardCorr": 0
     }
   ]
 }

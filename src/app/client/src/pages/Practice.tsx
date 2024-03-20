@@ -5,10 +5,26 @@ import '../styles/Quiz.css'
 import React from 'react'
 import ASLLetters from "../images/ASLLetters.png"
 
+// Call the server API to check if the given email ID already exists
+const mockPutInDB = () => {
+
+    const userId = "nRR0O9xPLO"
+
+    fetch('http://localhost:3080/get-stats', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({userId}),
+    })
+    .then((r) => r.json())
+}
+
 const Practice = () => {
 
     const [result, setResult] = useState("A")
 
+    
     // console.log("result: " + result);
     return(
         <div className="practice-page">
@@ -19,6 +35,9 @@ const Practice = () => {
                 <div>
                     <span className="result-prompt">Result: </span>
                     <span className="result">{result}</span>
+                </div>
+                <div>
+                    <button onClick={mockPutInDB}> PRESS</button>
                 </div>
                 <div className='letterAlign'>
                     <Webcam text={result} setText={setResult} run={true}/>

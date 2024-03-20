@@ -5,8 +5,10 @@ console.log(asl);
 
 const Account = (props) => {
 
-  const { loggedIn, email, name } = props
+  const { loggedIn, userId, email, name } = props
   const navigate = useNavigate();
+
+  console.log(props)
   
   const onLoginButtonClick = () => {
     if (loggedIn) {
@@ -34,7 +36,7 @@ const Account = (props) => {
           {/* name part isnt working right now */}
         </div>
         {loggedIn ? <h2>Profile Settings</h2> : <div />}
-        {loggedIn ? <div>You are signed in with {email}</div> : <div>Login or Create an Account to Save Your Learning Progress!</div>}
+        {loggedIn ? <div>You are signed in with {email} and id {userId}</div> : <div>Login or Create an Account to Save Your Learning Progress!</div>}
 
         <div className={'buttonContainer'}>
           <input
