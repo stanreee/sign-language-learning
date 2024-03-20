@@ -389,7 +389,7 @@ main {
 	font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
   }  
 
-input[type="button"] {
+  input[type="button"] {
     border: none;
     background: #003459;
     color: white;

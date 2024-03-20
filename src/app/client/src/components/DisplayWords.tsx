@@ -3,7 +3,7 @@ import what from "../images/learnWords/what.png"
 import where from "../images/learnWords/where.png"
 import when from "../images/learnWords/when.png"
 import why from "../images/learnWords/why.png"
-import hru from "../images/learnWords/hru.png"
+import how from "../images/learnWords/how.png"
 import hello from "../images/learnWords/hello.png"
 import please from "../images/learnWords/please.png"
 import thanku from "../images/learnWords/thanku.png"
@@ -78,7 +78,7 @@ const DisplayWords = () => {
 
     <div className="container-letters">
       <div id="hello" data-hs-anchor="true">{wordCard(hello, 6, 370, 270)}</div>       
-      <div id="hru" data-hs-anchor="true">{wordCard(hru, 5, 670, 270)}</div>         
+      <div id="how" data-hs-anchor="true">{wordCard(how, 5, 670, 270)}</div>         
       <div id="please" data-hs-anchor="true">{wordCard(please, 7, 270, 270)}</div>      
       <div id="thanku" data-hs-anchor="true">{wordCard(thanku, 8, 570, 270)}</div>      
       <div id="yes" data-hs-anchor="true">{wordCard(yes, 9, 300, 270)}</div>         
@@ -95,7 +95,7 @@ const DisplayWords = () => {
       Jump to:
       <br />
       <a href="#hello" rel="noopener">Hello,   </a>
-      <a href="#hru" rel="noopener">How Are You?   </a>
+      <a href="#how" rel="noopener">How Are You?   </a>
       <br />
       <a href="#please" rel="noopener">Please,  </a>
       <a href="#thanku" rel="noopener">Thank You   </a>

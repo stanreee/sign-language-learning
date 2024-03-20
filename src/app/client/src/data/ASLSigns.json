@@ -72,13 +72,26 @@
         ["A", "0"], ["B", "0"], ["C", "0"], ["D", "0"], ["E", "0"], ["F", "0"], 
         ["I", "0"], ["K", "0"], ["L", "0"], 
         ["O", "0"], ["R", "0"], ["U", "0"], 
-        ["V", "0"], ["W", "0"], ["X", "0"], ["Y", "0"]
+        ["V", "0"], ["W", "0"], ["X", "0"], ["Y", "0"],
+        ["hello", "1"], ["please", "1"], ["thank you", "1"], ["yes", "1"], ["no", "1"]
     ], 
     "mediumLetters" : [
         ["A", "0"], ["B", "0"], ["C", "0"], ["D", "0"], ["E", "0"], ["F", "0"], ["G", "0"], 
         ["H", "0"], ["I", "0"], ["K", "0"], ["L", "0"], ["M", "0"], ["N", "0"], 
         ["O", "0"], ["P", "0"], ["Q", "0"], ["R", "0"], ["S", "0"], ["T", "0"], ["U", "0"], 
-        ["V", "0"], ["W", "0"], ["X", "0"], ["Y", "0"]
+        ["V", "0"], ["W", "0"], ["X", "0"], ["Y", "0"], 
+        ["need", "1"], ["home", "1"], ["future", "1"], ["spaghetti", "1"],
+        ["who", "1"], ["what", "1"], ["where", "1"], ["when", "1"], ["why", "1"]
+    ],
+    "hardLetters": [
+        ["A", "0"], ["B", "0"], ["C", "0"], ["D", "0"], ["E", "0"], ["F", "0"], ["G", "0"], 
+        ["H", "0"], ["I", "0"], ["J", "1"], ["K", "0"], ["L", "0"], ["M", "0"], ["N", "0"], 
+        ["O", "0"], ["P", "0"], ["Q", "0"], ["R", "0"], ["S", "0"], ["T", "0"], ["U", "0"], 
+        ["V", "0"], ["W", "0"], ["X", "0"], ["Y", "0"], ["Z", "1"],
+        ["wello", "1"], ["wlease", "1"], ["thank you", "1"], ["yes", "1"], ["no", "1"],
+        ["need", "1"], ["home", "1"], ["future", "1"], ["spaghetti", "1"],
+        ["who", "1"], ["what", "1"], ["where", "1"], ["when", "1"], ["why", "1"],
+        ["how", "1"], ["family", "1"], ["friend", "1"]
     ],
     "vowelLetters" : [
         ["A", "1"], ["E", "1"], ["I","1"], ["O", "0"], ["U", "0"], ["Y", "0"]
@@ -89,7 +102,7 @@
         "Where?",
         "When?",
         "Why?", 
-        "How Are You?",
+        "How?",
         "Hello",
         "Please",
         "Thank You",
@@ -103,7 +116,23 @@
         "Spaghetti"
     ],
     "wordsDesc" : [
-        ""
+        "Place the tip of your thumb on your chin with your index finger extended. Bend your index finger twice.",
+        "Hold both your hands with your palms facing up, and hands in front of you. Hunch your shoulders a bit. You should look like you are confused and asking 'What??'",
+        "Hold your hand in front of you with your index finger pointing towards the sky. Then move your index finger side to side, still pointing upwards.",
+        "Point both your index fingers towards the sky on both hands. Then hold your non-dominant hand still while your dominant hand circles around the index finger of the other hand",
+        "Touch your dominant hand to the side of your head with your palm facing your face. Then pull your hand away into a 'Y' shape with your palm still facing you.",
+        "There are two versions of this sign, here we use the two-handed version, where you curve both your hands into 'C' shapes in front of you with your thumbs touching. Then twist your hands forward 90 degress so your thumbs are facing towards the sky.",
+        "With your hand flat and your palm facing outwards, wave from your head outwards. This should look like you're waving 'Hello!'",
+        "Place your dominant hand over the center of your chest and move your hand in a clockwise motion. This should look like you're rubbing your chest.",
+        "Place your dominant hand on your chin, with your palm facing inwards towards you. Then fold your arm down so your palm faces the sky. It should look like you are blowing a kiss to the person you're thanking (but don't move your lips).",
+        "Make a fist with your dominant hand, and move your wrist downwards, then upwards, then downwards again. Imagine your hand is your head as you 'nod' your hand twice.",
+        "Point your middle, index and thumb out, tucking your ring and pinky finger in. Then connect these 3 fingers together, with your middle and index going down towards your thumb.",
+        "Make an 'X' sign with your index finger pointing forward (looks like a hook). Then keeping this shape, move your wrist downwards so your index finger points towards the ground.",
+        "Start with all fingers of your dominant hand touching at a point, and place that point beside your mouth. Then keeping this shape, move it upwards to rest on your cheek.",
+        "Make an 'F' shape with both index and thumbs touching the other hand. Then wrap your hands in a circle until your pinky fingers are side by side touching.",
+        "Point both index fingers towards each other sideways, with your dominant finger on top of your other finger. Then bring your 2 fingers together. Do this again but flip your hands so your non-dominant hand is on top. It should look like 2 friends meeting.",
+        "Start with your hand in line with your head with your palm facing towards you. Then bend your arm down 90 degrees until it is at your side.",
+        "Start by making an 'I' shape with both hands, and point your pinky fingers towards each other. Then move your pinky fingers in a circle and pull your hands away from each other. It should look like your hands are making spirials."
     ],
     "wordVideos" : [
         "wKl26BsEAoc", 

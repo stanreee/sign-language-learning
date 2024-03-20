@@ -14,24 +14,17 @@ const Learn = () => {
     const gallTitle = info.gallaudetHeader;
     const gallDesc = info.gallaudetDesc.join(" ");
 
-    const partsOfPage = () => {
-      return (
-        <div>
-          Learning Chapters:
-          <br />
-          <a href="#letters" rel="noopener">Letters,   </a>
-          <a href="#basic_words" rel="noopener">Basic Words/Phrases,   </a>
-          <a href="#question_words" rel="noopener">Question Words,  </a>
-          <a href="#add_resources" rel="noopener">Additional Resources   </a>
-      </div>
-    )}
-
     return (
     <div className="App">
       <header className="App-header">
 
         <div>
-          {partsOfPage()}
+            Learning Chapters:
+            <br />
+            <a href="#letters" rel="noopener">Letters,   </a>
+            <a href="#basic_words" rel="noopener">Basic Words/Phrases,   </a>
+            <a href="#question_words" rel="noopener">Question Words,  </a>
+            <a href="#add_resources" rel="noopener">Additional Resources   </a>
         </div>
 
         <br />

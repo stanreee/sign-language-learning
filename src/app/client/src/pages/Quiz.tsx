@@ -210,8 +210,9 @@ const Quiz = ({
             <div>
               <span className="text-answer-prompt-black">Result: </span>
               <span className="text-question">{sign}</span>
+              <br />
               <span className="text-answer-prompt-black">Confidence: </span>
-              <span className="text-question">{confidence}</span>
+              <span className="text-question">{Math.round(Number(confidence)*100).toFixed(1)}%</span>
             </div>
             <div className="button-row">
                 <Link reloadDocument to={'/Exercises'}>

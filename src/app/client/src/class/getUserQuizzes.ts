@@ -3,7 +3,7 @@ import iQuizEasy from "../interfaces/iQuizEasy";
 import iQuizMedium from "../interfaces/iQuizMedium";
 import iQuizHard from "../interfaces/iQuizHard";
 import iQuizASL from "../interfaces/iQuizASL";
-import letters from "../data/ASLSigns.json"
+import ASLSigns from "../data/ASLSigns.json"
 
 type letterArray = {
     letter: string,
@@ -19,16 +19,16 @@ const selectRandomQuestions = (difficulty: string, numQuestions: number) => {
     let shuffled: string[][] = [];
 
     if(difficulty === "Easy"){
-        shuffled = letters.easyLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
+        shuffled = ASLSigns.easyLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
     }
     else if (difficulty === "Medium"){
-        shuffled = letters.mediumLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
+        shuffled = ASLSigns.mediumLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
     }
     else if (difficulty === "Hard"){
-        shuffled = letters.allLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
+        shuffled = ASLSigns.hardLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
     }
     else if (difficulty === "Vowel"){
-        shuffled = letters.vowelLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
+        shuffled = ASLSigns.vowelLetters.sort(() => 0.5 - Math.random()).slice(0, numQuestions);
     }
 
     shuffled.forEach((letter: string[]) => {
