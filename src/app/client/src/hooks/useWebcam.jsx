@@ -8,13 +8,13 @@ import { Camera } from '@mediapipe/camera_utils';
 
 function useWebcam({
     numHands,
-    dynamic,
     onCaptureError,
     handedness, // for left hand folks
     onResult
 }) {
     const landmarkHistory = useRef([]);
     const [captureState, setCaptureState] = useState(false);
+    const [dynamic, setDynamic] = useState(false);
     const socket = io("http://127.0.0.1:5000");
     const hands = useRef(null);
     const webcamVideo = useRef(null);
@@ -71,7 +71,7 @@ function useWebcam({
                 if(FPS_THROTTLE.current < 0) FPS_THROTTLE.current = 0;
             }
 
-            console.log("FRAMERATE:", currentFPS, "AVG FPS:", avgFPS, "THROTTLE:", FPS_THROTTLE.current);
+            console.log("CAPTURE STATE:", captureState, "DYNAMIC:", dynamic, "FRAMERATE:", currentFPS, "AVG FPS:", avgFPS, "THROTTLE:", FPS_THROTTLE.current);
         }
         const { multiHandLandmarks, multiHandedness } = results;
         if(multiHandLandmarks.length >= numHands) {
@@ -116,7 +116,7 @@ function useWebcam({
         if(captureState && !dynamic) {
             throw new Error("useWebcam cannot start capture if webcam is not dynamic");
         }
-    }, [captureState, FPS_THROTTLE])
+    }, [dynamic, captureState, FPS_THROTTLE])
 
     const loadHands = () => {
         try{
@@ -152,7 +152,7 @@ function useWebcam({
     useEffect(() => {
         if(dynamic) socket.on("dynamic", data => onResult(parseData(data)))
         else socket.on("stream", data => onResult(parseData(data)))
-    }, [dynamic])
+    }, [captureState])
 
     useEffect(() => {
         async function initCamera() {
@@ -171,6 +171,7 @@ function useWebcam({
     return {
         captureState,
         setCaptureState,
+        setDynamic,
         webcamVideoRef: webcamVideo,
         teardown
     }
