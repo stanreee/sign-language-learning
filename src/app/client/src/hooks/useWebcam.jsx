@@ -8,13 +8,13 @@ import { Camera } from '@mediapipe/camera_utils';
 
 function useWebcam({
     numHands,
-    dynamic,
     onCaptureError,
     handedness, // for left hand folks
     onResult
 }) {
     const landmarkHistory = useRef([]);
     const [captureState, setCaptureState] = useState(false);
+    const [dynamic, setDynamic] = useState(false);
     const socket = io("http://127.0.0.1:5000");
     const hands = useRef(null);
     const webcamVideo = useRef(null);
@@ -115,7 +115,7 @@ function useWebcam({
         if(captureState && !dynamic) {
             throw new Error("useWebcam cannot start capture if webcam is not dynamic");
         }
-    }, [captureState, FPS_THROTTLE])
+    }, [dynamic, captureState, FPS_THROTTLE])
 
     const loadHands = () => {
         try{
@@ -161,7 +161,7 @@ function useWebcam({
             // setFpsRange([4.5, 5.5])
             fpsRange.current = [1.5, 3.5]
         }
-    }, [dynamic])
+    }, [captureState])
 
     useEffect(() => {
         async function initCamera() {
@@ -186,6 +186,7 @@ function useWebcam({
     return {
         captureState,
         setCaptureState,
+        setDynamic,
         webcamVideoRef: webcamVideo,
         teardown
     }

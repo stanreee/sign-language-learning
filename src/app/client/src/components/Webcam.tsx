@@ -6,9 +6,8 @@ import useWebcam from '../hooks/useWebcam';
 
 const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean}) => {
   
-  const { captureState, setCaptureState, webcamVideoRef, teardown } = useWebcam({ 
-    numHands: 1, 
-    dynamic: isDynamic, 
+  const { captureState, setCaptureState, setDynamic, webcamVideoRef, teardown } = useWebcam({ 
+    numHands: 1,  
     onCaptureError: () => {}, 
     handedness: "right", 
     onResult: (data: any) => {
@@ -23,6 +22,10 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
     return teardown;
   }, [])
   
+
+  useEffect(() => {
+    setDynamic(isDynamic);
+  }, [isDynamic])
   
   
   return (
