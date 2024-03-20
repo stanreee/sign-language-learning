@@ -161,7 +161,7 @@ function useWebcam({
             // setFpsRange([4.5, 5.5])
             fpsRange.current = [1.5, 3.5]
         }
-    }, [captureState])
+    }, [dynamic, captureState])
 
     useEffect(() => {
         async function initCamera() {
