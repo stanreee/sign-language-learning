@@ -7,6 +7,10 @@
     border-radius: 4.5px;
 }
 
+.webcam__detected {
+  border: solid 2px green;
+}
+
 .Record-Button{
   align-items: center;
   background-color: #003459;

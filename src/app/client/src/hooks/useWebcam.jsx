@@ -9,8 +9,10 @@ import { Camera } from '@mediapipe/camera_utils';
 function useWebcam({
     numHands,
     onCaptureError,
+    onHandDetection,
     handedness, // for left hand folks
-    onResult
+    onResult,
+    debug
 }) {
     const landmarkHistory = useRef([]);
     const [captureState, setCaptureState] = useState(false);
@@ -25,12 +27,24 @@ function useWebcam({
     const date = new Date();
 
     const startTime = useRef(date.getTime() / 1000)
-    const prevTime = useRef(0);
-    const deltaTime = useRef(0);
-    const frameCount = useRef(0);
-    const totalFPS = useRef(0);
+    // const prevTime = useRef(0);
+    // const deltaTime = useRef(0);
+    // const frameCount = useRef(0);
+    // const totalFPS = useRef(0);
 
-    const currentFPS = useRef(0);
+    const mediapipeFrameData = useRef({
+        prevTime: 0,
+        deltaTime: 0,
+        frameCount: 0,
+        totalFPS: 0,
+        currentFPS: 0,
+    })
+
+    const frameTracker = useRef(-1);
+    const frameTrackerDelayed = useRef(-50);
+    // const totalWebcamFrames = useRef(0);
+
+    // const currentFPS = useRef(0);
 
     const FPS_THROTTLE = useRef(30.0);
 
@@ -39,7 +53,7 @@ function useWebcam({
     const fpsRange = useRef([1.5, 3.5])
 
     const throttle = useCallback((callback) => {
-        console.log("throttle", FPS_THROTTLE)
+        if(debug) console.log("throttle", FPS_THROTTLE)
         let waiting = false;
         return function (...args) {
             if (!waiting) {
@@ -52,29 +66,44 @@ function useWebcam({
         };
     }, [FPS_THROTTLE])
 
-    const onResults = (results) => {
-        if(prevTime.current === 0) {
+    function getMediapipeFrameData () {
+        // let prevTime, deltaTime, frameCount, totalFPS, currentFPS;
+        let { prevTime, deltaTime, frameCount, totalFPS, currentFPS } = mediapipeFrameData.current;
+        if(prevTime === 0) {
             const newDate = new Date();
-            prevTime.current = newDate.getTime() / 1000;
+            prevTime = newDate.getTime() / 1000;
         }else {
             const newDate = new Date();
             const curTime = newDate.getTime() / 1000;
-            const prevDeltaTime = curTime - prevTime.current;
+            const prevDeltaTime = curTime - prevTime;
 
-            deltaTime.current = newDate.getTime() / 1000 - startTime.current;
+            deltaTime = newDate.getTime() / 1000 - startTime.current;
 
             // const avgFPS = frameCount.current / deltaTime.current;
-            currentFPS.current = 1 / prevDeltaTime;
-            totalFPS.current += currentFPS;
-            const avgFPS = totalFPS.current / frameCount.current;
+            currentFPS = 1 / prevDeltaTime;
+            totalFPS = mediapipeFrameData.current.totalFPS + currentFPS;
+            const avgFPS = totalFPS / mediapipeFrameData.current.frameCount;
 
-            frameCount.current += 1;
-            prevTime.current = curTime;
+            frameCount = mediapipeFrameData.current.frameCount + 1;
+            prevTime = curTime;
 
-            console.log("FRAMERATE:", currentFPS.current, "AVG FPS:", avgFPS, "THROTTLE:", FPS_THROTTLE.current);
+            if(debug) console.log("FRAMERATE:", currentFPS, "AVG FPS:", avgFPS, "THROTTLE:", FPS_THROTTLE.current);
         }
+
+        mediapipeFrameData.current = {
+            prevTime,
+            deltaTime,
+            frameCount,
+            totalFPS,
+            currentFPS,
+        }
+    }
+
+    const onResults = (results) => {
+        getMediapipeFrameData();
         const { multiHandLandmarks, multiHandedness } = results;
         if(multiHandLandmarks.length >= numHands) {
+            frameTrackerDelayed.current = frameTracker.current;
             let totalHandFeatures = [];
             multiHandLandmarks.forEach((landmarks) => {
                 if(landmarks.length < numHands * 21) {
@@ -86,13 +115,11 @@ function useWebcam({
             })
             if(dynamic) {
                 if(captureState) {
-                    console.log("RECORDING");
+                    if(debug) console.log("RECORDING");
                     if(landmarkHistory.current.length < 30) {
-                        console.log(totalHandFeatures);
                         landmarkHistory.current.push(totalHandFeatures);
                         setRecordingState(landmarkHistory.current.length/30);
                     }else {
-                        console.log(landmarkHistory.current, landmarkHistory.current.length);
                         socket.emit('dynamic', { 
                             landmarkHistory: landmarkHistory.current,
                             reflect: handedness === "left",
@@ -165,16 +192,35 @@ function useWebcam({
         }
     }, [dynamic, captureState])
 
+    // useEffect(() => {
+    //     if(!detected) setDetected(lastDetectedFrame.current === totalWebcamFrames.current)
+    //     console.log(lastDetectedFrame.current, totalWebcamFrames.current)
+    // }, [totalWebcamFrames.current])
+
+    // useEffect(() => {
+    //     const { prevFrame, curFrame } = detectedFrameInfo.current;
+    // }, [detectedFrameInfo.current])
+
     useEffect(() => {
         async function initCamera() {
             mediapipeCamera.current = new Camera(webcamVideo.current, {
               onFrame: async () => {
-                if(currentFPS.current > fpsRange.current[1]) {
+                const { currentFPS } = mediapipeFrameData.current;
+                if(currentFPS > fpsRange.current[1]) {
                     FPS_THROTTLE.current += 0.5;
-                } else if(currentFPS.current < fpsRange.current[0]) {
+                } else if(currentFPS < fpsRange.current[0]) {
                     FPS_THROTTLE.current -= 0.5;
                     if(FPS_THROTTLE.current < 0) FPS_THROTTLE.current = 0;
                 }
+
+                frameTracker.current += 1;
+
+                if(frameTracker.current - frameTrackerDelayed.current > 10) {
+                    onHandDetection(false);
+                }else {
+                    onHandDetection(true);
+                }
+
                 if(webcamVideo.current) await hands.current.send({ image: webcamVideo.current });
               },
             })
@@ -191,7 +237,7 @@ function useWebcam({
         setDynamic,
         webcamVideoRef: webcamVideo,
         teardown,
-        recordingState
+        recordingState,
     }
 }
 

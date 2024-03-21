@@ -6,16 +6,31 @@ import useWebcam from '../hooks/useWebcam';
 
 const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean}) => {
   
-  const { captureState, setCaptureState, setDynamic, webcamVideoRef, teardown, recordingState } = useWebcam({ 
+  const [detected, setDetected] = useState(false);
+
+  const { 
+    captureState, 
+    setCaptureState, 
+    setDynamic, 
+    webcamVideoRef, 
+    teardown, 
+    recordingState,
+  } = useWebcam({ 
     numHands: 1,  
-    onCaptureError: () => {}, 
+    onCaptureError: () => {
+       console.log("error capturing");
+    }, 
+    onHandDetection: (flag: boolean) => {
+      setDetected(flag);
+    },
     handedness: "right", 
     onResult: (data: any) => {
       const { result, confidence } = data;
       setText(result);
       setConfidence(confidence);
       console.log("CONFIDENCE:", confidence);
-    }
+    },
+    debug: false
   })
 
   useEffect(() => {
@@ -26,6 +41,11 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
   useEffect(() => {
     setDynamic(isDynamic);
   }, [isDynamic])
+
+  useEffect(() => {
+    if(detected) console.log("detected hand");
+    else console.log("no longer detecting hand")
+  }, [detected])
   
   
   return (
@@ -59,7 +79,7 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
         }
       </div>
       <div>
-        <video className='webcam' autoPlay muted playsInline ref={webcamVideoRef} />
+        <video className={detected ? 'webcam webcam__detected' : 'webcam'} autoPlay muted playsInline ref={webcamVideoRef} />
       </div>
     </div>
   )
