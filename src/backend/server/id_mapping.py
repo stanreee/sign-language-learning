@@ -1,7 +1,17 @@
+alphabet = {
+    index: chr(65 + index) for index in range(26)
+}
+
+alphabet_vars = {
+    26: "K",
+    27: "G",
+    28: "P",
+}
+
+alphabet.update(alphabet_vars)
+
 STATIC = {
-    1: {
-        index: chr(65 + index) for index in range(26)
-    },
+    1: alphabet,
     2: {}
 }
 

@@ -11,7 +11,7 @@ from recognition_model import RecognitionModel
 
 cur_dir = os.getcwd()
 
-static = RecognitionModel(cur_dir + "/trained_models/static_one_hand.pt", 1, "static")
+static = RecognitionModel([cur_dir + "/trained_models/static_one_hand.pt"], "static")
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
@@ -50,7 +50,10 @@ while cap.isOpened():
     if len(features) >= 21:
         # reflect should be true if there is only one hand and that hand is the right hand
         result, confidence = static.evaluate(features, reflect)
-        print(chr(result + 65), confidence)
+        if result < 25:
+            print(chr(result + 65), confidence)
+        else:
+            print(result, confidence)
 
     cv2.imshow('Hand Landmarks', frame)
 
