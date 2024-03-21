@@ -28,10 +28,11 @@ jobs:
 
       - name: Install ESLint
         run: |
-          npm install eslint@8.10.0
+          npm install eslint
 
       - name: Run ESLint
+        working-directory: ./src/app
         run: npm run lint
-        working-directory: src/app
+        
 
         continue-on-error: true
