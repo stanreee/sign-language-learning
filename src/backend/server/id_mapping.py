@@ -28,7 +28,8 @@ DYNAMIC = {
         8: 'please',
         9: 'J',
         10: 'who',
-        11: 'why',
+        11: 'why', # forehead to 'y' sign (less common)
+        12: 'why', # middle finger wiggle variation 
         25: 'Z',
     },
     2: {
