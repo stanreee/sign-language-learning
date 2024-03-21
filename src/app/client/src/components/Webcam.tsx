@@ -6,7 +6,7 @@ import useWebcam from '../hooks/useWebcam';
 
 const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean}) => {
   
-  const { captureState, setCaptureState, setDynamic, webcamVideoRef, teardown } = useWebcam({ 
+  const { captureState, setCaptureState, setDynamic, webcamVideoRef, teardown, recordingState } = useWebcam({ 
     numHands: 1,  
     onCaptureError: () => {}, 
     handedness: "right", 
@@ -35,10 +35,14 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
           isDynamic ? (
             <div>
               {
-                captureState ? (             
-                  <div> 
-                    <button className='Record-Button' onClick={() => setCaptureState(true)}>Recording</button>
-                    <button className='Record-Button Stop' onClick={() => setCaptureState(false)}>Stop</button>
+                captureState ? (    
+                  <div>         
+                    <div> 
+                      <button className='Record-Button' onClick={() => setCaptureState(true)} disabled>Recording</button>
+                    </div>
+                    <div>
+                      <progress value={recordingState} />
+                    </div>
                   </div>
                 ) : (
                   <div> 

@@ -15,6 +15,7 @@ function useWebcam({
     const landmarkHistory = useRef([]);
     const [captureState, setCaptureState] = useState(false);
     const [dynamic, setDynamic] = useState(false);
+    const [recordingState, setRecordingState] = useState(0);
     const socket = io("http://127.0.0.1:5000");
     const hands = useRef(null);
     const webcamVideo = useRef(null);
@@ -89,6 +90,7 @@ function useWebcam({
                     if(landmarkHistory.current.length < 30) {
                         console.log(totalHandFeatures);
                         landmarkHistory.current.push(totalHandFeatures);
+                        setRecordingState(landmarkHistory.current.length/30);
                     }else {
                         console.log(landmarkHistory.current, landmarkHistory.current.length);
                         socket.emit('dynamic', { 
@@ -188,7 +190,8 @@ function useWebcam({
         setCaptureState,
         setDynamic,
         webcamVideoRef: webcamVideo,
-        teardown
+        teardown,
+        recordingState
     }
 }
 
