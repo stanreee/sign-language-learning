@@ -28,11 +28,11 @@ jobs:
 
       - name: Install ESLint
         run: |
+          cd src/app
           npm install eslint
 
       - name: Run ESLint
-        working-directory: ./src/app
-        run: npm run lint
-        
-
+        run: |
+          cd src/app
+          npm run lint
         continue-on-error: true
