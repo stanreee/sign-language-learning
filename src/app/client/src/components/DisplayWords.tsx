@@ -77,8 +77,7 @@ const DisplayWords = () => {
     </div>    
 
     <div className="container-letters">
-      <div id="hello" data-hs-anchor="true">{wordCard(hello, 6, 370, 270)}</div>       
-      <div id="how" data-hs-anchor="true">{wordCard(how, 5, 670, 270)}</div>         
+      <div id="hello" data-hs-anchor="true">{wordCard(hello, 6, 370, 270)}</div>               
       <div id="please" data-hs-anchor="true">{wordCard(please, 7, 270, 270)}</div>      
       <div id="thanku" data-hs-anchor="true">{wordCard(thanku, 8, 570, 270)}</div>      
       <div id="yes" data-hs-anchor="true">{wordCard(yes, 9, 300, 270)}</div>         
@@ -95,8 +94,6 @@ const DisplayWords = () => {
       Jump to:
       <br />
       <a href="#hello" rel="noopener">Hello,   </a>
-      <a href="#how" rel="noopener">How Are You?   </a>
-      <br />
       <a href="#please" rel="noopener">Please,  </a>
       <a href="#thanku" rel="noopener">Thank You   </a>
       <br />
@@ -137,6 +134,7 @@ const DisplayWords = () => {
       <div id="where" data-hs-anchor="true">{wordCard(where, 2, 370, 270)}</div>
       <div id="when" data-hs-anchor="true">{wordCard(when, 3, 370, 270)}</div>
       <div id="why" data-hs-anchor="true">{wordCard(why, 4, 370, 270)}</div>
+      <div id="how" data-hs-anchor="true">{wordCard(how, 5, 670, 270)}</div>       
     </div>
 
     <div>
@@ -147,6 +145,7 @@ const DisplayWords = () => {
       <a href="#where" rel="noopener">Where?   </a>
       <a href="#when" rel="noopener">When?   </a>
       <a href="#why" rel="noopener">Why?   </a>
+      <a href="#how" rel="noopener">How?   </a>
     </div>
 
     <br />

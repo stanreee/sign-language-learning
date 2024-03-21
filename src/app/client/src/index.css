@@ -399,3 +399,10 @@ main {
     border-radius: 8px;
     cursor: pointer;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
