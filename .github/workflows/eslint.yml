@@ -32,4 +32,6 @@ jobs:
 
       - name: Run ESLint
         run: npm run lint
+        working-directory: src/app
+
         continue-on-error: true
