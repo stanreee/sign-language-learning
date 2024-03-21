@@ -125,14 +125,14 @@ print("Creating feature loaders...")
 
 features_loaders = []
 
-features_loaders.append(collect_features_loaders(
-    cur_dir + "/gather/datasets/static.csv",
-    1,
-    "static_one_hand",
-    SignLangModel,
-    np.arange(128, 144, 8),
-    32
-))
+# features_loaders.append(collect_features_loaders(
+#     cur_dir + "/gather/datasets/static.csv",
+#     1,
+#     "static_one_hand",
+#     SignLangModel,
+#     np.arange(128, 144, 8),
+#     32
+# ))
 
 # features_loaders.append(collect_features_loaders(
 #     cur_dir + "/gather/datasets/dynamic.csv",
@@ -143,32 +143,25 @@ features_loaders.append(collect_features_loaders(
 #     2
 # ))
 
-# features_loaders.append(collect_features_loaders(
-#     cur_dir + "/gather/datasets/dynamic_two_1.csv",
-#     1,
-#     "dynamic_two_1",
-#     SignLangModelDynamic,
-#     np.arange(320, 384, 32),
-#     2
-# ))
+### UNCOMMENT BOTH OF THESE FOR TWO HAND DYNAMIC
 
-# features_loaders.append(collect_features_loaders(
-#     cur_dir + "/gather/datasets/dynamic_two_2.csv",
-#     1,
-#     "dynamic_two_2",
-#     SignLangModelDynamic,
-#     np.arange(320, 384, 32),
-#     2
-# ))
+features_loaders.append(collect_features_loaders(
+    cur_dir + "/gather/datasets/dynamic_two_1.csv",
+    1,
+    "dynamic_two_1",
+    SignLangModelDynamic,
+    np.arange(320, 384, 32),
+    2
+))
 
-# features_loaders.append(collect_features_loaders(
-#     cur_dir + "/gather/datasets/dynamic_2.csv",
-#     2,
-#     "dynamic_two_hand",
-#     SignLangModelDynamic,
-#     np.arange(512, 554, 32),
-#     2
-# ))
+features_loaders.append(collect_features_loaders(
+    cur_dir + "/gather/datasets/dynamic_two_2.csv",
+    1,
+    "dynamic_two_2",
+    SignLangModelDynamic,
+    np.arange(320, 384, 32),
+    2
+))
 
 print("Feature loaders created. Training models...")
 for idx, object in enumerate(features_loaders):
