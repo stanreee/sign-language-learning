@@ -53,12 +53,42 @@
       "email": "bob@gmail.com",
       "password": "$2b$10$9IgLfIG5TIr35JJV1QvxVuktQr6ue/kjzze9GqhZYUu0cVvfxQnte",
       "handedness": "Right"
-    }
+    },
+    [
+      {
+        "email": "bob@gmail.com",
+        "questionsAtt": 10,
+        "questionsCorr": 8,
+        "eastCorr": 6,
+        "medCorr": 2,
+        "hardCorr": 0
+      }
+    ],
+    [
+      {
+        "email": "bob@gmail.com",
+        "questionsAtt": 10,
+        "questionsCorr": 8,
+        "eastCorr": 6,
+        "medCorr": 2,
+        "hardCorr": 0
+      }
+    ],
+    [
+      {
+        "email": "bob@gmail.com",
+        "questionsAtt": 10,
+        "questionsCorr": 8,
+        "eastCorr": 6,
+        "medCorr": 2,
+        "hardCorr": 0
+      }
+    ]
   ],
   "historical": [],
   "skill": [
     {
-      "userId": 1,
+      "email": "bob@gmail.com",
       "questionsAtt": 10,
       "questionsCorr": 8,
       "eastCorr": 6,
@@ -66,7 +96,7 @@
       "hardCorr": 0
     },
     {
-      "userId": 2,
+      "email": "2",
       "questionsAtt": 30,
       "questionsCorr": 25,
       "eastCorr": 15,
@@ -74,7 +104,7 @@
       "hardCorr": 3
     },
     {
-      "userId": 3,
+      "email": "3",
       "questionsAtt": 5,
       "questionsCorr": 3,
       "eastCorr": 3,

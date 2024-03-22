@@ -34,7 +34,7 @@ const App = () => {
       }
     
       // If the token exists, verify it with the auth server to see if it is valid
-      fetch('http://localhost:3080/verify', {
+      fetch('http://localhost:5001/users/verify', {
         method: 'POST',
         headers: {
           'jwt-token': user.token,

@@ -81,7 +81,7 @@ const SignUp = (props) => {
 
     // Call the server API to check if the given email ID already exists
     const checkAccountExists = (callback) => {
-        fetch('http://localhost:3080/check-account', {
+        fetch('http://localhost:5001/users/check-account', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ const SignUp = (props) => {
     // Sign up a user using email and password
     const SignUp = () => {
 
-        fetch('http://localhost:3080/auth', {
+        fetch('http://localhost:5001/users/auth', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

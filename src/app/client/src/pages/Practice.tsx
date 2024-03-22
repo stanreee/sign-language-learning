@@ -10,14 +10,14 @@ const mockPutInDB = () => {
 
     const userId = "nRR0O9xPLO"
 
-    fetch('http://localhost:3080/get-stats', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({userId}),
-    })
-    .then((r) => r.json())
+    // fetch('http://localhost:5001/get-stats', {
+    // method: 'POST',
+    // headers: {
+    //     'Content-Type': 'application/json',
+    // },
+    // body: JSON.stringify({userId}),
+    // })
+    // .then((r) => r.json())
 }
 
 const Practice = () => {
