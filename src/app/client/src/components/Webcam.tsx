@@ -8,8 +8,10 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean}) => {
   
-  const [detected, setDetected] = useState(false);
+  const [detectedState, setDetectedState] = useState(false);
+  const detected = useRef(false);
   const [countdown, setCountdown] = useState(0);
+  const [numHands, setNumHands] = useState(1);
 
   const { 
     captureState, 
@@ -19,12 +21,13 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
     teardown, 
     recordingState,
   } = useWebcam({ 
-    numHands: 1,  
+    numHands: numHands,  
     onCaptureError: () => {
        console.log("error capturing");
     }, 
     onHandDetection: (flag: boolean) => {
-      setDetected(flag);
+      detected.current = flag;
+      setDetectedState(flag);
     },
     handedness: "right", 
     onResult: (data: any) => {
@@ -67,12 +70,17 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
 };
 
   const startRecording = () => {
-    if(detected) startCountdown(() => setCaptureState(true));
-    else {
-      toast("Make sure your hands are being detected before clicking record!");
-    }
+    startCountdown(() => {
+      if(detected.current) setCaptureState(true)
+      else {
+        toast("Make sure your hands are being detected before the countdown ends!");
+      }
+    });
   }
-  
+
+  // useEffect(() => {
+  //   console.log(detected);
+  // }, [detected])
   
   return (
     <div className="webcam-container">
@@ -80,16 +88,18 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
       <div>
         {
           isDynamic && (
-            <div>
-                <div style={{display: "flex", placeItems: "center", marginTop: "20px"}}> 
-                  <button className={captureState ? 'Record-Button Record-Button__disabled' : 'Record-Button'} disabled={captureState} onClick={startRecording}>{captureState ? "Recording" : "Start Recording"}</button>
-                  {captureState && (
-                    <div style={{height: "100%"}}>
-                      <progress value={recordingState} />
-                    </div>
-                  )}
-                </div>
+            <div style={{marginTop: "20px"}}>
+              <div style={{display: "flex", placeItems: "center", marginTop: "10px"}}> 
+                <button className={captureState ? 'Record-Button Record-Button__disabled' : 'Record-Button'} disabled={captureState} onClick={startRecording}>{captureState ? "Recording" : "Start Recording"}</button>
+                <button onClick={() => setNumHands(1)} disabled={captureState || countdown > 0} className={numHands === 1 || captureState || countdown > 0 ? "Hands-Button active" : "Hands-Button"}>1 Hand</button>
+                <button onClick={() => setNumHands(2)} disabled={captureState || countdown > 0} className={numHands === 2 || captureState || countdown > 0 ? "Hands-Button active" : "Hands-Button"}>2 Hands</button>
+                {captureState && (
+                  <div style={{height: "100%"}}>
+                    <progress value={recordingState} />
+                  </div>
+                )}
               </div>
+            </div>
           )
         }
       </div>
@@ -99,7 +109,7 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
             {countdown}
           </div>
         </div>}
-        <video className={detected ? 'webcam webcam__detected' : 'webcam'} autoPlay muted playsInline ref={webcamVideoRef} />
+        <video className={detectedState ? 'webcam webcam__detected' : 'webcam'} autoPlay muted playsInline ref={webcamVideoRef} />
       </div>
     </div>
   )

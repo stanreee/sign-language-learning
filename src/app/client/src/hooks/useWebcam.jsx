@@ -106,7 +106,7 @@ function useWebcam({
             frameTrackerDelayed.current = frameTracker.current;
             let totalHandFeatures = [];
             multiHandLandmarks.forEach((landmarks) => {
-                if(landmarks.length < numHands * 21) {
+                if(landmarks.length < 21) {
                     onCaptureError();
                     return;
                 }
@@ -124,6 +124,11 @@ function useWebcam({
                             landmarkHistory: landmarkHistory.current,
                             reflect: handedness === "left",
                             numHands: numHands,
+                        })
+                        console.log("data:", {
+                            landmarkHistory: landmarkHistory.current,
+                            reflect: handedness === "left",
+                            numHands: numHands
                         })
                         setCaptureState(false);
                     }
@@ -144,7 +149,7 @@ function useWebcam({
         if(captureState && !dynamic) {
             throw new Error("useWebcam cannot start capture if webcam is not dynamic");
         }
-    }, [dynamic, captureState, FPS_THROTTLE])
+    }, [dynamic, captureState, FPS_THROTTLE, numHands])
 
     const loadHands = () => {
         try{
@@ -155,7 +160,7 @@ function useWebcam({
                     }
                 })
                 hands.current.setOptions({
-                    maxNumHands: numHands,
+                    maxNumHands: 2,
                     modelComplexity: 1,
                     minDetectionConfidence: 0.5,
                     minTrackingConfidence: 0.5,

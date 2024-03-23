@@ -50,7 +50,7 @@ def dynamic(message):
 
     data = {}
     data['result'] = str(id_map(result, model="dynamic", hands=hands))
-    data['confidence'] = str(confidence)
+    data['confidence'] = str(confidence if confidence is not None else 0)
     serialized = json.dumps(data)
     socketio.emit("dynamic", serialized)
 
