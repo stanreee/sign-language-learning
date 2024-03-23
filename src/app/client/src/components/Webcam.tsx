@@ -40,6 +40,9 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
 
   useEffect(() => {
     setDynamic(isDynamic);
+    if(!isDynamic) {
+      setCaptureState(false);
+    }
   }, [isDynamic])
 
   useEffect(() => {
