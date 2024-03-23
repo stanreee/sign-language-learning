@@ -18,6 +18,7 @@ function useWebcam({
     const [captureState, setCaptureState] = useState(false);
     const [dynamic, setDynamic] = useState(false);
     const [recordingState, setRecordingState] = useState(0);
+    const [countdown, setCountdown] = useState(0);
     const socket = io("http://127.0.0.1:5000");
     const hands = useRef(null);
     const webcamVideo = useRef(null);
@@ -148,24 +149,48 @@ function useWebcam({
 
     const loadHands = () => {
         try{
-        if(!hands.current) {
-            hands.current = new Hands({
-                locateFile: (file) => {
-                    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-                }
-            })
-            hands.current.setOptions({
-                maxNumHands: numHands,
-                modelComplexity: 1,
-                minDetectionConfidence: 0.5,
-                minTrackingConfidence: 0.5,
-            })
-        }
-        hands.current.onResults(throttle(onResults));
-    }catch(error){
+            if(!hands.current) {
+                hands.current = new Hands({
+                    locateFile: (file) => {
+                        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+                    }
+                })
+                hands.current.setOptions({
+                    maxNumHands: numHands,
+                    modelComplexity: 1,
+                    minDetectionConfidence: 0.5,
+                    minTrackingConfidence: 0.5,
+                })
+            }
+            hands.current.onResults(throttle(onResults));
+        }catch(error){
 
+        }
     }
-    }
+
+    const startCountdown = () => {
+        setCountdown(3);
+        const countdownInterval = setInterval(() => {
+            setCountdown((prevCount) => {
+                if (prevCount <= 1) {
+                    clearInterval(countdownInterval);
+                    return 0;
+                }
+                return prevCount - 1;
+            });
+        }, 1000);
+    };
+
+    const handleSetCaptureState = (newState) => {
+        if (newState && !captureState) {
+            startCountdown();
+            setTimeout(() => {
+                setCaptureState(newState);
+            }, 3000);
+        } else {
+            setCaptureState(newState);
+        }
+    };
 
     const parseData = (data) => {
         const deserialized = JSON.parse(data);
@@ -233,11 +258,12 @@ function useWebcam({
 
     return {
         captureState,
-        setCaptureState,
+        setCaptureState: handleSetCaptureState,
         setDynamic,
         webcamVideoRef: webcamVideo,
         teardown,
         recordingState,
+        countdown
     }
 }
 
