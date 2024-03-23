@@ -217,15 +217,6 @@ function useWebcam({
         }
     }, [dynamic, captureState])
 
-    // useEffect(() => {
-    //     if(!detected) setDetected(lastDetectedFrame.current === totalWebcamFrames.current)
-    //     console.log(lastDetectedFrame.current, totalWebcamFrames.current)
-    // }, [totalWebcamFrames.current])
-
-    // useEffect(() => {
-    //     const { prevFrame, curFrame } = detectedFrameInfo.current;
-    // }, [detectedFrameInfo.current])
-
     useEffect(() => {
         async function initCamera() {
             mediapipeCamera.current = new Camera(webcamVideo.current, {

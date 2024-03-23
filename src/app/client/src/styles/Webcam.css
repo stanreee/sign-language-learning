@@ -1,14 +1,25 @@
 .webcam {
-    width: 500px;
-    height: 500px;
+    /* width: 500px;
+    height: 500px; */
+    width: 646px;
+    height: 486px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border: solid;
     border-color: #09223b;
-    border-width: 2px;
+    border-width: 3px;
     border-radius: 4.5px;
+
+    transition: all ease 0.5s;
+}
+
+.webcam-container {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .webcam__detected {
-  border: solid 2px green;
+  border: solid 3px #2DD881;
 }
 
 .Record-Button{
@@ -32,7 +43,7 @@
   padding: 0px;
   padding-left: 20px;
   padding-right: 20px;
-  margin-top: 20px;
+  margin-right: 10px;
   text-align: center;
   touch-action: manipulation;
   transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
@@ -41,11 +52,13 @@
   vertical-align: middle;
 }
 
-.Record-Button.disabled {
+.Record-Button__disabled {
   border: #003459;
   border: 2px;
-  background-color: #e0e0e0;
+  background-color: #ffffff;
   color: #09223b;
+  cursor: default;
+  width: 160px;
 }
 
 .Record-Button.Stop {
