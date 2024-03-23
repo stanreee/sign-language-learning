@@ -123,8 +123,6 @@ def normalize_landmark_history(landmark_history, reflect, base_coords=None):
     # base = base_coords if base_coords else landmark_history[0][0].copy()
     base = landmark_history[0][0].copy()
 
-    print(base)
-
     for i in range(len(landmark_history)):
         features = landmark_history[i]
         landmark_history_copy[i] = process_features(features, reflect, base, shouldNormalize=False)

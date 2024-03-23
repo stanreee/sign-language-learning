@@ -103,7 +103,7 @@ const Practice = () => {
                         </div>
 
                         <br />
-                        <Webcam text={result} setText={setResult} setConfidence={setConfidence} isDynamic={dynamic}/>
+                        <Webcam hands={1} text={result} setText={setResult} setConfidence={setConfidence} isDynamic={dynamic}/>
 
                         <div>
                             <div>

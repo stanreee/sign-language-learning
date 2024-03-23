@@ -41,7 +41,6 @@ class RecognitionModel():
         multi_hand_landmark_history = [[], []]
         multi_hand_results = []
         for frame in landmark_history:
-            print(len(frame))
             for i in range(num_hands):
                 features = frame[:21] if i == 0 else frame[21:]
                 multi_hand_landmark_history[i].append(features)
@@ -71,8 +70,6 @@ class RecognitionModel():
                 final_confidence = None
             else:
                 final_confidence = min(final_confidence, result[1])
-        
-        print(multi_hand_results)
 
         return (final_result, final_confidence, compressed)
     

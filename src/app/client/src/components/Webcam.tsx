@@ -6,12 +6,12 @@ import useWebcam from '../hooks/useWebcam';
 
 import toast, { Toaster } from 'react-hot-toast';
 
-const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean}) => {
+const Webcam = ({ text, setText, setConfidence, isDynamic, hands }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean, hands: number}) => {
   
   const [detectedState, setDetectedState] = useState(false);
   const detected = useRef(false);
   const [countdown, setCountdown] = useState(0);
-  const [numHands, setNumHands] = useState(1);
+  const [numHands, setNumHands] = useState(hands);
 
   const { 
     captureState, 
@@ -51,6 +51,7 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
     setDynamic(isDynamic);
     if(!isDynamic) {
       setCaptureState(false);
+      setNumHands(1);
     }
   }, [isDynamic])
 

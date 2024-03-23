@@ -18,11 +18,11 @@ function useWebcam({
     const [captureState, setCaptureState] = useState(false);
     const [dynamic, setDynamic] = useState(false);
     const [recordingState, setRecordingState] = useState(0);
-    const socket = io("http://127.0.0.1:5000");
     const hands = useRef(null);
     const webcamVideo = useRef(null);
-    const mediapipeCamera = useRef(null),
-    SocketContext = createContext<Socket>(socket);
+    const mediapipeCamera = useRef(null)
+
+    const socketRef = useRef();
 
     const date = new Date();
 
@@ -120,7 +120,7 @@ function useWebcam({
                         landmarkHistory.current.push(totalHandFeatures);
                         setRecordingState(landmarkHistory.current.length/30);
                     }else {
-                        socket.emit('dynamic', { 
+                        socketRef.current.emit('dynamic', { 
                             landmarkHistory: landmarkHistory.current,
                             reflect: handedness === "left",
                             numHands: numHands,
@@ -134,11 +134,12 @@ function useWebcam({
                     }
                 }
             }else {
-                socket.emit('stream', { 
-                    features: totalHandFeatures,
-                    reflect: handedness === "left",
-                    numHands: numHands
-                });
+                if(totalHandFeatures.length === numHands * 21)
+                    socketRef.current.emit('stream', { 
+                        features: totalHandFeatures,
+                        reflect: handedness === "left",
+                        numHands: numHands
+                    });
             }
         }
     }
@@ -183,19 +184,20 @@ function useWebcam({
     }
 
     useEffect(() => {
+        if(!socketRef.current) return;
         if(dynamic) {
-            socket.on("dynamic", data => onResult(parseData(data)))
+            socketRef.current.on("dynamic", data => onResult(parseData(data)))
             FPS_THROTTLE.current = 30.0;
             // setFpsRange([13.5, 14.5])
             fpsRange.current = [12.5, 15.5]
         }
         else {
-            socket.on("stream", data => onResult(parseData(data)))
+            socketRef.current.on("stream", data => onResult(parseData(data)))
             FPS_THROTTLE.current = 200.0;
             // setFpsRange([4.5, 5.5])
             fpsRange.current = [1.5, 3.5]
         }
-    }, [dynamic, captureState])
+    }, [dynamic, captureState, socketRef.current])
 
     useEffect(() => {
         async function initCamera() {
@@ -222,6 +224,8 @@ function useWebcam({
             })
             mediapipeCamera.current.start();
         }
+
+        socketRef.current = io("http://127.0.0.1:5000")
 
         initCamera();
         loadHands();

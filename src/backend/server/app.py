@@ -45,9 +45,6 @@ def dynamic(message):
 
     result, confidence = results[0], results[1]
 
-    print(landmark_history)
-    print(result)
-
     data = {}
     data['result'] = str(id_map(result, model="dynamic", hands=hands))
     data['confidence'] = str(confidence if confidence is not None else 0)
