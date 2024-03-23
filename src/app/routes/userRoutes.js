@@ -17,6 +17,4 @@ router.post('/verify/', UserController.verify);
 
 router.post('/check-account/', UserController.checkAccount);
 
-// router.patch("/:UserId", UserController.updateOneUser);
-
 export default router;

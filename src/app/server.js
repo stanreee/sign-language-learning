@@ -2,6 +2,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import usersRouter from './routes/userRoutes.js';
+import skillRouter from './routes/skillRoutes.js';
 import cors from 'cors';
 import 'dotenv/config'
 
@@ -29,6 +30,7 @@ const connectionString = process.env.DATABASE_URL;
 })()
 
 app.use("/users", usersRouter);
+app.use("/skills", skillRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

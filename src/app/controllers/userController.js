@@ -2,6 +2,7 @@ import UserService from '../services/userService.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import userService from '../services/userService.js';
+import skillService from '../services/skillService.js';
 
 const jwtSecretKey = 'dsfdsfsdfdsvcsvdfgefg';
 
@@ -80,6 +81,8 @@ const auth = async (req, res) => {
 
       //db.get('users').push({ userId, name, email, password: hash, handedness }).write();
       await userService.addOneUser({ name, email, password: hash, handedness });
+
+      await skillService.addOneSkill(email);
 
       let loginData = {
         email,
