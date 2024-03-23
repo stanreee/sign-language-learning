@@ -43,40 +43,33 @@ const Practice = () => {
     const instructions = () => {
         return (
             <div>
-                <h3> Instructions: </h3>
+                <h2> Instructions: </h2>
                 <div> You can practice the signs you have learned here! </div>
-                <li> Remember to keep your hands in the webcam frame at all times </li>
+                <li> Remember to keep your hands in the webcam frame at all times (indicated by green outline) </li>
+                <li> Ensure that your camera is level with your hands </li>
                 <li> When performing signs without motion, use the "Static" button </li>
                 <li> When performing signs with motion, use the "Dynamic" button </li>  
-                <li> For dynamic signs, hit the "Start Recording" button, then perform the sign you want to practice </li>              
+                <li> For dynamic signs, select the type of sign you want to practice (1 vs 2 Handed) </li>    
+                <li> After the type has been selected, hit the "Start Recording" button, then perform the sign you want after the countdown </li>          
             </div>
         )}
     const options = () => {
         return (
             <div style={{textAlign: "left"}}>
-                <h3> Static (Non-Moving) Sign Options: </h3>
+                <h2> Static (Non-Moving) Sign Options: </h2>
                 <div> All Letters EXCEPT for J & Z </div>
-                <h3> Dynamic (Moving) Sign Options: </h3>
-                <div> 
-                    Basic Words/Phrases = 
-                    Hello, Please,
-                    Thank You, Yes, No, 
-                </div>
-                <div>
-                    Need,
-                    Home, Family,
-                    Friend, Future,
-                    Spaghetti
-                </div>
-                <div>
-                    Question Words = 
-                    Who? What? Where?
-                    When? Why? How? 
-                </div>
+                <h2> Dynamic (Moving) Sign Options: </h2>
+                <h3> 1 Hand: </h3>
+                <div> Letters = J, Z </div>
+                <div> Basic Words/Phrases = Hello, Please, Thank You, </div>
+                <div> Yes, No, Need, Home, Future </div>
+                <div> Question Words = Who?, Where? Why? </div>
+                <h3> 2s Hand: </h3>
+                <div> Basic Words/Phrases = Family, Friend, Spaghetti </div>
+                <div> Question Words = What?, When?, How? </div>
             </div>
         )}
 
-    // console.log("result: " + result);
     return(
         <div className="practice-page">
             <div className='practice-page-col'>
