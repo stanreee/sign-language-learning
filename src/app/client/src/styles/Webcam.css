@@ -1,16 +1,31 @@
 .webcam {
     /* width: 500px;
     height: 500px; */
-    width: 646px;
-    height: 486px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
     border: solid;
     border-color: #09223b;
     border-width: 3px;
     border-radius: 4.5px;
 
     transition: all ease 0.5s;
+}
+
+.webcam-countdown {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  place-items: center;
+  background-color: rgba(9, 34, 59, 0.4);
+  transition: all ease 0.25s;
+}
+
+.webcam-countdown-counter {
+  color: white;
+  font-size: 78px;
 }
 
 .webcam-container {

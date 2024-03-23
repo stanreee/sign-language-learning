@@ -18,7 +18,6 @@ function useWebcam({
     const [captureState, setCaptureState] = useState(false);
     const [dynamic, setDynamic] = useState(false);
     const [recordingState, setRecordingState] = useState(0);
-    const [countdown, setCountdown] = useState(0);
     const socket = io("http://127.0.0.1:5000");
     const hands = useRef(null);
     const webcamVideo = useRef(null);
@@ -168,30 +167,6 @@ function useWebcam({
         }
     }
 
-    const startCountdown = () => {
-        setCountdown(3);
-        const countdownInterval = setInterval(() => {
-            setCountdown((prevCount) => {
-                if (prevCount <= 1) {
-                    clearInterval(countdownInterval);
-                    return 0;
-                }
-                return prevCount - 1;
-            });
-        }, 1000);
-    };
-
-    const handleSetCaptureState = (newState) => {
-        if (newState && !captureState) {
-            startCountdown();
-            setTimeout(() => {
-                setCaptureState(newState);
-            }, 3000);
-        } else {
-            setCaptureState(newState);
-        }
-    };
-
     const parseData = (data) => {
         const deserialized = JSON.parse(data);
         return deserialized;
@@ -249,12 +224,11 @@ function useWebcam({
 
     return {
         captureState,
-        setCaptureState: handleSetCaptureState,
+        setCaptureState,
         setDynamic,
         webcamVideoRef: webcamVideo,
         teardown,
         recordingState,
-        countdown
     }
 }
 

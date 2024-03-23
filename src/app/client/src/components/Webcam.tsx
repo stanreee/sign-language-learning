@@ -9,6 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean}) => {
   
   const [detected, setDetected] = useState(false);
+  const [countdown, setCountdown] = useState(0);
 
   const { 
     captureState, 
@@ -36,7 +37,10 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
   })
 
   useEffect(() => {
-    return teardown;
+    return () => {
+      teardown();
+      clearInterval(countdown);
+    };
   }, [])
   
 
@@ -47,8 +51,23 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
     }
   }, [isDynamic])
 
+  const startCountdown = (callback: Function) => {
+    if(countdown > 0) return;
+    setCountdown(3);
+    const countdownInterval = setInterval(() => {
+        setCountdown((prevCount) => {
+            if (prevCount <= 1) {
+                clearInterval(countdownInterval);
+                callback();
+                return 0;
+            }
+            return prevCount - 1;
+        });
+    }, 1000);
+};
+
   const startRecording = () => {
-    if(detected) setCaptureState(true);
+    if(detected) startCountdown(() => setCaptureState(true));
     else {
       toast("Make sure your hands are being detected before clicking record!");
     }
@@ -60,7 +79,7 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
       <Toaster />
       <div>
         {
-          isDynamic ? (
+          isDynamic && (
             <div>
                 <div style={{display: "flex", placeItems: "center", marginTop: "20px"}}> 
                   <button className={captureState ? 'Record-Button Record-Button__disabled' : 'Record-Button'} disabled={captureState} onClick={startRecording}>{captureState ? "Recording" : "Start Recording"}</button>
@@ -71,14 +90,15 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
                   )}
                 </div>
               </div>
-          ) :
-          (
-            <div>
-            </div>
           )
         }
       </div>
-      <div>
+      <div style={{width: "646px", height: "486px", marginTop: "10px", marginBottom: "10px", position: "relative"}}>
+        {<div style={{opacity: countdown > 0 ? "1" : "0"}} className="webcam-countdown">
+          <div className="webcam-countdown-counter">
+            {countdown}
+          </div>
+        </div>}
         <video className={detected ? 'webcam webcam__detected' : 'webcam'} autoPlay muted playsInline ref={webcamVideoRef} />
       </div>
     </div>
