@@ -4,6 +4,8 @@ import '../styles/Webcam.css'
 
 import useWebcam from '../hooks/useWebcam';
 
+import toast, { Toaster } from 'react-hot-toast';
+
 const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean}) => {
   
   const [detected, setDetected] = useState(false);
@@ -45,34 +47,29 @@ const Webcam = ({ text, setText, setConfidence, isDynamic }: {text: string, setT
     }
   }, [isDynamic])
 
-  useEffect(() => {
-    if(detected) console.log("detected hand");
-    else console.log("no longer detecting hand")
-  }, [detected])
+  const startRecording = () => {
+    if(detected) setCaptureState(true);
+    else {
+      toast("Make sure your hands are being detected before clicking record!");
+    }
+  }
   
   
   return (
     <div className="webcam-container">
+      <Toaster />
       <div>
         {
           isDynamic ? (
             <div>
-              {
-                captureState ? (    
-                  <div>         
-                    <div> 
-                      <button className='Record-Button' onClick={() => setCaptureState(true)} disabled>Recording</button>
-                    </div>
-                    <div>
+                <div style={{display: "flex", placeItems: "center", marginTop: "20px"}}> 
+                  <button className={captureState ? 'Record-Button Record-Button__disabled' : 'Record-Button'} disabled={captureState} onClick={startRecording}>{captureState ? "Recording" : "Start Recording"}</button>
+                  {captureState && (
+                    <div style={{height: "100%"}}>
                       <progress value={recordingState} />
                     </div>
-                  </div>
-                ) : (
-                  <div> 
-                    <button className='Record-Button' onClick={() => setCaptureState(true)}>Start Recording</button>
-                  </div>
-                )
-              }
+                  )}
+                </div>
               </div>
           ) :
           (

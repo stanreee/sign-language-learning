@@ -109,6 +109,7 @@ nav .nav-items {
 
 .nav-items ul li a:hover {
 	color: #00A7E1;
+	cursor: pointer;
 }
 
 .nav-items ul li a.active {
