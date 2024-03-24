@@ -67,14 +67,14 @@ const getQuizzes = (
     questions: number,
     timePerQuestion: number,
     description: string,
-    topic: string
+    title: string
 ) => {
 
     const quizzes: iQuiz[] = [];
 
     for(let i = 1; i < numQuizzes+1; i++){
         const quiz: iQuiz = {
-            topic: topic,
+            topic: title,
             level: difficulty,
             description: description,
             totalQuestions: questions,
@@ -113,7 +113,7 @@ const getEasyQuizzes = () => {
 
     // 2 easy
     const easyQuizzes: iQuiz[] = getQuizzes(
-        1, "Easy", 4, 30, "Random assortment of easy static and dynamic signs", "Easy Quiz"
+        1, "Easy", 4, 30, "Random assortment of easy static signs", "Easy Quiz"
     );
 
     return easyQuizzes
@@ -163,7 +163,7 @@ const getHardDynamicQuizzes = () => {
 
     // 2 hard
     const hardQuizzes: iQuiz[] = getQuizzes(
-        1, "Hard", 6, 10, "Random assortment of exclusively hard difficulty dynamic signs and words", "Dynamic Quiz"
+        1, "Hard Dynamic", 6, 10, "Random assortment of exclusively hard difficulty dynamic signs and words", "Dynamic Quiz"
     );
 
     return hardQuizzes

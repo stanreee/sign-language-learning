@@ -124,8 +124,8 @@ const Exercises = () => {
           
           : (
               (selectedQuizDifficulty === "Easy" && <Quiz title={quizEasyVowelArray[selectedQuizIndex].topic} timePerQuestion={quizEasyVowelArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizEasyVowelArray[selectedQuizIndex].questions}/>)
-              || (selectedQuizDifficulty === "Medium" && <Quiz title={quizMediumArray[selectedQuizIndex].topic} timePerQuestion={quizMediumArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizMediumArray[selectedQuizIndex].questions}/>)
-              || (selectedQuizDifficulty === "Hard" && <Quiz title={quizHardArray[selectedQuizIndex].topic} timePerQuestion={quizHardArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizHardArray[selectedQuizIndex].questions}/>)
+              || (selectedQuizDifficulty === "Medium" && <Quiz title={quizMediumCombinedArray[selectedQuizIndex].topic} timePerQuestion={quizMediumCombinedArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizMediumCombinedArray[selectedQuizIndex].questions}/>)
+              || (selectedQuizDifficulty === "Hard" && <Quiz title={quizHardCombinedArray[selectedQuizIndex].topic} timePerQuestion={quizHardCombinedArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizHardCombinedArray[selectedQuizIndex].questions}/>)
           )
         }
         </div>

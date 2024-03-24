@@ -190,7 +190,7 @@ const Quiz = ({
       {!showResult ? (
         <div className='container-row'>
           <div className='quiz-container-column'>
-            <h3>{title} Quiz</h3>
+            <h3>{title}</h3>
             <div className='container-row'>
               <div className='container-column'>
                 <div>
@@ -205,14 +205,9 @@ const Quiz = ({
             </div>
             <div>
               <span className="text-question-prompt">Show sign for: </span>
+              </div>
+              <div>
               <span className="text-question">{question}</span>
-            </div>
-            <div>
-              <span className="text-answer-prompt-black">Result: </span>
-              <span className="text-question">{sign}</span>
-              <br />
-              <span className="text-answer-prompt-black">Confidence: </span>
-              <span className="text-question">{Math.round(Number(confidence)*100).toFixed(1)}%</span>
             </div>
             <div className="button-row">
                 <Link reloadDocument to={'/Exercises'}>
@@ -220,10 +215,10 @@ const Quiz = ({
                     {'Quit'}
                   </button>
                 </Link>
-              <button className="skip-quit-button" onClick={onClickSkip} disabled={selectedAnswerIndex === null}>
+              <button onClick={onClickSkip} disabled={selectedAnswerIndex === null}>
                 {'Skip'}
               </button>
-              {
+              {/* {
                 isCorrectSign ? (
                   <button onClick={onClickNext} disabled={selectedAnswerIndex === null || !isCorrectSign}>
                   <Check />
@@ -234,10 +229,17 @@ const Quiz = ({
                   {activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
                 </button>
                 )
-              }
+              } */}
             </div>
           </div>
           <div className="quiz-container-column">
+          <div>
+              <span className="text-answer-prompt-black">Result: </span>
+              <span className="text-question">{sign}</span>
+              <br />
+              <span className="text-answer-prompt-black">Confidence: </span>
+              <span className="text-question">{Math.round(Number(confidence)*100).toFixed(1)}%</span>
+            </div>
             <Webcam hands={1} text={sign} setText={setSign} setConfidence={setConfidence} isDynamic={Boolean(Number(isDynamic))}/> 
           </div>
             {/* <ul>
