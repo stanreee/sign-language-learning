@@ -92,7 +92,7 @@ const getQuizzes = (
 const getVowelQuiz = () => {
     // 2 easy
     const vowelQuiz: iQuiz[] = getQuizzes(
-        1, "Vowel", 4, 30, "Vowels in ASL", "Vowels"
+        1, "Vowel", 4, 30, "Vowels in ASL", "Vowels Quiz"
     );
 
     return vowelQuiz
@@ -103,7 +103,7 @@ const getEasyStaticQuizzes = () => {
 
     // 2 easy
     const easyQuizzes: iQuiz[] = getQuizzes(
-        1, "Easy Static", 4, 30, "Random assortment of easy static signs", "Easy Static"
+        1, "Easy Static", 4, 30, "Random assortment of easy static signs", "Easy Static Sign Quiz"
     );
 
     return easyQuizzes
@@ -163,7 +163,7 @@ const getHardDynamicQuizzes = () => {
 
     // 2 hard
     const hardQuizzes: iQuiz[] = getQuizzes(
-        1, "Hard Dynamic", 6, 10, "Random assortment of exclusively hard difficulty dynamic signs and words", "Dynamic Quiz"
+        1, "Hard Dynamic", 6, 10, "Random assortment of exclusively hard difficulty dynamic signs and words", "Hard Dynamic Sign Quiz"
     );
 
     return hardQuizzes
