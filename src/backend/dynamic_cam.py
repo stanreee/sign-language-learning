@@ -1,17 +1,12 @@
 import cv2
 import mediapipe as mp
-import numpy as np
-from util import process_features, landmark_history_preprocess
-from sign_lang_model_dynamic import SignLangModelDynamic
 import os
-import torch
-from sklearn.decomposition import PCA 
 from recognition_model import RecognitionModel
 import time
 
 cur_dir = os.getcwd()
 
-dynamic = RecognitionModel([cur_dir + "/trained_models/dynamic_two_1.pt", cur_dir + "/trained_models/dynamic_two_2.pt"], "dynamic")
+dynamic = RecognitionModel([cur_dir + "/trained_models/dynamic_two_1.pt", cur_dir + "/trained_models/dynamic_two_2.pt"], "dynamic", debug=True)
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()

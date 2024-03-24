@@ -1,12 +1,6 @@
 import cv2
 import mediapipe as mp
-import numpy as np
-from util import process_features
-from sign_lang_model import SignLangModel
-from sign_lang_model_dynamic import SignLangModelDynamic
 import os
-import torch
-from sklearn.decomposition import PCA
 from recognition_model import RecognitionModel
 
 cur_dir = os.getcwd()

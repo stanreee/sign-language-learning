@@ -36,7 +36,7 @@ const Webcam = ({ text, setText, setConfidence, isDynamic, hands }: {text: strin
       setConfidence(confidence);
       console.log("CONFIDENCE:", confidence);
     },
-    debug: false
+    debug: true
   })
 
   useEffect(() => {

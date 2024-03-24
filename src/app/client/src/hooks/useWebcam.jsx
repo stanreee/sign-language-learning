@@ -125,11 +125,6 @@ function useWebcam({
                             reflect: handedness === "left",
                             numHands: numHands,
                         })
-                        console.log("data:", {
-                            landmarkHistory: landmarkHistory.current,
-                            reflect: handedness === "left",
-                            numHands: numHands
-                        })
                         setCaptureState(false);
                     }
                 }

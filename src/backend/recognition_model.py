@@ -1,12 +1,9 @@
-from sign_lang_model_dynamic import SignLangModelDynamic
-from sign_lang_model import SignLangModel
 import torch
 import numpy as np
 from util import process_features, normalize_landmark_history, landmark_history_preprocess
-import copy
 
 class RecognitionModel():
-    def __init__(self, modelPaths, type):
+    def __init__(self, modelPaths, type, debug=False):
         """
             Creates a RecognitionModel object.
 
@@ -20,6 +17,7 @@ class RecognitionModel():
         for model in self.models:
             model.eval()
         self.type = type
+        self.debug = debug
         self.num_hands = len(modelPaths)
 
     def __evaluate_static__(self, landmark_data, num_hands, should_reflect):
@@ -63,6 +61,9 @@ class RecognitionModel():
 
         final_result = multi_hand_results[0][0]
         final_confidence = multi_hand_results[0][1]
+
+        if self.debug: 
+            print(multi_hand_results)
 
         for result in multi_hand_results:
             if result[0] != final_result:

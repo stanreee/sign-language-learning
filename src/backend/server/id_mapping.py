@@ -39,6 +39,7 @@ DYNAMIC = {
         3: 'family',
         4: 'when',
         5: 'what',
+        6: 'how', # only one hand rolls forward
         None: "unclassifiable"
     }
 }

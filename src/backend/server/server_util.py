@@ -1,6 +1,3 @@
-import numpy as np
-from sklearn.decomposition import PCA
-import copy
 import os
 
 import sys
