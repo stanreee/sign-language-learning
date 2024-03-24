@@ -292,7 +292,7 @@ const Quiz = ({
                           key={question.guessedAnswer}
                           className={question.isCorrect ? 'correct-answer' : 'incorrect-answer'}
                           >
-                          {question.guessedAnswer}
+                          {question.isCorrect ? 'correct' : 'skipped'}
                         </li>
                         </ul>))
                       }
