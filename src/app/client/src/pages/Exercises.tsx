@@ -18,10 +18,20 @@ const Exercises = () => {
     // GET QUIZ LIST
     const quizVowelArray: iQuiz[] = getUserQuizzes.getVowelQuiz();
     const quizEasyArray: iQuiz[] = getUserQuizzes.getEasyQuizzes();
-    const quizEasyVowelArray = quizEasyArray.concat(quizVowelArray);
+    const quizEasyStaticArray: iQuiz[] = getUserQuizzes.getEasyStaticQuizzes();
+    const quizEasyVowelArray = quizEasyArray.concat(quizVowelArray, quizEasyStaticArray);
+
 
     const quizMediumArray: iQuiz[] = getUserQuizzes.getMediumQuizzes();
+    const quizMediumStaticArray: iQuiz[] = getUserQuizzes.getMediumStaticQuizzes();
+    const quizMediumDynamicArray: iQuiz[] = getUserQuizzes.getMediumDynamicQuizzes();
+    const quizMediumCombinedArray = quizMediumArray.concat(quizMediumStaticArray, quizMediumDynamicArray);
+
+
     const quizHardArray: iQuiz[] = getUserQuizzes.getHardQuizzes();
+    const quizHardDynamicArray: iQuiz[] = getUserQuizzes.getHardDynamicQuizzes();
+    const quizHardCombinedArray = quizHardArray.concat(quizHardDynamicArray);
+
 
     // const quizArray: iQuiz[] = quizEasyVowelArray.concat(quizMediumArray, quizHardArray);
 
@@ -37,6 +47,9 @@ const Exercises = () => {
           <div className='container-row'>
             <div className='container-column-3'>
               <h2>Easy</h2>
+              <h4>4 Questions</h4>
+              <h4>30 seconds/question</h4>
+
               {
               quizEasyVowelArray.map((quiz: iQuiz, index: number) => {
                 return(
@@ -59,8 +72,10 @@ const Exercises = () => {
             </div>
             <div className='container-column-3'>
               <h2>Medium</h2>
+              <h4>5 Questions</h4>
+              <h4>15 seconds/question</h4>
               {
-              quizMediumArray.map((quiz: iQuiz, index: number) => {
+              quizMediumCombinedArray.map((quiz: iQuiz, index: number) => {
                 return(
                   <Excercise 
                     title={quiz.topic}
@@ -81,8 +96,10 @@ const Exercises = () => {
             </div>
             <div className='container-column-3'>
               <h2>Hard</h2>
+              <h4>6 Questions</h4>
+              <h4>10 seconds/question</h4>
               {
-              quizHardArray.map((quiz: iQuiz, index: number) => {
+              quizHardCombinedArray.map((quiz: iQuiz, index: number) => {
                 return(
                   <Excercise 
                     title={quiz.topic}
