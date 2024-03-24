@@ -13,10 +13,10 @@
 
 .Hands-Button {
   align-items: center;
-  background-color: #003459;
+  background-color: #ffffff;
   border: 0;
   box-sizing: border-box;
-  color: #ffffff;
+  color: #003459;
   cursor: pointer;
   display: inline-flex;
   border-radius: 5px;
@@ -30,10 +30,10 @@
 }
 
 .Hands-Button.active {
-  background-color: #ffffff;
+  background-color: #003459;
   border: 2px;
   border-color: #003459;
-  color: #003459;
+  color: #ffffff;
   cursor: default;
 }
 
