@@ -19,10 +19,10 @@ const NavBar = () => {
 							<NavLink reloadDocument to="/learn">Learn</NavLink>
 						</li>
 						<li>
-							<NavLink reloadDocument to="/exercises">Exercises</NavLink>
+							<NavLink reloadDocument to="/practice">Practice</NavLink>
 						</li>
 						<li>
-							<NavLink reloadDocument to="/practice">Practice</NavLink>
+							<NavLink reloadDocument to="/exercises">Exercises</NavLink>
 						</li>
 						<li>
 							<NavLink reloadDocument to="/account">Login</NavLink>
