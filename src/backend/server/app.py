@@ -1,13 +1,15 @@
 #Import necessary libraries
 from flask import Flask
 from flask_socketio import SocketIO
-from recognition_model import RecognitionModel
+from server_util import process_features, get_features, normalize_landmark_history, landmark_history_preprocess
 import os
 import json
 from id_mapping import id_map
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
+
+from recognition_model import RecognitionModel
 
 #Initialize the Flask app
 app = Flask(__name__)
