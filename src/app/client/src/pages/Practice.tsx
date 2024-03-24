@@ -64,7 +64,7 @@ const Practice = () => {
                 <div> Basic Words/Phrases = Hello, Please, Thank You, </div>
                 <div> Yes, No, Need, Home, Future </div>
                 <div> Question Words = Who?, Where? Why? </div>
-                <h3> 2s Hand: </h3>
+                <h3> 2 Hands: </h3>
                 <div> Basic Words/Phrases = Family, Friend, Spaghetti </div>
                 <div> Question Words = What?, When?, How? </div>
             </div>
