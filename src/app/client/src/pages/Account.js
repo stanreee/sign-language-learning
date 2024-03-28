@@ -5,7 +5,7 @@ console.log(asl);
 
 const Account = (props) => {
 
-  const { loggedIn, userId, email, name } = props
+  const { loggedIn, userId, email, name, level } = props
   const navigate = useNavigate();
 
   console.log(props)
@@ -31,12 +31,32 @@ const Account = (props) => {
     return(
 
       <div className="mainContainer">
-        <div className={'titleContainer'}>
+        {loggedIn ? 
+          <div className="titleContainer">
+            <h1>Welcome NAME!</h1> 
+            <div>
+            <h2>Profile Settings</h2>
+            <a>You are signed in with {email}</a>
+            <a>level: {level[2]}</a>
+            <a>Total Score: {level[0]}/{level[1]}</a>
+            </div>
+          </div>
+        
+        : <div>
+          Welcome to ASLingo
+          <div>Login or Create an Account to Save Your Learning Progress!</div>
+          </div>
+        }
+        {/* <div className={'titleContainer'}>
           {loggedIn ? <div>Welcome {name}!</div> : <div>Welcome to ASLingo</div>}
-          {/* name part isnt working right now */}
-        </div>
-        {loggedIn ? <h2>Profile Settings</h2> : <div />}
-        {loggedIn ? <div>You are signed in with {email} and id {userId}</div> : <div>Login or Create an Account to Save Your Learning Progress!</div>}
+        </div> */}
+        {/* {loggedIn ? 
+          <div>
+          <h2>Profile Settings</h2>
+          <a>You are signed in with {email}</a>
+          <a>level: {level[2]}</a>
+          <a>Total Score: {level[0]}/{level[1]}</a>
+          </div> : <div>Login or Create an Account to Save Your Learning Progress!</div>} */}
 
         <div className={'buttonContainer'}>
           <input

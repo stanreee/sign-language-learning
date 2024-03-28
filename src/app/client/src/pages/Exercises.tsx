@@ -8,8 +8,12 @@ import Quiz from './Quiz';
 import React from 'react';
 import getUserQuizzes from '../class/getUserQuizzes';
 
+type ExercisesProps = {
+  level: number[];
+  email: string
+};
 
-const Exercises = (userEmail: string) => {
+const Exercises = ({level, email}: ExercisesProps) => {
     // store index of quiz selection
     const [selectedQuizIndex, setSelectedQuizIndex] = useState<number>();
     const [selectedQuizDifficulty, setSelectedQuizDifficulty] = useState<string>();
@@ -25,11 +29,13 @@ const Exercises = (userEmail: string) => {
 
     // const quizArray: iQuiz[] = quizEasyVowelArray.concat(quizMediumArray, quizHardArray);
 
-
     return (
     <div className="Exercise-Page">
       <div className="Exercise-header">
         <h1>Exercises</h1>
+        <div className='container-row'>
+          <h3>Level:</h3> <h3 className='blue-h3'> {level[2]} </h3> 
+        </div>
       </div>
       <div className="Exercise-content">
         <div className='container-row'>
@@ -106,9 +112,9 @@ const Exercises = (userEmail: string) => {
         )
           
           : (
-              (selectedQuizDifficulty === "Easy" && <Quiz title={quizEasyVowelArray[selectedQuizIndex].topic} timePerQuestion={quizEasyVowelArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizEasyVowelArray[selectedQuizIndex].questions} userEmail={userEmail}/>)
-              || (selectedQuizDifficulty === "Medium" && <Quiz title={quizMediumArray[selectedQuizIndex].topic} timePerQuestion={quizMediumArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizMediumArray[selectedQuizIndex].questions} userEmail={userEmail}/>)
-              || (selectedQuizDifficulty === "Hard" && <Quiz title={quizHardArray[selectedQuizIndex].topic} timePerQuestion={quizHardArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizHardArray[selectedQuizIndex].questions} userEmail={userEmail}/>)
+              (selectedQuizDifficulty === "Easy" && <Quiz title={quizEasyVowelArray[selectedQuizIndex].topic} timePerQuestion={quizEasyVowelArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizEasyVowelArray[selectedQuizIndex].questions} userEmail={email}/>)
+              || (selectedQuizDifficulty === "Medium" && <Quiz title={quizMediumArray[selectedQuizIndex].topic} timePerQuestion={quizMediumArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizMediumArray[selectedQuizIndex].questions} userEmail={email}/>)
+              || (selectedQuizDifficulty === "Hard" && <Quiz title={quizHardArray[selectedQuizIndex].topic} timePerQuestion={quizHardArray[selectedQuizIndex].timePerQuestion} quizQuestions={quizHardArray[selectedQuizIndex].questions} userEmail={email}/>)
           )
         }
         </div>

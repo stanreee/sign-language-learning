@@ -7,6 +7,10 @@ router.get('/', SkillController.getAllSkill);
 
 router.post('/get-skill', SkillController.getOneSkill);
 
+router.post('/get-level', SkillController.getOneLevel);
+
 router.post('/update-skill', SkillController.updateOneSkill);
+
+router.post('/post-quiz', SkillController.postQuiz);
 
 export default router;

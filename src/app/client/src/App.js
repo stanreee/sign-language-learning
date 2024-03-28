@@ -21,12 +21,13 @@ const App = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [userId, setUserId] = useState('')
+  const [level, setLevel] = useState([]);
 
   useEffect(() => {
       // Fetch the user email and token from local storage
       const user = JSON.parse(localStorage.getItem('user'))
     
-      console.log(user)
+      //console.log(user)
       // If the token/email does not exist, mark the user as logged out
       if (!user || !user.token) {
         setLoggedIn(false)
@@ -42,28 +43,47 @@ const App = () => {
       })
         .then((r) => r.json())
         .then((r) => {
-          console.log('success sign on')
+          //console.log('success sign on')
           setLoggedIn('success' === r.message)
-          console.log(user.email)
+          //console.log(user.email)
           setEmail(user.email)
-          console.log(email)
         })
-          
-
-        // fetch('http://localhost:3080/get-user-email', {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ email })
-        //   })
-        //   .then((r) => {
-        //     setName(r.name || '')
-        //     setUserId(r.userId || '')
-        //   })
-        
-        
     }, [])
+
+    useEffect(() => {
+      fetch('http://localhost:5001/skills/get-skill', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "email": email }),
+        })
+        .then(response => response.json())
+        .then(json => {
+          setLevel([json.correctQuestions, json.attemptedQuestions, json.level])}
+          )
+        .catch(error => console.error(error));
+  
+    }, [email]) 
+
+    console.log(level)
+
+
+    // useEffect(() => {
+    //   fetch('http://localhost:5001/skills/get-level', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ "email": "bob@gmail.com" }),
+    //     })
+    //     .then(response => response.json())
+    //     .then(json => {
+    //       setLevel(json.skill)}
+    //       )
+    //     .catch(error => console.error(error));
+  
+    // }, [email]) 
 
   return (
     <>
@@ -71,9 +91,9 @@ const App = () => {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Learn" element={<Learn />} />
-            <Route path="/Exercises" element={<Exercises userEmail={email}/>} />
+            <Route path="/Exercises" element={<Exercises email={email} level={level}/>} />
             <Route path="/Practice" element={<Practice />} />
-            <Route path="/Account" element={<Account setLoggedIn={setLoggedIn} userId={userId} email={email} name={name} loggedIn={loggedIn} />} />
+            <Route path="/Account" element={<Account setLoggedIn={setLoggedIn} userId={userId} email={email} name={name} loggedIn={loggedIn} level={level}/>} />
             <Route path="/Login" element={<Login setLoggedIn={setLoggedIn} setName={setName} setEmail={setEmail} />} />
             <Route path="/Signup" element={<SignUp setLoggedIn={setLoggedIn} setName={setName} setEmail={setEmail} />} />  
             <Route path="/LoggedIn" element={<LoggedIn />} />

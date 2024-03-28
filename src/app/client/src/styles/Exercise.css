@@ -108,3 +108,16 @@
   letter-spacing: 1.4px;
   text-align: center;
 }
+
+.Exercise-Level {
+  border: 2px;
+  border-radius: 5px;
+  margin-left: 2%;
+  margin-right: 2%;
+  padding: 2%;
+}
+
+.blue-h3{
+  color: #144a81;
+  margin-left: 5px;
+}

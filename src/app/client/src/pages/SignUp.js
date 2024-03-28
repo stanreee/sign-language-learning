@@ -3,19 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 // info from https://clerk.com/blog/building-a-react-login-page-template
 
-//function to make unique string id
-function makeid(length) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      counter += 1;
-    }
-    return result;
-}
-
 const SignUp = (props) => {
     const [name, setName] = useState("")
     const [nameError, setNameError] = useState("")
@@ -25,7 +12,6 @@ const SignUp = (props) => {
     const [passwordError, setPasswordError] = useState("")
     const [handedness, setHand] = useState("")
     const [handError, setHandError] = useState("")
-    const [userId, setUserId] = useState(makeid(10));
     
     const navigate = useNavigate();
         
@@ -102,7 +88,7 @@ const SignUp = (props) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId, name, email, password, handedness }),
+        body: JSON.stringify({ name, email, password, handedness }),
         })
         .then((r) => r.json())
         .then((r) => {

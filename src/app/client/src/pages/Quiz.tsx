@@ -35,12 +35,12 @@ type userAnswers = {
 
 const saveResults = (results: resultAnswers[], userEmail: string) => {
 
-  fetch('http://localhost:5001/post-quiz', {
+  fetch('http://localhost:5001/skills/post-quiz', {
   method: 'POST',
   headers: {
       'Content-Type': 'application/json',
   },
-  body: JSON.stringify({userEmail, results}),
+  body: JSON.stringify({"email": userEmail, results}),
   })
   .then((r) => r.json())
 }

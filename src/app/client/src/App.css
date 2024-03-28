@@ -112,3 +112,15 @@
   border: 1px solid grey;
   padding-left: 8px;
 }
+
+.h1 {
+  font-size: 48px;
+}
+
+.h2 {
+  font-size: 30px;
+}
+
+.a {
+  font-size: 18px;
+}
