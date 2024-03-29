@@ -29,22 +29,10 @@ After processing:
 
 Similar to static sign processing, but instead a single data point consists of the processing of all 30 frames captured. The landmark data of all frames is known as the landmark history. Each landmark data point is processed almost identically to static landmark processing, however, the first landmark of the first frame is designated as the base landmark, and all other landmarks in all other frames are shifted relative to that.
 
-After the frames are captured, the landmark history is processed further and are sorted into an array where the ```0```th entry consists of all the x-coordinates, the ```1```st entry consists of all the y-coordinates, and the ```2```nd entry consists of all the z-coordinates.
+After the frames are captured, all the landmark data from each frame is flattened to a 1x1890 array. The landmark data is then normalized and saved to a CSV file for model training.
 
-```
-[
-  [x_0_0, x_0_1, x_0_2, ..., x_30_20],
-  [y_0_0, y_0_1, y_0_2, ..., y_30_20],
-  [z_0_0, z_0_1, z_0_2, ..., z_30_20],
-]
-```
-Where ```x_0_0``` is the 1st frame's 1st landmark's x-coordinate, and ```x_30_20``` is the last frame's last landmark's x-coordinate.
-
-All x, y, and z coordinates are then normalized based on the largest respective coordinate in the array. The array is then flattened to a 1x1890 array.
-
-Landmark coordinates are calculated relative to the base landmark coordinates ```(x_0_0, y_0_0, z_0_0)```, as a result, ```(x_0_0, y_0_0, z_0_0) = (0, 0, 0)``` for all signs.
-
-The processing is identical for two handed signs, but the array size will be (1x126) for static signs and (1x3780) for dynamic signs.
+## Two Hand Dynamic Signs
+The two hand dynamic sign model actually consists of two one-hand dynamic sign models, one model being for the right hand and the other for the left hand. As such, training and data processing is identical to the one-hand dynamic sign model, but done twice for each hand.
 
 ## The model training process
 The application uses the machine learning library [Pytorch](https://pytorch.org/). 
@@ -53,7 +41,7 @@ To achieve optimal results, the training process runs in multiple rounds for eac
 
 To train the models, uncomment any of these options in ```train.py```
 
-<img width="465" alt="image" src="https://github.com/stanreee/sign-language-learning/assets/77902731/47a2473d-ce50-42d9-9730-e4f01b2cf243">
+<img width="354" alt="image" src="https://github.com/stanreee/sign-language-learning/assets/77902731/d2056567-a424-4590-b710-e7d58b5db394">
 
 Then run ```python3 train.py```. 
 
