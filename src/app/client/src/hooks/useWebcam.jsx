@@ -4,6 +4,7 @@ import getFeatures from "../util/getFeatures";
 import { Hands } from "@mediapipe/hands";
 import { Camera } from '@mediapipe/camera_utils';
 
+
 // var LIMIT_FPS = 30;
 
 function useWebcam({

@@ -113,7 +113,7 @@ const getEasyQuizzes = () => {
 
     // 2 easy
     const easyQuizzes: iQuiz[] = getQuizzes(
-        1, "Easy", 4, 30, "Random assortment of easy static signs", "Easy Quiz"
+        1, "Easy", 4, 30, "Random assortment of easy static and dynamic signs", "Easy Quiz"
     );
 
     return easyQuizzes
