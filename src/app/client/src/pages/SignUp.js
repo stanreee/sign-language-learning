@@ -106,7 +106,7 @@ const SignUp = (props) => {
 
     return <div className={"mainContainer"}>
         <header>
-            <h1>Sign Up to ASLingo</h1>
+            <h1>Sign Up for ASLingo</h1>
         </header>
         <br />
         <div className={"inputContainer"}>

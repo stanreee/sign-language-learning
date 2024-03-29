@@ -29,34 +29,39 @@ const Account = (props) => {
   }
 
     return(
+      <div className='container'>
+        <div className="h2" style={{textAlign: "left"}}> Profile Settings </div>
 
-      <div className="mainContainer">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div className='titleContainer'>
+          {/* name doesn't work?? */}
+          {loggedIn ? 
+          <div style={{textAlign: "center"}}>
+            Welcome {name}!
+            <div className="h2">You are signed in with {email}</div>
+          </div> : <div>Welcome to ASLingo</div>}
+        </div>
+
+        <br />
+        {loggedIn ? <div className="h2" style={{textAlign: "center"}}> Learning Statistics: </div> : <div />}
         {loggedIn ? 
-          <div className="titleContainer">
-            <h1>Welcome NAME!</h1> 
-            <div>
-            <h2>Profile Settings</h2>
-            <a>You are signed in with {email}</a>
-            <a>level: {level[2]}</a>
-            <a>Total Score: {level[0]}/{level[1]}</a>
+          <div className="box">
+            <div className="h2">Current Level: {level[2]}</div>
+            <br />
+            <div className="h2">Overall Exercise Score: {level[0]}/{level[1]} total questions</div>
+          </div>
+          
+          : <div className="h2" style={{textAlign: "center"}}>
+              Login or Create an Account to Save Your Learning Progress!
             </div>
-          </div>
-        
-        : <div>
-          Welcome to ASLingo
-          <div>Login or Create an Account to Save Your Learning Progress!</div>
-          </div>
         }
-        {/* <div className={'titleContainer'}>
-          {loggedIn ? <div>Welcome {name}!</div> : <div>Welcome to ASLingo</div>}
-        </div> */}
-        {/* {loggedIn ? 
-          <div>
-          <h2>Profile Settings</h2>
-          <a>You are signed in with {email}</a>
-          <a>level: {level[2]}</a>
-          <a>Total Score: {level[0]}/{level[1]}</a>
-          </div> : <div>Login or Create an Account to Save Your Learning Progress!</div>} */}
 
         <div className={'buttonContainer'}>
           <input
