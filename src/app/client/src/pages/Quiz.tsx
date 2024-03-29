@@ -22,6 +22,7 @@ type QuizProps = {
 type resultAnswers = {
   index: number,
   question: string,
+  isStatic: string,
   guessedAnswer: string,
   correctAnswer: string,
   isCorrect: boolean
@@ -47,15 +48,13 @@ const Quiz = ({
     wrongAnswers: 0,
   })
   const [sign, setSign] = useState("")
+  const [confidence, setConfidence] = useState("")
 
-  //temp
-  // const [signIndex, setSignIndex] = useState(0);
-  // const signHardCoded: string[] = ["A", "B", "F", "D", "G"];
 
 
   const [isCorrectSign, setIsCorrectSign] = useState(false);
   const [isTimeExpired, setIsTimeExpired] = useState(false);
-  const [closeStream, setCloseStream] = useState(false);
+  //const [closeStream, setCloseStream] = useState<boolean>(false);
 
   // timer countdown
   const [timerReset, resetTimer] = useState(false);
@@ -65,32 +64,20 @@ const Quiz = ({
 
   const questions = quizQuestions
 
-  //const { question, choices, correctAnswer } = questions[activeQuestion]
-  const { question, correctAnswer } = questions[activeQuestion]
+  const { question, correctAnswer, isDynamic } = questions[activeQuestion]
 
   const onClickNext = () => {
     setSelectedAnswerIndex('');
     setIsCorrectSign(false);
     setIsTimeExpired(false);
     resetTimer(true);
-    // setResult((prev) =>
-    //   selectedAnswer
-    //     ? {
-    //         ...prev,
-    //         score: prev.score + 1,
-    //         correctAnswers: prev.correctAnswers + 1,
-    //       }
-    //     : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
-    // )
+
     if (activeQuestion !== questions.length - 1) {
       setActiveQuestion((prev) => prev + 1)
     } else {
       setActiveQuestion(0)
       setShowResult(true)
     }
-
-    //temp
-    //setSignIndex(signIndex + 1);
   }
 
   const onClickSkip = () => {
@@ -98,29 +85,26 @@ const Quiz = ({
     setIsCorrectSign(false);
     setIsTimeExpired(false);
     resetTimer(true);
-    // setResult((prev) => 
-    //   ({ ...prev, wrongAnswers: prev.wrongAnswers + 1 })
-    // )
+
     setResultsQuestAns(
       [
         ...resultsQuestAns,
         {index: activeQuestion, 
           question: questions[activeQuestion].question, 
+          isStatic: questions[activeQuestion].isDynamic, 
           guessedAnswer: 'SKIPPED', 
           correctAnswer: questions[activeQuestion].correctAnswer, 
           isCorrect: false}
       ]
     )
     if (activeQuestion !== questions.length - 1) {
+
       setActiveQuestion((prev) => prev + 1)
     } else {
       setActiveQuestion(0)
       setShowResult(true)
-      setCloseStream(true);
-    }
 
-    //temp
-    //setSignIndex(signIndex + 1);
+    }
   }
 
   const onClickViewHistorical = () => {
@@ -147,6 +131,7 @@ const Quiz = ({
           ...resultsQuestAns,
           {index: activeQuestion, 
             question: questions[activeQuestion].question, 
+            isStatic: questions[activeQuestion].isDynamic,
             guessedAnswer: sign, 
             correctAnswer: questions[activeQuestion].correctAnswer, 
             isCorrect: true}
@@ -156,15 +141,8 @@ const Quiz = ({
       setSelectedAnswer(true);
       setIsCorrectSign(true);
       onClickNext();
-      // temp
-      //setSignIndex(signIndex + 1);
     }
   }, [sign]);
-
-  //temp
-  // useEffect(() => {
-  //   setSign(signHardCoded[signIndex]);
-  // }, [signIndex]);
 
   // hook from Timer module for expired time
   useEffect(() => {
@@ -183,6 +161,11 @@ const Quiz = ({
 
     // make results array show results
     useEffect(() => {
+
+
+      //setCloseStream(true);
+      //console.log("close stream 3 " + closeStream)
+
       //calculate score
       let correctAnswers: number = 0
       const totalQuestions: number = resultsQuestAns.length;
@@ -207,7 +190,7 @@ const Quiz = ({
       {!showResult ? (
         <div className='container-row'>
           <div className='quiz-container-column'>
-            <h3>{title} Quiz</h3>
+            <h3>{title}</h3>
             <div className='container-row'>
               <div className='container-column'>
                 <div>
@@ -222,11 +205,9 @@ const Quiz = ({
             </div>
             <div>
               <span className="text-question-prompt">Show sign for: </span>
+              </div>
+              <div>
               <span className="text-question">{question}</span>
-            </div>
-            <div>
-              <span className="text-answer-prompt-black">Result: </span>
-              <span className="text-question">{sign}</span>
             </div>
             <div className="button-row">
                 <Link reloadDocument to={'/Exercises'}>
@@ -234,10 +215,10 @@ const Quiz = ({
                     {'Quit'}
                   </button>
                 </Link>
-              <button className="skip-quit-button" onClick={onClickSkip} disabled={selectedAnswerIndex === null}>
+              <button onClick={onClickSkip} disabled={selectedAnswerIndex === null}>
                 {'Skip'}
               </button>
-              {
+              {/* {
                 isCorrectSign ? (
                   <button onClick={onClickNext} disabled={selectedAnswerIndex === null || !isCorrectSign}>
                   <Check />
@@ -248,11 +229,18 @@ const Quiz = ({
                   {activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
                 </button>
                 )
-              }
+              } */}
             </div>
           </div>
           <div className="quiz-container-column">
-            <Webcam text={sign} setText={setSign} run={true}/> 
+          <div>
+              <span className="text-answer-prompt-black">Result: </span>
+              <span className="text-question">{sign}</span>
+              <br />
+              <span className="text-answer-prompt-black">Confidence: </span>
+              <span className="text-question">{Math.round(Number(confidence)*100).toFixed(1)}%</span>
+            </div>
+            <Webcam hands={1} text={sign} setText={setSign} setConfidence={setConfidence} isDynamic={Boolean(Number(isDynamic))}/> 
           </div>
             {/* <ul>
               {choices.map((answer: string, index: number) => (
@@ -306,7 +294,7 @@ const Quiz = ({
                           key={question.guessedAnswer}
                           className={question.isCorrect ? 'correct-answer' : 'incorrect-answer'}
                           >
-                          {question.guessedAnswer}
+                          {question.isCorrect ? 'correct' : 'skipped'}
                         </li>
                         </ul>))
                       }

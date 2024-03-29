@@ -1,6 +1,5 @@
 const getFeatures = (landmarks) => {
-    const features = landmarks.map((point) => [point.x, point.y]);
-    const test = [];
+    const features = landmarks.map((point) => [point.x, point.y, point.z]);
     return features;
 }
 

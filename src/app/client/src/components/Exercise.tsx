@@ -28,9 +28,6 @@ const ExerciseCard = ({
             <div>
             <h3>{title}</h3>
             <p>{desc}</p>
-            <p>Difficulty: {difficulty}</p>
-            <p>Time Per Question: {timePerQuestion} secs</p>
-            <p>Questions: {questionAmount}</p>
                 <button className="Exercise-Begin-Button" onClick={onClick}> Start</button>
             </div>
         </div>

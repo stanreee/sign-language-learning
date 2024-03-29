@@ -1,6 +1,7 @@
 interface iQuizASL {
     question: string,
-    type: string
+    type: string,
+    isDynamic: string,
     correctAnswer: string
   }
 

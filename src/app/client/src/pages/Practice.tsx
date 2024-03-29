@@ -1,15 +1,75 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import Webcam from '../components/Webcam' 
 import '../styles/Practice.css'
 import '../styles/Quiz.css'
 import React from 'react'
 import ASLLetters from "../images/ASLLetters.png"
+import { useNavigate } from 'react-router-dom'
 
 const Practice = () => {
 
     const [result, setResult] = useState("A")
+    const [dynamic, setDynamic] = useState(false)
+    const [confidence, setConfidence] = useState("")
 
-    // console.log("result: " + result);
+    const navigate = useNavigate();
+    const navigateToLearn_letters = () => {
+        navigate("/learn");
+        setTimeout(() => {
+        const contactSection = document.getElementById("letters");
+        if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+        }}, 100); // Delay for smoother scroll
+        return
+    }
+    const navigateToLearn_basic_words = () => {
+        navigate("/learn");
+        setTimeout(() => {
+        const contactSection = document.getElementById("basic_words");
+        if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+        }}, 100); // Delay for smoother scroll
+        return
+    }
+    const navigateToLearn_question_words = () => {
+        navigate("/learn");
+        setTimeout(() => {
+        const contactSection = document.getElementById("question_words");
+        if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+        }}, 100); // Delay for smoother scroll
+        return
+    }
+    const instructions = () => {
+        return (
+            <div>
+                <h2> Instructions: </h2>
+                <div> You can practice the signs you have learned here! </div>
+                <li> Remember to keep your hands in the webcam frame at all times (indicated by green outline) </li>
+                <li> Ensure that your camera is level with your hands </li>
+                <li> When performing signs without motion, use the "Static" button </li>
+                <li> When performing signs with motion, use the "Dynamic" button </li>  
+                <li> For dynamic signs, select the type of sign you want to practice (1 vs 2 Handed) </li>    
+                <li> After the type has been selected, hit the "Start Recording" button, then perform the sign you want after the countdown </li>          
+            </div>
+        )}
+    const options = () => {
+        return (
+            <div style={{textAlign: "left"}}>
+                <h2> Static (Non-Moving) Sign Options: </h2>
+                <div> All Letters EXCEPT for J & Z </div>
+                <h2> Dynamic (Moving) Sign Options: </h2>
+                <h3> 1 Hand: </h3>
+                <div> Letters = J, Z </div>
+                <div> Basic Words/Phrases = Hello, Please, Thank You, </div>
+                <div> Yes, No, Need, Home, Future </div>
+                <div> Question Words = Who?, Where? Why? </div>
+                <h3> 2 Hands: </h3>
+                <div> Basic Words/Phrases = Family, Friend, Spaghetti </div>
+                <div> Question Words = What?, When?, How? </div>
+            </div>
+        )}
+
     return(
         <div className="practice-page">
             <div className='practice-page-col'>
@@ -17,12 +77,69 @@ const Practice = () => {
                     <h1>Practice</h1>
                 </div>
                 <div>
-                    <span className="result-prompt">Result: </span>
-                    <span className="result">{result}</span>
-                </div>
-                <div className='letterAlign'>
-                    <Webcam text={result} setText={setResult} run={true}/>
-                    <img src={ASLLetters} width={500} height={500} alt="aslLetters" />
+                    <div>{instructions()}</div>
+
+                    <br />
+                    <div className='letterAlign'>
+                        <br />
+                        <div>
+                            <div> Go to Learning Chapters to Refresh </div>
+                            <div>Your Memory or Learn More!</div>
+                            <br />
+                            <a href="#ref_image" rel="noopener">Click for Letter Reference Image  </a>
+                            <br />
+                            <button className={"Dyanmic-Button"} onClick={navigateToLearn_letters}>Letters </button>
+                            <br />
+                            <button className={"Dyanmic-Button"} onClick={navigateToLearn_basic_words}>Basic Words/Phrases</button>
+                            <br />
+                            <button className={"Dyanmic-Button"} onClick={navigateToLearn_question_words}>Question Words</button>
+                        </div>
+
+                        <br />
+                        <Webcam hands={1} text={result} setText={setResult} setConfidence={setConfidence} isDynamic={dynamic}/>
+
+                        <div>
+                            <div>
+                                <span className="result-prompt">Result: </span>
+                                <span className="result">{result}</span>
+                                <br />
+                                <span className="result-prompt small">Confidence: </span>
+                                <span className="result small">{Math.round(Number(confidence)*100).toFixed(1)}%</span>
+                            </div>
+                            <br />
+                            <div>
+                                {
+                                    dynamic ? (
+                                        <div >
+                                        <button className="Dyanmic-Button active" onClick={() => {setDynamic(false)}}>Static</button>
+                                        <button className="Dyanmic-Button">Dynamic</button>
+                                        </div>
+                                    ) : (
+                                        <div>
+                                        <button className="Dyanmic-Button" >Static</button>
+                                        <button className="Dyanmic-Button active" onClick={() => {setDynamic(true)}}>Dynamic</button>
+                                        </div>
+                                        )
+                                }
+                            </div> 
+                            <br /> 
+                            {options()}
+                        </div>
+                    </div>
+
+                    <br />
+                    <div style={{textAlign: "center"}}>                      
+                        <br />
+                        <div className='letterAlign' >
+                            <br />
+                            <div className="center">
+                                <div id="ref_image" data-hs-anchor="true" ><img src={ASLLetters} width={763.5} height={343.5} alt="aslLetters"/></div>
+                                <br />
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    
                 </div>
                 
             </div>          

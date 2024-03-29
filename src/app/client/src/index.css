@@ -30,6 +30,16 @@ a {
 	text-decoration: none;
 }
 
+a:link, a:visited {
+	color: #003459;
+	text-decoration: none;
+	cursor: auto;
+  }
+  
+  a:link:active, a:visited:active, a:hover {
+	color: #00A7E1;
+  }
+
 ul {
 	list-style: none;
 }
@@ -99,6 +109,7 @@ nav .nav-items {
 
 .nav-items ul li a:hover {
 	color: #00A7E1;
+	cursor: pointer;
 }
 
 .nav-items ul li a.active {
@@ -264,6 +275,7 @@ nav .nav-items {
     background-color: #007EA7;
 	border-radius: 5px;
     color: #fff;
+	font-size: calc(8px + 1vmin);
   }
 
   .Section-container {
@@ -315,6 +327,11 @@ nav .nav-items {
 ::-webkit-scrollbar-thumb
 {
   background: #003459;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+  background: #00A7E1;
 }
 
   /* Left Button */
@@ -373,7 +390,7 @@ main {
 	font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
   }  
 
-input[type="button"] {
+  input[type="button"] {
     border: none;
     background: #003459;
     color: white;
@@ -382,4 +399,11 @@ input[type="button"] {
     font-size: 24px;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }

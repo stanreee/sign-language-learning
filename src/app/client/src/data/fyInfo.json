@@ -9,8 +9,9 @@
     "backgroundInfoHeader": "How It Works",
     "backgroundInfoDesc": [
         "All you need to get started is a web browser and a webcam!",
-        "You will first learn some basic signs by watching a teacher from the Deaf community, then the application will prompt you with a question on what you have learned.", 
-        "You can then sign the correct ASL sign to match the prompt, and the application will tell you if you got it right!",
+        "You will first learn some basic signs by going to the 'Learn' page where you are presented with all the current signs in our app like letters, basic words/phrases and question words. ",
+        "Then you can go to the 'Practice' page to test the signs you have learned with guides to help you. Then you can go to the 'Exercises' page where you can complete quizzes to test your knowledge.", 
+        "These quizzes will prompt you with a sign and if you can then perform the correct ASL sign to match the prompt, and the application will tell you if you got it right!",
         "You can use this application to practice ASL and learn how to properly sign from our expert teachers."
     ], 
     "resourcesInfoHeader" : "Learning and Additional Resources",
@@ -26,7 +27,7 @@
     "HSHeader" : "Handspeak", 
     "HSDesc" : [
         "HandSpeak is an online resource created by an ASL instructor and native signer in North America.", 
-        "It includes an ASL video dictionary for learning signs, as well as many great videos to learn common signs or phrases that is great for beginners!", 
+        "It includes an ASL video dictionary for learning signs that may not be listed above, as well as many great videos to learn common signs or phrases that is great for beginners!", 
         "Click the link below to learn more!"
     ],
     "gallaudetHeader" : "Gallaudet University", 
