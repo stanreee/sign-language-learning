@@ -2,7 +2,8 @@ import cv2
 from classifier import Classifier
 import os
 import csv
-from gather_util import extract_features, process_features
+from gather_util import extract_features, process_features, normalize_features
+import numpy as np
 
 class StaticClassifier(Classifier):
 
@@ -24,7 +25,9 @@ class StaticClassifier(Classifier):
     def capture(self, frame, frameNum, data):
         features, reflect, failed = extract_features(frame, self.hands, self.num_hands)
         if len(features) >= 21 if self.num_hands == 1 else 42 and not failed:
-            features = process_features(features, reflect, shouldNormalize=True)
+            features = process_features(features, reflect)
+            features = np.array(features).flatten()
+            features = normalize_features(features)
             data.append(features)
         # else:
         #     data, frameNum = self.forceEndCapture()

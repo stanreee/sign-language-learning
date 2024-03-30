@@ -22,6 +22,16 @@ NUM_EPOCHS = 48
 
 # create feature loaders on specified training data sets
 def get_features_loader(TRAINING_DATA_PATH, BATCH_SIZE):
+    """
+        Creates train and test data loaders for the specified training data path.
+
+        Parameters:
+        TRAINING_DATA_PATH (str): File path of the training data.
+        BATCH_SIZE (int): Size of individual batches for each data loader.
+
+        Returns:
+        Tuple of the training data loader and the test data loader.
+    """
     data = pd.read_csv(TRAINING_DATA_PATH)
 
     train, test = train_test_split(data, test_size=0.2)
@@ -51,11 +61,21 @@ def get_features_loader(TRAINING_DATA_PATH, BATCH_SIZE):
 
 def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron_range, batch_size):
     """
-        returns a tuple that consists of
+        Compiles data in the data path specified into data loaders and creates models with varying number of layers and neurons.
 
-        - train and test data loaders
-        - a list of models with varying number of neurons per layer and number of layers
-        - name of model
+        Parameters:
+        data_path (str): File path of the training data.
+        num_hands (int): Number of hands for this model.
+        model_name (str): Name of model.
+        model (SignLangModel or SignLangModelDynamic class): Specific neural network model to be used.
+        num_neuron_range (array): Array of different number of neurons.
+        batch_size (int): Size of batches.
+        
+        Returns:
+            Tuple consisting of
+                - train and test data loaders
+                - a list of models with varying number of neurons per layer and number of layers
+                - name of model
     """
     train_loader, test_loader = get_features_loader(data_path, batch_size)
     models = []
@@ -68,15 +88,20 @@ def collect_features_loaders(data_path, num_hands, model_name, model, num_neuron
             models.append(m)
     return (train_loader, test_loader, models, model_name)
 
-# def zip_feature_loaders(training_data_paths):
-#     feature_loaders = []
-#     for object in training_data_paths:
-#         dataPath, model = object
-#         train_loader, test_loader = get_features_loader(dataPath)
-#         feature_loaders.append((train_loader, test_loader, model))
-#     return feature_loaders
-
 def train(train_loader, test_loader, model, lr=0.0001, num_epochs=NUM_EPOCHS):
+    """
+        Trains a specific model.
+
+        Parameters:
+        train_loader (DataLoader): DataLoader for training data.
+        test_loader (DataLoader): DataLoader for test data.
+        model (instance of a SignLangModel or SignLangModelDynamic object): Model to train.
+        lr (float): Learning rate for the training process.
+        num_epochs (int): Number of rounds of training.
+
+        Returns:
+        Tuple consisting of accuracy on training and test datasets.
+    """
     train_acc, test_acc = [], []
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
@@ -110,18 +135,7 @@ def train(train_loader, test_loader, model, lr=0.0001, num_epochs=NUM_EPOCHS):
 
 cur_dir = os.getcwd()
 
-# model = SignLangModel(1, "static_one_hand")
-# dynamic_model = SignLangModelDynamic(1, "dynamic_one_hand")
-# dynamic_model_two_hands = SignLangModelDynamic(2, "dynamic_two_hand")
-
-# TRAINING_PATHS = [
-#     (cur_dir + "/gather/datasets/static.csv", model),
-#     (cur_dir + "/gather/datasets/dynamic.csv", SignLangModelDynamic),
-    # (cur_dir + "/gather/datasets/dynamic_2.csv", dynamic_model_two_hands)
-# ]
-
 print("Creating feature loaders...")
-# features_loaders = zip_feature_loaders(TRAINING_PATHS)
 
 features_loaders = []
 
@@ -201,24 +215,3 @@ for idx, object in enumerate(features_loaders):
     if model_to_save:
         torch.save(model_to_save, cur_dir + "/trained_models/" + str(model.name) + ".pt")
         print(f"Saving model {model_to_save.name} with {model.num_layers} layers and {model.num_neurons} neurons with train and test accuracies of {accuracies}.")
-    
-    # train_accuracies = pd.DataFrame(train_accuracies).sort_values(by=["num_layers", "num_neurons"]).reset_index(drop=True)
-    # test_accuracies = pd.DataFrame(test_accuracies).sort_values(by=["num_layers", "num_units"]).reset_index(drop=True)
-
-    # criterion = nn.CrossEntropyLoss()
-    # optimizer = optim.Adam(model.parameters(), lr=0.001)
-    # torch.manual_seed(42)
-    # model.eval()
-    # for epoch in range(NUM_EPOCHS):
-    #     for batch_idx, (data, targets) in enumerate(train_loader):
-    #         optimizer.zero_grad()
-    #         outputs = model(data)
-    #         loss = criterion(outputs, targets)
-    #         loss.backward()
-    #         optimizer.step()
-    #         if batch_idx == len(train_loader) - 1:
-    #             print(f'Epoch {epoch+1}/{NUM_EPOCHS}, Batch {batch_idx}/{len(train_loader)}, Loss: {loss.item():.4f}')
-    # torch.save(model.state_dict(), cur_dir + '/trained_models/' + str(model.name) + '.pth')
-    # print("Model saved to", cur_dir + "/trained_models/" + str(model.name) + ".pth")
-
-

@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from util import process_features, normalize_landmark_history, landmark_history_preprocess
+from util import process_features, process_landmark_history, normalize_features
 
 class RecognitionModel():
     def __init__(self, modelPaths, type, debug=False):
@@ -21,7 +21,10 @@ class RecognitionModel():
         self.num_hands = len(modelPaths)
 
     def __evaluate_static__(self, landmark_data, num_hands, should_reflect):
-        features = process_features(landmark_data, should_reflect, shouldNormalize=True)
+        features = process_features(landmark_data, should_reflect)
+        features = np.array(features).flatten()
+        features = normalize_features(features)
+
         if len(features) < 42 and num_hands == 2:
             return
 
@@ -44,7 +47,7 @@ class RecognitionModel():
                 multi_hand_landmark_history[i].append(features)
         for i in range(num_hands):
             # print(multi_hand_landmark_history[i])
-            compressed = normalize_landmark_history(multi_hand_landmark_history[i], should_reflect)[0]
+            compressed = process_landmark_history(multi_hand_landmark_history[i], should_reflect)[0]
             tensor = torch.from_numpy(np.array(compressed))
             tensor = tensor.to(torch.float32)
 

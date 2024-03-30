@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-from util import process_features, landmark_history_preprocess
 from sign_lang_model_dynamic import SignLangModelDynamic
 import os
 import torch
