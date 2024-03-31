@@ -8,6 +8,10 @@ from sklearn.decomposition import PCA
 from recognition_model import RecognitionModel
 import time
 
+"""
+    This file is purely for testing purposes. It is not involved in the final product.
+"""
+
 cur_dir = os.getcwd()
 
 dynamic = RecognitionModel([cur_dir + "/trained_models/dynamic_one_hand.pt"], "dynamic")

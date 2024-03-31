@@ -8,7 +8,7 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 
-from util import process_features, landmark_history_preprocess, process_landmark_history, normalize_features
+from util import process_features, process_landmark_history, normalize_features
 
 def extract_features(frame, hands, num_hands):
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

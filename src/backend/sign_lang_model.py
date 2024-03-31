@@ -5,6 +5,15 @@ import numpy as np
 
 class SignLangModel(nn.Module):
     def __init__(self, num_hands, num_neurons, num_layers, name=""):
+        """
+            Creates a sign language neural network model for static signs.
+
+            Parameters:
+            num_hands (int): Number of hands for this model.
+            num_neurons (int): Number of neurons per hidden layer.
+            num_layers (int): Number of hidden layers.
+            name (string): Name of model.
+        """
         super().__init__()
         self.name = name
         self.num_neurons = num_neurons

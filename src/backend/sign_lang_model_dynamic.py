@@ -1,17 +1,22 @@
 import torch.nn as nn
 import torch.nn.functional as F
 
-### IDS:
-## 0: no, 1: where, 2: future, 9: j, 25: z
-
 class SignLangModelDynamic(nn.Module):
     def __init__(self, num_hands, num_neurons, num_layers, name=""):
+        """
+            Creates a sign language neural network model for dynamic signs.
+
+            Parameters:
+            num_hands (int): Number of hands for this model.
+            num_neurons (int): Number of neurons per hidden layer.
+            num_layers (int): Number of hidden layers.
+            name (string): Name of model.
+        """
         super().__init__()
         self.name = name
         self.num_neurons = num_neurons
         self.num_layers = num_layers
 
-        dim = 18 if num_hands == 1 else 10
         input_dim = 30 * 63 * num_hands
         
         self.layers = nn.ModuleDict()

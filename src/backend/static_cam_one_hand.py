@@ -3,6 +3,10 @@ import mediapipe as mp
 import os
 from recognition_model import RecognitionModel
 
+"""
+    This file is purely for testing purposes. It is not involved in the final product.
+"""
+
 cur_dir = os.getcwd()
 
 static = RecognitionModel([cur_dir + "/trained_models/static_one_hand.pt"], "static")
