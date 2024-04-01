@@ -5,6 +5,8 @@ import os
 import json
 from id_mapping import id_map
 
+from server_util import get_features
+
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 
