@@ -400,7 +400,7 @@ The following is a context diagram which describes the high-level overview on ho
     \hline
     FR10 & The system should be able to communicate to the user if they have answered the prompt correctly. & The user should know if they have answered the prompt correctly to learn the language correctly. \\ 
     \hline
-    FR11 & The system should notify the user of any potential errors that may arise during camera recognition. & This will let the user know if they need to adjust their input setting (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
+    FR11 & The system should notify the user when it is unable to detect their hands. & This will let the user know if they need to adjust their camera input settings (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
     \hline
     FR12 & The system should allow the user to their desired testing track from a selection of testing categories. & This is to provide variation in the manner of testing as well as in the subject matter that the user can test themselves on. \\
     \hline
@@ -443,7 +443,7 @@ UHR2 & The system should be able to be used by people who are hard of hearing or
 UHR3 & The system should allow users to personalize their account. & The user should be able to input their name, see their progress etc. & The developers shall certify the product complies with these requirements by ensuring the users will be able to do the required actions. \\
 % (avatar, name, progress; personalization)
 \hline
-UHR4 & The system should show the user if the input needs to be adjusted. & The user should know if they need to change their camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements by ensuring the system gives user feedback where appropriate.\\
+UHR4 & The system should tell the user if the their hands are not detectable. & The user should know if they need to change their body posture, camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements by ensuring the system gives user feedback where appropriate.\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -456,9 +456,9 @@ UHR4 & The system should show the user if the input needs to be adjusted. & The 
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-PR1 & The system should respond to user input quickly. & If a user has to wait too long after an input they may be less engaged. & 95\% of tests should repond to user input within 1 second. \\
+PR1 & The system should respond to user input quickly. & If a user has to wait too long after an input they may be less engaged. & 95\% of tests should respond to user input within 1 second. \\
 \hline
-PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputing to ensure they are learning effectively. & The system should accurately determine the correct hand sign from a user in 95\% of tests. \\
+PR2 & The system should be able to accurately determine the sign shown by the user. & The system must be able to understand what hand signs the user is inputting to ensure they are learning effectively. & The system should accurately determine the correct hand sign from a user in 95\% of tests. \\
 \bottomrule
 \end{tabular}
 \end{table}
