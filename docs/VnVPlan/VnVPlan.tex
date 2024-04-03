@@ -52,6 +52,8 @@ Nov 3, 2023 & Edward & Added Reflection\\
 Nov 3, 2023 & Jeremy & Added in sect 4.3 table matricies\\
 Jan 23, 2024 & Cassidy & Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 \\
 Jan 23, 2024 & Cassidy & Addressed git issue \#52 regarding traceability to FR5, added test case \\
+April 2, 2024 & Andrew & Added functional unit tests, removed unused testing \\
+April 3, 2024 & Cassidy & Updated FR and NFR tests, changed tables, updated usability questions \\
 \bottomrule
 \end{tabularx}
 
@@ -125,7 +127,7 @@ UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-F
 
 \subsection{Summary}
 
-As a maching learning-based image recognition web app, ASLingo has many areas to be tested. The overall software will be broken down into modules. There will be a front-end, a back-end, a database, and a machine learning model which all need to be separately tested, along with physical hardware and compatibility. End-to-end testing may be required as well, which the team will determine down the line.
+As a maching learning-based image recognition web app, ASLingo has many areas to be tested. The overall software will be broken down into modules. There will be a front-end, a back-end, and a machine learning model which all need to be separately tested, along with physical hardware and compatibility. End-to-end testing may be required as well, which the team will determine down the line.
 
 \subsection{Objectives}
 
@@ -161,7 +163,7 @@ The following section aims to outline and describe the team's verification and v
 the project that are planned to be tested and verified will be the SRS, Design, and VnV Plan documents, as well as the codebase of the
 overall project.
 
-\subsection{Verification and Validation Team}
+\subsection{Verification and Validation Team} \label{VnV_Team}
 
 \begin{tabularx}{\textwidth}{p{0.3\linewidth} | X}
   \toprule
@@ -169,7 +171,7 @@ overall project.
   \hline
   Stanley Chan & Frontend verification, Computer Vision verification, SRS Verification \\
   Andrew Kil & Frontend end-to-end testing, Computer Vision verification, Design Verification \\
-  Cassidy Baldin & Fullstack end-to-end testing, backend black box testing, Unit testing \\
+  Cassidy Baldin & Fullstack end-to-end testing, backend black box testing, SRS Verification \\
   Edward Zhuang & Backend performance testing, Computer Vision unit testing, SRS Verification \\
   Jeremy Langner & Fullstack unit testing, frontend black box testing, VnV Plan Verification \\
 
@@ -222,7 +224,7 @@ The current approach to validate our Verification and Validation plan is to rely
 
 \subsection{Implementation Verification Plan}
 
-The current implementation verification plan is a combination of both static and dynamic testing.  We plan to utilize static methods like regular code walkthroughs and inspections before merges with the main branch at the end of project milestones.  These reviews should be performed by at minimum 2-3 team members. Dynamic testing methods include the fundamental system tests mentioned in the following section 4.1 for both functional and non-functional-requirements of the final product. Should any issue arise through either avenue of of implementation verification, the team as a whole should work on and approve the final solution that is developed as a result.
+The current implementation verification plan is a combination of both static and dynamic testing.  We plan to utilize static methods like regular code walkthroughs and inspections before merges with the main branch at the end of project milestones.  These reviews should be performed by at minimum 2-3 team members. Dynamic testing methods include the fundamental system tests mentioned in the following section \ref{VnV_Team} for both functional and non-functional-requirements of the final product. Should any issue arise through either avenue of of implementation verification, the team as a whole should work on and approve the final solution that is developed as a result.
 
 \subsection{Automated Testing and Verification Tools}
 
@@ -238,105 +240,29 @@ The software will be validated utilizing a mix of Black Box/Usability Testing an
 	
 \subsection{Tests for Functional Requirements}
 
-\subsubsection{Authentication}
-		
-\begin{enumerate}
-
-\item{FRT1-A1}
-
-Goal: User can make an account
-
-Control: Manual
-					
-Initial State: User does not have a registered account with email. Currently on create an account page.
-					
-Input: User enters their name, a valid email, a valid password containing 8 characters with at least one upper case, one number, and one special character into each appropriately labeled text field.
-					
-Output: System displays successful account registration complete and prompts the user to sign in.
-
-Test Case Derivation: Users need an account to record their progress.
-					
-How test will be performed: Manual test via user without an account and has a valid email.
-
-Functional Requirement: FR3
-
-\item{FRT1-A2}
-
-Goal: User can sign into account
-
-Control: Manual
-					
-Initial State: User is on the sign in page with a registered account.
-					
-Input: User enters email and associated password with registered account.
-					
-Output: System checks for existence of email and correct associated password with email and based on authentication signs in the users or displays and invalid credentials and prompts a resign in attempt.
-
-Test Case Derivation: Valid credentials are required to sign in
-
-How test will be performed: Manual user with an account will attempt to sign in with valid credentials and invalid credentials.
-
-Functional Requirement: FR4
-
-\item{FRT1-A3}
-
-Goal: User can sign out of their account
-
-Control: Manual
-					
-Initial State: User is currently signed into their registered account and has found the "Logout" header under their profile. 
-					
-Input: User clicks on the "Logout" header.
-					
-Output: System logs the user out of their account and gives the user a message letting them know that they have successfully logged out of their account. 
-
-How test will be performed: Manual user with an account will attempt to logout of their account.
-
-Functional Requirement: FR5
-
-\item{FRT1-A4}
-
-Goal: User can reset password to account
-
-Control: Manual
-					
-Initial State: User is on the sign in page with a registered account.
-					
-Input: User requests reset password then inputs email
-					
-Output: System checks for existence of email and sends an email with a unique link to reset password credentials.
-
-Test Case Derivation: Valid credentials are required to sign in
-
-How test will be performed: Manual user with an account will attempt to reset password then resign in with old and new password.
-
-Functional Requirement: FR13
-
-\end{enumerate}
-
 \subsubsection{ASL Learning Progression}
 
 \begin{enumerate}
 
-\item{FRT2-LP1}
+\item{FRT1-LP1}
 
 Goal: User performs ASL signs
 
 Control: Manual
 					
-Initial State: The user is in an ASL course prompt question or diagnosis and has a functioning webcam approved by application
+Initial State: The user is in an ASL course prompt question and has a functioning webcam approved by application
 					
 Input: User displays hand signs
 					
 Output: The system output error if cannot recognize hands in camera view
 
-Test Case Derivation: System needs to be able to recognize ASL hand signs for functioning user progression and learning
+Test Case Derivation: System needs to be able to recognize ASL hand signs for user learning/practice
 					
-How test will be performed: Manual test with user testing hand signs within diagnostic and a progression course
+How test will be performed: Manual test with user testing hand signs within exercise page
 
-Functional Requirement: FR2
+Functional Requirement: FR1, FR2, FR4
 
-\item{FRT2-LP2}
+\item{FRT1-LP2}
 
 Goal: Complete a quiz
 
@@ -348,67 +274,13 @@ Input: User clicks on a quiz
 					
 Output: The system starts the quiz for user to complete
 
-Test Case Derivation: Users need an initial ability level to provide next learning steps
+Test Case Derivation: Users should be able to test themselves on their ASL knowledge
 					
 How test will be performed: Manual test 
 
-Functional Requirement: FR6
+Functional Requirement: FR5, FR6
 
-% \item{FRT2-LP3}
-
-% Goal: User attempts progression based course
-
-% Control: Automated
-					
-% Initial State: The system creates unique progression courses with varying difficulty for user skill development
-					
-% Input: User completes their diagnostic quiz or completes a progression course
-					
-% Output: The system generates new progression based on completed progression and displays the new course to be completed
-
-% Test Case Derivation: Users shall be able to attempt new progression courses to improve their ASL skill
-					
-% How test will be performed: Automated testing can be used to generate sample courses from given user
-
-% Functional Requirement: FR7
-
-% \item{FRT2-LP4}
-
-% Goal: User gets progression course based on previous course completions
-
-% Control: Automated
-					
-% Initial State: The system creates unique progression courses with varying difficulty for user skill development
-					
-% Input: User completes their diagnostic quiz or completes a progression course
-					
-% Output: The system generates new progression based on completed progression and displays the new course to be completed
-
-% Test Case Derivation: Users shall be able to attempt new progression courses to improve their ASL skill
-					
-% How test will be performed: Automated testing can be used to generate sample courses from given user
-
-% Functional Requirement: FR7, FR12
-
-% \item{FRT2-LP5}
-
-% Goal: System saved user progress
-
-% Control: Automated
-					
-% Initial State: User is signed in to their registered account
-
-% Input: User completes their diagnostic quiz or completes a progression course
-					
-% Output: The system saves the course and their results
-
-% Test Case Derivation: Users should be progressing in their skill thus the system needs to save their history of completions and approximate skill level
-					
-% How test will be performed: Automated testing can be used to ensure courses are saved upon completion
-
-% Functional Requirement: FR8
-
-\item{FRT2-LP3}
+\item{FRT1-LP3}
 
 Goal: Get user sign feedback
 
@@ -420,13 +292,11 @@ Input: User attempts appropriate sign
 					
 Output: The system determines if their sign action is accurate and displays message conveying the accuracy
 
-Test Case Derivation: Users shall be able to see within a progression if they are doing the sign correct
+Test Case Derivation: Users shall be able to see within a quiz if they are doing the sign correct
 					
 How test will be performed: Manual user testing will occur with knowledge of ASL signs
 
-Functional Requirement: FR10
-
-
+Functional Requirement: FR1, FR2, FR3
 
 \end{enumerate}
 
@@ -434,7 +304,7 @@ Functional Requirement: FR10
 
 \begin{enumerate}
 
-\item{FRT3-U1}
+\item{FRT2-U1}
 
 Goal: Access web application
 
@@ -450,7 +320,7 @@ Test Case Derivation: Users need to access web app for functionality.
 					
 How test will be performed: Manual test with user entering input.
 
-Functional Requirement: FR9
+Functional Requirement: FR1
 
 \end{enumerate}
 
@@ -458,7 +328,7 @@ Functional Requirement: FR9
 
 \begin{enumerate}
 
-\item{FRT4-HW1}
+\item{FRT3-HW1}
 
 Goal: Access web camera
 
@@ -466,17 +336,17 @@ Control: Manual
 					
 Initial State: User has working built in or external webcam and recognized by their operating system.
 					
-Input: User begins progression course which begins with a camera verification
+Input: User begins quiz which begins with a camera verification
 					
 Output: System displays camera output or error if it cannot recognize camera.
 
 Test Case Derivation: Users need to access web camera for functionality.
 					
-How test will be performed: Manual test with user starting course using working webcam.
+How test will be performed: Manual test with user starting quiz using working webcam.
 
 Functional Requirement: FR1
 
-\item{FRT4-HW2}
+\item{FRT3-HW2}
 
 Goal: Monitor web camera useability
 
@@ -484,30 +354,19 @@ Control: Manual
 					
 Initial State: User has working built in or external webcam and recognized by their operating system.
 					
-Input: User is currently within a progression course and camera error arises
+Input: User is currently within a quiz and camera error arises
 					
 Output: System displays camera output or error if it cannot recognize camera
 
 Test Case Derivation: Users need to access web camera for functionality
 					
-How test will be performed: Manual test with user currently in progression course that initiates camera error
+How test will be performed: Manual test with user currently in quiz that initiates camera error
 
-Functional Requirement: FR11
+Functional Requirement: FR1
 
 \end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
-
-%\wss{The nonfunctional requirements for accuracy will likely just reference the
-%  appropriate functional tests from above.  The test cases should mention
-%  reporting the relative error for these tests.  Not all projects will
-%  necessarily have nonfunctional requirements related to accuracy}
-%
-%\wss{Tests related to usability could include conducting a usability test and
-%  survey.  The survey will be in the Appendix.}
-%
-%\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-%format for the tests given below.}
 
 \subsubsection{Usability Requirements}
 		
@@ -537,9 +396,9 @@ Goal: The user is able to understand how to use complete a lesson with little to
 
 Type: Dynamic, Manual
 					
-Initial State: The user signs into the web application with account information and is ready to start learning ASL.
+Initial State: The user opens the web application and is ready to start learning ASL.
 					
-Input: After the user signs into the application with account information, they will start trying to learn ASL using the various learning tools in the application with no prior training.  
+Input: The user will start trying to learn ASL using the various learning tools in the application with no prior training.  
 					
 Output/Result: The mechanics of the application should not hinder the user's progress of learning, and the user should feel as though the learning tools are intuitive and easy to navigate. The user should be able to successfully complete the first inroductory lesson without being confused by the mechanics of the application. 
 					
@@ -565,35 +424,19 @@ Non-Functional Requirement: UHR2
 
 \item{NFRT1 - UT4}
 
-Goal: The user is able to personalize their account with little to no prior training. 
-
-Type: Functional, Dynamic, Manual
-					
-Initial State: The user is signed into their account and wants to change some of their information.
-					
-Input: The user will attempt to change their information in their account. 
-					
-Output: The user should be able to change their information in their account without much difficulty. 
-					
-How test will be performed: A sampling of representative users will attempt to change key features of their account like username or phone number and be able to save their changes without asking for help. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overall average of users scoring 75\% or higher for this part of the survey.
-
-Non-Functional Requirement: UHR3
-
-\item{NFRT1 - UT5}
-
 Goal: The system should show the user if their input needs to be adjusted. 
 
 Type: Manual, Static
 					
 Initial State: The application prompts the user with a question during a lesson.
 					
-Input: The user attempts to sign in response to the application's prompt but their camera is not set up properly.
+Input: The user attempts to perform a sign in response to the application's prompt but their camera is not set up properly.
 					
 Output: The application should register that it cannot be confident in determining if the sign the user is displaying is accurate, so it should prompt the user to fix their camera settings before they are allowed to continue.
 					
 How test will be performed: A user will try to respond to the prompt by signing in front of the application, but with the user out of the focus of the camera. The application should not be able to determine if the user's sign is correct or not and should prompt the user to adjust their camera settings. This test will be performed multiple times with various input and camera conditions to ensure the requirement has been tested effectively. The developers will verify that the user is given feedback where appropriate. 
 
-Non-Functional Requirement: UHR4
+Non-Functional Requirement: UHR3
 
 \end{enumerate}
 
@@ -646,21 +489,20 @@ Functional Requirements to System Test Requirements
 \centering
 \resizebox{\textwidth}{!}{
 \begin{tabular}{llllllllllllll}
-                                 & \multicolumn{13}{c}{FR Req.}                                                                                                                                                                                                                                                                                                           \\ \cline{2-14} 
-\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8} & \multicolumn{1}{l|}{9} & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{11} & \multicolumn{1}{l|}{12} & \multicolumn{1}{l|}{13} \\ \hline
-\multicolumn{1}{|l|}{FRT1-A1}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-\multicolumn{1}{|l|}{FRT1-A2}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-\multicolumn{1}{|l|}{FRT1-A3}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{FRT1-A4}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  \\ \hline
-\multicolumn{1}{|l|}{FRT2-LP1}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-\multicolumn{1}{|l|}{FRT2-LP2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-\multicolumn{1}{|l|}{FRT2-LP3}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-% \multicolumn{1}{|l|}{FRT2-LP4}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   \\ \hline
-% \multicolumn{1}{|l|}{FRT2-LP5}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-% \multicolumn{1}{|l|}{FRT2-LP6}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-\multicolumn{1}{|l|}{FRT3-U1}    & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-\multicolumn{1}{|l|}{FRT4-HW1}   & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-\multicolumn{1}{|l|}{FRT4-HW2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+                                 & \multicolumn{7}{c}{FR Req.}                                                                                                                                                                                                                                                                                                           \\ \cline{2-8} 
+\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7}  \\ \hline
+
+\multicolumn{1}{|l|}{FRT1-LP1}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}    \\ \hline
+
+\multicolumn{1}{|l|}{FRT1-LP2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X}    \\ \hline
+
+\multicolumn{1}{|l|}{FRT1-LP3}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   \\ \hline
+
+\multicolumn{1}{|l|}{FRT2-U1}    & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}     \\ \hline
+
+\multicolumn{1}{|l|}{FRT3-HW1}   & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}   \\ \hline
+
+\multicolumn{1}{|l|}{FRT3-HW2}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}    \\ \hline
 \end{tabular}}
 \end{table}
 
@@ -671,57 +513,27 @@ Non Functional Requirements to System Test Requirements}
 \centering
 \resizebox{\textwidth}{!}{
 \begin{tabular}{lllllll}
-                                 & \multicolumn{4}{c}{UHR}                                                  & \multicolumn{2}{c}{PR}                                                   \\ \cline{2-7} 
-\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} \\ \hline
-\multicolumn{1}{|l|}{NFRT1-UT1}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-UT2}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-UT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-UT4}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT1-UT5}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} \\ \hline
-\multicolumn{1}{|l|}{NFRT2-PT1}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{NFRT2-PT2}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{X}  \\ \hline
+                                 & \multicolumn{3}{c}{UHR}                                                  & \multicolumn{2}{c}{PR}                                                   \\ \cline{2-6} 
+\multicolumn{1}{l|}{System Test} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT1}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT2}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT3}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}    \\ \hline
+\multicolumn{1}{|l|}{NFRT1-UT4}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{NFRT2-PT1}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{NFRT2-PT2}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  \\ \hline
 \end{tabular}
 }
 \end{table}
 
 \section{Unit Test Description}
 
-% \wss{This section should not be filled in until after the MIS (detailed design
-%   document) has been completed.}
-
-% \wss{Reference your MIS (detailed design document) and explain your overall
-% philosophy for test case selection.}  
-
-% \wss{To save space and time, it may be an option to provide less detail in this section.  
-% For the unit tests you can potentially layout your testing strategy here.  That is, you 
-% can explain how tests will be selected for each module.  For instance, your test building 
-% approach could be test cases for each access program, including one test for normal behaviour 
-% and as many tests as needed for edge cases.  Rather than create the details of the input 
-% and output here, you could point to the unit testing code.  For this to work, you code 
-% needs to be well-documented, with meaningful names for all of the tests.}
-
 \subsection{Unit Testing Scope}
 
 The scope of the unit tests is focused on the data processing module, which is the module that we've built ourselves. The other modules are reliant on external libraries, hence the onus us on the developers of those libraries.
 
-% \wss{What modules are outside of the scope.  If there are modules that are
-%   developed by someone else, then you would say here if you aren't planning on
-%   verifying them.  There may also be modules that are part of your software, but
-%   have a lower priority for verification than others.  If this is the case,
-%   explain your rationale for the ranking of module importance.}
-
 \subsection{Tests for Functional Requirements}
 
-% \wss{Most of the verification will be through automated unit testing.  If
-%   appropriate specific modules can be verified by a non-testing based
-%   technique.  That can also be documented in this section.}
-
 \subsubsection{Data Processing Module}
-
-% \wss{Include a blurb here to explain why the subsections below cover the module.
-%   References to the MIS would be good.  You will want tests from a black box
-%   perspective and from a white box perspective.  Explain to the reader how the
-%   tests were selected.}
 
 \begin{enumerate}
 
@@ -755,64 +567,6 @@ How test will be performed:  pytest
     
 \end{enumerate}
 
-% \subsubsection{Module 2}
-
-% Pee Pee Poo Poo 
-
-% \subsection{Tests for Nonfunctional Requirements}
-
-% \wss{If there is a module that needs to be independently assessed for
-%   performance, those test cases can go here.  In some projects, planning for
-%   nonfunctional tests of units will not be that relevant.}
-
-% \wss{These tests may involve collecting performance data from previously
-%   mentioned functional tests.}
-
-% \subsubsection{Module ?}
-		
-% \begin{enumerate}
-
-% \item{NFRT1-UT1}
-
-% Type: \wss{Dynamic, Manual}
-					
-% Initial State: 
-					
-% Input/Condition: he user is given a link to the where the application is
-% being hosted
-					
-% Output/Result: 
-					
-% How test will be performed: 
-					
-% \item{test-id2\\}
-
-% Type: Functional, Dynamic, Manual, Static etc.
-					
-% Initial State: 
-					
-% Input: 
-					
-% Output: 
-					
-% How test will be performed: 
-
-% \end{enumerate}
-
-% \subsubsection{Module ?}
-
-% ...
-
-% \subsection{Traceability Between Test Cases and Modules}
-
-% \wss{Provide evidence that all of the modules have been considered.}
-				
-% \bibliographystyle{plainnat}
-
-% \bibliography{../../refs/References}
-
-% \newpage
-
 \section{Appendix}
 
 \subsection{Usability Survey Questions}
@@ -821,12 +575,14 @@ How test will be performed:  pytest
 
 \begin{enumerate}
 
-\item How was it to start using the application on a scale of 1 - 10? \newline [ 1 = very hard to start, 10 = very easy to start]
-\item How was it for you to learn how to complete the first lesson on a scale of 1 - 10? \newline [ 1 = very hard to learn, 10 = very easy to learn]
-\item How comfortable were you with using the application at your current ASL skill level on a scale of 1-10? \newline [ 1 = very uncomfortable to use, 10 = very comfortable to use]
-\item How was it to change your profile information on a scale of 1 - 10? \newline [ 1 = very hard to change, 10 = very easy to change]
-\item How did you find your overall learning experience using the ASLingo application on a scale of 1 - 10? \newline [ 1 = very bad experience, 10 = very good experience]
-
+\item Please rate your own level of ASL proficiency on a scale of 1-10 \newline [ 1 = I know absolutely nothing, 10 = I sign at a high level]
+\item From Strongly Disagree to Strongly Aggree, rate the following sentence: It was very easy to get right into a testing session with little to no hassle
+\item From Strongly Disagree to Strongly Aggree, rate the following sentence: The User Interface is very friendly and it is easy to identify where everything is
+\item From Strongly Disagree to Strongly Aggree, rate the following sentence: During a Quiz, its very easy to understand what to do and how to complete it
+\item From Strongly Disagree to Strongly Aggree, rate the following sentence: While signing, it is very easy to see what sign I am making and whether to make adjustments or not
+\item From Strongly Disagree to Strongly Aggree, rate the following sentence:  After completing a Quiz,  I receive useful feedback
+\item From Strongly Disagree to Strongly Aggree, rate the following sentence: At my current level of ASL knowledge, it is easy to use the application
+\item How would you rate your overall experience with ASLingo on a scale of 1-10 \newline [ 1 = Terrible, 10 = Fantastic]
 \end{enumerate}
 
 \subsection{Appendix --- Reflection}
