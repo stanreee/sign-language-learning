@@ -29,6 +29,7 @@
 \usepackage{graphicx}
 \usepackage{makecell}
 \usepackage{longtable}
+\usepackage{comment}
 
 \usepackage[table]{xcolor}
 \setlength{\tabcolsep}{18pt}
@@ -103,6 +104,7 @@ October 6, 2023 & Andrew Kil & Added personal reflection response\\
 October 19, 2023 & Cassidy Baldin & Revised aspects of the SRS after given peer review feedback. \\
 November 1, 2023 & Jeremy Langner & Added in FR, Use case for reseting password credentials. Switched traceability matrix to table instead of jpeg\\
 Jan 23, 2024 & Cassidy Baldin & Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 \\
+April 2, 2024 & All & Removed authentication reqs, added in learn, practice, and webcam modules, narrowed scope on backend reqs\\
 \bottomrule
 \end{longtable}
 
@@ -225,10 +227,9 @@ UHR & Shorthand for 'Usability and Humanity Requirements', a subsection of Non-F
 The scope of ASLingo can be clearly defined by outlining our primary goals for this product.
 
 \begin{enumerate}
+  \item Learning Resources: Users can access resources and get familiar with ASLingo's supported common signs.
   \item Hand Sign Recognition: Reliably recognize users' hand sign in real-time based on the American Sign Language.
   \item Test Users: Quiz users with sign language based questions.
-  \item User Progression: Track a user's sign language learning progression.
-  \item Account Management: Store required user information to allow users to create and login to their accounts.
 \end{enumerate}
 
 \subsubsection{The Context of the Work}
@@ -247,20 +248,11 @@ The following is a context diagram which describes the high-level overview on ho
     \noindent \begin{tabularx}{\textwidth}{|c|p{0.2\linewidth}|X|X|}
     \hline 
     \textbf{Event ID} & \textbf{Event Name} &\textbf{Input and Output} & \textbf{Description}\\
+    1 & User requests to start a test & User ID (in) & User starts a test. \\
     \hline
-    1 & User login & User ID (in) \newline User Password (in) \newline Login Status (out) & User logs into the application, the system determines if login is successful. \\
+    2 & User signs through webcam & Camera Feed (in) \newline Recognized Sign (out) & User inputs sign language hand signs through webcam, the system responds with the corresponding sign output. \\
     \hline
-    2 & User logout & User ID (in) \newline Login Status (out) & User logs out of the application, system indicates whether log out is successful or not. \\
-    \hline
-    3 & User requests to start a test & User ID (in) & User starts a test. \\
-    \hline
-    4 & User signs through webcam & Camera Feed (in) \newline Recognized Sign (out) & User inputs sign language hand signs through webcam, the system responds with the corresponding sign output. \\
-    \hline
-    5 & User creates account & User ID (in) \newline User Email (in) \newline User Password (in) & User creates an account \\
-    \hline
-    6 & User checks learning progress & User ID (in) \newline User Progress (out) & User views account sign language learning progress. \\
-    \hline
-    7 & User completes a test & User ID (in) \newline User Score (in) & User completes a test with a given score. \\
+    3 & User completes a test & User Answers (in) \newline Correct Answers (out) & User completes a test with a given score. \\
     \hline
     \end{tabularx}
     \end{table}
@@ -268,79 +260,94 @@ The following is a context diagram which describes the high-level overview on ho
   \subsubsection{Individual Product Use Cases}
 
   \begin{enumerate}
-      \item 
-      \textbf{Use Case Trigger:} User creates an account\\
-      \textbf{Primary Actors:} user, ASLingo server\\
+      \item
+      \textbf{Use Case Trigger:} User wants to learn new signs\\
+      \textbf{Primary Actors:} user, ASLingo app\\
       \textbf{Outcomes:}
       \begin{enumerate}
-          \item System creates an account with the designated username, password, and email
-          \item System registers user as logged in
-          \item System redirects user to home page
-      \end{enumerate}
+          \item System redirects user to learning page 
+      \end{enumerate} 
 
       \item
-      \textbf{Use Case Trigger:} User logs into the application\\
-      \textbf{Primary Actors:} user, ASLingo server\\
+      \textbf{Use Case Trigger:} User selects sign instruction youtube video\\
+      \textbf{Primary Actors:} user, ASLingo app\\
       \textbf{Outcomes:}
       \begin{enumerate}
-          \item System checks if password matches for corresponding username
-          \item System registers user as logged in
-          \item System redirects user to home page
+          \item System redirects user to learning page
+          \item System redirects user to embedded link page
+      \end{enumerate} 
+
+      \item
+      \textbf{Use Case Trigger:} User wants to practice demonstrating static or dynamic signs\\
+      \textbf{Primary Actors:} user, ASLingo app\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System redirects user to practice page
+          \item System requests to turn on user webcam
+      \end{enumerate} 
+
+      \item
+      \textbf{Use Case Trigger:} User wants to demonstrate static signs\\
+      \textbf{Primary Actors:} user, ASLingo app\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System activates static webcam
+          \item System displays recognized hand
+          \item System displays staic mode is active    
+      \end{enumerate} 
+
+      \item
+      \textbf{Use Case Trigger:} User wants to demonstrate one hand dynamic signs\\
+      \textbf{Primary Actors:} user, ASLingo app\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System displays dynamic mode is active  
+          \item System displays recognized hand confirmation and begins recording       
+          \item System activates dynamic webcam and begins recording
+          \item System displays one hand mode
+          \item System displays frame capture duration        
+      \end{enumerate} 
+
+      \item
+      \textbf{Use Case Trigger:} User wants to demonstrate two hand dynamic signs\\
+      \textbf{Primary Actors:} user, ASLingo app\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System displays dynamic mode is active
+          \item System activates dynamic webcam
+          \item System displays recognized hand confirmation and begins recording        
+          \item System displays two hand mode
+          \item System displays frame capture duration        
+      \end{enumerate} 
+
+      \item
+      \textbf{Use Case Trigger:} User demonstrates signs through webcam\\
+      \textbf{Primary Actors:} user, ASLingo server, ASLingo Computer Vision Model\\
+      \textbf{Outcomes:}
+      \begin{enumerate}
+          \item System activate webcam
+          \item System displays recognized hand confirmation
+          \item System interprets user signs with computer vision model
+          \item System responds informing user of correctness of sign
       \end{enumerate}
+
       
       \item
-      \textbf{Use Case Trigger:} User logs out of the application\\
-      \textbf{Primary Actors:} user, ASLingo server\\
+      \textbf{Use Case Trigger:} User requests to start a quiz\\
+      \textbf{Primary Actors:} user, ASLingo app\\
       \textbf{Outcomes:}
       \begin{enumerate}
-          \item System registers user as logged out
-          \item System redirects user to login page
-      \end{enumerate}
-
-      \item
-      \textbf{Use Case Trigger:} User requests to start a test\\
-      \textbf{Primary Actors:} user, ASLingo server\\
-      \textbf{Outcomes:}
-      \begin{enumerate}
-          \item System redirects user to testing page
+          \item System redirects user to exercise page
           \item System requests to turn on user webcam
           \item System receives video data from user webcam
       \end{enumerate}
 
       \item
-      \textbf{Use Case Trigger:} User signs through webcam\\
-      \textbf{Primary Actors:} user, ASLingo server, ASLingo Computer Vision Model\\
+      \textbf{Use Case Trigger:} User completes a quiz\\
+      \textbf{Primary Actors}: user, ASLingo app\\
       \textbf{Outcomes:}
       \begin{enumerate}
-          \item System interprets user signs with computer vision model
-          \item System responds informing user of correctness of sign
-      \end{enumerate}
-
-      \item
-      \textbf{Use Case Trigger:} User checks learning progress\\
-      \textbf{Primary Actors:} user, ASLingo server\\
-      \textbf{Outcomes:}
-      \begin{enumerate}
-          \item System receives request from user to view learning progress
-          \item System responds with user progress
-      \end{enumerate}
-
-      \item
-      \textbf{Use Case Trigger:} User completes a test\\
-      \textbf{Primary Actors}: user, ASLingo server\\
-      \textbf{Outcomes:}
-      \begin{enumerate}
-          \item System registers that user completed test, and saves user score
-      \end{enumerate}
-
-      \item
-      \textbf{Use Case Trigger:} User requests a new password\\
-      \textbf{Primary Actors}: user, ASLingo server\\
-      \textbf{Outcomes:}
-      \begin{enumerate}
-          \item System verifies email has a registered account
-          \item System sends email with unique url to reset password to verified email
-          \item System resets password to email and re-prompts sign in
+          \item System registers that user completed quiz and displays results
       \end{enumerate}
 
 \end{enumerate}
@@ -350,23 +357,17 @@ The following is a context diagram which describes the high-level overview on ho
 \begin{table}[ht]
 \centering
 \resizebox{\textwidth}{!}{
-\begin{tabular}{lllllllll}
-                             & \multicolumn{8}{c}{Use Case No.}                                                                                                                                                                      \\ \cline{2-9} 
-\multicolumn{1}{l|}{Req. No} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8} \\ \hline
-\multicolumn{1}{|l|}{0}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{1}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{2}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{3}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{4}      & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{5}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{6}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{7}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{8}      & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{9}      & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{10}     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{11}     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{12}     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  \\ \hline
-\multicolumn{1}{|l|}{13}     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} \\ \hline
+\begin{tabular}{1|lllllllll}
+\hline
+        & \multicolumn{9}{l|}{Use Case No.}                                                                                                                                                                         \\ \hline
+Req No. & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8} & 9 \\ \hline
+1       & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} &   \\ \hline
+2       & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  &   \\ \hline
+3       & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & X \\ \hline
+4       & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  &   \\ \hline
+5       & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} &   \\ \hline
+6       & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  &   \\ \hline
+7       & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  &   \\ \hline
 \end{tabular}}
 \end{table}
 
@@ -382,29 +383,17 @@ The following is a context diagram which describes the high-level overview on ho
     \hline
     FR1 & The system should be able to connect with a camera. & Connecting with a camera is a requirement for providing input to the system for hand sign recognition. \\
     \hline
-    FR2 & The system should be able to recognize American Sign Language hand signs. & Hand sign recognition is a requirement for users to practice what they have been learning. \\
+    FR2 & The system should be able to recognize supported American Sign Language hand signs. & Hand sign recognition is a requirement for users to practice what they have been learning. \\
     \hline
-    FR3 & The system should allow users to create an account. & Account creation is a requirement for users to save progression. \\
+    FR3 & The system should be able to communicate to the user if they have answered the prompt correctly. & The user should know if they have answered the prompt correctly to learn the language correctly. \\ 
     \hline
-    FR4 & The system should allow users to sign into their account if it exists. & Account sign-in is a requirement for users to save progression. \\
+    FR4 & The system should notify the user when it is unable to detect their hands. & This will let the user know if they need to adjust their camera input settings (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
     \hline
-    FR5 & The system should allow users to sign out of their account if they are signed into it. & Account sign-out is necessary for good account security practices. \\
+    FR5 & The system should allow the user to pick their desired testing track from a selection of testing categories. & This is to provide variation in the manner of testing as well as in the subject matter that the user can test themselves on. \\
     \hline
-    FR6 & The system should provide a diagnostic quiz for new users. & A diagnostic quiz is a requirement for determining the current skill level of the user. \\
+    FR6 & The system should allow users to learn new basic signs. & This will allow the user to be able to start learning ASL. \\
     \hline
-    FR7 & The system should provide a progression-based course for ASL. & A progression-based course is a requirement for ensuring users are taught ASL in a comprehensive manner. \\
-    \hline
-    FR8 & The system should save user progress. & Saving user progress is a requirement for ensuring the user follows the progression-based course. \\
-    \hline
-    FR9 & The system should allow users to access the program via a web application & The system is being built for a web application, so the user should be able to access it in this way. \\
-    \hline
-    FR10 & The system should be able to communicate to the user if they have answered the prompt correctly. & The user should know if they have answered the prompt correctly to learn the language correctly. \\ 
-    \hline
-    FR11 & The system should notify the user when it is unable to detect their hands. & This will let the user know if they need to adjust their camera input settings (camera angle, lighting etc.) so the system can accurately access their hand signs. \\
-    \hline
-    FR12 & The system should allow the user to their desired testing track from a selection of testing categories. & This is to provide variation in the manner of testing as well as in the subject matter that the user can test themselves on. \\
-    \hline
-    FR13 & The system should allow the user to reset their password to their registered account & Account security and accessibility are necessary for account use\\
+    FR7 & The system should allow users to demonstrate basic signs in a non testing environment. & This will allow the user to be able to practice and test their knowledge using the rest of the application. \\
     \bottomrule
 \end{longtable}
 
@@ -420,8 +409,7 @@ The following is a context diagram which describes the high-level overview on ho
 \hline
 LFR1 & The system should remind users of similar language learning applications. & This will allow users to use the system intuitively if they have knowledge of other learning apps. & Ask a sample of users to rate how familiar/easy to use it is compared to other language learning apps. \\
 \hline
-LFR2 & The system should show the user how much progress they have made in their learning schedule. & The user should be able to gain feedback from the system about how much they learned. & The developers shall certify the product complies with these requirements by ensuring the user has a metric to understand their current progress. \\
-% (level system, progress bar, score after a quiz etc.) 
+LFR2 & The system should show the user how well they are signing. & The user should be able to gain feedback from the system about if they are signing correctly, and how accurate they are to the actual sign. & The developers shall certify the product complies with these requirements by ensuring the user has a metric to understand their current level of accuracy. \\
 \hline
 LFR3 & The system should clearly show the user if they have answered the prompt correctly. & The user should gain feedback about if they are correct with the hand sign they have shown. & The developers shall certify the product shows the user the correct response based on their input. \\
 \bottomrule
@@ -440,10 +428,7 @@ UHR1 & The system should be able to be used by people with little to no training
 \hline
 UHR2 & The system should be able to be used by people who are hard of hearing or deaf, as well as those who are able to hear. & The system should be accessible for all people wanting to learn ASL. & Users will be asked to rate their experience using the application on a scale of 1-10, with the average reporting a score above 7. \\
 \hline
-UHR3 & The system should allow users to personalize their account. & The user should be able to input their name, see their progress etc. & The developers shall certify the product complies with these requirements by ensuring the users will be able to do the required actions. \\
-% (avatar, name, progress; personalization)
-\hline
-UHR4 & The system should tell the user if the their hands are not detectable. & The user should know if they need to change their body posture, camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements by ensuring the system gives user feedback where appropriate.\\
+UHR3 & The system should tell the user if the their hands are not detectable. & The user should know if they need to change their body posture, camera angle, lighting etc. for the system to accurately give them proper feedback. & The developers shall certify the product complies with these requirements by ensuring the system gives user feedback where appropriate.\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -503,11 +488,7 @@ MSR4 & The system should allow for new signs to be added over the lifespan of th
 \hline 
 \textbf{Requirement No.} & \textbf{Description} & \textbf{Rationale} & \textbf{Fit Criterion}\\
 \hline
-SR1 & The system should allow the user to access their account after creating it. & The user should be able to create an account and be able to log in and out of it as needed. & The developers shall certify the product complies with these requirements by ensuring the user can log in and out. \\
-\hline
-SR2 & The system should ensure that the system is trained on correct information. & The system should not be trained using incorrect usage of ASL as this would contradict the goal of learning how to use the language properly. & The developers shall certify the product complies with these requirements by selecting trusted data sources and verifying the credibility of input data. \\
-\hline
-SR3 & The system should store user account information using encryption. & This will ensure that all user information will be kept private and secure. & The developers shall certify the product complies with these requirements by ensuring encryption is used in the system. \\
+SR1 & The system should ensure that the system is trained on correct information. & The system should not be trained using incorrect usage of ASL as this would contradict the goal of learning how to use the language properly. & The developers shall certify the product complies with these requirements by selecting trusted data sources and verifying the credibility of input data with the McMaster Sign Language Club. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -535,7 +516,7 @@ CR1 & The system should be written in Canadian English and teach users using Ame
 \hline
 LR1 & The system should adhere to Canadian user privacy laws. &  The system should never share user information, and should ensure user's data is kept private and secure. & The developers shall certify the product complies with the Canadian Personal Information Protection and Electronic Documents Act (PIPEDA) to ensure user's data safety. \\
 \hline
-LR2 & The system should not train the model on personal/confidential/illegal data & The system should only be trained on data that is safe to use, and is in the public domain. & The developers shall certify the product complies with these requirements by selecting trusted data sources and verifying the credibility of input data. \\
+LR2 & The system should not train the model on personal, confidential, or illegal data & The system should only be trained on data that is safe to use, and is in the public domain. & The developers shall certify the product complies with these requirements by selecting trusted data sources and verifying the credibility of input data. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -584,9 +565,8 @@ Not applicable for our project.
 
 \subsection{Costs}
 \begin{enumerate}
-    \item Website domain - TBA
-    \item App hosting platform - TBA
-    \item Database - TBA
+    \item Website domain - N/A
+    \item App hosting platform - N/A
 \end{enumerate}
 
 \subsection{User Documentation and Training}
@@ -647,7 +627,7 @@ N/A
 	    \item Cassidy -- For technical skills, I am mostly familiar with back end development, so through this project I hope to learn more about front end web development, as well as learning some fundamentals of machine learning for the hand motions. I also hope to be able to learn some ASL through this project, as well as further develop project development and time management skills.
         \item Stanley -- As I would like to familiarize myself with computer vision, I will also need to focus on some back-end fundamentals as well. Although I'll be focusing mainly on the front-end, since our computer vision component will work hand and hand with the back-end of ASLingo, I'll naturally need to be able to know both at a basic level. For non-technical skills, I'd like to gain more experience in communicating with stakeholders on a more project management level.
         \item Jeremy -- With a focus on the full stack development role within the team I will have to become comfortable with modern full stack development technologies and practises. Such practises will include creating a responsive front end that allows for an intuitive user experience, creating a back end ecosystem to store our data, and integrating the OpenCV and ML aspects. I also look forward to using github CI/CD and ensuring good code coverage testing and smooth deployments for future changes.
-        \item Andrew -- I aim to bring my industry experience in the field of system verification and translate that over to this project.  I'll mainly be focusing on ensuring correctness within the python-OPenCV back-end by writing units tests to ensure complete code coverage.  Naturally this will require me to understand OpenCV enough to test for edge cases and more niche scenarios in which we do not intend for the project to be used while working in lock-step with the rest of the team. I hope to additionally polish up on my communications and UI design skills to bring forward a design that will satisfy the stakeholders and make the use of our final product as smooth as possible.
+        \item Andrew -- I aim to bring my industry experience in the field of system verification and translate that over to this project.  I'll mainly be focusing on ensuring correctness within the python-OpenCV back-end by writing units tests to ensure complete code coverage.  Naturally this will require me to understand OpenCV enough to test for edge cases and more niche scenarios in which we do not intend for the project to be used while working in lock-step with the rest of the team. I hope to additionally polish up on my communications and UI design skills to bring forward a design that will satisfy the stakeholders and make the use of our final product as smooth as possible.
     \end{itemize}
     \item All team members are making it a personal goal to attend as many McMaster Sign Language Club meetings as possible to learn basic signs and gestures, as well as interact with some of our stakeholders. To learn full stack development we will be following tutorials and best practises from the industry standards such as Mozilla MDN Web Docs, documentation from our framework and language of choice,and articles posted on FreeCodeCamp, GeeksForGeeks, Medium etc. Learning OpenCV and AI/ML topics will also be learned via a similar method. 
     
