@@ -5,7 +5,7 @@ from util import process_features, process_landmark_history, normalize_features
 class RecognitionModel():
     def __init__(self, modelPaths, type, debug=False):
         """
-            Creates a RecognitionModel object.
+            Creates a RecognitionModel object. This is a wrapper class that handles data processing before passing into the specified Sign Language Recognition model.
 
             Parameters:
             modelPath (str): Path of the .pth trained model file.
