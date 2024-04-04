@@ -59,6 +59,7 @@ Jan 17, 2024 & 1.9 & Stanley; Answered reflection question 2\\
 Jan 23, 2024 & 2.0 & Cassidy; Addressed git issue \#69 regarding AC1 module \\
 Jan 23, 2024 & 2.1 & Cassidy; Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 \\
 Apr 3, 2024 & 2.2 & Cassidy; Removed unnecessary modules and cleaned up others \\
+Apr 4, 2024 & 2.3 & Jeremy and Cassidy; Added in Quiz Creation Module and updates UsesHierarchy figure \\
 \bottomrule
 \end{tabularx}
 
@@ -128,14 +129,14 @@ This section records information for easy reference. \\
 
 Decomposing a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
-team~\citep{ParnasEtAl1984}.  We advocate a decomposition
-based on the principle of information hiding~\citep{Parnas1972a}.  This
+team.  We advocate a decomposition
+based on the principle of information hiding.  This
 principle supports design for change, because the ``secrets'' that each module
 hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
 solution space is explored.  
 
-Our design follows the rules laid out by \citet{ParnasEtAl1984}, as follows:
+Our design follows the rules laid out by Parnas, as follows:
 \begin{itemize}
 \item System details that are likely to change independently should be the
   secrets of separate modules.
@@ -145,7 +146,7 @@ Our design follows the rules laid out by \citet{ParnasEtAl1984}, as follows:
 \end{itemize}
 
 After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
+Specification (SRS), the Module Guide (MG) is developed. The MG
 specifies the modular structure of the system and is intended to allow both
 designers and maintainers to easily identify the parts of the software.  The
 potential readers of this document are as follows:
@@ -193,7 +194,7 @@ change.
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acInfo}:] The ASL vocabulary included in the program may be updated in the future as the language evolves.
 \item[\refstepcounter{acnum} \actheacnum \label{acAbout}:] The Landing Page Module may change if the developers want to change the formatting of the informational pages on the website (for example the home/resources page that use this module). 
-\item[\refstepcounter{acnum} \actheacnum \label{acExercise}:] Exercise module may change if developers want to add in additional testing methods or material.
+\item[\refstepcounter{acnum} \actheacnum \label{acExercise}:] Exercise and Exercise Selection module may change if developers want to add in additional testing methods or material.
 \item[\refstepcounter{acnum} \actheacnum \label{acMLModel}:] Structure of neural network in Machine Learning module may change to improve performance and accuracy.
 \item[\refstepcounter{acnum} \actheacnum \label{acTestVerif}:] Test cases in the Testing and Verification module may change throughout development to improve code coverage as well as to cover any previously mentioned anticipated changes.
 \end{description}
@@ -233,6 +234,8 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{m8}:] Video Input Module
 \item [\refstepcounter{mnum} \mthemnum \label{m9}:] Landing Page Module
 \item [\refstepcounter{mnum} \mthemnum \label{m10}:] Exercise Module
+\item [\refstepcounter{mnum} \mthemnum \label{m11}:] Exercise Selection Module
+\item [\refstepcounter{mnum} \mthemnum \label{m12}:] Quiz Generation Module
 \end{description}
 
 \begin{table}[h!]
@@ -253,12 +256,14 @@ actually be implemented.
 & Machine Learning Module \mref{m6}\\
 & Landing Page Module \mref{m9}\\
 & Exercise Module \mref{m10}\\
+& Exercise Selection Module \mref{m11}\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
 & Hand Sign Verification Module \mref{m2}\\
 & Data Collection Module \mref{m4}\\
 & Testing and Verification Module \mref{m7}\\
+& Quiz Creation Module \mref{m12} \\
 \bottomrule
 
 \end{tabular}
@@ -359,6 +364,13 @@ to be implemented.
 \item[Implemented By:] Javascript and Typescript.
 \end{description}
 
+\subsubsection{Exercise Selection Module (\mref{m11})}
+\begin{description}
+\item[Secrets:] How exercise questions are chosen for each user.
+\item[Services:] Display users current exercise options.
+\item[Implemented By:] Javascript.
+\end{description}
+
 \subsection{Software Decision Modules}
 
 % \begin{description}
@@ -376,7 +388,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The handshake used to determine whether the sign interpreted by the Machine Learning Module matches with the sign requested by front-end components
 \item[Services:] Returns a pass/fail to front-end based on result of match attempt
-\item[Implemented By:] Python
+\item[Implemented By:] Python.
 \end{description}
 
 \subsubsection{Data Collection Module (\mref{m4})}
@@ -384,7 +396,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The un-processed training data collected.
 \item[Services:] Stores collected data to be retrieved at a later time.
-\item[Implemented By:] Python
+\item[Implemented By:] Python.
 \end{description}
 
 \subsubsection{Testing and Verification Module (\mref{m7})}
@@ -393,6 +405,14 @@ to be implemented.
 \item[Services:] Verifies the software works as intended by testing the system on various test cases which ensures robustness, accuracy, and reliability.
 \item[Implemented By:] Python and Pytest.
 \end{description}
+
+\subsubsection{Quiz Creation Module (\mref{m12})}
+\begin{description}
+\item[Secrets:] ASL Letter difficulty and quiz formality constants.
+\item[Services:] Generates random quizzes of sign language letters or words of different difficulty and size.
+\item[Implemented By:] Typescript.
+\end{description}
+
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -410,27 +430,19 @@ this application, it would affect the hand recognition models that were built on
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
 FR1 & \mref{m8}\\
-FR2 & \mref{m1} \mref{m6}\\
-FR3 & \mref{m12}\\
-FR4 & \mref{m12}\\
-FR5 & \mref{m13}\\
-FR6 & \mref{m10}\\
-FR7 & \mref{m11}\\
-FR8 & \mref{m13} \mref{m4}\\
-FR10 & \mref{m2}\\
-FR11 & \mref{m2}\\
-FR12 & \mref{m11}\\
-FR13 & \mref{m12}\\
+FR2 & \mref{m1} \mref{m2}\\
+FR3 & \mref{m10} \mref{m3}\\
+FR4 & \mref{m1}\\
+FR5 & \mref{m11}\\
+FR6 & \mref{m9}\\
+FR7 & \mref{m1} \mref{m2} \mref{m8}\\
 LFR1 & \mref{m9}\\
-LFR2 & \mref{m11}\\
+LFR2 & \mref{m1} \mref{m2}\\
 LFR3 & \mref{m10}\\
-UHR3 & \mref{m13}\\
-UHR4 & \mref{m10}\\
-SR1 & \mref{m12}\\
-SR2 & \mref{m6}\\
-SR3 & \mref{m13}\\
+UHR3 & \mref{m1} \mref{m8}\\
+SR1 & \mref{m6}\\
 LR2 & \mref{m6}\\
-PR2 & \mref{m6} \mref{m2}\\
+PR2 & \mref{m1} \mref{m2} \mref{m6}\\
 OER2 & \mref{m8}\\
 MSR3 & \mref{m7}\\
 \bottomrule
@@ -448,7 +460,6 @@ MSR3 & \mref{m7}\\
 \acref{acInfo} & \mref{m1}, \mref{m2}, \mref{m3}, \mref{m4}, \mref{m5}, \mref{m6}, \mref{m7},\\
 \acref{acAbout} & \mref{m9}\\
 \acref{acExercise} & \mref{m10}, \mref{m11}\\
-\acref{acAccount} & \mref{m13}\\
 \acref{acMLModel} & \mref{m6}\\
 \acref{acTestVerif} & \mref{m7}\\
 \bottomrule
@@ -472,7 +483,7 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{UsesHierarchyRev1.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
@@ -489,17 +500,17 @@ This timeline is under the assumption that this is all implemented for a single 
     \item \textbf{Friday, Jan 26}
     \begin{itemize}
         \item Back-end  : Machine Learning Module Completion
-        \item Front-end : Work on Exercise Module
+        \item Front-end : Work on Exercise and Exercise Selection Module
     \end{itemize}
     \item \textbf{Monday, Jan 29}
     \begin{itemize}
         \item Back-end  : Video Input Module Integration
-        \item Front-end : Continue Improving Exercise Module
+        \item Front-end : Continue Improving Exercise and Exercise Selection Module
     \end{itemize}
     \item \textbf{Friday, Feb 2}
     \begin{itemize}
         \item Back-end  : Hand Sign Recognition + Verification Module Completion
-        \item Front-end : Exercise Module Completion
+        \item Front-end : Exercise and Exercise Selection Module Completion
     \end{itemize}
     \item \textbf{Revision 0 Presentation : February 6}
     \item \textbf{Verification and Testing : Feb 7 - Mar 23}

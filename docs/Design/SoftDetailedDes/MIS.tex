@@ -56,6 +56,7 @@ urlcolor=cyan          % color of external links
 Jan 16, 2024 & 1.0 & Andrew, Stan, Edward; Finished back-end MIS breakdown\\
 Jan 17, 2024 & 1.1 & Jeremy, Cassidy; Finished front-end MIS breakdown, fixed some formatting \\
 Apr 3, 2024 & 1.2 & Cassidy; Removed unnecessary modules and cleaned up others \\
+Apr 4, 2024 & 1.3 & Jeremy and Cassidy; Added in Quiz Creation Module and other updates \\
 \bottomrule
 \end{tabularx}
 
@@ -172,12 +173,14 @@ The following table is taken directly from the \href{https://github.com/stanreee
 & Machine Learning Module \\
 & Landing Page Module \\
 & Exercise Module \\
+& Exercise Selection Module \\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
 & Hand Sign Verification Module \\
 & Data Collection Module \\
 & Testing and Verification Module \\
+& Quiz Creation Module \\
 \bottomrule
 
 \end{tabular}
@@ -691,11 +694,14 @@ getExerciseTotalScore & - & int & \\
 \subsubsection{State Variables}
 
 \begin{itemize}
+    \item title :  string
+    \item description :  string
+    \item questionAmount: int
+    \item timePerQuestion: int
     \item questions : seq of string % list of questions to ask the user \\
     \item answers : seq of string % list of answers that correspond to the same question instance \\
     \item difficultyLevels :  string of `easy', `medium', `hard'
-    \item questionScores : seq of $\mathbb{Z}$  % list of scores the user gets on questions in the exercise, starts empty, scores are passed to exercise history module
-    \item exerciseTotalScore : $\mathbb{Z}$, initialized to 0 at the start of each exercise % variable to keep track of the users current total score in the exercise
+    \item questionScores : seq of $\mathbb{Z}$  % list of scores the user gets on questions in the exercise, starts empty, scores are passed to exercise history module    \item exerciseTotalScore : $\mathbb{Z}$, initialized to 0 at the start of each exercise % variable to keep track of the users current total score in the exercise
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -747,6 +753,184 @@ updateTotalScore: exerciseTotalScore $\rightarrow$ exerciseTotalScore + givenSco
 givenScore: type int ($\mathbb{Z}$), [0, numOfQuestions]
 
 % --------------Exercise------------------
+
+\newpage
+
+% --------------Exercise Selection History ------------------
+
+\section{MIS of Exercise Selection Module} \label{ExerciseSel} 
+
+\subsection{Module}
+
+Exercise Selection
+
+\subsection{Uses}
+
+Exercise Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+% contains a way to choose a list of questions and answers for the user based on their account history and other exercises they have completed
+% the history will keep track of how well they did on a question and track their scores
+
+\begin{center}
+\begin{tabular}{p{6cm} p{2cm} p{2cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+createQuestionList & - & string & - \\
+createAnswerList & string & string & - \\
+updateExerciseQuestionHistory & string & string & InvalidEntry \\  % keeps a list of questions they have been asked
+updateExerciseAnswerHistory & string & string & InvalidEntry \\   % keeps a list of answers the user has given to a corresponding question
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+    \item questionList := seq of string
+    \item answerList := seq of string
+    \item exerciseAnswer := string 
+    \item exerciseScore := $\mathbb{Z}$ 
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+None 
+
+\subsubsection{Assumptions}
+
+None 
+
+\subsubsection{Access Routine Semantics}
+
+\noindent createQuestionList(): 
+\begin{itemize}
+\item output: questionList := seq of string
+\item exception: None
+\end{itemize}
+
+\noindent createAnswerList(): 
+\begin{itemize}
+\item output: answerList := seq of string
+\item exception: None
+\end{itemize}
+
+
+\noindent updateExerciseAnswer(): 
+\begin{itemize}
+\item output:exerciseAnswer := string \\
+\item exception: None
+\end{itemize}
+
+\noindent updateExerciseScore(): 
+\begin{itemize}
+\item output: exerciseScore := $\mathbb{Z}$ \\
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+None
+
+% --------------Exercise Selection History ------------------
+
+\newpage
+
+% --------------Quiz Creation------------------
+\section{MIS of Quiz Creation Module} \label{Module} 
+\subsection{Module}
+Quiz Creation
+\subsection{Uses}
+Exercise Selection Module
+\subsection{Syntax}
+ \subsubsection{Exported Constants}
+ None
+ \subsubsection{Exported Access Programs}
+
+    \begin{center}
+    \begin{tabular}{p{4cm} p{3cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getEasyQuizzes & - & iQuiz[] & \\
+    getMediumQuizzes & - & iQuiz[] & \\
+    getHardQuizzes & - & iQuiz[] &  \\
+    getVowelQuizzes & - & iQuiz[] & \\
+    getEasyStaticQuizzes & - & iQuiz[] & \\
+    getMediumStaticQuizzes & - & iQuiz[] & \\
+    getMediumDynamicQuizzes & - & iQuiz[] &  \\
+    getHardDynamicQuizzes & - & iQuiz[] & \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+
+ 
+\subsection{Semantics}
+\subsubsection{State Variables}
+None
+\subsubsection{Environment Variables}
+None
+\subsubsection{Assumptions}
+None
+\subsubsection{Access Routine Semantics}
+
+\noindent getEasyQuizzes():
+\begin{itemize}
+\item output: questions := seq of iQuiz
+\item exception: None
+\end{itemize}
+
+\noindent getMediumQuizzes():
+\begin{itemize}
+\item output: questions := seq of iQuiz
+\item exception: None
+\end{itemize}
+
+\noindent getHardQuizzes():
+\begin{itemize}
+\item output: questions := seq of iQuiz
+\item exception: None
+\end{itemize}
+
+\noindent getEasyStaticQuizzes():
+\begin{itemize}
+\item output: questions := seq of iQuiz
+\item exception: None
+\end{itemize}
+
+\noindent getMediumStaticQuizzes():
+\begin{itemize}
+\item output: questions := seq of iQuiz
+\item exception: None
+\end{itemize}
+
+\noindent getMediumDynamicQuizzes():
+\begin{itemize}
+\item output: questions := seq of iQuiz
+\item exception: None
+\end{itemize}
+
+\noindent getHardDynamicQuizzes():
+\begin{itemize}
+\item output: questions := seq of iQuiz
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+getQuizzes(numQuizzes: int, difficulty: string, questions: int, timePerQuestion: int, description: string, title:string)\\
+selectRandomQuestions(difficulty: string, numQuestions: int)\\
+% --------------Test-Verif------------------
 
 \newpage
 
