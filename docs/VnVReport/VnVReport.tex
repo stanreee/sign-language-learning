@@ -10,6 +10,7 @@
 \usepackage{float}
 \usepackage{adjustbox}
 \usepackage{multirow}
+\usepackage{ragged2e}
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
 \hypersetup{
@@ -259,7 +260,10 @@ NFRT1-UT4 & User can personalize their account & User is signed into their accou
 NFRT1-UT5 & System should show user if input needs to be adjusted & User tries to complete quiz but their camera is not set up properly & System prompts user to fix camera settings & System prompts user to fix camera settings & Pass & UHR4 \\
 \bottomrule
 \end{longtable}
-		
+
+
+
+\RaggedRight
 \subsection{System Tests for Performance}
 
 \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1cm}|}
@@ -277,8 +281,20 @@ NFRT2-PT2 & The application should be able to accurately determine if the user h
 % MIGHT NEED IN THE FINAL REV1 REPORTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
 % This section will not be appropriate for every project.
-
+\newpage
 \section{Unit Testing}
+
+\begin{longtable}{|p{1cm}|p{2.5cm}|p{2cm}|p{3cm}|p{3cm}|p{1cm}|p{1cm}|}
+% \caption{System Tests for Hardware} \\
+\hline
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} & \textbf{Req ID}\\
+\hline
+DPM-UT1 & Tests the vector normalization function & [1.0, 2.0, 3.0, -4.0], [4.0, -6.0, 3.0, -1.0] & [0.25, 0.5, 0.75, -1], [4.0/6.0, -6.0/6.0, 3.0/6.0, -1.0/6.0] & [0.25, 0.5, 0.75, -1], [4.0/6.0, -6.0/6.0, 3.0/6.0, -1.0/6.0] & Pass & FR2 \\
+\hline
+DPM-UT2 & Tests the feature processing function & [[1.0, 2.0, 5.0], [3.0, 4.0, -2.0], [5.0, 6.0, -3.0]], [[-1.0, 1.0, 0.0], [2.0, 1.0, -3.0], [-3.0, 2.0, 1.0]] & [[0.0, 0.0, -2.0], [-2.0, -2.0, 5.0], [-4.0, -4.0, 6.0]], [[0.0, 0.0, 0.0], [-3.0, 0.0, 3.0], [2.0, -1.0, -1.0]] & Correct & Pass & FR2 \\
+\bottomrule
+\end{longtable}
+
 
 \section{Changes Due to Testing}
 
