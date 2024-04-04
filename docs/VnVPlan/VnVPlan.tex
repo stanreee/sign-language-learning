@@ -54,6 +54,7 @@ Jan 23, 2024 & Cassidy & Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 
 Jan 23, 2024 & Cassidy & Addressed git issue \#52 regarding traceability to FR5, added test case \\
 April 2, 2024 & Andrew & Added functional unit tests, removed unused testing \\
 April 3, 2024 & Cassidy & Updated FR and NFR tests, changed tables, updated usability questions \\
+Apr 4, 2024 & Jeremy and Cassidy & Removed auth tests and refactored current tests to proper requirement changes\\ 
 \bottomrule
 \end{tabularx}
 
@@ -171,9 +172,9 @@ overall project.
   \hline
   Stanley Chan & Frontend verification, Computer Vision verification, SRS Verification \\
   Andrew Kil & Frontend end-to-end testing, Computer Vision verification, Design Verification \\
-  Cassidy Baldin & Fullstack end-to-end testing, backend black box testing, SRS Verification \\
+  Cassidy Baldin & Fullstack end-to-end testing, frontend manual testing, SRS Verification \\
   Edward Zhuang & Backend performance testing, Computer Vision unit testing, SRS Verification \\
-  Jeremy Langner & Fullstack unit testing, frontend black box testing, VnV Plan Verification \\
+  Jeremy Langner & Fullstack unit testing, frontend manual testing, VnV Plan Verification \\
 
   McMaster SLC & Providing feedback during project development \\
   \bottomrule
@@ -254,7 +255,7 @@ Initial State: The user is in an ASL course prompt question and has a functionin
 					
 Input: User displays hand signs
 					
-Output: The system output error if cannot recognize hands in camera view
+Output: The system output error if cannot recognize hands in camera view otherwise recognized sign
 
 Test Case Derivation: System needs to be able to recognize ASL hand signs for user learning/practice
 					
@@ -278,7 +279,7 @@ Test Case Derivation: Users should be able to test themselves on their ASL knowl
 					
 How test will be performed: Manual test 
 
-Functional Requirement: FR5, FR6
+Functional Requirement: FR5, FR6, FR7
 
 \item{FRT1-LP3}
 
@@ -392,7 +393,7 @@ Non-Functional Requirement: UHR1
 
 \item{NFRT1 - UT2}
 
-Goal: The user is able to understand how to use complete a lesson with little to no prior training.
+Goal: The user is able to understand how to use complete a quiz with little to no prior training.
 
 Type: Dynamic, Manual
 					
@@ -400,9 +401,9 @@ Initial State: The user opens the web application and is ready to start learning
 					
 Input: The user will start trying to learn ASL using the various learning tools in the application with no prior training.  
 					
-Output/Result: The mechanics of the application should not hinder the user's progress of learning, and the user should feel as though the learning tools are intuitive and easy to navigate. The user should be able to successfully complete the first inroductory lesson without being confused by the mechanics of the application. 
+Output/Result: The mechanics of the application should not hinder the user's progress of learning, and the user should feel as though the learning tools are intuitive and easy to navigate. The user should be able to successfully complete their first quiz without being confused by the mechanics of the application. 
 					
-How test will be performed: A sampling of representitative users will attempt to use the application and will pass the test if they can complete their first lesson without needing to ask for help with how the application works. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overal average of users scoring 75\% or higher for this part of the survey. 
+How test will be performed: A sampling of representitative users will attempt to use the application and will pass the test if they can complete their first quiz without needing to ask for help with how the application works. They will then score their user experience in the survey found in Appendix \ref{appen}. The test should result in an overal average of users scoring 75\% or higher for this part of the survey. 
 
 Non-Functional Requirement: UHR1
 					
@@ -494,7 +495,7 @@ Functional Requirements to System Test Requirements
 
 \multicolumn{1}{|l|}{FRT1-LP1}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}    \\ \hline
 
-\multicolumn{1}{|l|}{FRT1-LP2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X}    \\ \hline
+\multicolumn{1}{|l|}{FRT1-LP2}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{X} & \multicolumn{1}{l|}{X}    \\ \hline
 
 \multicolumn{1}{|l|}{FRT1-LP3}   & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{X}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   \\ \hline
 
