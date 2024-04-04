@@ -1,13 +1,16 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-from util import process_features, landmark_history_preprocess
 from sign_lang_model_dynamic import SignLangModelDynamic
 import os
 import torch
 from sklearn.decomposition import PCA 
 from recognition_model import RecognitionModel
 import time
+
+"""
+    This file is purely for testing purposes. It is not involved in the final product.
+"""
 
 cur_dir = os.getcwd()
 

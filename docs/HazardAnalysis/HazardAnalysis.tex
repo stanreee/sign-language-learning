@@ -50,6 +50,7 @@ Oct 18 2023 & Edward & Added sections 1, 2, 3, 4\\
 Oct 19 2023 & Everyone & Finished Section 6 and 7 \\
 Jan 23 2024 & Cassidy & Addressed git issue \#35 and \#38 regarding system boundaries and typo \\
 Jan 23 2024 & Cassidy & Addressed git issue \#39 regarding rationale and fit criterion of requirements \\
+April 3 2024 & Jeremy & Removed user auth hazard requirements per git issue \#37 and clarification of critical assumptions for git issue \#36 and \#40\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -72,7 +73,7 @@ Hazard analysis is a fundamental aspect of the software development process, cru
 ASLingo's system will involve the following components:
 \begin{enumerate}
     \item A camera to allow for user input
-    \item A web frontend to provide user interface and authenticate user login
+    \item A web frontend to provide user interface
     \item A backend to process software logic
     \item A machine learning model to interpret user hand signs
 \end{enumerate}
@@ -82,8 +83,10 @@ The system boundaries of ASLingo include our web application with the user's cam
 \section{Critical Assumptions}
 
 \begin{enumerate}
-    \item Assume users are using ASLingo for its intended purpose
+    \item Assume users are using ASLingo for its intended purpose of learning sign language
     \item Assume users are able and willing to follow safety instructions
+    \item Assume user's web browser is supported and can connect to a fully functioning webcam
+
 \end{enumerate}
 
 \section{Failure Mode and Effect Analysis}
@@ -103,17 +106,13 @@ Recommended Action &
 SR & 
 Ref. \\
 \hline
-User authentication & Invalid credentials & User cannot log in to system & User error or improperly saved data & Reset credentials and inform user & WAR1 & H1-1 \\
+Working Application & Error state & User cannot view any pages & Major system failure due to bugs & Display static error page and await application restoration & WAR1 & H1-1 \\
 \hline
-Database Access & Database is inaccessible & User cannot view progress or stored personal data & Database connection failure & Display static error page and await database backup/restoration & WAR2 & H2-1 \\
+Camera & Visual feed is unable to be captured & User's sign cannot be perceived by the device & Poor Lighting Conditions & Instruct user to adjust their environment lighting or move to environment with sufficient lighting & HR1 & H2-1 \\
+  & Physical defect that impairs operation &  & Cracked/Filthy camera lenses & Notify user that camera lenses appear to be inoperable & HR2 & H2-2 \\
 \hline
-Working Application & Error state & User cannot view any pages, progress, and account & Major system failure due to bugs & Display static error page and await application restoration & WAR3 & H3-1 \\
-\hline
-Camera & Visual feed is unable to be captured & User's sign cannot be perceived by the device & Poor Lighting Conditions & Instruct user to adjust their environment lighting or move to environment with sufficient lighting & HR1 & H4-1 \\
-  & Physical defect that impairs operation &  & Cracked/Filthy camera lenses & Notify user that camera lenses appear to be inoperable & HR2 & H4-2 \\
-\hline
-Machine Learning Model & Model fails to process/recognize camera input & User sign input cannot be processed accurately/correctly & Hand sign motions are too fast/slow & Interrupt the user and inform user to adjust hand sign motions accordingly & CVR1 & H5-1 \\
- & & Sign recognition works with group members and stakeholders, but fails when a new user uses the application & Model is trained on a specific set of training data and tested on a specific set of people (developers and stakeholders) & Rigorous testing on multiple testing sets and on users not affiliated with the project to ensure hands with varying qualities can be recognized & CVR2 & H5-2 \\
+Machine Learning Model & Model fails to process/recognize camera input & User sign input cannot be processed accurately/correctly & Hand sign motions are too fast/slow & Interrupt the user and inform user to adjust hand sign motions accordingly & CVR1 & H3-1 \\
+ & & Sign recognition works with group members and stakeholders, but fails when a new user uses the application & Model is trained on a specific set of training data and tested on a specific set of people (developers and stakeholders) & Rigorous testing on multiple testing sets and on users not affiliated with the project to ensure hands with varying qualities can be recognized & CVR2 & H3-2 \\
 \hline
 \end{tblr}
 \label{table:nonlin} % is used to refer this table in the text
@@ -130,11 +129,7 @@ Machine Learning Model & Model fails to process/recognize camera input & User si
     \hline
     \textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale} &\textbf{Fit Criterion}\\
     \hline
-    WAR1 & The system shall send a reset link to a user credientals for a registered email which will reset and allow the user to create a new password. & This is to ensure that the user will be able to securely reset their password. & The developers shall certify the product complies with these requirements by ensuring the user can reset their account using a link to a registered email. \\
-    \hline
-    WAR2 & The system shall create a daily backup of stored data that will be recreated daily to backup any lost data. & This is to ensure that if there are any problems with data on a particular day, there will be a backup of saved user progress from the day before. & The developers shall certify the product complies with these requirements by ensuring the data is saved daily.\\
-    \hline
-    WAR3 & The system shall notify users of any expected downtimes for upgrades and be locked out of account until complete. & This is to allow the users to be notified of service outages and give them an estimate of when they will be able to return to the application. & The developers shall certify the product complies with these requirements by ensuring users are notified in advance of any service outages.\\
+    WAR1 & The system shall notify users of any expected down times for upgrades and be locked out of account until complete. & This is to allow the users to be notified of service outages and give them an estimate of when they will be able to return to the application. & The developers shall certify the product complies with these requirements by ensuring users are notified in advance of any service outages.\\
     \bottomrule
 \end{longtable}
 
@@ -145,7 +140,7 @@ Machine Learning Model & Model fails to process/recognize camera input & User si
     \hline
     \textbf{Requirement No.} & \textbf{Description} &\textbf{Rationale} &\textbf{Fit Criterion}\\
     \hline
-    HR1 & The system shall inform the user that the camera requires better lighting in their environment if there not enough currently. & This is to ensure that the user is aware of any system/camera adjustments that may be needed to capture their input correctly, as well as comply with FR11. & The developers shall certify the product complies with these requirements by ensuring the user is notified if there are any erros associated with their camera.\\
+    HR1 & The system shall inform the user that the camera requires better lighting in their environment if there not enough currently. & This is to ensure that the user is aware of any system/camera adjustments that may be needed to capture their input correctly, as well as comply with FR1 and FR4. & The developers shall certify the product complies with these requirements by ensuring the user is notified if there are any errors associated with their camera.\\
     \hline
     HR2 & The system shall inform the user that the camera is inoperable. & This is to ensure that the user is informed if the system cannot access the camera feed for any particular reason. & The developers shall certify the product complies with these requirements by ensuring the user is notified if the camera is inoperable. \\
     \bottomrule
@@ -160,7 +155,7 @@ Machine Learning Model & Model fails to process/recognize camera input & User si
     \hline
     CVR1 & The model will be trained on multiple sign language data sets from varying sources and characteristics. & This is to ensure that the system is trained using a wide range of signs, as well as different angles and lighting conditions of the training data. This will allow the model to have ample training data to correctly recognize signs using ASL. & The developers shall certify the product complies with these requirements by ensuring the machine learning model is trained on a variety of trusted ASL sources. \\
     \hline
-    CVR2 & The system will notify the user if it is unable to detect signs due to motions being too fast or slow. & This is to ensure that a user's input will be correctly identified to the best of the model's ability, and the user will be informed if they have to sign more clearly into their camera. & The developers shall certify the product complies with these requirements by ensuring the user is notified if the system cannot detect signs due to motion inconsistencies.\\
+    CVR2 & The system will notify the user if it is unable to detect a hand within frame. & This is to ensure that a user's input will be correctly identified to the best of the model's ability, and the user will be informed if they have to sign more clearly into their camera. & The developers shall certify the product complies with these requirements by ensuring the user is notified if the system cannot detect user's hand.\\
     \bottomrule
 \end{longtable}
 

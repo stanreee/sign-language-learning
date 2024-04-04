@@ -1,10 +1,11 @@
 #Import necessary libraries
 from flask import Flask
 from flask_socketio import SocketIO
-from server_util import process_features, get_features, normalize_landmark_history, landmark_history_preprocess
 import os
 import json
 from id_mapping import id_map
+
+from server_util import get_features
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
@@ -13,10 +14,9 @@ from recognition_model import RecognitionModel
 
 #Initialize the Flask app
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
 
-# static = StaticModel()
-# dynamic_model = DynamicModel()
+# Initialize socket
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 dynamic_model = RecognitionModel([parent + "/trained_models/dynamic_one_hand.pt"], "dynamic")
 static = RecognitionModel([parent + "/trained_models/static_one_hand.pt"], "static")
@@ -31,6 +31,16 @@ frames_path = cur_dir + "/frames/"
 
 @socketio.on('dynamic')
 def dynamic(message):
+    """
+        Socket endpoint for dynamic signs. 
+
+        Expects the input to be of shape:
+        {
+            landmarkHistory: array of 30 frames of landmarks
+            reflect: boolean
+            hands: int
+        }
+    """
     landmark_history = message['landmarkHistory']
     reflect = message['reflect']
     hands = message['numHands']
@@ -46,6 +56,15 @@ def dynamic(message):
 
 @socketio.on('stream')
 def stream(message):
+    """
+        Socket endpoint for static signs.
+
+        Expects the input to be of shape:
+        {
+            features: array consisting of landmark coordinates
+            reflect: boolean
+        }
+    """
     features = message['features']
     reflect = message['reflect']
     
