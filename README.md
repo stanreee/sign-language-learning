@@ -34,3 +34,5 @@ refs - Reference material used for the project, including papers
 src - Source code
 test - Test cases
 etc.
+
+Here is a link to our team's YouTube video showing off our Capstone project! https://www.youtube.com/watch?v=mL1AdU8d55w
