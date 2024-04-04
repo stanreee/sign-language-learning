@@ -55,6 +55,7 @@ urlcolor=cyan          % color of external links
 \midrule
 Jan 16, 2024 & 1.0 & Andrew, Stan, Edward; Finished back-end MIS breakdown\\
 Jan 17, 2024 & 1.1 & Jeremy, Cassidy; Finished front-end MIS breakdown, fixed some formatting \\
+Apr 3, 2024 & 1.2 & Cassidy; Removed unnecessary modules and cleaned up others \\
 \bottomrule
 \end{tabularx}
 
@@ -171,15 +172,12 @@ The following table is taken directly from the \href{https://github.com/stanreee
 & Machine Learning Module \\
 & Landing Page Module \\
 & Exercise Module \\
-& Login/Sign Up Module \\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
 & Hand Sign Verification Module \\
 & Data Collection Module \\
 & Testing and Verification Module \\
-& Exercise Selection/History Module \\
-& Account Management Module \\
 \bottomrule
 
 \end{tabular}
@@ -679,10 +677,9 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-getQuestions & - & string, video file & \\
-getAnswers & - & string, CV file & - \\
+getQuestions & - & string & \\
+getAnswers & - & string & - \\
 getQuestionDifficulty & - & int &  \\
-getExerciseType & - & string &  \\
 getQuestionScores & - & int & \\
 getExerciseTotalScore & - & int & \\
 \hline
@@ -694,10 +691,9 @@ getExerciseTotalScore & - & int & \\
 \subsubsection{State Variables}
 
 \begin{itemize}
-    \item questions : seq of string, seq of video files % list of questions to ask the user \\
-    \item answers : seq of string, seq of CV files % list of answers that correspond to the same question instance \\
-    \item difficultyLevels :  seq of $\mathbb{N}$, [1, 5] % difficulty on a scale of 1-5 that correspond to each question and answer instance
-    \item exerciseTypes : seq of string % type of exercise a user may be given
+    \item questions : seq of string % list of questions to ask the user \\
+    \item answers : seq of string % list of answers that correspond to the same question instance \\
+    \item difficultyLevels :  string of `easy', `medium', `hard'
     \item questionScores : seq of $\mathbb{Z}$  % list of scores the user gets on questions in the exercise, starts empty, scores are passed to exercise history module
     \item exerciseTotalScore : $\mathbb{Z}$, initialized to 0 at the start of each exercise % variable to keep track of the users current total score in the exercise
 \end{itemize}
@@ -705,8 +701,7 @@ getExerciseTotalScore & - & int & \\
 \subsubsection{Environment Variables}
 
 \begin{itemize}
-    \item userAnswer := string, CV file, depending on the type of exercise the user is given 
-	% user input in response to the given question in the exercise, may be a string or a CV file
+    \item userAnswer := string % result of the user's signed answer from hand sign recognition module
 \end{itemize}
 
 \subsubsection{Assumptions}
@@ -717,25 +712,19 @@ None
 
 \noindent getQuestions():
 \begin{itemize}
-\item output: questions := seq of string, seq of video files
+\item output: questions := seq of string
 \item exception: None
 \end{itemize}
 
 \noindent getAnswers():
 \begin{itemize}
-\item output: answers := seq of string, seq of CV files
+\item output: answers := seq of string
 \item exception: None
 \end{itemize}
 
 \noindent getQuestionDifficulty():
 \begin{itemize}
 \item output: difficultyLevels := seq of $\mathbb{N}$
-\item exception: None
-\end{itemize}
-
-\noindent getExerciseType():
-\begin{itemize}
-\item output: exerciseTypes := seq of string
 \item exception: None
 \end{itemize}
 
@@ -747,7 +736,7 @@ None
 
 \noindent getExerciseTotalScore():
 \begin{itemize}
-\item transition: exerciseTotalScore variable is updated after the user answers the question given to them in the exercise. This is updated in the Exercise Selection/History Module to keep track of the users total score for each question. 
+\item transition: exerciseTotalScore variable is updated after the user answers the question given to them in the exercise to be displayed at the end of each quiz.
 \item output: exerciseTotalScore := seq of $\mathbb{Z}$
 \item exception: None
 \end{itemize}
@@ -755,271 +744,11 @@ None
 \subsubsection{Local Functions}
 
 updateTotalScore: exerciseTotalScore $\rightarrow$ exerciseTotalScore + givenScore \\
-givenScore: type int ($\mathbb{Z}$), [0, 10]
+givenScore: type int ($\mathbb{Z}$), [0, numOfQuestions]
 
 % --------------Exercise------------------
 
 \newpage
-
-% --------------Exercise Selection History ------------------
-
-\section{MIS of Exercise Selection/History Module} \label{ExerciseSel} 
-
-\subsection{Module}
-
-Exercise Selection
-
-\subsection{Uses}
-
-Exercise Module, Account Management Module
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None
-
-\subsubsection{Exported Access Programs}
-
-% contains a way to choose a list of questions and answers for the user based on their account history and other exercises they have completed
-% the history will keep track of how well they did on a question and track their scores
-
-\begin{center}
-\begin{tabular}{p{6cm} p{2cm} p{2cm} p{4cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-createQuestionList & - & string, video file & - \\
-createAnswerList & string, video file & string, CV file & - \\
-getUserLevel & - & int & - \\
-updateExerciseQuestionHistory & string, video file & string, video file & InvalidEntry \\  % keeps a list of questions they have been asked
-updateExerciseAnswerHistory & string, CV file & string, CV file & InvalidEntry \\   % keeps a list of answers the user has given to a corresponding question
-updateExerciseScoreHistory & int & int & InvalidEntry \\ % keeps a list of the score the user got on each corresponding question
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-\begin{itemize}
-    \item questionList := seq of string, seq of video files
-    \item answerList := seq of string, seq of CV files
-    \item exerciseQuestionHistory := seq of string, seq of video files
-    \item exerciseAnswerHistory := seq of string, seq of CV files 
-    \item exerciseScoreHistory := seq of $\mathbb{Z}$ 
-\end{itemize}
-
-\subsubsection{Environment Variables}
- 
-None 
-
-\subsubsection{Assumptions}
-
-None 
-
-\subsubsection{Access Routine Semantics}
-
-\noindent createQuestionList(): 
-\begin{itemize}
-\item output: questionList := seq of string, seq of video files
-\item exception: None
-\end{itemize}
-
-\noindent createAnswerList(): 
-\begin{itemize}
-\item output: answerList := seq of string, seq of CV files
-\item exception: None
-\end{itemize}
-
-\noindent getUserLevel(): 
-\begin{itemize}
-\item output: type int $\mathbb{Z}$ 
-\item exception: None
-\end{itemize}
-
-\noindent updateExerciseQuestionHistory(): 
-\begin{itemize}
-\item output: exerciseQuestionHistory := seq of string, seq of video files \\
-\item exception: None
-\end{itemize}
-
-\noindent updateExerciseAnswerHistory(): 
-\begin{itemize}
-\item output:exerciseAnswerHistory := seq of string, seq of CV files \\
-\item exception: None
-\end{itemize}
-
-\noindent updateExerciseScoreHistory(): 
-\begin{itemize}
-\item output: exerciseScoreHistory := seq of $\mathbb{Z}$ \\
-\item exception: None
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-None
-
-% --------------Exercise Selection History ------------------
-
-\newpage
-
-% --------------Authentication ------------------
-
-\section{MIS of Authentication Module} \label{Module}
-
-\subsection{Module}
-
-Application Authentication Module.
-
-\subsection{Uses}
-
-None
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{2cm} p{4cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-logIn & [string, string] & bool & InvalidEmail, IncorrectPassword, UserDoesNotExist \\
-register & [string, string] & - & InvalidRegistration \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-\begin{itemize}
-    \item emailInput: string
-    \item passwordInput: string
-\end{itemize}
-
-\subsubsection{Database Environment Variables}
-
-\begin{itemize}
-    \item \textit{email}: string
-    \item \textit{password}: string
-\end{itemize}
-
-\subsubsection{Assumptions}
-
-Using standard alphanumeric Unicode recognized keyboard.
-
-\subsubsection{Access Routine Semantics}
-
-\noindent login(string, string):
-\begin{itemize}
-\item transition:
-\item output: (validEmail(emailInput) $\land$ validPassword(passwordInput)\ \\$\Rightarrow$ checkIfUserExists(emailInput) \\$\Rightarrow$ checkPassword(checkPassword)
-\item exception: 
-    \begin{itemize}
-        \item[] $\neg$validEmail(emailInput) $\Rightarrow$ InvalidEmail\\\
-        \item[] $\neg$checkIfUserExists(emailInput) $\Rightarrow$ UserDoesNotExist\\
-        \item[] $\neg$checkPassword(checkPassword) $\Rightarrow$ IncorrectPassword\\
-    \end{itemize}
-\end{itemize}
-
-
-\subsubsection{Local Functions}
-
-\begin{itemize}
-    \item validEmail(string): emailInput = \textit{email}
-    \item validPassword(string): length(emailInput) $\ge$ 8 $\land$ $\exists$ \{A,B,C...Z\} $\land \exists$ \{0,1,2,..9\}
-    \item checkIfUserExists(string): emailInput = \textit{email}
-    \item checkPassword(string): passwordInput = \textit{password}
-\end{itemize}
-
-% --------------Authentication ------------------
-
-\newpage
-
-% --------------Account Management ------------------
-
-\section{MIS of Account Management Module} \label{Module}
-
-\subsection{Module}
-
-Application Account Module.
-
-\subsection{Uses}
-
-None
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{4cm} p{4cm} p{2cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-updateLevel & int, int & - & - \\
-getLevel & - & int & - \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-\begin{itemize}
-    \item difficulty: int
-    \item score: int
-    \item level: int
-\end{itemize}
-
-\subsubsection{Database Environment Variables}
-
-\begin{itemize}
-    \item \textit{level}: int
-\end{itemize}
-
-\subsubsection{Assumptions}
-
-None
-
-\subsubsection{Access Routine Semantics}
-
-\noindent updateLevel(difficulty, score):
-\begin{itemize}
-\item transition: \textit{level} = updateScoreDifficulty(difficulty, level)
-\item output: 
-\item exception: 
-\end{itemize}
-
-\noindent getLevel():
-\begin{itemize}
-\item transition:
-\item output: \textit{level}
-\item exception: 
-\end{itemize}
-
-
-\subsubsection{Local Functions}
-
-\begin{itemize}
-    \item updateScoreDifficulty(difficulty, score): return calculated weight for score for given difficulty
-\end{itemize}
-
-\
-% --------------Account Management ------------------
 
 %\bibliographystyle {plainnat}
 %\bibliography {../../../refs/References}

@@ -49,7 +49,7 @@
 Jan. 9, 2024 & 1.0 & Andrew and Edward; added module hierarchy\\
 Jan. 10, 2024 & 1.1 & Stanley; added some module decompositions for hardware hiding and behaviour hiding modules\\
 Jan. 10, 2024 & 1.2 & Andrew; rearranged Module Hierarchy and added decomposition descriptions for controller, hand sign recognition and verification modules\\
-Jan. 11, 2024 & 1.3 & Jeremy and Cassidy added front end anticipated changes, modules and traceability mapping to these modules\\
+Jan. 11, 2024 & 1.3 & Jeremy and Cassidy; added front end anticipated changes, modules and traceability mapping to these modules\\
 Jan. 12, 2024 & 1.4 & Stanley; added some back end anticipated changes, more traceability mapping for functional requirements and modules\\
 Jan 13, 2024 & 1.5 & Andrew; Added Uses Hierarchy Diagram\\
 Jan 15, 2024 & 1.6 & Andrew; Cleaned up minor errors\\
@@ -58,6 +58,7 @@ Jan 17, 2024 & 1.8 & Cassidy; Added in Reference Material, Abbreviations, and Re
 Jan 17, 2024 & 1.9 & Stanley; Answered reflection question 2\\
 Jan 23, 2024 & 2.0 & Cassidy; Addressed git issue \#69 regarding AC1 module \\
 Jan 23, 2024 & 2.1 & Cassidy; Addressed git issue \#49 regarding NFRT2 - PT3 and PR3 \\
+Apr 3, 2024 & 2.2 & Cassidy; Removed unnecessary modules and cleaned up others \\
 \bottomrule
 \end{tabularx}
 
@@ -134,7 +135,7 @@ hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
 solution space is explored.  
 
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
+Our design follows the rules laid out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
 \item System details that are likely to change independently should be the
   secrets of separate modules.
@@ -192,8 +193,7 @@ change.
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acInfo}:] The ASL vocabulary included in the program may be updated in the future as the language evolves.
 \item[\refstepcounter{acnum} \actheacnum \label{acAbout}:] The Landing Page Module may change if the developers want to change the formatting of the informational pages on the website (for example the home/resources page that use this module). 
-\item[\refstepcounter{acnum} \actheacnum \label{acExercise}:] Exercise and Exercise Selection/History module may change if developers want to add in additional testing methods or material.
-\item[\refstepcounter{acnum} \actheacnum \label{acAccount}:] Account management module may change if developers change what information is stored about the users progress. 
+\item[\refstepcounter{acnum} \actheacnum \label{acExercise}:] Exercise module may change if developers want to add in additional testing methods or material.
 \item[\refstepcounter{acnum} \actheacnum \label{acMLModel}:] Structure of neural network in Machine Learning module may change to improve performance and accuracy.
 \item[\refstepcounter{acnum} \actheacnum \label{acTestVerif}:] Test cases in the Testing and Verification module may change throughout development to improve code coverage as well as to cover any previously mentioned anticipated changes.
 \end{description}
@@ -210,7 +210,6 @@ decisions will be changed.
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucLogin}:] The Authentication module is unlikely to change as we will be using user authentication methods and standard login procedures that are unlikely to change.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -234,9 +233,6 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{m8}:] Video Input Module
 \item [\refstepcounter{mnum} \mthemnum \label{m9}:] Landing Page Module
 \item [\refstepcounter{mnum} \mthemnum \label{m10}:] Exercise Module
-\item [\refstepcounter{mnum} \mthemnum \label{m11}:] Exercise Selection/History Module
-\item [\refstepcounter{mnum} \mthemnum \label{m12}:] Authentication Module
-\item [\refstepcounter{mnum} \mthemnum \label{m13}:] Account Management Module
 \end{description}
 
 \begin{table}[h!]
@@ -257,15 +253,12 @@ actually be implemented.
 & Machine Learning Module \mref{m6}\\
 & Landing Page Module \mref{m9}\\
 & Exercise Module \mref{m10}\\
-& Authentication Module \mref{m12}\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
 & Hand Sign Verification Module \mref{m2}\\
 & Data Collection Module \mref{m4}\\
 & Testing and Verification Module \mref{m7}\\
-& Exercise Selection/History Module \mref{m11}\\
-& Account Management Module \mref{m13}\\
 \bottomrule
 
 \end{tabular}
@@ -282,7 +275,7 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 \section{Module Decomposition} \label{SecMD}
 
 Modules are decomposed according to the principle of ``information hiding''
-proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
+proposed by Parnas. The \emph{Secrets} field in a module
 decomposition is a brief statement of the design decision hidden by the
 module. The \emph{Services} field specifies \emph{what} the module will do
 without documenting \emph{how} to do it. For each module, a suggestion for the
@@ -356,21 +349,14 @@ to be implemented.
 \begin{description}
 \item[Secrets:] Relevant information to shown to user about the program/website.
 \item[Services:] Display necessary application information about ASLingo to the user on website.
-\item[Implemented By:] Javascript.
+\item[Implemented By:] Javascript and Typescript.
 \end{description}
 
 \subsubsection{Exercise Module (\mref{m10})}
 \begin{description}
 \item[Secrets:] Question selection process and question bank used to quiz user.
-\item[Services:] Creates an exercise module with questions based on current users level of progress.
-\item[Implemented By:] Javascript.
-\end{description}
-
-\subsubsection{Authentication Module (\mref{m12})}
-\begin{description}
-\item[Secrets:] How user information is stored and accessed.
-\item[Services:] Takes in user input to allow them to sign into their account.
-\item[Implemented By:] Javascript.
+\item[Services:] Creates an exercise module with questions based on current users selected level of difficulty. 
+\item[Implemented By:] Javascript and Typescript.
 \end{description}
 
 \subsection{Software Decision Modules}
@@ -406,20 +392,6 @@ to be implemented.
 \item[Secrets:] Unit test cases used to test the software system.
 \item[Services:] Verifies the software works as intended by testing the system on various test cases which ensures robustness, accuracy, and reliability.
 \item[Implemented By:] Python and Pytest.
-\end{description}
-
-\subsubsection{Exercise Selection/History Module (\mref{m11})}
-\begin{description}
-\item[Secrets:] How historical data is stored for each user.
-\item[Services:] Display users completed exercise progress and display current exercise options.
-\item[Implemented By:] Javascript.
-\end{description}
-
-\subsubsection{Account Management Module (\mref{m13})}
-\begin{description}
-\item[Secrets:] How user information is stored and processed.
-\item[Services:] Will keep a record of users account history after signing in to their account.
-\item[Implemented By:] Javascript.
 \end{description}
 
 \section{Traceability Matrix} \label{SecTM}
@@ -488,7 +460,7 @@ MSR3 & \mref{m7}\\
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
 In this section, the uses hierarchy between modules is
-provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
+provided. Parnas said of two programs A and B that A {\em uses} B if
 correct execution of B may be necessary for A to complete the task described in
 its specification. That is, A {\em uses} B if there exist situations in which
 the correct functioning of A depends upon the availability of a correct
@@ -512,27 +484,31 @@ This timeline is under the assumption that this is all implemented for a single 
     \item \textbf{Monday, Jan 22}
     \begin{itemize}
         \item Back-end  : Data Collection and Data Processing Modules Completion
-        \item Front-end : Landing Page Module, Authentication Module Completion
+        \item Front-end : Landing Page Module
     \end{itemize}
     \item \textbf{Friday, Jan 26}
     \begin{itemize}
         \item Back-end  : Machine Learning Module Completion
-        \item Front-end : Account Management Module completion
+        \item Front-end : Work on Exercise Module
     \end{itemize}
     \item \textbf{Monday, Jan 29}
     \begin{itemize}
         \item Back-end  : Video Input Module Integration
-        \item Front-end : Exercise Selection/Menu Completion
+        \item Front-end : Continue Improving Exercise Module
     \end{itemize}
     \item \textbf{Friday, Feb 2}
     \begin{itemize}
         \item Back-end  : Hand Sign Recognition + Verification Module Completion
         \item Front-end : Exercise Module Completion
     \end{itemize}
-    \item \textbf{Revision 0 Presentation : February 5th - February 16th}
-    \item \textbf{Verification and Testing : Feb 19 - Feb 23}
+    \item \textbf{Revision 0 Presentation : February 6}
+    \item \textbf{Verification and Testing : Feb 7 - Mar 23}
+    \begin{itemize}
+        \item While verifying and testing the application, we will be getting user feedback from stakeholders and representative users
+        \item The team will incorporate this feedback into adjustments to the specified modules to increase usability for our users in response to testing
+    \end{itemize}
+    \item \textbf{Final Capstone Presentation (Rev 1) : March 24 at 2:00 pm}
 \end{itemize}
-\textbf{\textit{Further Scheduling done when dates draw closer to ensure realistic expectations}}
 
 \section{Reflection}
 
@@ -565,8 +541,8 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
   module.
 \end{enumerate}
 
-\bibliographystyle {plainnat}
-\bibliography{../../../refs/References}
+% \bibliographystyle {plainnat}
+% \bibliography{../../../refs/References}
 
 \newpage{}
 
