@@ -6,7 +6,7 @@ import useWebcam from '../hooks/useWebcam';
 
 import toast, { Toaster } from 'react-hot-toast';
 
-const Webcam = ({ text, setText, setConfidence, isDynamic, hands }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean, hands: number}) => {
+const Webcam = ({ text, setText, setConfidence, isDynamic, hands, canChangeType }: {text: string, setText: React.Dispatch<React.SetStateAction<string>>, setConfidence: React.Dispatch<React.SetStateAction<string>>, isDynamic: boolean, hands: number, canChangeType: boolean}) => {
   
   const [detectedState, setDetectedState] = useState(false);
   const detected = useRef(false);
@@ -16,6 +16,7 @@ const Webcam = ({ text, setText, setConfidence, isDynamic, hands }: {text: strin
   const { 
     captureState, 
     setCaptureState, 
+    dynamicState,
     setDynamic, 
     webcamVideoRef, 
     teardown, 
@@ -36,7 +37,8 @@ const Webcam = ({ text, setText, setConfidence, isDynamic, hands }: {text: strin
       setConfidence(confidence);
       console.log("CONFIDENCE:", confidence);
     },
-    debug: true
+    debug: true,
+    isDynamic: isDynamic,
   })
 
   useEffect(() => {
@@ -87,8 +89,16 @@ const Webcam = ({ text, setText, setConfidence, isDynamic, hands }: {text: strin
     <div className="webcam-container">
       <Toaster />
       <div>
+        <div>
+          {canChangeType && (
+            <div>
+                <button style={{marginRight: "12px"}} className={dynamicState ? "Button active" : "Button"} onClick={() => {setDynamic(false)}}>Static (Non-Moving)</button>
+                <button className={dynamicState ? "Button" : "Button active"} onClick={() => {setDynamic(true)}}>Dynamic (Moving)</button>
+            </div>
+          )}
+        </div>
         {
-          isDynamic && (
+          dynamicState && (
             <div style={{marginTop: "20px"}}>
               <div style={{display: "flex", placeItems: "center", marginTop: "10px"}}> 
                 <button className={captureState ? 'Record-Button Record-Button__disabled' : 'Record-Button'} disabled={captureState} onClick={startRecording}>{captureState ? "Recording" : "Start Recording"}</button>

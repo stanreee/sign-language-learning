@@ -13,11 +13,12 @@ function useWebcam({
     onHandDetection,
     handedness, // for left hand folks
     onResult,
+    isDynamic,
     debug
 }) {
     const landmarkHistory = useRef([]);
     const [captureState, setCaptureState] = useState(false);
-    const [dynamic, setDynamic] = useState(false);
+    const [dynamic, setDynamic] = useState(isDynamic);
     const [recordingState, setRecordingState] = useState(0);
     const hands = useRef(null);
     const webcamVideo = useRef(null);
@@ -231,6 +232,7 @@ function useWebcam({
         captureState,
         setCaptureState,
         setDynamic,
+        dynamicState: dynamic,
         webcamVideoRef: webcamVideo,
         teardown,
         recordingState,

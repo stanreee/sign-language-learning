@@ -5,12 +5,14 @@ import '../styles/Quiz.css'
 import React from 'react'
 import ASLLetters from "../images/ASLLetters.png"
 import { useNavigate } from 'react-router-dom'
+import Modal from 'react-modal';
 
 const Practice = () => {
 
     const [result, setResult] = useState("A")
-    const [dynamic, setDynamic] = useState(false)
+    // const [dynamic, setDynamic] = useState(false)
     const [confidence, setConfidence] = useState("")
+    const [modalIsOpen, setModalOpen] = useState(true);
 
     const navigate = useNavigate();
     const navigateToLearn_letters = () => {
@@ -43,7 +45,6 @@ const Practice = () => {
     const instructions = () => {
         return (
             <div>
-                <h2> Instructions: </h2>
                 <div> You can practice the signs you have learned here! </div>
                 <li> Remember to keep your hands in the webcam frame at all times (indicated by green outline) </li>
                 <li> Ensure that your camera is level with your hands </li>
@@ -70,73 +71,83 @@ const Practice = () => {
             </div>
         )}
 
+    const modalStyles = {
+        content: {
+            height: "fit-content",
+            width: "50%",
+            right: "auto",
+            bottom: "auto",
+            top: "50%",
+            left: "50%",
+            transform: 'translate(-50%, -50%)',
+            borderRadius: "10px",
+        }
+    }
+
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
+
     return(
         <div className="practice-page">
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={modalStyles}
+            >
+                <div className="modal-header">
+                    <h2>
+                        Instructions
+                    </h2>
+                </div>
+                <div className="modal-content">
+                    {instructions()}
+                </div>
+                <div className="modal-footer">
+                    <button className="Button" onClick={closeModal}>Continue</button>
+                </div>
+            </Modal>
             <div className='practice-page-col'>
                 <div className="practice-header">
-                    <h1>Practice</h1>
+                    <h1 style={{marginRight: "24px"}}>Practice</h1>
+                    <button className="Button" onClick={openModal}>Instructions</button>
                 </div>
                 <div>
-                    <div>{instructions()}</div>
+                    {/* <div>{instructions()}</div> */}
 
                     <br />
                     <div className='letterAlign'>
-                        <br />
-                        <div>
+                        <div className="center">
+                            <br />
+                            <div>
                             <div> Go to Learning Chapters to Refresh </div>
                             <div>Your Memory or Learn More!</div>
-                            <br />
-                            <a href="#ref_image" rel="noopener">Click for Letter Reference Image  </a>
-                            <br />
-                            <button className={"Dyanmic-Button"} onClick={navigateToLearn_letters}>Letters </button>
-                            <br />
-                            <button className={"Dyanmic-Button"} onClick={navigateToLearn_basic_words}>Basic Words/Phrases</button>
-                            <br />
-                            <button className={"Dyanmic-Button"} onClick={navigateToLearn_question_words}>Question Words</button>
-                        </div>
-
-                        <br />
-                        <Webcam hands={1} text={result} setText={setResult} setConfidence={setConfidence} isDynamic={dynamic}/>
-
-                        <div>
-                            <div>
-                                <span className="result-prompt">Result: </span>
-                                <span className="result">{result}</span>
+                            <div style={{display: "flex", marginTop: "12px", marginBottom: "12px"}}>
+                                <button style={{marginRight: "12px"}} className={"Button"} onClick={navigateToLearn_basic_words}>Basic Words/Phrases</button>
                                 <br />
-                                <span className="result-prompt small">Confidence: </span>
-                                <span className="result small">{Math.round(Number(confidence)*100).toFixed(1)}%</span>
+                                <button className={"Button"} onClick={navigateToLearn_question_words}>Question Words</button>
                             </div>
-                            <br />
-                            <div>
-                                {
-                                    dynamic ? (
-                                        <div >
-                                        <button className="Dyanmic-Button active" onClick={() => {setDynamic(false)}}>Static</button>
-                                        <button className="Dyanmic-Button">Dynamic</button>
-                                        </div>
-                                    ) : (
-                                        <div>
-                                        <button className="Dyanmic-Button" >Static</button>
-                                        <button className="Dyanmic-Button active" onClick={() => {setDynamic(true)}}>Dynamic</button>
-                                        </div>
-                                        )
-                                }
-                            </div> 
-                            <br /> 
-                            {options()}
+                            <div id="ref_image" data-hs-anchor="true" ><img src={ASLLetters} width={763.5} height={343.5} alt="aslLetters"/></div>
                         </div>
-                    </div>
+                        </div>
+                        {/* <br /> */}
 
-                    <br />
-                    <div style={{textAlign: "center"}}>                      
-                        <br />
-                        <div className='letterAlign' >
-                            <br />
-                            <div className="center">
-                                <div id="ref_image" data-hs-anchor="true" ><img src={ASLLetters} width={763.5} height={343.5} alt="aslLetters"/></div>
-                                <br />
+                        {/* <br /> */}
+                        <div className="webcam-container">
+                            <div>
+                                <div>
+                                    <span className="result-prompt">Result: </span>
+                                    <span className="result">{result}</span>
+                                    <br />
+                                    <span className="result-prompt small">Confidence: </span>
+                                    <span className="result small">{Math.round(Number(confidence)*100).toFixed(1)}%</span>
+                                </div>
                             </div>
-                            <br />
+                            <Webcam canChangeType={true} hands={1} text={result} setText={setResult} setConfidence={setConfidence} isDynamic={false}/>
                         </div>
                     </div>
                     

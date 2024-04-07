@@ -240,7 +240,7 @@ const Quiz = ({
               <span className="text-answer-prompt-black">Confidence: </span>
               <span className="text-question">{Math.round(Number(confidence)*100).toFixed(1)}%</span>
             </div>
-            <Webcam hands={1} text={sign} setText={setSign} setConfidence={setConfidence} isDynamic={Boolean(Number(isDynamic))}/> 
+            <Webcam canChangeType={false} hands={1} text={sign} setText={setSign} setConfidence={setConfidence} isDynamic={Boolean(Number(isDynamic))}/> 
           </div>
             {/* <ul>
               {choices.map((answer: string, index: number) => (

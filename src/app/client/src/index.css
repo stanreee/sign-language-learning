@@ -75,6 +75,11 @@ nav {
 	padding: 0 20px;
 	width: 100%;
 	height: 80px;
+	position: sticky;
+}
+
+.practice-page {
+	top: 80px;
 }
 
 .logo h1 {
@@ -294,15 +299,6 @@ nav .nav-items {
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	text-align: center;
-}
-
-.letterAlign {
-    background-color: #e0e0e0;
-    /* flex-direction: row; */
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-	/* margin: 10px 50px; */
 }
 
 /* https://stackoverflow.com/questions/40512026/no-arrow-buttons-in-scrollbar-after-writing-webkit-css/46229219#46229219 */
