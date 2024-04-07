@@ -59,7 +59,7 @@ class Classifier:
 
             keys = cv2.waitKey(1) & 0xFF
             if keys == ord('c'):
-                if self.num_hands > 1:
+                if True:
                     if not self.capturing and not countdown:
                         startTime = time.time()
                         countdown = True
