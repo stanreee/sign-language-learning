@@ -24,9 +24,6 @@ const NavBar = () => {
 						<li>
 							<NavLink reloadDocument to="/exercises">Exercises</NavLink>
 						</li>
-						<li>
-							<NavLink reloadDocument to="/account">Login</NavLink>
-						</li>
 					</ul>
 				</div>
 			</nav>
