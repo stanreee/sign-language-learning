@@ -41,11 +41,12 @@ const letterCard = (letter: string, num: number, first?: boolean) => {
         <img src={letter} alt= {`${allLetters[num]}`} />
         <h2>{allLetters[num][0]}</h2>
         {letterDesc[num]}
-        <Link 
-          to={`https://youtu.be/${letterVideos[num]}`}
+        <a 
+          href={`https://youtu.be/${letterVideos[num]}`}
+          target="_blank"
           style={{color: '#000000',}}
           > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-        </Link>
+        </a>
       </div>
     )
 }

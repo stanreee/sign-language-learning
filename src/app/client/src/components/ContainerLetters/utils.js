@@ -14,11 +14,12 @@ export const wordCard = (num, index, width, height, first) => {
         <img src={num} width={width} height={height} alt= {`${allWords[index]}`} />
         <h2>{allWords[index]}</h2>
         {wordsDesc[index]}
-        <Link 
-          to={`https://youtu.be/${wordVideos[index]}`}
+        <a 
+          href={`https://youtu.be/${wordVideos[index]}`}
+          target="_blank"
           style={{color: '#000000',}}
           > <div > <img src={youtube} width={46.2} height={32.4} alt= "youtube" /> </div>
-        </Link>
+        </a>
       </div>
     )
 }
