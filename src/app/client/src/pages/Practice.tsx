@@ -6,6 +6,9 @@ import React from 'react'
 import ASLLetters from "../images/ASLLetters.png"
 import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal';
+import Words from '../components/ContainerLetters/Words'
+import PracticeHelpModal from '../components/Modals/PracticeHelpModal'
+import QuestionWords from '../components/ContainerLetters/QuestionWords'
 
 const Practice = () => {
 
@@ -13,6 +16,8 @@ const Practice = () => {
     // const [dynamic, setDynamic] = useState(false)
     const [confidence, setConfidence] = useState("")
     const [modalIsOpen, setModalOpen] = useState(true);
+    const [wordsModalOpen, setWordsModalOpen] = useState(false);
+    const [questionWordsModalOpen, setQuestionWordsModalOpen] = useState(false);
 
     const navigate = useNavigate();
     const navigateToLearn_letters = () => {
@@ -111,6 +116,22 @@ const Practice = () => {
                     <button className="Button" onClick={closeModal}>Continue</button>
                 </div>
             </Modal>
+            <PracticeHelpModal 
+                isOpen={wordsModalOpen}
+                onRequestClose={() => setWordsModalOpen(false)}
+                title="Basic Words/Phrases"
+            >
+                <Words className="words-modal"/>
+            </PracticeHelpModal>
+
+            <PracticeHelpModal 
+                isOpen={questionWordsModalOpen}
+                onRequestClose={() => setQuestionWordsModalOpen(false)}
+                title="Question Words"
+            >
+                <QuestionWords className="words-modal"/>
+            </PracticeHelpModal>
+
             <div className='practice-page-col'>
                 <div className="practice-header">
                     <h1 style={{marginRight: "24px"}}>Practice</h1>
@@ -124,12 +145,12 @@ const Practice = () => {
                         <div className="center">
                             <br />
                             <div>
-                            <div> Go to Learning Chapters to Refresh </div>
+                            <div> Go to <a style={{cursor: "pointer", color: "#003459", fontWeight: "bold"}} onClick={navigateToLearn_letters}>Learning Chapters</a> to Refresh </div>
                             <div>Your Memory or Learn More!</div>
                             <div style={{display: "flex", marginTop: "12px", marginBottom: "12px"}}>
-                                <button style={{marginRight: "12px"}} className={"Button"} onClick={navigateToLearn_basic_words}>Basic Words/Phrases</button>
+                                <button style={{marginRight: "12px"}} className={"Button"} onClick={() => setWordsModalOpen(true)}>Basic Words/Phrases</button>
                                 <br />
-                                <button className={"Button"} onClick={navigateToLearn_question_words}>Question Words</button>
+                                <button className={"Button"} onClick={() => setQuestionWordsModalOpen(true)}>Question Words</button>
                             </div>
                             <div id="ref_image" data-hs-anchor="true" ><img src={ASLLetters} width={763.5} height={343.5} alt="aslLetters"/></div>
                         </div>

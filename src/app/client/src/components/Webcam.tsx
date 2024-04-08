@@ -76,7 +76,7 @@ const Webcam = ({ text, setText, setConfidence, isDynamic, hands, canChangeType 
     startCountdown(() => {
       if(detected.current) setCaptureState(true)
       else {
-        toast("Make sure your hands are being detected before the countdown ends!");
+        toast("Make sure your hands are being detected as indicated by the green border before the countdown ends!");
       }
     });
   }
@@ -92,8 +92,8 @@ const Webcam = ({ text, setText, setConfidence, isDynamic, hands, canChangeType 
         <div>
           {canChangeType && (
             <div>
-                <button style={{marginRight: "12px"}} className={dynamicState ? "Button active" : "Button"} onClick={() => {setDynamic(false)}}>Static (Non-Moving)</button>
-                <button className={dynamicState ? "Button" : "Button active"} onClick={() => {setDynamic(true)}}>Dynamic (Moving)</button>
+                <button style={{marginRight: "12px"}} className={dynamicState ? "Button active" : "Button disabled"} onClick={() => {setDynamic(false)}}>Static (Non-Moving)</button>
+                <button className={dynamicState ? "Button disabled" : "Button active"} onClick={() => {setDynamic(true)}}>Dynamic (Moving)</button>
             </div>
           )}
         </div>

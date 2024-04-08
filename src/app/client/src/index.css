@@ -350,12 +350,12 @@ nav .nav-items {
   	border-color: transparent transparent transparent #00A7E1;
 }
   
-.container-letters {
+/* .container-letters {
 	display: flex;
 	overflow-x: scroll;
 	overflow-y: hidden;
 	width: 75%;
-}
+} */
 
 .card {
 	flex-shrink: 0;

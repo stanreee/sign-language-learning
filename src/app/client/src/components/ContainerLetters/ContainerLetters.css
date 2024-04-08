@@ -1,0 +1,19 @@
+.container-letters {
+	display: flex;
+	overflow-x: scroll;
+	overflow-y: hidden;
+
+    a {
+        cursor: pointer;
+    }
+
+    .card.first {
+        margin-left: 0px;
+    }
+}
+
+.jump-to {
+    a {
+        cursor: pointer;
+    }
+}

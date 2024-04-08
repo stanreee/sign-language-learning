@@ -105,11 +105,16 @@
     vertical-align: middle;
   }
 
+  .Button.disabled {
+    cursor: default;
+  }
+
   .Button.active {
     background-color: #ffffff;
     border: 2px;
     border-color: #003459;
     color: #003459;
+    cursor: pointer;
   }
 
   .modal-content {
