@@ -1,6 +1,5 @@
 import { SetStateAction, useEffect, useReducer, useRef, useState } from 'react'
 import iQuiz from '../interfaces/iQuiz'
-import quizRaw from "../data/additionQuiz.json"
 
 import '../styles/Quiz.css'
 import iQuizQuestions from '../interfaces/iQuizQuestions';
